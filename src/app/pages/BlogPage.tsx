@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import svgPaths from "../../imports/svg-hrq2igur1m";
 import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
+import { SEOHead, breadcrumbJsonLd } from "../components/SEOHead";
 import {
   getPaginatedPosts,
   sortedBlogPosts,
@@ -210,44 +211,6 @@ function Pagination({
   );
 }
 
-/* ─── SEO Head ─── */
-function BlogSEO() {
-  const { t, i18n } = useTranslation();
-  useEffect(() => {
-    document.title = t("pages.blog.metaTitle");
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", t("pages.blog.metaDescription"));
-
-    // Open Graph
-    const ogTags: Record<string, string> = {
-      "og:title": t("pages.blog.metaTitle"),
-      "og:description": t("pages.blog.metaDescription"),
-      "og:type": "website",
-      "og:locale": i18n.language === "es" ? "es_ES" : "en_US",
-      "og:site_name": "Digio",
-    };
-    Object.entries(ogTags).forEach(([prop, content]) => {
-      let tag = document.querySelector(`meta[property="${prop}"]`);
-      if (!tag) {
-        tag = document.createElement("meta");
-        tag.setAttribute("property", prop);
-        document.head.appendChild(tag);
-      }
-      tag.setAttribute("content", content);
-    });
-
-    return () => {
-      document.title = "Digio";
-    };
-  }, [t, i18n.language]);
-  return null;
-}
-
 /* ─── Blog Page (exported) ─── */
 export function BlogPage() {
   const { t } = useTranslation();
@@ -273,7 +236,15 @@ export function BlogPage() {
 
   return (
     <>
-      <BlogSEO />
+      <SEOHead
+        titleKey="seo.blog.title"
+        descriptionKey="seo.blog.description"
+        canonicalPath="/blog"
+        jsonLd={breadcrumbJsonLd([
+          { name: t("seo.home.title"), path: "/" },
+          { name: t("seo.blog.title"), path: "/blog" },
+        ])}
+      />
 
       {/* JSON-LD structured data for blog listing */}
       <script

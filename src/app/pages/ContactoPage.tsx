@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "motion/react";
+import { SEOHead, breadcrumbJsonLd } from "../components/SEOHead";
 
 const EASE_SMOOTH = [0.22, 1, 0.36, 1] as const;
 
@@ -291,6 +292,15 @@ export function ContactoPage() {
 
   return (
     <>
+      <SEOHead
+        titleKey="seo.contacto.title"
+        descriptionKey="seo.contacto.description"
+        canonicalPath="/contacto"
+        jsonLd={breadcrumbJsonLd([
+          { name: t("seo.home.title"), path: "/" },
+          { name: t("seo.contacto.title"), path: "/contacto" },
+        ])}
+      />
       {/* Hero + Form section */}
       <section className="bg-[#f6f5f3] w-full px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[64px]">

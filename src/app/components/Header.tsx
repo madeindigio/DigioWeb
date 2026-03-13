@@ -685,7 +685,7 @@ export function Header() {
           <AnimatePresence>
             {(scrolled || true) && (
               <motion.button
-                className={`relative p-2 z-[60] ${
+                className={`relative p-2 z-[60] cursor-pointer ${
                   scrolled ? "block" : "md:hidden"
                 }`}
                 style={{ color: headerTextDark && !menuOpen ? "#191e25" : "#e5e1dc" }}

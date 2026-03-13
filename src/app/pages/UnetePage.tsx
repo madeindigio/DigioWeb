@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "motion/react";
 import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
+import { SEOHead, breadcrumbJsonLd } from "../components/SEOHead";
 
 import svgPaths from "../../imports/svg-ws9geozil5";
 import svgArrow from "../../imports/svg-0193fyzoz5";
@@ -333,8 +334,18 @@ function OffersSection() {
 
 /* ─── Page ─── */
 export function UnetePage() {
+  const { t } = useTranslation();
   return (
     <>
+      <SEOHead
+        titleKey="seo.unete.title"
+        descriptionKey="seo.unete.description"
+        canonicalPath="/unete"
+        jsonLd={breadcrumbJsonLd([
+          { name: t("seo.home.title"), path: "/" },
+          { name: t("seo.unete.title"), path: "/unete" },
+        ])}
+      />
       <HeroSection />
       <TalentSection />
       <BenefitsSection />

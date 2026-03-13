@@ -1,4 +1,46 @@
 const es = {
+  seo: {
+    home: {
+      title: "Soluciones Digitales a Medida",
+      description: "Digio disena y desarrolla plataformas digitales, apps moviles y soluciones tecnologicas para empresas, startups y organizaciones internacionales.",
+    },
+    trabajo: {
+      title: "Nuestro Trabajo",
+      description: "Descubre los proyectos digitales de Digio: diseno UX/UI, desarrollo web y movil, IoT y plataformas escalables para empresas lideres.",
+    },
+    sobreDigio: {
+      title: "Sobre Digio",
+      description: "Conoce a Digio: mas de 17 anos creando soluciones digitales solidas. Diseno, desarrollo, Cloud y consultoria tecnologica desde Murcia.",
+    },
+    unete: {
+      title: "Unete al Equipo",
+      description: "Trabaja en Digio: buscamos disenadores, desarrolladores e ingenieros apasionados por la tecnologia y la innovacion digital.",
+    },
+    blog: {
+      title: "Blog",
+      description: "Articulos sobre desarrollo web, diseno UX, cloud computing, ciberseguridad y tendencias en tecnologia digital por el equipo de Digio.",
+    },
+    contacto: {
+      title: "Contacto",
+      description: "Contacta con Digio para hablar de tu proyecto digital. Te ayudamos a disenar y desarrollar la solucion tecnologica que necesitas.",
+    },
+    ia: {
+      title: "Inteligencia Artificial",
+      description: "Servicios de inteligencia artificial de Digio: automatizacion, machine learning y soluciones IA aplicadas al negocio digital.",
+    },
+    privacidad: {
+      title: "Politica de Privacidad",
+      description: "Politica de privacidad de Digio Soluciones Digitales. Informacion sobre el tratamiento y proteccion de datos personales.",
+    },
+    cookies: {
+      title: "Politica de Cookies",
+      description: "Politica de cookies de Digio. Informacion sobre el uso de cookies en nuestro sitio web.",
+    },
+    notFound: {
+      title: "Pagina no encontrada",
+      description: "La pagina que buscas no existe o ha sido movida. Vuelve a la pagina principal de Digio.",
+    },
+  },
   nav: {
     work: "Nuestro trabajo",
     about: "Sobre Digio",

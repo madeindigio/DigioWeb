@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { ContactSection } from "../components/ContactSection";
@@ -67,10 +67,10 @@ function VideoWithFallback({
 }
 
 /* ─── Figma Assets ─── */
-import imgFaces1 from "figma:asset/8221c489c3c16ef0774dba058be2390ad9afd6ac.png";
+import imgFaces1 from "figma:asset/8951edeb8a88c0f2c72219029fc8517b4f3c1aad.png";
 import imgVideoSection from "figma:asset/466288b3bf160615a37556f78a49b1c2916e3116.png";
 import imgComponents1 from "figma:asset/8248144bee0567971009064f5e3b715fac005bc2.png";
-import imgBigSymImgSection from "figma:asset/9bdac0c87fbc312f3e5260787eb23a479d77a0ec.png";
+import imgBigSymImgSection from "figma:asset/e1aa3acf99db0e469f2465cb0347c5009b8d662b.png";
 import imgUmuScreenPortada from "figma:asset/703843218cd8ffc6ec7f6b8dbf51eaa41fd78e98.png";
 import imgAppIconMockup from "figma:asset/204d01c55480fc4b8d5d299ad46b8ac11fad161a.png";
 import imgMobileSectionRight from "figma:asset/6d586f6f05918ad0dc4389f8627c0d1a22937c69.png";
@@ -312,7 +312,7 @@ function PlatformSection() {
    ============================================================ */
 function BigImageSection() {
   return (
-    <section className="w-full h-[900px] max-lg:h-[600px] max-md:h-[400px] overflow-hidden relative">
+    <section className="w-full h-[900px] max-lg:h-[600px] max-md:h-[400px] overflow-hidden relative mb-[100px] max-lg:mb-[80px] max-md:mb-[48px]">
       <img
         alt="Symposium overview"
         className="absolute inset-0 w-full h-full object-cover"
@@ -481,12 +481,128 @@ function StatsSection() {
 }
 
 /* ============================================================
-   9b. UNIVERSITY SLIDER
+   9b. UNIVERSITY SLIDER — Infinite carousel
    ============================================================ */
 function UniversitySliderSection() {
   const { t } = useTranslation();
-  const { trackRef, onPointerDown, onPointerMove, onPointerUp } = useDragSlider();
   const cards = t("pages.symposium.sliderCards", { returnObjects: true }) as { name: string; label: string }[];
+  const trackRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [hasEntered, setHasEntered] = useState(false);
+
+  const TOTAL = SLIDER_UNIVERSITIES.length;
+  const tripled = useMemo(
+    () => [...SLIDER_UNIVERSITIES, ...SLIDER_UNIVERSITIES, ...SLIDER_UNIVERSITIES],
+    []
+  );
+
+  /* ── Initialize scroll to middle (second) set ── */
+  const initialized = useRef(false);
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track || initialized.current) return;
+    requestAnimationFrame(() => {
+      if (track.children.length < TOTAL * 2) return;
+      const first = track.children[0] as HTMLElement;
+      const mid = track.children[TOTAL] as HTMLElement;
+      const oneSetWidth = mid.offsetLeft - first.offsetLeft;
+      track.scrollLeft = oneSetWidth;
+      initialized.current = true;
+    });
+  }, [TOTAL]);
+
+  /* ── Infinite loop: silently reset scroll at boundaries ── */
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        if (!track || track.children.length < TOTAL * 2) return;
+        const first = track.children[0] as HTMLElement;
+        const mid = track.children[TOTAL] as HTMLElement;
+        const oneSetWidth = mid.offsetLeft - first.offsetLeft;
+        if (track.scrollLeft >= oneSetWidth * 2) {
+          track.scrollLeft -= oneSetWidth;
+        } else if (track.scrollLeft <= 0) {
+          track.scrollLeft += oneSetWidth;
+        }
+      });
+    };
+    track.addEventListener("scroll", onScroll, { passive: true });
+    return () => track.removeEventListener("scroll", onScroll);
+  }, [TOTAL]);
+
+  /* ── Entrance animation observer ── */
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  /* ── Drag with inertia ── */
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+  const velX = useRef(0);
+  const lastPointerX = useRef(0);
+  const lastPointerTime = useRef(0);
+  const inertiaRaf = useRef(0);
+
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    const track = trackRef.current;
+    if (!track) return;
+    isDragging.current = true;
+    dragStartX.current = e.clientX;
+    dragScrollLeft.current = track.scrollLeft;
+    velX.current = 0;
+    lastPointerX.current = e.clientX;
+    lastPointerTime.current = Date.now();
+    track.style.cursor = "grabbing";
+    track.setPointerCapture(e.pointerId);
+    cancelAnimationFrame(inertiaRaf.current);
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (!isDragging.current || !trackRef.current) return;
+    e.preventDefault();
+    const now = Date.now();
+    const dt = now - lastPointerTime.current;
+    const dx = e.clientX - lastPointerX.current;
+    if (dt > 0) velX.current = dx / dt;
+    lastPointerX.current = e.clientX;
+    lastPointerTime.current = now;
+    trackRef.current.scrollLeft = dragScrollLeft.current - (e.clientX - dragStartX.current);
+  }, []);
+
+  const onPointerUp = useCallback((e: React.PointerEvent) => {
+    if (!isDragging.current || !trackRef.current) return;
+    isDragging.current = false;
+    trackRef.current.style.cursor = "grab";
+    trackRef.current.releasePointerCapture(e.pointerId);
+    let v = velX.current * 15;
+    const friction = 0.95;
+    const animate = () => {
+      if (!trackRef.current || Math.abs(v) < 0.5) return;
+      trackRef.current.scrollLeft -= v;
+      v *= friction;
+      inertiaRaf.current = requestAnimationFrame(animate);
+    };
+    inertiaRaf.current = requestAnimationFrame(animate);
+  }, []);
 
   return (
     <section className="bg-white w-full">
@@ -498,27 +614,35 @@ function UniversitySliderSection() {
         </div>
       </div>
 
-      {/* Full-bleed slider */}
-      <div className="pb-[100px] max-lg:pb-[80px] max-md:pb-[48px]">
+      {/* Infinite carousel */}
+      <div ref={sectionRef} className="pb-[100px] max-lg:pb-[80px] max-md:pb-[48px]">
         <div
           ref={trackRef}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
-          className="flex gap-[24px] max-md:gap-[16px] overflow-x-auto overflow-y-hidden pl-[56px] max-md:pl-[24px] pr-[56px] max-md:pr-[24px] select-none touch-pan-y hide-scrollbar"
+          className="flex gap-[24px] max-md:gap-[16px] overflow-x-auto overflow-y-hidden pl-[56px] max-md:pl-[24px] select-none touch-pan-y hide-scrollbar"
           style={{ cursor: "grab", scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
         >
-          {SLIDER_UNIVERSITIES.map((uni, i) => {
-            const card = cards[i];
+          {tripled.map((uni, i) => {
+            const cardIndex = i % TOTAL;
+            const card = cards[cardIndex];
             return (
-              <div
-                key={card?.label ?? i}
+              <motion.div
+                key={`uni-${i}`}
+                initial={{ opacity: 0, x: 50 }}
+                animate={hasEntered ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                transition={{
+                  duration: 0.7,
+                  delay: hasEntered ? cardIndex * 0.08 : 0,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className="shrink-0 w-[360px] max-lg:w-[300px] max-md:w-[260px] flex flex-col gap-[16px]"
               >
                 <div className="relative w-full aspect-[4/3] rounded-[16px] overflow-hidden bg-[#f0efed]">
                   <ImageWithFallback
-                    alt={card?.name ?? `University ${i + 1}`}
+                    alt={card?.name ?? `University ${cardIndex + 1}`}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     src={uni.image}
                   />
@@ -526,7 +650,7 @@ function UniversitySliderSection() {
                 <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[16px] tracking-[-0.4px] leading-[22px]">
                   {card?.name ?? ""}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -596,7 +720,7 @@ function RelatedProjects() {
   return (
     <section className="bg-gradient-to-b from-white to-[#f7f7f7] w-full relative">
       <div className="absolute inset-0 pointer-events-none shadow-[inset_0px_1px_0px_0px_rgba(25,30,37,0.25)]" />
-      <div className="px-[56px] py-[100px] max-lg:py-[64px] max-md:px-[24px] max-md:py-[40px]">
+      <div className="px-[56px] pt-[100px] pb-[80px] max-lg:pt-[80px] max-lg:pb-[64px] max-md:px-[24px] max-md:pt-[48px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[56px] max-md:gap-[32px]">
           <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
             {t("pages.symposium.relatedTitle")}

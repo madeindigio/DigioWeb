@@ -1,4 +1,46 @@
 const en = {
+  seo: {
+    home: {
+      title: "Custom Digital Solutions",
+      description: "Digio designs and develops digital platforms, mobile apps and technology solutions for companies, startups and international organizations.",
+    },
+    trabajo: {
+      title: "Our Work",
+      description: "Explore Digio's digital projects: UX/UI design, web and mobile development, IoT and scalable platforms for leading companies.",
+    },
+    sobreDigio: {
+      title: "About Digio",
+      description: "Meet Digio: over 17 years building solid digital solutions. Design, development, Cloud and technology consulting from Murcia, Spain.",
+    },
+    unete: {
+      title: "Join the Team",
+      description: "Work at Digio: we are looking for designers, developers and engineers passionate about technology and digital innovation.",
+    },
+    blog: {
+      title: "Blog",
+      description: "Articles on web development, UX design, cloud computing, cybersecurity and digital technology trends by the Digio team.",
+    },
+    contacto: {
+      title: "Contact",
+      description: "Contact Digio to discuss your digital project. We help you design and develop the technology solution you need.",
+    },
+    ia: {
+      title: "Artificial Intelligence",
+      description: "Digio AI services: automation, machine learning and AI solutions applied to digital business.",
+    },
+    privacidad: {
+      title: "Privacy Policy",
+      description: "Privacy policy of Digio Soluciones Digitales. Information about personal data processing and protection.",
+    },
+    cookies: {
+      title: "Cookie Policy",
+      description: "Cookie policy of Digio. Information about the use of cookies on our website.",
+    },
+    notFound: {
+      title: "Page Not Found",
+      description: "The page you are looking for does not exist or has been moved. Return to Digio's main page.",
+    },
+  },
   nav: {
     work: "Our work",
     about: "About Digio",
