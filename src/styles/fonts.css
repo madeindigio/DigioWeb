@@ -1,0 +1,36 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700&display=swap');
+
+/* GT Ultra Median — self-hosted from digio.es */
+@font-face {
+  font-family: 'GT Ultra Median';
+  src: url('https://digio.es/themes/digio/fonts/GT-Ultra-Median-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Ultra Median';
+  src: url('https://digio.es/themes/digio/fonts/GT-Ultra-Median-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Manrope — self-hosted from digio.es */
+@font-face {
+  font-family: 'Manrope';
+  src: url('https://digio.es/themes/digio/fonts/Manrope-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('https://digio.es/themes/digio/fonts/Manrope-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

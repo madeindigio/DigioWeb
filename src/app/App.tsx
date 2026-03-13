@@ -1,0 +1,24 @@
+import "./i18n/config";
+import { useEffect } from "react";
+import { RouterProvider } from "react-router";
+import { router } from "./routes";
+import { ProjectTransitionProvider } from "./components/ProjectTransitionContext";
+import faviconUrl from "figma:asset/353b9f0f5cc88993d1aedb344d635785c54ef015.png";
+
+export default function App() {
+  useEffect(() => {
+    let link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.head.appendChild(link);
+    }
+    link.href = faviconUrl;
+  }, []);
+
+  return (
+    <ProjectTransitionProvider>
+      <RouterProvider router={router} />
+    </ProjectTransitionProvider>
+  );
+}

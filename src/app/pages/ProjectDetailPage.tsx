@@ -1,0 +1,203 @@
+import { useParams } from "react-router";
+import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { getProjectBySlug } from "../components/projectData";
+import { ContactSection } from "../components/ContactSection";
+import { useProjectTransition } from "../components/ProjectTransitionContext";
+import { ProjectDetailNM } from "./ProjectDetailNM";
+import { ProjectDetailRoomonitor } from "./ProjectDetailRoomonitor";
+import { ProjectDetailFinsa } from "./ProjectDetailFinsa";
+import { ProjectDetailSymposium } from "./ProjectDetailSymposium";
+import { ProjectDetailSpock } from "./ProjectDetailSpock";
+import { ProjectDetailIVoox } from "./ProjectDetailIVoox";
+import { ProjectDetailIDermApp } from "./ProjectDetailIDermApp";
+import { ProjectDetailNavilens } from "./ProjectDetailNavilens";
+import { ProjectDetailVivla } from "./ProjectDetailVivla";
+
+const EASE = [0.22, 1, 0.36, 1];
+
+/**
+ * Wrapper that delays children reveal until the FLIP overlay finishes.
+ * If there's no active transition (direct URL), shows immediately.
+ */
+function RevealAfterTransition({ children, delay = 0.3 }: { children: React.ReactNode; delay?: number }) {
+  const { isTransitioning } = useProjectTransition();
+  const [show, setShow] = useState(!isTransitioning);
+
+  useEffect(() => {
+    if (!isTransitioning && !show) setShow(true);
+  }, [isTransitioning, show]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.65, delay: show ? delay : 0, ease: EASE }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function ScrollRevealSection({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 48 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.08 }}
+      transition={{ duration: 0.8, ease: EASE }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function ProjectDetailPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const { t } = useTranslation();
+
+  /* NM has its own dedicated page */
+  if (slug === "nm") {
+    return <ProjectDetailNM />;
+  }
+
+  /* Roomonitor has its own dedicated page */
+  if (slug === "roomonitor") {
+    return <ProjectDetailRoomonitor />;
+  }
+
+  /* Finsa has its own dedicated page */
+  if (slug === "finsa") {
+    return <ProjectDetailFinsa />;
+  }
+
+  /* Symposium has its own dedicated page */
+  if (slug === "symposium") {
+    return <ProjectDetailSymposium />;
+  }
+
+  /* Spock has its own dedicated page */
+  if (slug === "spock") {
+    return <ProjectDetailSpock />;
+  }
+
+  /* IVoox has its own dedicated page */
+  if (slug === "ivoox") {
+    return <ProjectDetailIVoox />;
+  }
+
+  /* IDermApp has its own dedicated page */
+  if (slug === "idermapp") {
+    return <ProjectDetailIDermApp />;
+  }
+
+  /* Navilens has its own dedicated page */
+  if (slug === "navilens") {
+    return <ProjectDetailNavilens />;
+  }
+
+  /* Vivla has its own dedicated page */
+  if (slug === "vivla") {
+    return <ProjectDetailVivla />;
+  }
+
+  const project = getProjectBySlug(slug ?? "");
+
+  if (!project) {
+    return (
+      <div className="w-full min-h-screen flex items-center justify-center">
+        <p className="text-[24px] font-['GT_Ultra_Median',sans-serif] text-[#191e25]">
+          Proyecto no encontrado
+        </p>
+      </div>
+    );
+  }
+
+  const tag = t(`work.projects.${project.i18nKey}.tag`);
+  const name = t(`work.projects.${project.i18nKey}.name`);
+  const description = t(`work.projects.${project.i18nKey}.description`);
+
+  return (
+    <>
+      {/* ── Hero — unified NM style: clean image, fixed height ── */}
+      <section className="relative w-full h-[70vh] max-md:h-[360px]">
+        <div className="absolute inset-0 bg-[#d8d8d8]" />
+        {project.image && (
+          <img
+            alt={name}
+            className="absolute inset-0 w-full h-full object-cover"
+            src={project.image}
+          />
+        )}
+      </section>
+
+      {/* ── Intro — 3 column layout matching NM/Roomonitor pattern ── */}
+      <RevealAfterTransition delay={0.3}>
+        <section className="bg-white w-full">
+          <div className="px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
+            <div className="max-w-[1400px] mx-auto flex items-start justify-between gap-[40px] max-lg:flex-col max-lg:gap-[32px]">
+              {/* Col 1: Project name */}
+              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] shrink-0 max-lg:w-auto max-md:text-[28px] max-md:leading-[36px]">
+                {name}
+              </p>
+              {/* Col 2: Description */}
+              <div className="flex flex-col gap-[16px] w-[550px] max-lg:w-full shrink-0 max-lg:shrink">
+                <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+                  {description}
+                </p>
+              </div>
+              {/* Col 3: Services / Tag */}
+              <div className="flex flex-col gap-[16px] w-[264px] max-lg:w-full shrink-0 max-lg:shrink">
+                <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
+                  {t("pages.proyecto.servicesLabel", "SERVICIOS")}
+                </p>
+                <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
+                  {tag}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </RevealAfterTransition>
+
+      {/* ── Additional content ── */}
+      <RevealAfterTransition delay={0.45}>
+        <section className="bg-white w-full">
+          <div className="px-[56px] pb-[120px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
+            <div className="max-w-[1400px] mx-auto flex flex-col gap-[80px] max-md:gap-[48px]">
+              {/* Repeated hero image as content block */}
+              {project.image && (
+                <div className="w-full h-[500px] max-lg:h-[350px] max-md:h-[250px] relative overflow-hidden">
+                  <img alt={name} className="absolute inset-0 w-full h-full object-cover" src={project.image} />
+                </div>
+              )}
+
+              {/* Challenge & Solution */}
+              <div className="flex gap-[56px] items-start max-md:flex-col max-md:gap-[40px]">
+                <div className="flex-1 flex flex-col gap-[24px] min-w-0">
+                  <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
+                    {t("pages.proyecto.challengeTitle")}
+                  </p>
+                  <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+                    {t("pages.proyecto.challengeBody")}
+                  </p>
+                </div>
+                <div className="flex-1 flex flex-col gap-[24px] min-w-0">
+                  <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
+                    {t("pages.proyecto.solutionTitle")}
+                  </p>
+                  <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+                    {t("pages.proyecto.solutionBody")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </RevealAfterTransition>
+
+      <ScrollRevealSection><ContactSection /></ScrollRevealSection>
+    </>
+  );
+}
