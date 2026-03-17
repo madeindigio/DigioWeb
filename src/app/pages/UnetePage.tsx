@@ -333,6 +333,7 @@ function OffersSection() {
 }
 
 /* ─── Page ─── */
+
 export function UnetePage() {
   const { t } = useTranslation();
   return (

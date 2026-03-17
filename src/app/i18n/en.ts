@@ -562,7 +562,7 @@ const en = {
       },
       stats: {
         intro: "Since 2007 we have been working to offer the best solutions to our clients. We transform ideas into products that generate experiences.",
-        years: { value: "+ 15 years", desc: "of experience in which we have participated in the birth of disruptive technologies: Mobile, IoT, Artificial Intelligence..." },
+        years: { value: "+ {{years}} years", desc: "of experience in which we have participated in the birth of disruptive technologies: Mobile, IoT, Artificial Intelligence..." },
         clients: { value: "+200 Clients", desc: "in 5 countries, operating mainly in Spain, we have also collaborated with clients from the US, UK, Japan and South Korea." },
         sectors: { value: "+15 Sectors", desc: "in which we have worked. We have extensive experience in Education, Tourism, Telecommunications, Media, Transport, Finance..." },
         recurrence: { value: "+ 70% Recurrence", desc: "in clients who have been working with us for more than 3 years and are sure they will continue to do so." },

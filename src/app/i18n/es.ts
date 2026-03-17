@@ -562,7 +562,7 @@ const es = {
       },
       stats: {
         intro: "Desde 2007 trabajamos para ofrecer las mejores soluciones a nuestros clientes. Transformamos ideas en productos que generan experiencias.",
-        years: { value: "+ 15 años", desc: "de experiencia en los que hemos participado en el nacimiento de tecnologías disruptivas Mobile, IoT, Inteligencia Artificial..." },
+        years: { value: "+ {{years}} años", desc: "de experiencia en los que hemos participado en el nacimiento de tecnologías disruptivas Mobile, IoT, Inteligencia Artificial..." },
         clients: { value: "+200 Clientes", desc: "en 5 países, operando principalmente en España, también hemos colaborado con clientes de EEUU, UK, Japón o Corea del Sur." },
         sectors: { value: "+15 Sectores", desc: "en los que hemos trabajado. Tenemos una dilatada experiencia en Educación, Turismo, Telecomunicaciones, Media, Transporte, Finanzas..." },
         recurrence: { value: "+ 70% Recurrencia", desc: "en clientes que trabajan con nosotros desde hace más de 3 años y están seguros de que lo seguirán haciendo." },
