@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
 import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
 import { ContactSection } from "../components/ContactSection";
-import { useProjectTransition } from "../components/ProjectTransitionContext";
+import {
+  RevealAfterTransition,
+  ScrollRevealSection,
+  RelatedProjectCard,
+  RelatedProjectsSection,
+} from "../components/project-detail-shared";
 
 /* ─── Figma Assets ─── */
 import imgHero from "figma:asset/38015c2e2c4415a16cea0ceea3ff9541757288a4.png";
@@ -21,35 +26,6 @@ import Ui from "../../imports/Ui";
 import svgPaths from "../../imports/svg-fg6e5xqtw5";
 
 const EASE = [0.22, 1, 0.36, 1];
-
-/* ── Animation helpers ── */
-function RevealAfterTransition({ children, delay = 0.3 }: { children: React.ReactNode; delay?: number }) {
-  const { isTransitioning } = useProjectTransition();
-  const [show, setShow] = useState(!isTransitioning);
-  useEffect(() => { if (!isTransitioning && !show) setShow(true); }, [isTransitioning, show]);
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.65, delay: show ? delay : 0, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function ScrollRevealSection({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 48 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.8, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 /* ============================================================
    1. HERO
@@ -293,39 +269,26 @@ function BrandColorsSection() {
 /* ============================================================
    9. Related Projects
    ============================================================ */
-function RelatedProjectCard({ image, image2, tag, name, description, slug }: { image: string; image2?: string; tag: string; name: string; description: string; slug: string }) {
-  return (
-    <Link to={`/proyecto/${slug}`} className="flex flex-col items-start flex-1 min-w-0 no-underline">
-      <div className="relative w-full h-[500px] max-lg:h-[350px] max-md:h-[250px] overflow-hidden cursor-pointer">
-        <div className="absolute inset-0 bg-[#d8d8d8]" />
-        <img alt={name} className="absolute inset-0 w-full h-full object-cover" src={image} />
-        {image2 && <img alt="" className="absolute inset-0 w-full h-full object-cover" src={image2} />}
-        <div className="absolute left-[24px] top-[24px] z-10 backdrop-blur-[5px] bg-[rgba(25,30,37,0.24)] rounded-[300px] px-[16px] py-[8px] max-md:left-[12px] max-md:top-[12px]">
-          <p className="font-['GT_Ultra_Median',sans-serif] text-[20px] text-white tracking-[-0.8px] leading-[27px] whitespace-nowrap text-center max-md:text-[14px] max-md:leading-[20px]">{tag}</p>
-        </div>
-      </div>
-      <div className="flex gap-[40px] items-start py-[32px] w-full max-md:flex-col max-md:gap-[12px] max-md:py-[20px]">
-        <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] whitespace-nowrap shrink-0 max-md:text-[20px] max-md:leading-[28px]">{name}</p>
-        <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] flex-1 min-w-0 max-lg:text-[24px] max-lg:leading-[32px] max-md:text-[16px] max-md:leading-[24px]">{description}</p>
-      </div>
-    </Link>
-  );
-}
-
 function RelatedProjects() {
+  const { t } = useTranslation();
   return (
-    <section className="bg-gradient-to-b from-white to-[#f7f7f7] w-full relative">
-      <div className="absolute inset-0 pointer-events-none shadow-[inset_0px_1px_0px_0px_rgba(25,30,37,0.25)]" />
-      <div className="px-[56px] py-[100px] max-lg:py-[64px] max-md:px-[24px] max-md:py-[40px]">
-        <div className="max-w-[1400px] mx-auto flex flex-col gap-[56px] max-md:gap-[32px]">
-          <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">Proyectos relacionados</p>
-          <div className="flex gap-[48px] max-md:flex-col max-md:gap-[32px]">
-            <RelatedProjectCard slug="idermapp" image={imgRelated1} image2={imgRelated1b} tag="VISIÓN, DISEÑO & DESARROLLO" name="iDermApp" description="La aplicación que conecta usuarios con especialistas del cuidado de la piel" />
-            <RelatedProjectCard slug="roomonitor" image={imgRelated2} tag="DISEÑO & DESARROLLO TECNOLÓGICO" name="Roomonitor" description="La última tecnología para alojamientos turísticos" />
-          </div>
-        </div>
-      </div>
-    </section>
+    <RelatedProjectsSection title={t("pages.nm.relatedTitle", "Proyectos relacionados")}>
+      <RelatedProjectCard
+        slug="idermapp"
+        image={imgRelated1}
+        image2={imgRelated1b}
+        tag={t("work.projects.idermapp.tag")}
+        name={t("work.projects.idermapp.name")}
+        description={t("work.projects.idermapp.description")}
+      />
+      <RelatedProjectCard
+        slug="roomonitor"
+        image={imgRelated2}
+        tag={t("work.projects.roomonitor.tag")}
+        name={t("work.projects.roomonitor.name")}
+        description={t("work.projects.roomonitor.description")}
+      />
+    </RelatedProjectsSection>
   );
 }
 
@@ -336,10 +299,10 @@ export function ProjectDetailNM() {
   return (
     <>
       <HeroSection />
-      <RevealAfterTransition delay={0.3}>
+      <RevealAfterTransition delay={0.05}>
         <IntroSection />
       </RevealAfterTransition>
-      <RevealAfterTransition delay={0.45}>
+      <RevealAfterTransition delay={0.18}>
         <DarkUiSection />
       </RevealAfterTransition>
       <ScrollRevealSection><DetailSection /></ScrollRevealSection>

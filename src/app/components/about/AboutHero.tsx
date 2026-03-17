@@ -6,7 +6,7 @@ function KeyIllustration() {
   return (
     <div className="w-[497px] h-[457px] relative shrink-0 max-lg:w-[340px] max-lg:h-[312px] max-md:w-full max-md:h-[200px]">
       <div className="absolute inset-[25.6%_3.4%_25.69%_3.22%]">
-        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 464.086 222.613">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 464.086 222.613">
           <path clipRule="evenodd" d={svgPaths.p8510e80} fill="#E2DFDA" fillRule="evenodd" />
           <path clipRule="evenodd" d={svgPaths.p26494200} fill="#E2DFDA" fillRule="evenodd" />
           <path clipRule="evenodd" d="M372 119H176V78H372V119Z" fill="#E2DFDA" fillRule="evenodd" />

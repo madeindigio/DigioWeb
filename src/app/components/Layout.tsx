@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router";
 import { AnimatePresence } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { PageTransition } from "./PageTransition";
@@ -45,7 +45,9 @@ export function Layout() {
         <Header />
         <AnimatePresence mode="sync">
           <PageTransition key={location.pathname}>
-            <Outlet />
+            <Suspense fallback={<div className="min-h-screen" />}>
+              <Outlet />
+            </Suspense>
           </PageTransition>
         </AnimatePresence>
         <Footer />

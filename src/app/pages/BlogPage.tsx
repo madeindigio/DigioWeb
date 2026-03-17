@@ -66,45 +66,47 @@ function BlogPostCard({
     >
       <Link
         to={`/blog/${post.slug}`}
-        className="flex items-center justify-between gap-[40px] py-[40px] max-md:py-[32px] max-md:gap-[24px] transition-colors hover:bg-[#f0efec]"
+        className="block py-[40px] max-md:py-[32px] transition-colors hover:bg-[#f0efec]"
         aria-label={t(`blog.posts.${post.i18nKey}.title`)}
       >
-        <div className="flex flex-col gap-[24px] items-start max-md:gap-[16px] flex-1 min-w-0">
-          <LangText
-            as="h2"
-            stagger={index}
-            className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[1.05] max-lg:text-[36px] max-md:text-[24px]"
-          >
-            <span itemProp="headline">
-              {t(`blog.posts.${post.i18nKey}.title`)}
-            </span>
-          </LangText>
-          <div className="flex gap-[24px] items-center max-md:gap-[16px]">
-            <time
-              dateTime={post.date}
-              itemProp="datePublished"
-              className="font-['Manrope',sans-serif] font-[600] text-[#716e6a] text-[16px] leading-[normal] whitespace-nowrap max-md:text-[13px]"
+        <div className="max-w-[1400px] mx-auto px-[56px] max-md:px-[24px] flex items-center justify-between gap-[40px] max-md:gap-[24px]">
+          <div className="flex flex-col gap-[24px] items-start max-md:gap-[16px] flex-1 min-w-0">
+            <LangText
+              as="h2"
+              stagger={index}
+              className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[1.05] max-lg:text-[36px] max-md:text-[24px]"
             >
-              {formattedDate}
-            </time>
-            <span className="font-['GT_Ultra_Median',sans-serif] text-[#716e6a] text-[16px] leading-[normal] whitespace-nowrap max-md:text-[13px]">
-              {t(`blog.categories.${post.categoryKey}`)}
-            </span>
+              <span itemProp="headline">
+                {t(`blog.posts.${post.i18nKey}.title`)}
+              </span>
+            </LangText>
+            <div className="flex gap-[24px] items-center max-md:gap-[16px]">
+              <time
+                dateTime={post.date}
+                itemProp="datePublished"
+                className="font-['Manrope',sans-serif] font-[600] text-[#716e6a] text-[16px] leading-[normal] whitespace-nowrap max-md:text-[13px]"
+              >
+                {formattedDate}
+              </time>
+              <span className="font-['GT_Ultra_Median',sans-serif] text-[#716e6a] text-[16px] leading-[normal] whitespace-nowrap max-md:text-[13px]">
+                {t(`blog.categories.${post.categoryKey}`)}
+              </span>
+            </div>
+            <meta
+              itemProp="description"
+              content={t(`blog.posts.${post.i18nKey}.metaDescription`)}
+            />
+            <meta itemProp="author" content={post.author} />
           </div>
-          <meta
-            itemProp="description"
-            content={t(`blog.posts.${post.i18nKey}.metaDescription`)}
-          />
-          <meta itemProp="author" content={post.author} />
-        </div>
-        <div className="w-[200px] h-[206px] shrink-0 relative overflow-hidden max-md:w-[120px] max-md:h-[124px]">
-          <img
-            alt={t(`blog.posts.${post.i18nKey}.title`)}
-            src={post.image}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-            loading="lazy"
-            itemProp="image"
-          />
+          <div className="w-[200px] h-[206px] shrink-0 relative overflow-hidden max-md:w-[120px] max-md:h-[124px]">
+            <img
+              alt={t(`blog.posts.${post.i18nKey}.title`)}
+              src={post.image}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+              loading="lazy"
+              itemProp="image"
+            />
+          </div>
         </div>
       </Link>
       {/* separator */}
@@ -294,14 +296,12 @@ export function BlogPage() {
 
       {/* Post list */}
       <section className="w-full bg-white" itemScope itemType="https://schema.org/Blog">
-        <div className="max-w-[1400px] mx-auto px-[56px] max-md:px-[24px]">
           {/* top separator */}
           <div className="w-full h-[1px] bg-[#e2dfda]" />
 
           {posts.map((post, idx) => (
             <BlogPostCard key={post.slug} post={post} index={idx} />
           ))}
-        </div>
 
         {/* Pagination */}
         {totalPages > 1 && (

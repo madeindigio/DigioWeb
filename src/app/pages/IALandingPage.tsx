@@ -5,6 +5,7 @@ import imgDigioIaGenerativa2025Es13 from "figma:asset/ff915408b604c39a5bc7a9a9f5
 import imgDigioIaGenerativa2025Es14 from "figma:asset/8ff2390c0e8c205e4dcf0cfa9ce2296e461c781f.png";
 import imgRectangle from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
 import { Link } from "react-router";
+import { useRef, useEffect, useCallback } from "react";
 
 /* ═══════════════════════════════════════════════
    1. HERO SECTION
@@ -509,44 +510,150 @@ function TeamBuildingIcon() {
 }
 
 function UseCasesSection() {
-  return (
-    <section className="bg-white w-full">
-      <div className="max-w-[1400px] mx-auto px-[56px] max-md:px-[24px] py-[100px] max-lg:py-[80px] max-md:py-[56px] flex flex-col gap-[56px]">
-        <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] max-lg:text-[36px] max-md:text-[28px]">
-          Casos de uso
-        </p>
+  const CARDS = [
+    {
+      tag: "INTELIGENCIA CORPORATIVA",
+      title: "Convierte el ruido de internet en ventaja competitiva.",
+      description: "Monitorización 360º, análisis de tendencias y alertas estratégicas sobre tu competencia en tiempo real.",
+      illustration: <InteligenciaColectivaIcon />,
+    },
+    {
+      tag: "VALIDACIÓN Y GESTIÓN DOCUMENTAL",
+      title: "Tu empresa tiene las respuestas, nosotros te ayudamos a encontrarlas.",
+      description: "Centraliza, valida y explora tu base de conocimiento con búsqueda semántica.",
+      illustration: <ConsultoriaIcon />,
+    },
+    {
+      tag: "PROCESAMIENTO DE MENSAJES",
+      title: "De la bandeja de entrada a tu ERP sin tocar una tecla.",
+      description: "Automatizamos la lectura y gestión de emails, pedidos y tickets de soporte.",
+      illustration: <OutsourcingIcon />,
+    },
+    {
+      tag: "PROCESAMIENTO DE MENSAJES",
+      title: "Convierte emisiones de audio y vídeo en datos estructurados al instante.",
+      description: "Detectamos menciones críticas en directo para que reacciones antes que nadie.",
+      illustration: <ColaboracionIcon />,
+    },
+    {
+      tag: "PROCESAMIENTO DE MENSAJES",
+      title: "Tu software ya no es una isla.",
+      description: "Unificamos tus herramientas creando puentes inteligentes entre tu IA, tus APIs y tus sistemas de gestión.",
+      illustration: <TeamBuildingIcon />,
+    },
+  ];
 
-        <div className="flex flex-col gap-[56px]">
-          <UseCaseBlock
-            tag="INTELIGENCIA CORPORATIVA"
-            title="Convierte el ruido de internet en ventaja competitiva."
-            description="Monitorización 360º, análisis de tendencias y alertas estratégicas sobre tu competencia en tiempo real."
-            illustration={<InteligenciaColectivaIcon />}
-          />
-          <UseCaseBlock
-            tag="VALIDACIÓN Y GESTIÓN DOCUMENTAL"
-            title="Tu empresa tiene las respuestas, nosotros te ayudamos a encontrarlas."
-            description="Centraliza, valida y explora tu base de conocimiento con búsqueda semántica."
-            illustration={<ConsultoriaIcon />}
-          />
-          <UseCaseBlock
-            tag="PROCESAMIENTO DE MENSAJES"
-            title="De la bandeja de entrada a tu ERP sin tocar una tecla."
-            description="Automatizamos la lectura y gestión de emails, pedidos y tickets de soporte."
-            illustration={<OutsourcingIcon />}
-          />
-          <UseCaseBlock
-            tag="PROCESAMIENTO DE MENSAJES"
-            title="Convierte emisiones de audio y vídeo en datos estructurados al instante."
-            description="Detectamos menciones críticas en directo para que reacciones antes que nadie."
-            illustration={<ColaboracionIcon />}
-          />
-          <UseCaseBlock
-            tag="PROCESAMIENTO DE MENSAJES"
-            title="Tu software ya no es una isla."
-            description="Unificamos tus herramientas creando puentes inteligentes entre tu IA, tus APIs y tus sistemas de gestión."
-            illustration={<TeamBuildingIcon />}
-          />
+  const COUNT = CARDS.length;
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const setCardRef = useCallback(
+    (i: number) => (el: HTMLDivElement | null) => {
+      cardRefs.current[i] = el;
+    },
+    []
+  );
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    let rafId = 0;
+
+    const update = () => {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const scrollableDistance = section.offsetHeight - vh;
+      if (scrollableDistance <= 0) return;
+
+      const scrolled = -rect.top;
+      const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
+
+      cardRefs.current.forEach((el, i) => {
+        if (!el) return;
+
+        /* First card is always visible — no animation */
+        if (i === 0) {
+          el.style.transform = "translateY(0)";
+          el.style.opacity = "1";
+          return;
+        }
+
+        /* Remaining cards share the scroll distance evenly */
+        const steps = COUNT - 1;
+        const cardStart = (i - 1) / steps;
+        const cardEnd = i / steps;
+        const cardProgress = Math.max(
+          0,
+          Math.min(1, (progress - cardStart) / (cardEnd - cardStart))
+        );
+
+        /* translateY: 110% → 0 (slides up from below viewport) */
+        const ty = (1 - cardProgress) * 110;
+        el.style.transform = `translateY(${ty}%)`;
+        el.style.opacity = cardProgress > 0.02 ? "1" : "0";
+      });
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, [COUNT]);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="bg-white w-full relative"
+      style={{ height: `${COUNT * 100}vh` }}
+    >
+      {/* Sticky viewport */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {/* Title — stays fixed */}
+        <div className="max-w-[1400px] mx-auto px-[56px] max-md:px-[24px] pt-[100px] max-lg:pt-[80px] max-md:pt-[56px] pb-[32px]">
+          <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] max-lg:text-[36px] max-md:text-[28px]">
+            Casos de uso
+          </p>
+        </div>
+
+        {/* Card stack area */}
+        <div className="relative flex-1 w-full" style={{ height: "calc(100vh - 200px)" }}>
+          {CARDS.map((card, i) => (
+            <div
+              key={i}
+              ref={setCardRef(i)}
+              className="absolute inset-0 will-change-transform"
+              style={{
+                zIndex: i + 1,
+                opacity: 0,
+                transform: "translateY(110%)",
+              }}
+            >
+              <div
+                className="max-w-[1400px] mx-auto px-[56px] max-md:px-[24px] h-full flex items-start"
+                style={{
+                  paddingTop: `${i * 10}px`,
+                }}
+              >
+                <div className="bg-white rounded-[24px] max-md:rounded-[16px] w-full" style={{ boxShadow: "0 -4px 60px rgba(0,0,0,0.08)" }}>
+                  <div className="py-[28px] max-md:py-[20px]">
+                    <UseCaseBlock
+                      tag={card.tag}
+                      title={card.title}
+                      description={card.description}
+                      illustration={card.illustration}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

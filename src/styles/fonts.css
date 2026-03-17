@@ -18,7 +18,8 @@
   font-display: swap;
 }
 
-/* Manrope — self-hosted from digio.es */
+/* Manrope — self-hosted from digio.es
+   NOTE: Using TTF format — ideally convert to WOFF2 for ~60-70% size reduction */
 @font-face {
   font-family: 'Manrope';
   src: url('https://digio.es/themes/digio/fonts/Manrope-SemiBold.ttf') format('truetype');

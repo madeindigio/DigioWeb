@@ -86,11 +86,11 @@ export function ProjectTransitionOverlay() {
   const project = snapshot ? getProjectBySlug(snapshot.slug) : null;
   const name = project ? t(`work.projects.${project.i18nKey}.name`) : "";
 
-  /* All projects now use the same fixed-height hero (80vh / 360px mobile) */
+  /* All projects now use the same fixed-height hero (70vh / 360px mobile) */
   const getHeroHeight = (): string => {
-    if (typeof window === "undefined") return "80vh";
+    if (typeof window === "undefined") return "70vh";
     if (window.innerWidth <= 768) return "360px";
-    return "80vh";
+    return "70vh";
   };
   const heroHeight = getHeroHeight();
 

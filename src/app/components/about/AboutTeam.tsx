@@ -1,51 +1,22 @@
-import imgImg from "figma:asset/4472aa2ce5e749af973dbbee422f2fc2c8595a83.png";
 import { useTranslation } from "react-i18next";
 import { LangText } from "../LangText";
 
 const memberKeys = ["juan", "javier", "jose", "pablo"] as const;
 const advisorKeys = ["aguirre", "falgueras", "vivancos"] as const;
 
-/* Member photos: only Javier has a real photo from the Figma import */
-const memberPhotos: Record<string, string | null> = {
-  juan: null,
-  javier: imgImg,
-  jose: null,
-  pablo: null,
-};
-
 function MemberCard({
   memberKey,
   stagger,
-  showPhoto = true,
 }: {
   memberKey: string;
   stagger: number;
-  showPhoto?: boolean;
 }) {
   const { t } = useTranslation();
-  const photo = memberPhotos[memberKey];
 
   return (
     <div className="flex flex-col gap-[16px] items-start w-[270px] max-md:w-full">
       {/* Separator */}
       <div className="w-full h-[1px] bg-white/[0.24]" />
-
-      {/* Photo placeholder */}
-      {showPhoto && (
-        <div className="h-[220px] w-[180px] relative shrink-0 max-md:h-[180px] max-md:w-[150px]">
-          {photo ? (
-            <>
-              <img alt="" className="absolute inset-0 w-full h-full object-cover" src={photo} />
-              <div className="absolute inset-0 bg-black mix-blend-color" />
-            </>
-          ) : (
-            <>
-              <div className="absolute inset-0 bg-[#e2dfda]" />
-              <div className="absolute inset-0 bg-black mix-blend-color" />
-            </>
-          )}
-        </div>
-      )}
 
       {/* Name & Role */}
       <div className="flex flex-col gap-[8px] text-[#e2dfda] w-full">

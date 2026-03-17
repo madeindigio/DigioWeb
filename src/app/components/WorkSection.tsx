@@ -321,10 +321,11 @@ function FullWidthCard({
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
               src={videoSrc}
+              preload="none"
             />
           </>
         ) : (
-          <img alt={projectName} className={`absolute inset-0 w-full h-full ${imgClassName}`} src={image} />
+          <img alt={projectName} className={`absolute inset-0 w-full h-full ${imgClassName}`} src={image} loading="lazy" decoding="async" />
         )}
         <Tag label={tag} bgClass={tagBg} />
         <CardHoverOverlay containerRef={containerRef} onClick={handleClick} />
@@ -365,7 +366,7 @@ function HalfCard({
     <div className="flex flex-col items-start flex-1 min-w-0">
       <div ref={containerRef} className="relative w-full h-[500px] max-lg:h-[350px] max-md:h-[250px] overflow-hidden cursor-pointer">
         <div className="absolute inset-0 bg-[#d8d8d8]" />
-        <img alt={projectName} className={`absolute inset-0 w-full h-full ${imgClassName}`} src={image} />
+        <img alt={projectName} className={`absolute inset-0 w-full h-full ${imgClassName}`} src={image} loading="lazy" decoding="async" />
         <Tag label={tag} bgClass={tagBg} />
         <CardHoverOverlay containerRef={containerRef} onClick={handleClick} />
       </div>

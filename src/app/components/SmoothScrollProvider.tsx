@@ -134,12 +134,16 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       overlayWasActive.current = true;
     } else if (!overlayActive && overlayWasActive.current) {
       /* Overlay just exited → unfreeze & recalculate dimensions
-         because the page content changed during the transition */
+         because the page content changed during the transition.
+         Chain multiple resize calls to cover the full animation timeline
+         (header slide-in ~0.6s + content reveal ~0.65s + stagger delays). */
       lenis.start();
       overlayWasActive.current = false;
       requestAnimationFrame(() => {
         lenis.resize();
         setTimeout(() => lenis.resize(), 300);
+        setTimeout(() => lenis.resize(), 800);
+        setTimeout(() => lenis.resize(), 1500);
       });
     }
   }, [isOverlayActive, phase]);

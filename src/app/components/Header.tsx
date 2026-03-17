@@ -1,7 +1,6 @@
 import svgPaths from "../../imports/svg-5maq4jyelf";
 import { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react";
-import lottie, { type AnimationItem } from "lottie-web";
-import animationData from "../../imports/digio_scroll_animation_white";
+import type { AnimationItem } from "lottie-web";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
 import { Link, useNavigate, useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
@@ -125,15 +124,29 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
 
   useEffect(() => {
     if (!containerRef.current) return;
-    const anim = lottie.loadAnimation({
-      container: containerRef.current,
-      renderer: "svg",
-      loop: false,
-      autoplay: false,
-      animationData,
+    let cancelled = false;
+
+    Promise.all([
+      import("lottie-web"),
+      import("../../imports/digio_scroll_animation_white"),
+    ]).then(([lottieModule, animModule]) => {
+      if (cancelled || !containerRef.current) return;
+      const lottie = lottieModule.default;
+      const animationData = animModule.default;
+      const anim = lottie.loadAnimation({
+        container: containerRef.current!,
+        renderer: "svg",
+        loop: false,
+        autoplay: false,
+        animationData,
+      });
+      animRef.current = anim;
     });
-    animRef.current = anim;
-    return () => { anim.destroy(); animRef.current = null; };
+
+    return () => {
+      cancelled = true;
+      if (animRef.current) { animRef.current.destroy(); animRef.current = null; }
+    };
   }, []);
 
   useEffect(() => {
@@ -437,17 +450,17 @@ export function Header() {
   const expandedHeightRef = useRef(0);
   const [spacerHeight, setSpacerHeight] = useState(0);
   const { t } = useTranslation();
-  const { isTransitioning } = useProjectTransition();
+  const { isTransitioning, isOverlayActive } = useProjectTransition();
   const animatedNavRef = useRef(false);
 
   /*
    * During the FLIP transition the header hides instantly (the overlay's
-   * solid white backdrop covers everything). When the card lands and the
-   * overlay begins to fade out (phase→"done", isTransitioning→false),
-   * the header slides down from above — visually "pushing" the hero
-   * into its final position below the header bar.
+   * solid white backdrop covers everything). It stays hidden until the
+   * overlay has FULLY exited (isOverlayActive → false), preventing any
+   * content shift visible through the semi-transparent fading overlay.
+   * Once the overlay is gone, the header slides down from above.
    */
-  const projectHide = isTransitioning;
+  const projectHide = isOverlayActive;
 
   /* ── Always measure the header's height and cache the "expanded" value ── */
   useLayoutEffect(() => {

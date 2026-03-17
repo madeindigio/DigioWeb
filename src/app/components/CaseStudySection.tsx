@@ -14,6 +14,7 @@ export function CaseStudySection() {
             loop
             muted
             playsInline
+            preload="none"
             className="absolute inset-0 w-full h-full object-cover"
             src="https://digio.es/sites/default/files/2024-05/1.%20LOGOTIPO%20DIGIO.mp4"
           />

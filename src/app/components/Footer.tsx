@@ -7,6 +7,7 @@ import imgLogoFderTransparente1 from "figma:asset/e5dabf104c5abe32475f6bcaae852d
 import imgPymeInnovadora from "figma:asset/35f3caeb73f22e49c33064103bb67b4b842b4074.png";
 import imgLogoCdti2023SoportesDigitalesNegativo011 from "figma:asset/a45f9c6de6e4af962973880e08cc9f61a4cb7a4b.png";
 import imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 from "figma:asset/0b034c1574c942b05d0a38022768fb36d72a69d5.png";
+import UeRed from "../../imports/UeRed-106-135";
 
 function XLogo() {
   return (
@@ -121,23 +122,19 @@ export function Footer() {
         <div className="flex flex-col gap-[48px] max-md:gap-[32px]">
           <div className="w-full h-[1px] bg-[rgba(255,255,255,0.24)]" />
           <div className="flex items-center justify-between flex-wrap gap-[24px] max-md:gap-[16px] max-md:justify-start">
-            <div className="flex gap-[24px] items-center">
-              <div className="h-[48px] w-[192px] relative shrink-0">
-                <img alt="FDER Logo" className="absolute inset-0 w-full h-full object-cover" src={imgLogoFderTransparente1} />
-                <div className="absolute inset-0 bg-white mix-blend-color" />
-              </div>
-              <RedEsLogo />
+            <div className="h-[48px] shrink-0">
+              <UeRed />
             </div>
             <div className="h-[56px] w-[58px] relative shrink-0">
-              <img alt="PYME Innovadora" className="absolute inset-0 w-full h-full object-cover" src={imgPymeInnovadora} />
+              <img alt="PYME Innovadora" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" src={imgPymeInnovadora} />
             </div>
             <InfoLogo />
             <div className="h-[56px] w-[319px] relative shrink-0 max-md:w-[200px] max-md:h-[35px]">
-              <img alt="CDTI" className="absolute inset-0 w-full h-full object-cover" src={imgLogoCdti2023SoportesDigitalesNegativo011} />
+              <img alt="CDTI" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" src={imgLogoCdti2023SoportesDigitalesNegativo011} />
               <div className="absolute inset-0 bg-white mix-blend-color" />
             </div>
             <div className="h-[56px] w-[214px] relative shrink-0 max-md:w-[140px] max-md:h-[37px]">
-              <img alt="EU Funded" className="absolute inset-0 w-full h-full object-cover" src={imgEsFinanciadoPorLaUnionEuropeaRgbNeg01} />
+              <img alt="EU Funded" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" src={imgEsFinanciadoPorLaUnionEuropeaRgbNeg01} />
               <div className="absolute inset-0 bg-white mix-blend-color" />
             </div>
           </div>

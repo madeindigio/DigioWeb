@@ -1,10 +1,11 @@
 import { useParams } from "react-router";
-import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 import { getProjectBySlug } from "../components/projectData";
 import { ContactSection } from "../components/ContactSection";
-import { useProjectTransition } from "../components/ProjectTransitionContext";
+import {
+  RevealAfterTransition,
+  ScrollRevealSection,
+} from "../components/project-detail-shared";
 import { ProjectDetailNM } from "./ProjectDetailNM";
 import { ProjectDetailRoomonitor } from "./ProjectDetailRoomonitor";
 import { ProjectDetailFinsa } from "./ProjectDetailFinsa";
@@ -14,44 +15,6 @@ import { ProjectDetailIVoox } from "./ProjectDetailIVoox";
 import { ProjectDetailIDermApp } from "./ProjectDetailIDermApp";
 import { ProjectDetailNavilens } from "./ProjectDetailNavilens";
 import { ProjectDetailVivla } from "./ProjectDetailVivla";
-
-const EASE = [0.22, 1, 0.36, 1];
-
-/**
- * Wrapper that delays children reveal until the FLIP overlay finishes.
- * If there's no active transition (direct URL), shows immediately.
- */
-function RevealAfterTransition({ children, delay = 0.3 }: { children: React.ReactNode; delay?: number }) {
-  const { isTransitioning } = useProjectTransition();
-  const [show, setShow] = useState(!isTransitioning);
-
-  useEffect(() => {
-    if (!isTransitioning && !show) setShow(true);
-  }, [isTransitioning, show]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.65, delay: show ? delay : 0, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function ScrollRevealSection({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 48 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.8, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -133,7 +96,7 @@ export function ProjectDetailPage() {
       </section>
 
       {/* ── Intro — 3 column layout matching NM/Roomonitor pattern ── */}
-      <RevealAfterTransition delay={0.3}>
+      <RevealAfterTransition delay={0.05}>
         <section className="bg-white w-full">
           <div className="px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
             <div className="max-w-[1400px] mx-auto flex items-start justify-between gap-[40px] max-lg:flex-col max-lg:gap-[32px]">
@@ -162,7 +125,7 @@ export function ProjectDetailPage() {
       </RevealAfterTransition>
 
       {/* ── Additional content ── */}
-      <RevealAfterTransition delay={0.45}>
+      <RevealAfterTransition delay={0.18}>
         <section className="bg-white w-full">
           <div className="px-[56px] pb-[120px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
             <div className="max-w-[1400px] mx-auto flex flex-col gap-[80px] max-md:gap-[48px]">

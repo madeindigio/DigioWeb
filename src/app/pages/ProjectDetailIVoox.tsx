@@ -2,9 +2,12 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { ContactSection } from "../components/ContactSection";
-import { useProjectTransition } from "../components/ProjectTransitionContext";
-import { useProjectClick } from "../components/WorkSection";
-import { getProjectBySlug } from "../components/projectData";
+import {
+  RevealAfterTransition,
+  ScrollRevealSection,
+  RelatedProjectCard,
+  RelatedProjectsSection,
+} from "../components/project-detail-shared";
 
 /* ─── Figma Assets ─── */
 import imgHero from "figma:asset/2214d58f15337db66ff6aba0f5e9cef891db63d8.png";
@@ -32,35 +35,6 @@ import imgRelatedNM from "figma:asset/2c60dc5e690df788bd1fb4c5c103bc60310340f8.p
 import imgRelatedRoomonitor from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
 
 const EASE = [0.22, 1, 0.36, 1];
-
-/* ── Animation helpers ── */
-function RevealAfterTransition({ children, delay = 0.3 }: { children: React.ReactNode; delay?: number }) {
-  const { isTransitioning } = useProjectTransition();
-  const [show, setShow] = useState(!isTransitioning);
-  useEffect(() => { if (!isTransitioning && !show) setShow(true); }, [isTransitioning, show]);
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.65, delay: show ? delay : 0, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function ScrollRevealSection({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 48 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.8, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 /* ============================================================
    1. HERO — Full-width image, fixed height
@@ -438,56 +412,6 @@ function CarTextSection() {
 /* ============================================================
    14. RELATED PROJECTS
    ============================================================ */
-function RelatedProjectCard({
-  image,
-  tag,
-  name,
-  description,
-  slug,
-}: {
-  image: string;
-  tag: string;
-  name: string;
-  description: string;
-  slug: string;
-}) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const project = getProjectBySlug(slug);
-  const flipImage = project?.image || image;
-  const handleClick = useProjectClick(slug, containerRef, flipImage, tag);
-
-  return (
-    <div className="flex flex-col items-start flex-1 min-w-0">
-      <div
-        ref={containerRef}
-        onClick={handleClick}
-        className="relative w-full h-[500px] max-lg:h-[350px] max-md:h-[250px] overflow-hidden cursor-pointer group"
-      >
-        <div className="absolute inset-0 bg-[#d8d8d8]" />
-        <img
-          alt={name}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-          src={image}
-        />
-        <div className="absolute left-[24px] top-[24px] z-10 backdrop-blur-[5px] bg-[rgba(25,30,37,0.24)] rounded-[300px] px-[16px] py-[8px] max-md:left-[12px] max-md:top-[12px]">
-          <p className="font-['GT_Ultra_Median',sans-serif] text-[16px] text-white tracking-[-0.64px] leading-[22px] whitespace-nowrap text-center max-md:text-[12px] max-md:leading-[17px]">
-            {tag}
-          </p>
-        </div>
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-400 pointer-events-none" />
-      </div>
-      <div className="flex gap-[40px] items-start py-[32px] w-full max-md:flex-col max-md:gap-[12px] max-md:py-[20px]">
-        <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] whitespace-nowrap shrink-0 max-md:text-[20px] max-md:leading-[28px]">
-          {name}
-        </p>
-        <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] flex-1 min-w-0 max-lg:text-[24px] max-lg:leading-[32px] max-md:text-[16px] max-md:leading-[24px]">
-          {description}
-        </p>
-      </div>
-    </div>
-  );
-}
-
 function RelatedProjects() {
   const { t } = useTranslation();
   return (
@@ -527,10 +451,10 @@ export function ProjectDetailIVoox() {
   return (
     <>
       <HeroSection />
-      <RevealAfterTransition delay={0.3}>
+      <RevealAfterTransition delay={0.05}>
         <IntroSection />
       </RevealAfterTransition>
-      <RevealAfterTransition delay={0.45}>
+      <RevealAfterTransition delay={0.18}>
         <MobileBannerSection />
       </RevealAfterTransition>
       <ScrollRevealSection><VisionSection /></ScrollRevealSection>
