@@ -4,8 +4,8 @@ import { LangText } from "./LangText";
 
 function SvgBgHeroImg() {
   return (
-    <div className="absolute top-0 left-[336px] w-[1064px] h-[362px] max-lg:relative max-lg:left-auto max-lg:h-[260px] max-lg:w-[800px] max-lg:ml-auto max-lg:-mr-[56px] max-md:h-[204px] max-md:w-[600px] max-md:-mr-[24px]">
-      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1064 362">
+    <div className="absolute top-0 left-[336px] w-[1064px] h-[362px] max-lg:relative max-lg:left-auto max-lg:h-[260px] max-lg:w-[800px] max-lg:ml-auto max-lg:-mr-[56px] max-md:h-auto max-md:aspect-[464/418] max-md:w-[100vw] max-md:left-1/2 max-md:-translate-x-1/2 max-md:mx-0 max-md:mr-0">
+      <svg className="absolute block size-full max-md:hidden" fill="none" preserveAspectRatio="none" viewBox="0 0 1064 362">
         <defs>
           <style>{`@keyframes heroSvgFadeIn{from{opacity:0}to{opacity:1}}.hero-svg-seq{opacity:0;animation:heroSvgFadeIn .5s cubic-bezier(0.25,0.1,0.25,1) forwards}`}</style>
         </defs>
@@ -21,6 +21,17 @@ function SvgBgHeroImg() {
         <path className="hero-svg-seq" style={{ animationDelay: '0.6s' }} clipRule="evenodd" d={svgPaths.p1b396280} fill="#E2DFDA" fillRule="evenodd" />
         {/* 6. Horizontal bar */}
         <path className="hero-svg-seq" style={{ animationDelay: '0.75s' }} clipRule="evenodd" d={svgPaths.p9bd7b00} fill="#E2DFDA" fillRule="evenodd" />
+      </svg>
+      {/* Mobile version */}
+      <svg className="absolute block size-full hidden max-md:block" fill="none" preserveAspectRatio="none" viewBox="0 0 464 418">
+        <defs>
+          <style>{`@keyframes heroSvgFadeIn{from{opacity:0}to{opacity:1}}.hero-svg-seq-m{opacity:0;animation:heroSvgFadeIn .5s cubic-bezier(0.25,0.1,0.25,1) forwards}`}</style>
+        </defs>
+        <path className="hero-svg-seq-m" style={{ animationDelay: '0.75s' }} fillRule="evenodd" clipRule="evenodd" d="M-40.0132 360.925L187.315 360.925V418L-40.0132 418L-40.0132 360.925Z" fill="#E2DFDA" />
+        <path className="hero-svg-seq-m" style={{ animationDelay: '0.15s' }} fillRule="evenodd" clipRule="evenodd" d="M378.315 360.066L378.315 -47.0955L435.008 -47.0955L435.008 360.066H378.315Z" fill="#E2DFDA" />
+        <path className="hero-svg-seq-m" style={{ animationDelay: '0.3s' }} fillRule="evenodd" clipRule="evenodd" d="M282.967 360.066L282.967 -47.0955L339.66 -47.0955L339.66 360.066H282.967Z" fill="#E2DFDA" />
+        <path className="hero-svg-seq-m" style={{ animationDelay: '0.45s' }} fillRule="evenodd" clipRule="evenodd" d="M187.619 360.066L187.619 -47.0955L244.313 -47.0955L244.313 360.066H187.619Z" fill="#E2DFDA" />
+        <path className="hero-svg-seq-m" style={{ animationDelay: '0s' }} fillRule="evenodd" clipRule="evenodd" d="M79.8684 184.832C79.8684 143.292 46.1937 109.618 4.65396 109.618C-36.8858 109.618 -70.5605 143.292 -70.5605 184.832C-70.5605 226.372 -36.8858 260.047 4.65396 260.047C46.1937 260.047 79.8684 226.372 79.8684 184.832ZM142.952 184.832C142.952 108.452 81.033 46.5345 4.65395 46.5345C-71.7261 46.5345 -133.644 108.452 -133.644 184.832C-133.644 261.212 -71.7261 323.13 4.65396 323.13C81.033 323.13 142.952 261.212 142.952 184.832Z" fill="#E2DFDA" />
       </svg>
     </div>
   );
