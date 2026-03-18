@@ -6,7 +6,7 @@ import { useProjectClick } from "./WorkSection";
 import { getProjectBySlug } from "./projectData";
 import { resizeSmoothScroll } from "./SmoothScrollProvider";
 
-const EASE = [0.22, 1, 0.36, 1];
+const EASE = [0.25, 0.1, 0.25, 1];
 
 /*
  * Header slide-in timing (mirrored from Header.tsx).
@@ -15,6 +15,9 @@ const EASE = [0.22, 1, 0.36, 1];
 const HEADER_SLIDE_DELAY = 0.06;
 const HEADER_SLIDE_DURATION = 0.55;
 const HEADER_TOTAL = HEADER_SLIDE_DELAY + HEADER_SLIDE_DURATION; // ~0.61s
+
+/* Extra buffer after header lands before content starts appearing */
+const CONTENT_STAGGER_OFFSET = 0.1;
 
 /* ─────────────────────────────────────────────────────────
    RevealAfterTransition
@@ -44,7 +47,7 @@ export function RevealAfterTransition({
      after the header has finished sliding in.  For direct navigation the
      extra offset is zero (content reveals normally). */
   const effectiveDelay = show
-    ? (hadTransition.current ? HEADER_TOTAL + delay : delay)
+    ? (hadTransition.current ? HEADER_TOTAL + CONTENT_STAGGER_OFFSET + delay : delay)
     : 0;
 
   /* After the reveal animation completes, tell Lenis to recalculate
@@ -59,9 +62,9 @@ export function RevealAfterTransition({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.65, delay: effectiveDelay, ease: EASE }}
+      initial={{ opacity: 0, y: 36 }}
+      animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
+      transition={{ duration: 0.75, delay: effectiveDelay, ease: EASE }}
     >
       {children}
     </motion.div>

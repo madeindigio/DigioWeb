@@ -33,7 +33,7 @@ function BlogHeroPattern() {
   return (
     <div className="absolute inset-0 flex justify-center px-[56px] max-md:px-[24px] pointer-events-none overflow-hidden">
       <div className="relative w-full max-w-[1400px]">
-        <div className="absolute top-0 left-0 w-[1253px] h-[653px] max-md:w-[700px] max-md:h-[380px] opacity-[0.12]">
+        <div className="absolute top-0 left-0 w-[1253px] h-[653px] max-md:w-[700px] max-md:h-[380px]">
           <svg
             className="absolute block size-full"
             fill="none"

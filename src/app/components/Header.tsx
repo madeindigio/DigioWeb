@@ -701,14 +701,14 @@ export function Header() {
                 className={`relative p-2 z-[60] cursor-pointer ${
                   scrolled ? "block" : "md:hidden"
                 }`}
-                style={{ color: headerTextDark && !menuOpen ? "#191e25" : "#e5e1dc" }}
+                style={{ color: headerTextDark ? "#191e25" : "#e5e1dc" }}
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ duration: DUR_MICRO, ease: EASE_SMOOTH }}
               >
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square">
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square">
                   {/* Top line → translates down to center (y 7→12) and rotates 45° */}
                   <motion.line
                     x1="3" y1="7" x2="21" y2="7"

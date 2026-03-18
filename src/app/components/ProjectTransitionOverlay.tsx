@@ -5,17 +5,17 @@ import { useProjectTransition } from "./ProjectTransitionContext";
 import { getProjectBySlug } from "./projectData";
 import { stopSmoothScroll } from "./SmoothScrollProvider";
 
-const EASE = [0.16, 1, 0.3, 1];
+const EASE = [0.25, 0.1, 0.25, 1];          // true ease-in-out for organic feel
 
 /* ── Timing ── */
-const CARD_DURATION = 1.15;       // was 0.85 – slower, more cinematic
-const HOLD_MS = 160;              // was 80  – longer hold so the image breathes
-const EXIT_DURATION = 0.45;       // was 0.35 – gentler fade-out reveal
+const CARD_DURATION = 1.35;       // slower, cinematic expansion
+const HOLD_MS = 220;              // let the image breathe before reveal
+const EXIT_DURATION = 0.55;       // gentle, unhurried fade-out
 
 /* Parallax: image starts zoomed-in + shifted up, settles during expansion */
-const PARALLAX_SCALE_START = 1.18;  // slightly more zoom for the longer travel
+const PARALLAX_SCALE_START = 1.12;  // subtler zoom for smoother feel
 const PARALLAX_SCALE_END = 1.0;
-const PARALLAX_Y_START = "-5%";
+const PARALLAX_Y_START = "-3%";
 const PARALLAX_Y_END = "0%";
 
 /**

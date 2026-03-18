@@ -9,6 +9,7 @@ import {
   RelatedProjectsSection,
 } from "../components/project-detail-shared";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { DiagonalFacesGrid } from "../components/DiagonalFacesGrid";
 
 /* ─── Video with image fallback ─── */
 function VideoWithFallback({
@@ -165,11 +166,7 @@ function FacesSection() {
   return (
     <section className="bg-[#f8f9fa] w-full h-[744px] max-lg:h-[500px] max-md:h-[360px] overflow-hidden relative">
       <div className="absolute inset-0 flex items-center justify-center">
-        <img
-          alt="Symposium community"
-          className="absolute inset-0 w-full h-full object-cover"
-          src={imgFaces1}
-        />
+        <DiagonalFacesGrid />
       </div>
     </section>
   );
