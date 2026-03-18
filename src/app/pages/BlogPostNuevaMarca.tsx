@@ -20,14 +20,14 @@ import imgDigioOoh from "figma:asset/4ea9bf490e9f376a1bd3e3afb763cc442b12578d.pn
 import imgIconSetAnimation from "figma:asset/4d1d33c96be7e75572bf8ac55c1e87f38b2b345a.png";
 import imgIconLibrary from "figma:asset/8543476f1080bc702ba2dc1d2ddbd0824df34217.png";
 import imgVisualLanguage from "figma:asset/955c446351b1217ff5d282fde6bf46a2715cc7e3.png";
-import imgWebsiteBlog from "figma:asset/81b248437395f6a2ef2a6148659d5afe0b694ba7.png";
-import imgPosters from "figma:asset/cb45888d941dd0b73c96c74b1160266fdf86ea71.png";
-import imgCamiseta from "figma:asset/3acebdfb3e611fb06196552a803e99bcb25d7083.png";
-import imgBolsaAgenda from "figma:asset/330c39774a41a82ac92c4fc94ab6932247a53c4f.png";
-import imgTarjetas from "figma:asset/e23bfef627e2fdd0b966902781a926f3423ef35b.png";
-import imgOficina from "figma:asset/1056dbdf0c50947a37c2401362d6fd3b13b028f6.png";
-import imgTotebag from "figma:asset/223f81c8addb5729d5c3be9b7cad41944483addc.png";
-import imgAgenda from "figma:asset/df711d4d466e983e39cc8ec54cb52e0105d73629.png";
+import imgWebsiteBlog from "figma:asset/586801db5b5955c47b6f15f68e2daaf1fafdf7d4.png";
+import imgPosters from "figma:asset/d16a16ccf2374b67ece9aafe431c85c442ed66d9.png";
+import imgCamiseta from "figma:asset/cb2ba9e8d40b4093bb3c812a8018a280629ad70c.png";
+import imgBolsaAgenda from "figma:asset/3290b65c13b344550e0cb48c4d911243e7591874.png";
+import imgTarjetas from "figma:asset/9c3dd6bbdb3b3cd85aa88b314f672baf600961d6.png";
+import imgOficina from "figma:asset/b3c5c93cad9211f2f2b808371f45181411379acc.png";
+import imgTotebag from "figma:asset/75fb4b01c43129a40e825b3abb85515a9453f4d1.png";
+import imgAgenda from "figma:asset/84aa8e8e48ae91ec5f6ac55f4308516802cae1dc.png";
 
 /* ─── Reusable components ─── */
 
