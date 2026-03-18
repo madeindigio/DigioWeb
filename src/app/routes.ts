@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import { lazy } from "react";
 import { Layout } from "./components/Layout";
 import { HomePage } from "./pages/HomePage";
+import { ProjectDetailPage } from "./pages/ProjectDetailPage";
 
 /* ── Lazy-loaded pages (code-split into separate chunks) ── */
 const TrabajoPage = lazy(() => import("./pages/TrabajoPage").then(m => ({ default: m.TrabajoPage })));
@@ -10,7 +11,6 @@ const UnetePage = lazy(() => import("./pages/UnetePage").then(m => ({ default: m
 const BlogPage = lazy(() => import("./pages/BlogPage").then(m => ({ default: m.BlogPage })));
 const ContactoPage = lazy(() => import("./pages/ContactoPage").then(m => ({ default: m.ContactoPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then(m => ({ default: m.NotFoundPage })));
-const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage").then(m => ({ default: m.ProjectDetailPage })));
 const PrivacidadPage = lazy(() => import("./pages/PrivacidadPage").then(m => ({ default: m.PrivacidadPage })));
 const CookiesPage = lazy(() => import("./pages/CookiesPage").then(m => ({ default: m.CookiesPage })));
 const BlogPostDetailPage = lazy(() => import("./pages/BlogPostDetailPage").then(m => ({ default: m.BlogPostDetailPage })));
@@ -24,7 +24,10 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: HomePage },
       { path: "trabajo", Component: TrabajoPage },
-      { path: "proyecto/:slug", Component: ProjectDetailPage },
+      {
+        path: "proyecto/:slug",
+        Component: ProjectDetailPage,
+      },
       { path: "sobre-digio", Component: SobreDigioPage },
       { path: "unete", Component: UnetePage },
       { path: "ia", Component: IALandingPage },

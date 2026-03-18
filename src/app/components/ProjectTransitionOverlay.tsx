@@ -9,7 +9,7 @@ const EASE = [0.25, 0.1, 0.25, 1];          // true ease-in-out for organic feel
 
 /* ── Timing ── */
 const CARD_DURATION = 1.35;       // slower, cinematic expansion
-const HOLD_MS = 220;              // let the image breathe before reveal
+const HOLD_MS = 110;              // let the image breathe before reveal
 const EXIT_DURATION = 0.55;       // gentle, unhurried fade-out
 
 /* Parallax: image starts zoomed-in + shifted up, settles during expansion */
@@ -25,9 +25,16 @@ const PARALLAX_Y_END = "0%";
  * Approach:
  *   1. Solid white backdrop appears INSTANTLY on click (no fade-in)
  *      → hides the messy page-swap underneath from frame 1
- *   2. Card clone starts animating immediately to hero position (0.65s)
+ *   2. Card clone starts animating immediately to hero position (1.35s)
  *   3. Card lands → brief hold → overlay fades out, revealing real hero
  *   4. Detail content reveals progressively (handled by RevealAfterTransition)
+ *
+ * Smoothness guarantees:
+ *   - Navigation is deferred by one rAF so the white backdrop renders
+ *     before React swaps the route tree (no flash).
+ *   - The animated clone is GPU-promoted via will-change.
+ *   - Image is preloaded into the browser cache from the card, so no
+ *     pop-in when the real hero mounts underneath.
  */
 export function ProjectTransitionOverlay() {
   const {
@@ -110,8 +117,8 @@ export function ProjectTransitionOverlay() {
           exit={{ opacity: 0 }}
           transition={{ duration: EXIT_DURATION, ease: EASE }}
         >
-          {/* ─── SOLID BACKDROP ─── 
-              White bg, opacity 1 from frame 1 → no flash, 
+          {/* ─── SOLID BACKDROP ───
+              White bg, opacity 1 from frame 1 → no flash,
               hides the AnimatePresence page swap underneath */}
           <div className="absolute inset-0 bg-white" />
 

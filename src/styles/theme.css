@@ -129,6 +129,15 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    font-size: var(--font-size);
+    font-family: 'Satoshi', sans-serif;
+    /* Smooth scroll rendering optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
     @apply bg-background text-foreground;
     -webkit-user-select: none;
@@ -136,6 +145,12 @@
     -ms-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    /* GPU acceleration for smooth scroll */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Prevent layout shifts during scroll */
+    overflow-x: hidden;
   }
 
   img,
@@ -166,11 +181,6 @@
   * Default typography styles for HTML elements (h1-h4, p, label, button, input).
   * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
   */
-
-  html {
-    font-size: var(--font-size);
-    font-family: 'Satoshi', sans-serif;
-  }
 
   h1 {
     font-size: var(--text-2xl);

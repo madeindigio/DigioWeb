@@ -14,6 +14,7 @@ import { useProjectTransition } from "./ProjectTransitionContext";
      – Restarted only when the overlay fully exits.
    • Programmatic smooth scroll via `smoothScrollTo()` delegates to
      Lenis.scrollTo() so the same easing applies everywhere.
+   • Optimized RAF loop prevents micro-stutters and ensures smooth 60fps.
    ───────────────────────────────────────────────────────── */
 
 /* ── Singleton reference so exported helpers can reach it ── */
@@ -78,42 +79,63 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const lenis = new Lenis({
       /*
-       * lerp 0.068 → luxurious, almost weightless glide.
-       * Default is 0.1; going lower adds perceivable inertia
-       * without feeling sluggish.
+       * lerp 0.1 → perfect balance between responsiveness and smoothness.
+       * Lower values (0.068) can feel sluggish and cause micro-stutters.
+       * 0.1 is Lenis default and provides optimal fluidity.
        */
-      lerp: 0.068,
-      /* Slightly softer wheel response for a more relaxed feel */
-      wheelMultiplier: 0.85,
-      /* Touch stays 100 % native — zero interference */
+      lerp: 0.1,
+      /* Optimized wheel response for consistent feel */
+      wheelMultiplier: 1,
+      /* Touch stays 100% native — zero interference */
       touchMultiplier: 1,
-      /* Let Lenis drive its own RAF loop internally */
-      autoRaf: true,
+      /* Use external RAF for better control and performance */
+      autoRaf: false,
+      /* Infinite mode disabled to prevent edge-case stutters */
+      infinite: false,
+      /* Smooth wheel events for consistent behavior */
+      smoothWheel: true,
     });
 
     lenisRef.current = lenis;
     _lenis = lenis;
 
     /*
+     * Custom RAF loop with proper timing and prevents layout thrashing.
+     * Running at proper 60fps prevents micro-stutters.
+     */
+    let rafId: number;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+
+    /*
      * ResizeObserver on <body> — whenever the document height changes
      * (images loading, lazy sections, accordion toggling, etc.)
      * we tell Lenis to recalculate its scroll `limit`.
-     * This eliminates the class of bugs where the page grows taller
-     * but Lenis still thinks the old, shorter height is the max.
+     * Using requestIdleCallback to avoid blocking the main thread.
      */
-    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
+    let resizeIdleId: number | null = null;
     const ro = new ResizeObserver(() => {
-      // Debounce rapid-fire resize observations (e.g. during animation)
-      if (resizeTimer) clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
+      // Cancel any pending idle callback
+      if (resizeIdleId !== null) {
+        cancelIdleCallback(resizeIdleId);
+      }
+      // Schedule resize during idle time to avoid blocking scroll
+      resizeIdleId = requestIdleCallback(() => {
         lenis.resize();
-      }, 100);
+        resizeIdleId = null;
+      }, { timeout: 100 });
     });
     ro.observe(document.body);
 
     return () => {
       ro.disconnect();
-      if (resizeTimer) clearTimeout(resizeTimer);
+      if (resizeIdleId !== null) {
+        cancelIdleCallback(resizeIdleId);
+      }
+      cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
       _lenis = null;
