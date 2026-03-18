@@ -9,6 +9,7 @@ import {
   getPaginatedPosts,
   sortedBlogPosts,
   POSTS_PER_PAGE,
+  getPostDetailUrl,
   type BlogPost,
 } from "../components/blogData";
 
@@ -65,7 +66,7 @@ function BlogPostCard({
       itemType="https://schema.org/BlogPosting"
     >
       <Link
-        to={`/blog/${post.slug}`}
+        to={getPostDetailUrl(post)}
         className="block py-[40px] max-md:py-[32px] transition-colors hover:bg-[#f0efec]"
         aria-label={t(`blog.posts.${post.i18nKey}.title`)}
       >

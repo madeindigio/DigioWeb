@@ -2,9 +2,11 @@ import { useEffect, useMemo } from "react";
 import { useParams, Link, Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { LangText } from "../components/LangText";
+import { resizeSmoothScroll } from "../components/SmoothScrollProvider";
 import {
   getPostBySlug,
   getRelatedPosts,
+  getPostDetailUrl,
   type BlogPost,
 } from "../components/blogData";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -185,7 +187,7 @@ function RelatedPostCard({ post }: { post: BlogPost }) {
   return (
     <article className="flex flex-col gap-[24px] items-start flex-1 min-w-0 max-md:w-full max-md:flex-none group">
       <Link
-        to={`/blog/${post.slug}`}
+        to={getPostDetailUrl(post)}
         className="block h-[400px] w-full relative shrink-0 max-md:h-[240px] overflow-hidden"
         tabIndex={-1}
         aria-hidden="true"
@@ -199,7 +201,7 @@ function RelatedPostCard({ post }: { post: BlogPost }) {
       </Link>
       <div className="flex flex-col gap-[16px] items-start w-full">
         <div className="flex flex-col gap-[24px] max-md:gap-[16px]">
-          <Link to={`/blog/${post.slug}`}>
+          <Link to={getPostDetailUrl(post)}>
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-lg:text-[24px] max-lg:leading-[32px] max-md:text-[20px] max-md:leading-[28px] hover:opacity-70 transition-opacity">
               {t(`blog.posts.${post.i18nKey}.title`)}
             </p>
@@ -209,7 +211,7 @@ function RelatedPostCard({ post }: { post: BlogPost }) {
           </p>
         </div>
         <Link
-          to={`/blog/${post.slug}`}
+          to={getPostDetailUrl(post)}
           className="relative px-[48px] py-[16px] border border-[#191e25] bg-transparent mt-[8px] max-md:px-[32px] max-md:py-[12px] cursor-pointer hover:bg-[#191e25] hover:text-white transition-colors group/btn inline-block"
         >
           <span className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[27px] whitespace-nowrap group-hover/btn:text-white max-md:text-[16px]">
@@ -231,7 +233,14 @@ export function BlogPostDetailPage() {
 
   // Scroll to top on slug change
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Trigger Lenis resize after lazy content mounts to ensure
+    // the full page height is scrollable
+    const timers = [
+      setTimeout(() => resizeSmoothScroll(), 100),
+      setTimeout(() => resizeSmoothScroll(), 500),
+      setTimeout(() => resizeSmoothScroll(), 1200),
+    ];
+    return () => timers.forEach(clearTimeout);
   }, [slug]);
 
   if (!post) {

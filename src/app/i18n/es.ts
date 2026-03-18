@@ -211,8 +211,14 @@ const es = {
       desarrollo: "DESARROLLO",
       innovacionDigital: "INNOVACIÓN DIGITAL",
       disenoProducto: "DISEÑO DE PRODUCTO",
+      marca: "MARCA",
     },
     posts: {
+      brandRenewal: {
+        title: "Digio. La renovación de nuestra marca",
+        excerpt: "Tras una trayectoria que se remonta a 2007, en Digio hemos decidido abordar el rediseño completo de nuestra marca con el objetivo de dotarnos de una narrativa y de un lenguaje visual propios y absolutamente diferenciados.",
+        metaDescription: "Descubre cómo Digio ha renovado su marca de la mano de MUCHO: estrategia, narrativa, identidad visual y lenguaje digital basado en el código binario.",
+      },
       mobileApps: {
         title: "Aplicaciones móviles: ¿híbridas o nativas?",
         excerpt: "En la actualidad, el desarrollo de aplicaciones móviles se ha convertido en una necesidad para cualquier empresa que busque mejorar su presencia en línea y ofrecer una experiencia de usuario excepcional.",

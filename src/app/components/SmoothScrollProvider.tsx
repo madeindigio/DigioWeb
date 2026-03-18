@@ -162,18 +162,27 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
        * old scroll limit in place, blocking scroll past the
        * previous page's height.
        *
-       * We chain two rAFs + a short timeout to ensure React has
-       * committed the new DOM and the browser has reflowed.
+       * We chain multiple resize calls across a wide time window
+       * to cover: React commit, Suspense lazy resolution, image
+       * decode, font load, and any other async layout shift.
        */
+      const timers: ReturnType<typeof setTimeout>[] = [];
+      const scheduleResize = (delay: number) => {
+        timers.push(setTimeout(() => lenis.resize(), delay));
+      };
+
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           lenis.resize();
-          // Safety net: resize again after images / lazy content may
-          // have altered the layout (e.g. hero images loading).
-          const t = setTimeout(() => lenis.resize(), 300);
-          return () => clearTimeout(t);
+          scheduleResize(150);
+          scheduleResize(400);
+          scheduleResize(800);
+          scheduleResize(1500);
+          scheduleResize(3000);
         });
       });
+
+      return () => timers.forEach(clearTimeout);
     } else {
       window.scrollTo(0, 0);
     }

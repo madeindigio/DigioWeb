@@ -14,6 +14,7 @@ const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage").then(m 
 const PrivacidadPage = lazy(() => import("./pages/PrivacidadPage").then(m => ({ default: m.PrivacidadPage })));
 const CookiesPage = lazy(() => import("./pages/CookiesPage").then(m => ({ default: m.CookiesPage })));
 const BlogPostDetailPage = lazy(() => import("./pages/BlogPostDetailPage").then(m => ({ default: m.BlogPostDetailPage })));
+const BlogPostNuevaMarca = lazy(() => import("./pages/BlogPostNuevaMarca").then(m => ({ default: m.BlogPostNuevaMarca })));
 const IALandingPage = lazy(() => import("./pages/IALandingPage").then(m => ({ default: m.IALandingPage })));
 
 export const router = createBrowserRouter([
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       { path: "unete", Component: UnetePage },
       { path: "ia", Component: IALandingPage },
       { path: "blog", Component: BlogPage },
+      { path: "blog/renovacion-marca-digio", Component: BlogPostNuevaMarca },
       { path: "blog/:slug", Component: BlogPostDetailPage },
       { path: "contacto", Component: ContactoPage },
       { path: "privacidad", Component: PrivacidadPage },

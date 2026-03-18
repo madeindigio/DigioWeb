@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { LangText } from "./LangText";
-import { getLatestPosts } from "./blogData";
+import { getLatestPosts, getPostDetailUrl } from "./blogData";
 
 const latestPosts = getLatestPosts(3);
 
@@ -40,7 +40,7 @@ export function BlogSection() {
               itemType="https://schema.org/BlogPosting"
             >
               <Link
-                to={`/blog/${post.slug}`}
+                to={getPostDetailUrl(post)}
                 className="block h-[400px] w-full relative shrink-0 max-lg:w-[280px] max-lg:h-[280px] max-md:w-full max-md:h-[240px] overflow-hidden"
                 tabIndex={-1}
                 aria-hidden="true"
@@ -55,7 +55,7 @@ export function BlogSection() {
               </Link>
               <div className="flex flex-col gap-[16px] items-start w-full">
                 <div className="flex flex-col gap-[24px] max-md:gap-[16px]">
-                  <Link to={`/blog/${post.slug}`}>
+                  <Link to={getPostDetailUrl(post)}>
                     <LangText
                       as="h3"
                       stagger={1 + idx * 3}
@@ -77,7 +77,7 @@ export function BlogSection() {
                   </LangText>
                 </div>
                 <Link
-                  to={`/blog/${post.slug}`}
+                  to={getPostDetailUrl(post)}
                   className="relative px-[48px] py-[16px] border border-[#191e25] bg-transparent mt-[8px] max-md:px-[32px] max-md:py-[12px] cursor-pointer hover:bg-[#191e25] hover:text-white transition-colors group/btn inline-block"
                 >
                   <LangText

@@ -211,8 +211,14 @@ const en = {
       desarrollo: "DEVELOPMENT",
       innovacionDigital: "DIGITAL INNOVATION",
       disenoProducto: "PRODUCT DESIGN",
+      marca: "BRANDING",
     },
     posts: {
+      brandRenewal: {
+        title: "Digio. Our brand renewal",
+        excerpt: "With a track record dating back to 2007, at Digio we decided to undertake a complete redesign of our brand to build a distinctive narrative and visual language aligned with our values, capabilities and relevance.",
+        metaDescription: "Discover how Digio renewed its brand with MUCHO: strategy, narrative, visual identity and a digital language built on binary code.",
+      },
       mobileApps: {
         title: "Mobile apps: hybrid or native?",
         excerpt: "Nowadays, mobile application development has become a necessity for any company seeking to improve its online presence and deliver an exceptional user experience.",

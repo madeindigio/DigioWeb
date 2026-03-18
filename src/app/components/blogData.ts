@@ -1,3 +1,5 @@
+import imgPortada from "figma:asset/b3dc0ff53799e02996e8af4152d230d4c831b092.png";
+
 export interface BlogPost {
   slug: string;
   /** i18n key inside blog.posts.<key> */
@@ -7,6 +9,8 @@ export interface BlogPost {
   image: string;
   /** Secondary image for article body */
   contentImage?: string;
+  /** If true, this post has a dedicated custom page instead of the generic template */
+  customDetailPath?: string;
   /** Structured data helpers */
   author: string;
 }
@@ -14,6 +18,15 @@ export interface BlogPost {
 export const POSTS_PER_PAGE = 6;
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "renovacion-marca-digio",
+    i18nKey: "brandRenewal",
+    date: "2025-09-10",
+    categoryKey: "marca",
+    image: imgPortada,
+    customDetailPath: "/blog/renovacion-marca-digio",
+    author: "Digio",
+  },
   {
     slug: "aplicaciones-moviles-hibridas-o-nativas",
     i18nKey: "mobileApps",
@@ -134,6 +147,11 @@ export function getPaginatedPosts(page: number, perPage = POSTS_PER_PAGE) {
     currentPage: safePage,
     totalPages,
   };
+}
+
+/** Returns the detail URL for a post (custom path or default /blog/:slug) */
+export function getPostDetailUrl(post: BlogPost) {
+  return post.customDetailPath || `/blog/${post.slug}`;
 }
 
 /** Returns a post by slug, or undefined */
