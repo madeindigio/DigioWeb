@@ -26,9 +26,9 @@ export function HomePage() {
       <AboutSection />
       <CaseStudySection />
       <WorkSection />
-      <BlogSection />
       <ServicesSection />
       <ClientsSection />
+      <BlogSection />
       <ContactSection />
     </>
   );

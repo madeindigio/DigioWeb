@@ -33,16 +33,17 @@ function easeInOutQuart(t: number): number {
  * @param targetY  Pixel position to scroll to.
  * @param duration Duration in **milliseconds** (matches the old API surface).
  */
-export function smoothScrollTo(targetY: number, duration = 1400) {
+export function smoothScrollTo(targetY: number, duration = 1400, immediate = false) {
   if (_lenis) {
     // Lenis expects seconds
     _lenis.scrollTo(targetY, {
       duration: duration / 1000,
       easing: easeInOutQuart,
       lock: true,
+      immediate,
     });
   } else {
-    window.scrollTo({ top: targetY, behavior: "smooth" });
+    window.scrollTo({ top: targetY, behavior: immediate ? "instant" : "smooth" });
   }
 }
 

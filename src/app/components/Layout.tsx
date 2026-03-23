@@ -43,9 +43,13 @@ export function Layout() {
     <SmoothScrollProvider>
       <div className="w-full min-h-screen bg-white overflow-x-clip">
         <Header />
-        <AnimatePresence mode="sync">
+        <AnimatePresence mode="wait">
           <PageTransition key={location.pathname}>
-            <Suspense fallback={<div className="min-h-screen" />}>
+            <Suspense fallback={
+              <div className="min-h-screen flex items-center justify-center">
+                <div className="w-8 h-8 border-2 border-[#191e25] border-t-transparent rounded-full animate-spin" />
+              </div>
+            }>
               <Outlet />
             </Suspense>
           </PageTransition>

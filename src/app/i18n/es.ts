@@ -54,6 +54,7 @@ const es = {
     line1: "Transformation ",
     line2: "is our code",
     subtitle: "Vivimos en ese lugar intermedio entre la visión y la creación.",
+    cta: "Ver nuestro trabajo",
   },
   about: {
     label: "QUIÉNES SOMOS",

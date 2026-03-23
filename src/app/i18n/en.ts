@@ -54,6 +54,7 @@ const en = {
     line1: "Transformation ",
     line2: "is our code",
     subtitle: "We live in that space between vision and creation.",
+    cta: "See our work",
   },
   about: {
     label: "WHO WE ARE",

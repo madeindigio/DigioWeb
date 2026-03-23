@@ -1,4 +1,4 @@
-import imgNm from "figma:asset/38015c2e2c4415a16cea0ceea3ff9541757288a4.png";
+const imgNm = "/images/nm.png";
 import imgRectangle3 from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
 import imgRectangle4 from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
 import imgBgImg1 from "figma:asset/4372bc2c881ed32f89039f0e0dfa1bfa882f228a.png";
@@ -16,7 +16,7 @@ import { useNavigate } from "react-router";
 import { LangText } from "./LangText";
 import { useProjectTransition } from "./ProjectTransitionContext";
 
-const EASE_SMOOTH = [0.22, 1, 0.36, 1] as const;
+const EASE_SMOOTH: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 function ScrollReveal({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   return (
@@ -77,6 +77,12 @@ function CardHoverOverlay({
 }) {
   const [hovered, setHovered] = useState(false);
   const { t, i18n } = useTranslation();
+  const [isHoverable, setIsHoverable] = useState(true);
+
+  useEffect(() => {
+    setIsHoverable(window.matchMedia('(hover: hover)').matches);
+  }, []);
+
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
   const springX = useSpring(mouseX, { stiffness: 55, damping: 18, mass: 1.2 });
@@ -175,7 +181,16 @@ function CardHoverOverlay({
       container.removeEventListener("pointermove", onMove);
       container.removeEventListener("pointerleave", onLeave);
     };
-  }, [containerRef, mouseX, mouseY]);
+  }, [containerRef, mouseX, mouseY, isHoverable]);
+
+  if (!isHoverable) {
+    return (
+      <div
+        className="absolute inset-0 z-20"
+        onClick={onClick}
+      />
+    );
+  }
 
   return (
     <>
@@ -295,6 +310,7 @@ function FullWidthCard({
   imgClassName = "object-cover",
   tagBg,
   videoSrc,
+  eager = false,
 }: {
   slug: string;
   image: string;
@@ -304,6 +320,7 @@ function FullWidthCard({
   imgClassName?: string;
   tagBg?: string;
   videoSrc?: string;
+  eager?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const handleClick = useProjectClick(slug, containerRef, image, tag, tagBg);
@@ -325,7 +342,14 @@ function FullWidthCard({
             />
           </>
         ) : (
-          <img alt={projectName} className={`absolute inset-0 w-full h-full ${imgClassName}`} src={image} loading="lazy" decoding="async" />
+          <img
+            alt={projectName}
+            className={`absolute inset-0 w-full h-full ${imgClassName}`}
+            src={image}
+            loading={eager ? "eager" : "lazy"}
+            fetchPriority={eager ? "high" : "auto"}
+            decoding="async"
+          />
         )}
         <Tag label={tag} bgClass={tagBg} />
         <CardHoverOverlay containerRef={containerRef} onClick={handleClick} />
@@ -402,6 +426,7 @@ export function WorkSection() {
               tag={t("work.projects.nm.tag")}
               projectName={t("work.projects.nm.name")}
               description={t("work.projects.nm.description")}
+              eager
             />
           </ScrollReveal>
 

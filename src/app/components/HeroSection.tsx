@@ -1,6 +1,7 @@
 import svgPaths from "../../imports/svg-5maq4jyelf";
 import { useTranslation } from "react-i18next";
 import { LangText } from "./LangText";
+import { smoothScrollTo } from "./SmoothScrollProvider";
 
 function SvgBgHeroImg() {
   return (
@@ -48,12 +49,11 @@ export function HeroSection() {
           </div>
         </div>
         <div className="relative z-10 flex items-end justify-between gap-[40px] max-w-[1400px] w-full mx-auto max-lg:flex-col max-lg:items-start max-lg:gap-[24px] max-lg:pt-[40px]">
-          <div className="flex flex-col font-['GT_Ultra_Median',sans-serif] text-[#e2dfda] text-[140px] tracking-[-5.6px] leading-[0.9] max-w-[952px] max-lg:text-[80px] max-lg:tracking-[-3px] max-md:text-[48px] max-md:tracking-[-1.92px]">
-            <LangText as="p" stagger={0} className="mb-0">{t("hero.line1")}</LangText>
-            <LangText as="p" stagger={1}>is our code_</LangText>
-          </div>
-          <div className="relative flex flex-col items-start gap-[16px]">
-            
+          <h1 className="flex flex-col font-['GT_Ultra_Median',sans-serif] text-[#e2dfda] text-[140px] tracking-[-5.6px] leading-[0.9] max-w-[952px] max-lg:text-[80px] max-lg:tracking-[-3px] max-md:text-[48px] max-md:tracking-[-1.92px] m-0">
+            <LangText as="span" stagger={0} className="mb-0 block">{t("hero.line1")}</LangText>
+            <LangText as="span" stagger={1} className="block">is our code_</LangText>
+          </h1>
+          <div className="relative flex flex-col items-start gap-[24px]">
             <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] font-[600] leading-[1.35] text-[#e2dfda] text-[24px] tracking-[0.48px] max-w-[242px] max-lg:text-[18px] max-md:text-[16px] max-lg:max-w-[400px]">
               {t("hero.subtitle")}
             </LangText>

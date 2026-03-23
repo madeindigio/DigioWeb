@@ -5,36 +5,22 @@ import { useProjectTransition } from "./ProjectTransitionContext";
 import { getProjectBySlug } from "./projectData";
 import { stopSmoothScroll } from "./SmoothScrollProvider";
 
-const EASE = [0.25, 0.1, 0.25, 1];          // true ease-in-out for organic feel
+const EASE: [number, number, number, number] = [0.33, 1, 0.68, 1]; // swift ease-out for snappiness
 
 /* ── Timing ── */
-const CARD_DURATION = 1.35;       // slower, cinematic expansion
-const HOLD_MS = 110;              // let the image breathe before reveal
-const EXIT_DURATION = 0.55;       // gentle, unhurried fade-out
+const CARD_DURATION = 0.55;       // swift, smooth expansion
+const HOLD_MS = 50;              
+const EXIT_DURATION = 0.35;       // fast fade-out
 
 /* Parallax: image starts zoomed-in + shifted up, settles during expansion */
-const PARALLAX_SCALE_START = 1.12;  // subtler zoom for smoother feel
+const PARALLAX_SCALE_START = 1.05;  // very subtle
 const PARALLAX_SCALE_END = 1.0;
-const PARALLAX_Y_START = "-3%";
+const PARALLAX_Y_START = "-2%";
 const PARALLAX_Y_END = "0%";
 
 /**
  * Full-screen overlay that performs the shared-element (FLIP) transition
  * from a project card in WorkSection to the detail page hero.
- *
- * Approach:
- *   1. Solid white backdrop appears INSTANTLY on click (no fade-in)
- *      → hides the messy page-swap underneath from frame 1
- *   2. Card clone starts animating immediately to hero position (1.35s)
- *   3. Card lands → brief hold → overlay fades out, revealing real hero
- *   4. Detail content reveals progressively (handled by RevealAfterTransition)
- *
- * Smoothness guarantees:
- *   - Navigation is deferred by one rAF so the white backdrop renders
- *     before React swaps the route tree (no flash).
- *   - The animated clone is GPU-promoted via will-change.
- *   - Image is preloaded into the browser cache from the card, so no
- *     pop-in when the real hero mounts underneath.
  */
 export function ProjectTransitionOverlay() {
   const {
@@ -51,10 +37,8 @@ export function ProjectTransitionOverlay() {
   /* Lock scroll while any phase is active */
   useEffect(() => {
     if (phase !== "idle") {
-      /* Cancel any in-progress smooth scroll so it doesn't fight the overlay */
       stopSmoothScroll();
       document.body.style.overflow = "hidden";
-      /* Instantly scroll to top — the solid white backdrop hides the jump */
       window.scrollTo(0, 0);
     } else {
       document.body.style.overflow = "";
@@ -101,10 +85,6 @@ export function ProjectTransitionOverlay() {
   };
   const heroHeight = getHeroHeight();
 
-  /*
-   * Show child during "animating". When phase→"done", child removed
-   * → AnimatePresence plays exit fade → handleExitComplete clears all.
-   */
   const showChild = isOverlayActive && phase !== "done";
 
   return (
@@ -113,32 +93,27 @@ export function ProjectTransitionOverlay() {
         <motion.div
           key="project-overlay"
           className="fixed inset-0 z-[200] pointer-events-none"
-          /* Exit: fade out the whole overlay, revealing the real page hero */
           exit={{ opacity: 0 }}
-          transition={{ duration: EXIT_DURATION, ease: EASE }}
+          transition={{ duration: EXIT_DURATION }}
         >
-          {/* ─── SOLID BACKDROP ───
-              White bg, opacity 1 from frame 1 → no flash,
-              hides the AnimatePresence page swap underneath */}
           <div className="absolute inset-0 bg-white" />
 
           {/* ─── CARD CLONE ─── */}
           <motion.div
-            className="absolute overflow-hidden"
-            style={{ willChange: "top, left, width, height" }}
+            className="absolute overflow-hidden origin-top-left"
             initial={{
-              top: snapshot.rect.top,
-              left: snapshot.rect.left,
+              y: snapshot.rect.top,
+              x: snapshot.rect.left,
               width: snapshot.rect.width,
               height: snapshot.rect.height,
-              borderRadius: 0,
+              borderRadius: "16px",
             }}
             animate={{
-              top: 0,
-              left: 0,
-              width: "100vw",
+              y: 0,
+              x: 0,
+              width: "100%",
               height: heroHeight,
-              borderRadius: 0,
+              borderRadius: "0px",
             }}
             transition={{ duration: CARD_DURATION, ease: EASE }}
             onAnimationComplete={handleCardLanded}

@@ -10,7 +10,7 @@ import {
 } from "../components/project-detail-shared";
 
 /* ─── Figma Assets ─── */
-import imgHero from "figma:asset/38015c2e2c4415a16cea0ceea3ff9541757288a4.png";
+const imgHero = "/images/nm.png";
 import imgSandCloud from "figma:asset/f0c03a85cd324820d3cc3e3719884aab7af5ed4f.png";
 import imgCircle from "figma:asset/7ff00d2cdaef93ff78cfcc746ab3ccb37a05d6d4.png";
 import imgBuilding from "figma:asset/293d0c4b8bbe349f3f8df88e02393323d5353ec0.png";

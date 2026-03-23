@@ -145,10 +145,6 @@
     -ms-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
-    /* GPU acceleration for smooth scroll */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     /* Prevent layout shifts during scroll */
     overflow-x: hidden;
   }

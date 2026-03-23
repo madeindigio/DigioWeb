@@ -18,20 +18,5 @@
   font-display: swap;
 }
 
-/* Manrope — self-hosted from digio.es
-   NOTE: Using TTF format — ideally convert to WOFF2 for ~60-70% size reduction */
-@font-face {
-  font-family: 'Manrope';
-  src: url('https://digio.es/themes/digio/fonts/Manrope-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Manrope';
-  src: url('https://digio.es/themes/digio/fonts/Manrope-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+/* Manrope — via Google Fonts API (served as WOFF2 with optimal compression) */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&display=swap');

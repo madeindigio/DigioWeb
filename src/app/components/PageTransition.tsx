@@ -16,9 +16,9 @@ export function PageTransition({ children }: { children: ReactNode }) {
       const raf = requestAnimationFrame(() => {
         const el = document.getElementById(pendingId);
         if (el) {
-          scrollToId(pendingId);
+          scrollToId(pendingId, true);
         } else {
-          const timer = setTimeout(() => scrollToId(pendingId), 400);
+          const timer = setTimeout(() => scrollToId(pendingId, true), 400);
           return () => clearTimeout(timer);
         }
       });
@@ -41,10 +41,6 @@ export function PageTransition({ children }: { children: ReactNode }) {
       animate={{ opacity: 1 }}
       exit={{
         opacity: 0,
-        position: "absolute" as const,
-        top: 0,
-        left: 0,
-        width: "100%",
       }}
       transition={{
         duration: skip ? 0 : 0.3,

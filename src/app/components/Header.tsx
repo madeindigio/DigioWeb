@@ -8,7 +8,7 @@ import { useProjectTransition } from "./ProjectTransitionContext";
 import { smoothScrollTo } from "./SmoothScrollProvider";
 
 /* ─── Shared constants ─── */
-const EASE_SMOOTH = [0.22, 1, 0.36, 1] as const;
+const EASE_SMOOTH: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const DUR_STATE = 1.1; // header expand/collapse – unhurried
 const DUR_MICRO = 0.3; // hovers, taps – snappy
 
@@ -40,13 +40,13 @@ function isHeaderDark(pathname: string) {
 }
 
 /* ─── Smooth-scroll to a hash id, accounting for fixed header ─── */
-function scrollToId(id: string) {
+export function scrollToId(id: string, immediate: boolean = false) {
   const el = document.getElementById(id);
   if (!el) return;
   const header = document.querySelector("header");
   const headerH = header ? header.getBoundingClientRect().height : 0;
   const top = el.getBoundingClientRect().top + window.scrollY - headerH - 16;
-  smoothScrollTo(Math.max(0, top), 1400);
+  smoothScrollTo(Math.max(0, top), 1400, immediate);
 }
 
 /* ─── Pending scroll target (shared with PageTransition) ─── */
@@ -59,7 +59,6 @@ export function consumePendingScrollId(): string | null {
 export function setPendingScrollId(id: string) {
   _pendingScrollId = id;
 }
-export { scrollToId };
 
 /* ─── Language switcher ─── */
 function LangSwitcher({ size = "desktop", dark = false }: { size?: "desktop" | "menu"; dark?: boolean }) {
@@ -149,21 +148,28 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
     };
   }, []);
 
+  const tickRef = useRef<(() => void) | null>(null);
+
   useEffect(() => {
     const lerp = 0.08;
     const tick = () => {
-      if (!animRef.current) { rafRef.current = requestAnimationFrame(tick); return; }
+      if (!animRef.current) { 
+        rafRef.current = requestAnimationFrame(tick); 
+        return; 
+      }
       const diff = targetFrameRef.current - currentFrameRef.current;
       if (Math.abs(diff) < 0.3) {
         currentFrameRef.current = targetFrameRef.current;
         animRef.current.goToAndStop(targetFrameRef.current, true);
-      } else {
-        const next = currentFrameRef.current + diff * lerp;
-        currentFrameRef.current = next;
-        animRef.current.goToAndStop(Math.round(next), true);
+        rafRef.current = null; // pause loop
+        return;
       }
+      const next = currentFrameRef.current + diff * lerp;
+      currentFrameRef.current = next;
+      animRef.current.goToAndStop(Math.round(next), true);
       rafRef.current = requestAnimationFrame(tick);
     };
+    tickRef.current = tick;
     rafRef.current = requestAnimationFrame(tick);
     return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current); };
   }, []);
@@ -173,7 +179,14 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (docHeight <= 0) return;
     const pct = Math.min(Math.max(scrollTop / (docHeight * 0.6), 0), 1);
-    targetFrameRef.current = pct * (totalFrames - 1);
+    const newTarget = pct * (totalFrames - 1);
+    
+    if (Math.abs(targetFrameRef.current - newTarget) > 0.1) {
+      targetFrameRef.current = newTarget;
+      if (rafRef.current === null && tickRef.current) {
+        rafRef.current = requestAnimationFrame(tickRef.current);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -571,7 +584,7 @@ export function Header() {
 
   /* ── Transition-aware durations ── */
   const HEADER_SLIDE_DUR = 0.55;
-  const HEADER_SLIDE_EASE = [0.22, 1, 0.36, 1];
+  const HEADER_SLIDE_EASE = EASE_SMOOTH;
   const HEADER_SLIDE_DELAY = 0.06; // small delay so overlay starts fading first
 
   return (
@@ -696,7 +709,7 @@ export function Header() {
 
           {/* Hamburger / X — appears on scroll (desktop) or always (mobile) */}
           <AnimatePresence>
-            {(scrolled || true) && (
+            {(scrolled || isMobile) && (
               <motion.button
                 className={`relative p-2 z-[60] cursor-pointer ${
                   scrolled ? "block" : "md:hidden"
