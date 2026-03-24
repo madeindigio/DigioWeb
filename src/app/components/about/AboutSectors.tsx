@@ -71,8 +71,8 @@ const backgroundByVertical: Record<VerticalKey, string> = {
 
 export function AboutSectors() {
   const { t } = useTranslation();
-  const [activeVertical, setActiveVertical] = useState<VerticalKey>("fintech");
-  const [activePath, setActivePath] = useState(morphShapes.fintech);
+  const [activeVertical, setActiveVertical] = useState<VerticalKey | null>(null);
+  const [activePath, setActivePath] = useState<string | null>(null);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
   const stepRefs = useRef<Array<HTMLElement | null>>([]);
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -136,7 +136,7 @@ export function AboutSectors() {
         });
       },
       {
-        threshold: 0.55,
+        threshold: 0.5,
       },
     );
 
@@ -235,13 +235,13 @@ export function AboutSectors() {
                     src={sector.image}
                     alt=""
                     aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+                    className="absolute inset-0 w-full h-full object-cover transition-[opacity,transform,filter] duration-[1300ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
                     style={{
                       opacity: activeVertical === sector.key ? 0.24 : 0,
-                      transform: "translate3d(var(--bg-shift-x, 0px), var(--bg-shift-y, 0px), 0) scale(1.04)",
+                      transform: `translate3d(var(--bg-shift-x, 0px), var(--bg-shift-y, 0px), 0) scale(${activeVertical === sector.key ? 1.085 : 1.025})`,
                       transformOrigin: "center",
-                      willChange: "transform, opacity",
-                      filter: "grayscale(50%) brightness(0.6)",
+                      willChange: "transform, opacity, filter",
+                      filter: activeVertical === sector.key ? "grayscale(50%) brightness(0.6)" : "grayscale(56%) brightness(0.54)",
                     }}
                   />
                 ))}
@@ -254,24 +254,31 @@ export function AboutSectors() {
                 }}
               />
 
-              <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" className="relative z-20 w-[330px] h-[330px]">
-                <path
-                  d={activePath}
-                  fill="none"
-                  stroke="#583BFF"
-                  strokeWidth="2.25"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  style={{ transition: "d 1.2s cubic-bezier(0.22, 1, 0.36, 1)" }}
-                />
-              </svg>
+              {activePath && (
+                <svg 
+                  viewBox="0 0 100 100" 
+                  preserveAspectRatio="xMidYMid meet" 
+                  className="relative z-20 w-[330px] h-[330px]"
+                  style={{ aspectRatio: "1", display: "flex" }}
+                >
+                  <path
+                    d={activePath}
+                    fill="none"
+                    stroke="#583BFF"
+                    strokeWidth="10"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    style={{ transition: "d 1.2s cubic-bezier(0.22, 1, 0.36, 1)", vectorEffect: "non-scaling-stroke" }}
+                  />
+                </svg>
+              )}
             </div>
           </div>
         </div>
 
         <div className="relative z-20">
           {sectors.map((sector, index) => {
-            const isActive = sector.key === activeVertical;
+            const isActive = activeVertical !== null && sector.key === activeVertical;
 
             return (
               <article
