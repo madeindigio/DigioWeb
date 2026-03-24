@@ -115,7 +115,7 @@ export function SEOHead({
     if (ogImage) {
       setMeta("og:image", ogImage, "property");
     } else {
-      setMeta("og:image", `${BASE_URL}/og-default.jpg`, "property");
+      setMeta("og:image", `${BASE_URL}/og-image.jpg`, "property");
     }
 
     /* Twitter Card */

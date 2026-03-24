@@ -18,6 +18,18 @@ function MemberCard({
       {/* Separator */}
       <div className="w-full h-[1px] bg-white/[0.24]" />
 
+      {/* Photo */}
+      <div className="w-full aspect-[330/410] bg-[#e5e1dc]/10 overflow-hidden relative mb-[8px]">
+        <img
+          src={`/images/${memberKey}.jpeg`}
+          alt={t(`pages.sobreDigio.team.members.${memberKey}.name`)}
+          className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = `https://placehold.co/330x410/e5e1dc/583bff?text=${memberKey}`;
+          }}
+        />
+      </div>
+
       {/* Name & Role */}
       <div className="flex flex-col gap-[8px] text-[#e2dfda] w-full">
         <LangText as="p" stagger={stagger} className="font-['GT_Ultra_Median',sans-serif] font-[700] text-[20px] tracking-[-0.8px] leading-[normal]">
@@ -48,6 +60,8 @@ function AdvisorCard({
     <div className="flex flex-col gap-[16px] items-start w-[270px] max-md:w-full">
       {/* Separator */}
       <div className="w-full h-[1px] bg-white/[0.24]" />
+
+
 
       <LangText as="p" stagger={stagger} className="font-['GT_Ultra_Median',sans-serif] font-[700] text-[#e2dfda] text-[20px] tracking-[-0.8px] leading-[normal]">
         {t(`pages.sobreDigio.team.advisors.${advisorKey}.name`)}

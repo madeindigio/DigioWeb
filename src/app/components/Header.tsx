@@ -339,14 +339,21 @@ function MenuNavItem({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -12 }}
-      transition={{
-        duration: 0.65,
-        delay: 0.08 + index * 0.06,
-        ease: EASE_SMOOTH,
+      variants={{
+        hidden: { 
+          opacity: 0, 
+          y: 40,
+          transition: { duration: 0.4, ease: EASE_SMOOTH, delay: (4 - index) * 0.04 }
+        },
+        visible: { 
+          opacity: 1, 
+          y: 0,
+          transition: { duration: 0.65, delay: 0.08 + index * 0.06, ease: EASE_SMOOTH }
+        }
       }}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
     >
       <motion.button
         onClick={() => onNavigate(item.href)}
@@ -425,10 +432,19 @@ function FullscreenMenu({ onClose, onAnimatedNavigate }: { onClose: () => void; 
   return (
     <motion.div
       className="fixed inset-0 z-40 bg-[#191e25] flex flex-col"
-      initial={{ y: "-100%" }}
-      animate={{ y: 0 }}
-      exit={{ y: "-100%" }}
-      transition={{ duration: 0.55, ease: EASE_SMOOTH }}
+      variants={{
+        hidden: { 
+          y: "-100%", 
+          transition: { duration: 0.55, ease: EASE_SMOOTH, delay: 0.15 } 
+        },
+        visible: { 
+          y: 0, 
+          transition: { duration: 0.55, ease: EASE_SMOOTH } 
+        }
+      }}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
     >
       <div className="flex-1 flex flex-col justify-between px-[56px] pt-[170px] pb-[56px] max-md:px-[24px] max-md:pt-[120px] max-md:pb-[40px]">
         <div className="w-full max-w-[1400px] mx-auto flex flex-col justify-between flex-1">
@@ -439,9 +455,21 @@ function FullscreenMenu({ onClose, onAnimatedNavigate }: { onClose: () => void; 
         </nav>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5, ease: EASE_SMOOTH }}
+          variants={{
+            hidden: { 
+              opacity: 0, 
+              y: 16, 
+              transition: { duration: 0.3, ease: EASE_SMOOTH, delay: 0 } 
+            },
+            visible: { 
+              opacity: 1, 
+              y: 0, 
+              transition: { duration: 0.5, delay: 0.5, ease: EASE_SMOOTH } 
+            }
+          }}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
         >
           <LangSwitcher size="menu" />
         </motion.div>
@@ -624,7 +652,7 @@ export function Header() {
         }}
       >
         <motion.div
-          className="flex items-center justify-between max-w-[1400px] mx-auto"
+          className="flex items-center justify-between max-w-[1400px] mx-auto relative"
           animate={{
             paddingTop: scrolled ? (isMobile ? 21 : 16) : 24,
             paddingBottom: scrolled ? (isMobile ? 21 : 16) : 24,
@@ -649,35 +677,26 @@ export function Header() {
           {/* Desktop nav — fades/slides out on scroll with Motion */}
           <motion.nav
             className="hidden md:flex items-start whitespace-nowrap relative overflow-hidden min-w-[500px] max-lg:min-w-[380px]"
-            animate={{
-              height: scrolled ? 0 : "auto",
-              pointerEvents: scrolled ? "none" as const : "auto" as const,
-            }}
-            transition={{
-              height: {
-                duration: scrolled ? 0.7 : 0.8,
-                ease: EASE_SMOOTH,
-                delay: scrolled ? 0.35 : 0,
+            initial={false}
+            animate={scrolled ? "folded" : "expanded"}
+            variants={{
+              folded: {
+                height: 0,
+                pointerEvents: "none",
+                transition: { duration: 0.5, ease: EASE_SMOOTH, delay: 0.2 }
               },
+              expanded: {
+                height: "auto",
+                pointerEvents: "auto",
+                transition: { duration: 0.7, ease: EASE_SMOOTH }
+              }
             }}
           >
             <motion.div
               className="flex flex-col gap-[5px] items-start text-[16px] leading-[normal] font-['GT_Ultra_Median',sans-serif] shrink-0"
-              animate={{
-                opacity: scrolled ? 0 : 1,
-                y: scrolled ? -120 : 0,
-              }}
-              transition={{
-                y: {
-                  duration: scrolled ? 0.85 : 1.0,
-                  ease: EASE_SMOOTH,
-                  delay: scrolled ? 0 : 0.3,
-                },
-                opacity: {
-                  duration: scrolled ? 0.55 : 0.7,
-                  ease: EASE_SMOOTH,
-                  delay: scrolled ? 0 : 0.35,
-                },
+              variants={{
+                folded: { opacity: 0, y: -30, transition: { duration: 0.3, ease: EASE_SMOOTH } },
+                expanded: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2, ease: EASE_SMOOTH } }
               }}
             >
               {menuKeys.map((key, i) => (
@@ -686,21 +705,9 @@ export function Header() {
             </motion.div>
             <motion.div
               className="ml-auto pl-[40px] shrink-0 max-lg:pl-[8px]"
-              animate={{
-                opacity: scrolled ? 0 : 1,
-                y: scrolled ? -120 : 0,
-              }}
-              transition={{
-                y: {
-                  duration: scrolled ? 0.85 : 1.0,
-                  ease: EASE_SMOOTH,
-                  delay: scrolled ? 0.06 : 0.25,
-                },
-                opacity: {
-                  duration: scrolled ? 0.5 : 0.65,
-                  ease: EASE_SMOOTH,
-                  delay: scrolled ? 0.03 : 0.4,
-                },
+              variants={{
+                folded: { opacity: 0, y: -30, transition: { duration: 0.3, ease: EASE_SMOOTH } },
+                expanded: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2, ease: EASE_SMOOTH } }
               }}
             >
               <LangSwitcher dark={headerTextDark} />
@@ -711,15 +718,21 @@ export function Header() {
           <AnimatePresence>
             {(scrolled || isMobile) && (
               <motion.button
-                className={`relative p-2 z-[60] cursor-pointer ${
+                className={`absolute right-0 p-2 z-[60] cursor-pointer ${
                   scrolled ? "block" : "md:hidden"
                 }`}
                 style={{ color: headerTextDark ? "#191e25" : "#e5e1dc" }}
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.9 }}
-                transition={{ duration: DUR_MICRO, ease: EASE_SMOOTH }}
+                transition={{ 
+                  opacity: { duration: 0.4, ease: EASE_SMOOTH },
+                  scale: { duration: DUR_MICRO, ease: EASE_SMOOTH }
+                }}
               >
                 <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square">
                   {/* Top line → translates down to center (y 7→12) and rotates 45° */}
