@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { LangText } from "../LangText";
+import { WebGLHoverImage } from "./WebGLHoverImage";
 
 const memberKeys = ["juan", "javier", "jose", "pablo"] as const;
 const advisorKeys = ["aguirre", "falgueras", "vivancos"] as const;
@@ -14,19 +15,17 @@ function MemberCard({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col gap-[16px] items-start w-[270px] max-md:w-full">
+    <div className="flex flex-col gap-[16px] items-start w-full">
       {/* Separator */}
       <div className="w-full h-[1px] bg-white/[0.24]" />
 
       {/* Photo */}
       <div className="w-full aspect-[330/410] bg-[#e5e1dc]/10 overflow-hidden relative mb-[8px]">
-        <img
+        <WebGLHoverImage
           src={`/images/${memberKey}.jpeg`}
+          fallbackText={memberKey}
           alt={t(`pages.sobreDigio.team.members.${memberKey}.name`)}
-          className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = `https://placehold.co/330x410/e5e1dc/583bff?text=${memberKey}`;
-          }}
+          className="w-full h-full cursor-pointer"
         />
       </div>
 
@@ -57,7 +56,7 @@ function AdvisorCard({
 }) {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col gap-[16px] items-start w-[270px] max-md:w-full">
+    <div className="flex flex-col gap-[16px] items-start w-full">
       {/* Separator */}
       <div className="w-full h-[1px] bg-white/[0.24]" />
 
@@ -84,14 +83,14 @@ export function AboutTeam() {
         </LangText>
 
         {/* Members row */}
-        <div className="flex gap-[40px] flex-wrap max-md:flex-col max-md:gap-[32px]">
+        <div className="grid grid-cols-4 gap-[40px] w-full max-xl:gap-[24px] max-lg:grid-cols-2 max-md:grid-cols-1">
           {memberKeys.map((key, idx) => (
             <MemberCard key={key} memberKey={key} stagger={1 + idx * 3} />
           ))}
         </div>
 
         {/* Advisors row */}
-        <div className="flex gap-[40px] flex-wrap max-md:flex-col max-md:gap-[32px] mt-[16px]">
+        <div className="grid grid-cols-3 gap-[40px] w-full max-xl:gap-[24px] max-lg:grid-cols-2 max-md:grid-cols-1 mt-[16px]">
           {advisorKeys.map((key, idx) => (
             <AdvisorCard key={key} advisorKey={key} stagger={13 + idx * 2} />
           ))}
