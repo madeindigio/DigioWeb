@@ -286,7 +286,7 @@ export function AboutSectors() {
                 ref={(element) => {
                   stepRefs.current[index] = element;
                 }}
-                className="scroll-step min-h-screen flex items-center"
+                className="scroll-step min-h-[82vh] flex items-center"
                 data-vertical={sector.key}
                 data-path={sector.path}
               >
