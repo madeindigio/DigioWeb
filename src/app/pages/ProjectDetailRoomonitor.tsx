@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
+import type { AnimationItem } from "lottie-web";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
-import lottie from "lottie-web";
 import { ContactSection } from "../components/ContactSection";
 import {
   RevealAfterTransition,
@@ -194,16 +194,15 @@ function LottieRoomonitorButton() {
     if (!el) return;
 
     let cancelled = false;
-    let anim: ReturnType<typeof lottie.loadAnimation> | null = null;
+    let anim: AnimationItem | null = null;
 
-    fetch(LOTTIE_URL)
-      .then((res) => {
+    Promise.all([fetch(LOTTIE_URL), import("lottie-web")])
+      .then(async ([res, lottieModule]) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
+        const data = await res.json();
         if (cancelled) return;
-        anim = lottie.loadAnimation({
+
+        anim = lottieModule.default.loadAnimation({
           container: el,
           renderer: "svg",
           loop: true,

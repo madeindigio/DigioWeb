@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import { getProjectBySlug } from "../components/projectData";
@@ -7,15 +8,16 @@ import {
   RevealAfterTransition,
   ScrollRevealSection,
 } from "../components/project-detail-shared";
-import { ProjectDetailRoomonitor } from "./ProjectDetailRoomonitor";
-import { ProjectDetailFinsa } from "./ProjectDetailFinsa";
-import { ProjectDetailSymposium } from "./ProjectDetailSymposium";
-import { ProjectDetailSpock } from "./ProjectDetailSpock";
-import { ProjectDetailIVoox } from "./ProjectDetailIVoox";
-import { ProjectDetailIDermApp } from "./ProjectDetailIDermApp";
-import { ProjectDetailNavilens } from "./ProjectDetailNavilens";
-import { ProjectDetailVivla } from "./ProjectDetailVivla";
-import { ProjectDetailEkhilur } from "./ProjectDetailEkhilur";
+
+const ProjectDetailRoomonitor = lazy(() => import("./ProjectDetailRoomonitor").then((m) => ({ default: m.ProjectDetailRoomonitor })));
+const ProjectDetailFinsa = lazy(() => import("./ProjectDetailFinsa").then((m) => ({ default: m.ProjectDetailFinsa })));
+const ProjectDetailSymposium = lazy(() => import("./ProjectDetailSymposium").then((m) => ({ default: m.ProjectDetailSymposium })));
+const ProjectDetailSpock = lazy(() => import("./ProjectDetailSpock").then((m) => ({ default: m.ProjectDetailSpock })));
+const ProjectDetailIVoox = lazy(() => import("./ProjectDetailIVoox").then((m) => ({ default: m.ProjectDetailIVoox })));
+const ProjectDetailIDermApp = lazy(() => import("./ProjectDetailIDermApp").then((m) => ({ default: m.ProjectDetailIDermApp })));
+const ProjectDetailNavilens = lazy(() => import("./ProjectDetailNavilens").then((m) => ({ default: m.ProjectDetailNavilens })));
+const ProjectDetailVivla = lazy(() => import("./ProjectDetailVivla").then((m) => ({ default: m.ProjectDetailVivla })));
+const ProjectDetailEkhilur = lazy(() => import("./ProjectDetailEkhilur").then((m) => ({ default: m.ProjectDetailEkhilur })));
 
 export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
