@@ -8,15 +8,23 @@ import { SEOHead, breadcrumbJsonLd } from "../components/SEOHead";
 import svgPaths from "../../imports/svg-ws9geozil5";
 import svgArrow from "../../imports/svg-0193fyzoz5";
 import imgBgImg4 from "figma:asset/8212896e6a60fb7b1b52ab2f32566ba0c7b8603e.png";
-import imgBgImg5 from "figma:asset/d98435baf92859ef828633f7a5affa80246aad9d.png";
 import imgBgImg2 from "figma:asset/a731754f2b62b4e67b1191130818f67104f0d42a.png";
 import imgBgImg from "figma:asset/fed975d4171deac24b90e8520b6be34b7d0e512b.png";
 import imgBgImg6 from "figma:asset/102eaa9b04d8efe5a345951a0cb8223d13efbf8e.png";
 import imgBgImg1 from "figma:asset/2c7b4bcead3f083cb8f55f216893a62053cf893a.png";
-import imgBgImg3 from "figma:asset/76106ad2f358c802282da63e46b0920bb73038ac.png";
 import imgBgImg7 from "figma:asset/f54413152b0707aab69826d5c7f56ff019ea170f.png";
 
 const EASE_SMOOTH = [0.22, 1, 0.36, 1] as const;
+
+function TalentTile({ imageSrc, className = "" }: { imageSrc?: string; className?: string }) {
+  return (
+    <div className={`relative overflow-hidden bg-white ${className}`.trim()}>
+      {imageSrc ? (
+        <img alt="" className="absolute inset-0 h-full w-full object-cover" src={imageSrc} />
+      ) : null}
+    </div>
+  );
+}
 
 /* ─── Dropdown Arrow SVG (from Figma) ─── */
 function DropdownArrow({ isOpen }: { isOpen: boolean }) {
@@ -84,47 +92,23 @@ function TalentSection() {
         </div>
 
         <div className="flex flex-col gap-[48px] max-md:gap-[24px]">
-          {/* Row 1: 3 columns */}
           <div className="flex gap-[48px] max-md:gap-[16px] max-md:flex-col">
-            <div className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px] relative overflow-hidden">
-              <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgBgImg4} />
-              <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgBgImg5} />
-              <div className="absolute inset-0 bg-black mix-blend-color" />
-            </div>
-            <div className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px] bg-white" />
-            <div className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px] relative overflow-hidden">
-              <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgBgImg2} />
-              <div className="absolute inset-0 bg-black mix-blend-color" />
-            </div>
+            <TalentTile imageSrc={imgBgImg4} className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px]" />
+            <TalentTile className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px]" />
+            <TalentTile imageSrc={imgBgImg2} className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px]" />
           </div>
 
-          {/* Row 2: Full width */}
-          <div className="w-full h-[600px] max-lg:h-[400px] max-md:h-[250px] relative overflow-hidden">
-            <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgBgImg} />
+          <TalentTile imageSrc={imgBgImg} className="w-full h-[600px] max-lg:h-[400px] max-md:h-[250px]" />
+
+          <div className="flex gap-[48px] max-md:gap-[16px] max-md:flex-col">
+            <TalentTile className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px]" />
+            <TalentTile imageSrc={imgBgImg6} className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px]" />
+            <TalentTile imageSrc={imgBgImg1} className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px]" />
           </div>
 
-          {/* Row 3: 3 columns */}
           <div className="flex gap-[48px] max-md:gap-[16px] max-md:flex-col">
-            <div className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px] bg-white" />
-            <div className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px] relative overflow-hidden">
-              <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgBgImg6} />
-            </div>
-            <div className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px] relative overflow-hidden">
-              <div className="absolute inset-0 overflow-hidden">
-                <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgBgImg1} />
-              </div>
-              <div className="absolute inset-0 overflow-hidden">
-                <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgBgImg3} />
-              </div>
-            </div>
-          </div>
-
-          {/* Row 4: 2 columns */}
-          <div className="flex gap-[48px] max-md:gap-[16px] max-md:flex-col">
-            <div className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px] relative overflow-hidden">
-              <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgBgImg7} />
-            </div>
-            <div className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px] bg-white" />
+            <TalentTile imageSrc={imgBgImg7} className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px]" />
+            <TalentTile className="flex-1 h-[400px] max-lg:h-[280px] max-md:h-[220px]" />
           </div>
         </div>
       </div>
