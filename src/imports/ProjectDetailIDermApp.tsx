@@ -230,7 +230,7 @@ function SeccionMedia() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-[472px]">
         <p className="leading-[40px]">La aplicación que conecta usuarios con especialistas del cuidado de la piel</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">iDermApp es una aplicación móvil que conecta usuarios con especialistas en el cuidado de la piel. Simplificamos y mejoramos el acceso a la atención dermatológica, haciendo posible que cualquier persona, independientemente de su ubicación, pueda recibir asesoramiento profesional de manera rápida y conveniente.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">iDermApp es una aplicación móvil que conecta usuarios con especialistas en el cuidado de la piel. Simplificamos y mejoramos el acceso a la atención dermatológica, haciendo posible que cualquier persona, independientemente de su ubicación, pueda recibir asesoramiento profesional de manera rápida y conveniente.</p>
     </div>
   );
 }
@@ -572,7 +572,7 @@ function Text1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">El reto</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">El desafío principal que enfrentamos fue la barrera geográfica y la disponibilidad limitada de especialistas en dermatología. Muchas personas, especialmente aquellas en áreas rurales o con movilidad limitada, encuentran difícil acceder a atención dermatológica especializada. Además, las largas listas de espera y la necesidad de citas presenciales complican aún más el acceso oportuno al diagnóstico y tratamiento.</p>
       </div>
     </div>
@@ -583,7 +583,7 @@ function Text2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Nuestro trabajo</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Nos propusimos diseñar y desarrollar una aplicación que rompiera estas barreras y facilitara el acceso a la atención dermatológica. Nuestro equipo colaboró estrechamente para crear una plataforma intuitiva y eficiente, que permite a los usuarios solicitar valoraciones de especialistas rápidamente a través de la App.</p>
       </div>
     </div>
@@ -1157,7 +1157,7 @@ function Text4() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Accesibilidad</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Una de las mayores ventajas de iDermApp es que elimina, en la mayoría de los casos, la necesidad de citas presenciales. Esto ahorra tiempo a los pacientes y reduce la carga en las clínicas, permitiendo una atención más eficiente. Además, iDermApp rompe las barreras geográficas, permitiendo que personas en áreas remotas o con dificultades para acceder a clínicas dermatológicas puedan recibir atención especializada.</p>
       </div>
     </div>
@@ -2122,7 +2122,7 @@ function Text7() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Sistema de valoraciones ágiles</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">iDermApp agiliza el proceso de diagnóstico, permitiendo a los usuarios enviar imágenes y descripciones de sus problemas de piel directamente a los especialistas. Los dermatólogos pueden evaluar estos datos y proporcionar diagnósticos y recomendaciones en un tiempo significativamente menor que el requerido para una consulta tradicional.</p>
       </div>
     </div>
@@ -2849,7 +2849,7 @@ function TextContent2() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[435px]">
         <p className="leading-[48px]">Calidad de Atención</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">A pesar de la conveniencia y rapidez, iDermApp no compromete la calidad de la atención. Los usuarios reciben valoraciones y recomendaciones de especialistas calificados, asegurando un cuidado óptimo de la piel.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">A pesar de la conveniencia y rapidez, iDermApp no compromete la calidad de la atención. Los usuarios reciben valoraciones y recomendaciones de especialistas calificados, asegurando un cuidado óptimo de la piel.</p>
     </div>
   );
 }
@@ -2901,7 +2901,7 @@ function TextContent3() {
         <p className="mb-0">Cuidado de la piel,</p>
         <p>sin fronteras</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">iDermApp representa el futuro de la atención dermatológica, combinando tecnología avanzada con la experiencia de especialistas en el cuidado de la piel. Estamos comprometidos a facilitar el acceso a la atención dermatológica de calidad, mejorando la salud y el bienestar de nuestros usuarios en todo el mundo.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">iDermApp representa el futuro de la atención dermatológica, combinando tecnología avanzada con la experiencia de especialistas en el cuidado de la piel. Estamos comprometidos a facilitar el acceso a la atención dermatológica de calidad, mejorando la salud y el bienestar de nuestros usuarios en todo el mundo.</p>
     </div>
   );
 }

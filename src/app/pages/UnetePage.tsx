@@ -178,7 +178,7 @@ function BenefitsSection() {
 
 /* ─── Expanded job details (PHP Backend) ─── */
 function JobDetails({ jobKey }: { jobKey: string }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const sections = [
     { titleKey: "tech", listKey: "techList" },
     { titleKey: "valued", listKey: "valuedList" },
@@ -186,27 +186,55 @@ function JobDetails({ jobKey }: { jobKey: string }) {
     { titleKey: "offer", listKey: "offerList" },
   ];
 
+  const introKey = `pages.unete.jobs.${jobKey}.intro`;
+  const requirementsKey = `pages.unete.jobs.${jobKey}.requirements`;
+  const requirementsBodyKey = `pages.unete.jobs.${jobKey}.requirementsBody`;
+
+  const hasIntro = i18n.exists(introKey);
+  const hasRequirements = i18n.exists(requirementsKey);
+  const hasRequirementsBody = i18n.exists(requirementsBodyKey);
+
+  const renderedSections = sections
+    .map((s) => {
+      const titlePath = `pages.unete.jobs.${jobKey}.${s.titleKey}`;
+      const listPath = `pages.unete.jobs.${jobKey}.${s.listKey}`;
+      const titleExists = i18n.exists(titlePath);
+      const list = (t(listPath, { returnObjects: true, defaultValue: [] }) as string[])
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+      if (!titleExists || list.length === 0) return null;
+      return { titlePath, list };
+    })
+    .filter(Boolean) as Array<{ titlePath: string; list: string[] }>;
+
   return (
     <div className="px-[56px] pb-[48px] max-md:px-[24px] max-md:pb-[32px]">
       <div className="max-w-[1400px] mx-auto flex gap-[40px] items-start max-lg:flex-col max-lg:gap-[32px]">
         {/* Left: details */}
         <div className="flex flex-col gap-[16px] max-w-[680px] max-md:max-w-full">
-          <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
-            {t(`pages.unete.jobs.${jobKey}.intro`)}
-          </p>
-          <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[27px]">
-            {t(`pages.unete.jobs.${jobKey}.requirements`)}
-          </p>
-          <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
-            {t(`pages.unete.jobs.${jobKey}.requirementsBody`)}
-          </p>
-          {sections.map((s) => (
-            <div key={s.titleKey} className="flex flex-col gap-[16px]">
+          {hasIntro && (
+            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              {t(introKey)}
+            </p>
+          )}
+          {hasRequirements && (
+            <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[27px]">
+              {t(requirementsKey)}
+            </p>
+          )}
+          {hasRequirementsBody && (
+            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              {t(requirementsBodyKey)}
+            </p>
+          )}
+          {renderedSections.map((s) => (
+            <div key={s.titlePath} className="flex flex-col gap-[16px]">
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[27px]">
-                {t(`pages.unete.jobs.${jobKey}.${s.titleKey}`)}
+                {t(s.titlePath)}
               </p>
               <ul className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] list-disc ml-[24px]">
-                {(t(`pages.unete.jobs.${jobKey}.${s.listKey}`, { returnObjects: true }) as string[]).map((item) => (
+                {s.list.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
@@ -217,11 +245,16 @@ function JobDetails({ jobKey }: { jobKey: string }) {
         {/* Right: CTA */}
         <div className="flex-1 flex justify-center items-center max-lg:w-full max-lg:justify-start">
           <div className="border-l border-[#f1f0ed] pl-[48px] h-full flex items-center justify-center max-lg:border-l-0 max-lg:pl-0 max-lg:pt-[24px] max-lg:border-t max-lg:border-[#f1f0ed] max-lg:w-full">
-            <button className="relative px-[48px] py-[16px] border border-[#191e25] bg-transparent cursor-pointer hover:bg-[#191e25] hover:text-white transition-colors group max-md:w-full">
+            <a
+              href="https://www.linkedin.com/company/digio-soluciones-digitales/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative px-[48px] py-[16px] border border-[#191e25] bg-transparent cursor-pointer hover:bg-[#191e25] hover:text-white transition-colors group max-md:w-full text-center"
+            >
               <span className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[27px] whitespace-nowrap text-center group-hover:text-white max-md:text-[16px]">
                 {t("pages.unete.sendCv")}
               </span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -234,12 +267,10 @@ function JobOfferCard({
   jobKey,
   isOpen,
   onToggle,
-  hasDetails,
 }: {
   jobKey: string;
   isOpen: boolean;
   onToggle: () => void;
-  hasDetails: boolean;
 }) {
   const { t } = useTranslation();
 
@@ -271,7 +302,7 @@ function JobOfferCard({
 
       {/* Expandable content */}
       <AnimatePresence initial={false}>
-        {isOpen && hasDetails && (
+        {isOpen && (
           <motion.div
             key="content"
             initial={{ height: 0, opacity: 0 }}
@@ -293,12 +324,7 @@ function OffersSection() {
   const { t } = useTranslation();
   const [openJob, setOpenJob] = useState<string | null>(null);
 
-  const jobs = [
-    { key: "node", hasDetails: false },
-    { key: "php", hasDetails: true },
-    { key: "frontend", hasDetails: false },
-    { key: "mobile", hasDetails: false },
-  ];
+  const jobKeys = ["devops", "mobile", "frontend", "node", "php"];
 
   return (
     <section className="bg-white w-full py-[120px] max-lg:py-[80px] max-md:py-[48px]">
@@ -316,13 +342,12 @@ function OffersSection() {
 
       {/* Job cards */}
       <div className="flex flex-col">
-        {jobs.map((job) => (
+        {jobKeys.map((jobKey) => (
           <JobOfferCard
-            key={job.key}
-            jobKey={job.key}
-            isOpen={openJob === job.key}
-            onToggle={() => setOpenJob(openJob === job.key ? null : job.key)}
-            hasDetails={job.hasDetails}
+            key={jobKey}
+            jobKey={jobKey}
+            isOpen={openJob === jobKey}
+            onToggle={() => setOpenJob(openJob === jobKey ? null : jobKey)}
           />
         ))}
         {/* Bottom separator */}

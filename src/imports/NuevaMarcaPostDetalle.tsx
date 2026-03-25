@@ -99,7 +99,7 @@ function Container4() {
 function Heading1() {
   return (
     <div className="absolute content-stretch flex flex-col items-start left-0 right-0 top-0" data-name="Heading 2">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
+      <div className="flex flex-col font-['Manrope',sans-serif] font-[700] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
         <p className="leading-[20.8px]">¿En qué hemos trabajado?</p>
       </div>
     </div>
@@ -109,7 +109,7 @@ function Heading1() {
 function Container8() {
   return (
     <div className="absolute content-stretch flex flex-col items-start left-0 pb-[0.86px] right-0 top-[41.66px]" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
         <p className="leading-[21.86px]">Estrategia</p>
       </div>
     </div>
@@ -119,7 +119,7 @@ function Container8() {
 function Container9() {
   return (
     <div className="absolute content-stretch flex flex-col items-start left-0 pb-[0.86px] right-0 top-[63.52px]" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
         <p className="leading-[21.86px]">Narrativa</p>
       </div>
     </div>
@@ -129,7 +129,7 @@ function Container9() {
 function Container10() {
   return (
     <div className="absolute content-stretch flex flex-col items-start left-0 pb-[0.86px] right-0 top-[85.37px]" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
         <p className="leading-[21.86px]">Identidad de marca</p>
       </div>
     </div>
@@ -139,7 +139,7 @@ function Container10() {
 function Container11() {
   return (
     <div className="absolute content-stretch flex flex-col items-start left-0 pb-[0.86px] right-0 top-[107.23px]" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
         <p className="leading-[21.86px]">Lenguaje visual</p>
       </div>
     </div>
@@ -149,7 +149,7 @@ function Container11() {
 function Container12() {
   return (
     <div className="absolute content-stretch flex flex-col items-start left-0 pb-[0.86px] right-0 top-[129.09px]" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] whitespace-nowrap">
         <p className="leading-[21.86px]">Digital</p>
       </div>
     </div>
@@ -209,7 +209,7 @@ function Container15() {
 function Container16() {
   return (
     <div className="content-stretch flex flex-col items-start pb-[0.72px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
         <p className="mb-0">En los últimos 17 años Digio se ha caracterizado por su capacidad para crear plataformas y productos digitales en una amplia variedad de verticales y tecnologías. Hemos abordado retos singulares</p>
         <p className="mb-0">y complejos, siendo pioneros en la adopción de las tecnologías mas disruptivas en cada momento, desde el desarrollo sobre plataformas móviles, que abordamos en sus inicios, hasta la inteligencia</p>
         <p>{`artificial generativa, el IoT o el fintech, más recientemente. `}</p>
@@ -221,7 +221,7 @@ function Container16() {
 function Container17() {
   return (
     <div className="content-stretch flex flex-col items-start pb-[0.79px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
         <p className="mb-0">Tras esta trayectoria, decidimos que era el momento de actualizar nuestra marca para recoger todos los valores distintivos acumulados durante años y estar a la altura de nuestro desempeño y</p>
         <p>{`capacidades, fusionando nuestra experiencia acumulada con un enfoque integral en la creación de soluciones digitales. `}</p>
       </div>
@@ -232,7 +232,7 @@ function Container17() {
 function Container18() {
   return (
     <div className="content-stretch flex flex-col items-start pb-[0.79px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
         <p className="mb-0">En un universo de marcas tan saturado, decidimos que para abordar este reto era fundamental ir de la mano de una compañía líder en el sector, por ello confiamos en MUCHO, una de las agencias de</p>
         <p>branding más reputadas del mundo, que ha creado proyectos y marcas icónicas para compañías tan relevantes como Visa, Apple, Paypal o Movistar.</p>
       </div>
@@ -264,7 +264,7 @@ function Container20() {
 function Container21() {
   return (
     <div className="content-stretch flex flex-col items-start pb-[0.79px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full whitespace-pre-wrap">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full whitespace-pre-wrap">
         <p className="mb-0">{`La combinación de la experiencia de nuestro equipo y la búsqueda de soluciones impactantes y transformadoras para  nuestros clientes, fijaron la Transformación como piedra angular de nuestra`}</p>
         <p>{`narrativa. `}</p>
       </div>
@@ -275,10 +275,10 @@ function Container21() {
 function Container22() {
   return (
     <div className="content-stretch flex flex-col items-start pb-[0.79px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
         <p className="mb-0">
           <span className="leading-[21.86px]">{`Este equilibrio cristalizó en el lema `}</span>
-          <span className="font-['Manrope:Bold',sans-serif] leading-[21.86px] not-italic">Transformation is our code_</span>
+          <span className="font-['Manrope',sans-serif] font-[700] leading-[21.86px] not-italic">Transformation is our code_</span>
           <span className="leading-[21.86px]">{` (en inglés), lo que refleja nuestro firme compromiso como impulsores del cambio en cada desafío que abordamos. El uso de la`}</span>
         </p>
         <p className="leading-[21.86px]">{`palabra code_, en su doble referencia al desarrollo de software y al código de conducta, nos permitió establecer un mensaje abierto, distintivo y memorable. `}</p>
@@ -290,7 +290,7 @@ function Container22() {
 function Container23() {
   return (
     <div className="content-stretch flex flex-col items-start pb-[0.72px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full whitespace-pre-wrap">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full whitespace-pre-wrap">
         <p className="mb-0">{`Al mismo tiempo, recuperamos el significado simbólico de los dígitos binarios que conforman nuestro nombre (Dig10), y los usamos  como inspiración para crear la identidad visual y la narrativa de`}</p>
         <p className="mb-0">la marca, reflejando la contribución de Digio como un actor que opera entre el 0 y el 1, esto es, en un universo lleno de incertidumbre, pero también de posibilidades, que logramos hacer realidad</p>
         <p>{`gracias a nuestra experiencia, flexibilidad, ingenio y rigor. `}</p>
@@ -323,7 +323,7 @@ function Container25() {
 function Container26() {
   return (
     <div className="content-stretch flex flex-col items-start pb-[0.86px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
         <p className="leading-[21.86px]">{`El resultado es un logotipo y un lenguaje visual que juegan con el concepto de transformación y con el código binario de diversas formas. `}</p>
       </div>
     </div>
@@ -333,7 +333,7 @@ function Container26() {
 function Container27() {
   return (
     <div className="content-stretch flex flex-col items-start pb-[0.79px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
         <p className="mb-0">Desde un conjunto de iconos creado únicamente a partir de ceros y unos, hasta el estiramiento del símbolo y la creación de un lenguaje visual extendido, nuestra marca respira una esencia digital a</p>
         <p>través de todos sus puntos de contacto.</p>
       </div>
@@ -1055,7 +1055,7 @@ function Heading3() {
 function Container66() {
   return (
     <div className="content-stretch flex flex-col items-start mb-[-1.1px] pb-[17.88px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[21.86px] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
         <p className="mb-0">Capacidad para ejecutar y memoria para entender: Mesnada y</p>
         <p>Remembrances. Ya disponibles.</p>
       </div>
@@ -1125,7 +1125,7 @@ function Heading4() {
 function Container70() {
   return (
     <div className="content-stretch flex flex-col items-start mb-[-1px] pb-[17.86px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
         <p className="leading-[21.86px]">Añade funcionalidad avanzada a tu software rápidamente</p>
       </div>
     </div>
@@ -1202,7 +1202,7 @@ function Heading5() {
 function Container74() {
   return (
     <div className="content-stretch flex flex-col items-start mb-[-1px] pb-[17.86px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#232429] text-[16px] w-full">
         <p className="leading-[21.86px]">Descubre nuestra plataforma IoT para monitorizar espacios.</p>
       </div>
     </div>

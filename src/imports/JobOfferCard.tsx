@@ -11,7 +11,7 @@ function TextContent() {
 function TextContent1() {
   return (
     <div className="content-stretch flex flex-col h-[66px] items-center justify-center relative shrink-0 w-[180px]" data-name="text content">
-      <div className="flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
+      <div className="flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
         <p className="leading-[normal]">Desarrollo, Remoto</p>
       </div>
     </div>

@@ -83,7 +83,7 @@ function LeftContent() {
   return (
     <div className="content-stretch flex flex-col gap-[32px] items-start leading-[normal] not-italic relative shrink-0 text-[#e2dfda] w-[478px]" data-name="left content">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] relative shrink-0 text-[48px] tracking-[-1.92px] w-[478px]">Somos un factor de cambio e impulso al servicio de las soluciones digitales más sólidas.</p>
-      <p className="font-['Manrope:SemiBold',sans-serif] min-w-full relative shrink-0 text-[16px] w-[min-content]">Operamos entre la duda y la certeza, navegamos entre la imaginación y la ejecución: en ese espacio donde el ingenio actúa, el crecimiento prospera y la solución florece.</p>
+      <p className="font-['Manrope',sans-serif] min-w-full relative shrink-0 text-[16px] w-[min-content]">Operamos entre la duda y la certeza, navegamos entre la imaginación y la ejecución: en ese espacio donde el ingenio actúa, el crecimiento prospera y la solución florece.</p>
     </div>
   );
 }
@@ -184,7 +184,7 @@ function Card() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#191e25] text-[32px] text-center tracking-[-1.28px] whitespace-nowrap">
         <p className="leading-[40px]">+ 15 años</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] text-center w-[min-content]">de experiencia en los que hemos participado en el nacimiento de tecnologías disruptivas Mobile, IoT, Inteligencia Artifical...</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] text-center w-[min-content]">de experiencia en los que hemos participado en el nacimiento de tecnologías disruptivas Mobile, IoT, Inteligencia Artifical...</p>
     </div>
   );
 }
@@ -227,7 +227,7 @@ function Card1() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#191e25] text-[32px] text-center tracking-[-1.28px] whitespace-nowrap">
         <p className="leading-[40px] whitespace-pre">{`+200  Clientes`}</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] text-center w-[min-content]">en 5 países, operando principalmente en España, también hemos colaborado con clientes de EEUU, UK, Japón o Corea del Sur.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] text-center w-[min-content]">en 5 países, operando principalmente en España, también hemos colaborado con clientes de EEUU, UK, Japón o Corea del Sur.</p>
     </div>
   );
 }
@@ -274,7 +274,7 @@ function Card2() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#191e25] text-[32px] text-center tracking-[-1.28px] whitespace-nowrap">
         <p className="leading-[40px]">+15 Sectores</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] text-center w-[min-content]">en los que hemos trabajado. Tenemos una dilatada experiencia en Educación, Turismo, Telecomunicaciones, Media, Transporte, Finanzas...</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] text-center w-[min-content]">en los que hemos trabajado. Tenemos una dilatada experiencia en Educación, Turismo, Telecomunicaciones, Media, Transporte, Finanzas...</p>
     </div>
   );
 }
@@ -305,7 +305,7 @@ function Card3() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#191e25] text-[32px] text-center tracking-[-1.28px] whitespace-nowrap">
         <p className="leading-[40px]">+ 70% Recurrencia</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] text-center w-[min-content]">en clientes que trabajan con nosotros desde hace más de 3 años y están seguros de que lo seguirán haciendo.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] text-center w-[min-content]">en clientes que trabajan con nosotros desde hace más de 3 años y están seguros de que lo seguirán haciendo.</p>
     </div>
   );
 }
@@ -402,7 +402,7 @@ function TextContent1() {
       <div aria-hidden="true" className="absolute border border-[#583bff] border-solid inset-0 pointer-events-none rounded-bl-[32px] rounded-br-[32px]" />
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center p-[48px] relative size-full">
-          <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">El sector financiero confía en Digio para crear y simplificar las operaciones de los usuarios. Grandes instituciones como Banco Santander y BMN han nos han elegido para desarrollar sus aplicaciones. También hemos participado activamente en el desarrollo de tecnologías y portales tanto propios como para otros grandes clientes.</p>
+          <p className="flex-[1_0_0] font-['Manrope',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">El sector financiero confía en Digio para crear y simplificar las operaciones de los usuarios. Grandes instituciones como Banco Santander y BMN han nos han elegido para desarrollar sus aplicaciones. También hemos participado activamente en el desarrollo de tecnologías y portales tanto propios como para otros grandes clientes.</p>
         </div>
       </div>
     </div>
@@ -455,7 +455,7 @@ function TextContent2() {
       <div aria-hidden="true" className="absolute border border-[#583bff] border-solid inset-0 pointer-events-none rounded-bl-[32px] rounded-br-[32px]" />
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center p-[48px] relative size-full">
-          <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">En el sector de la energía, Digio aplica su amplio conocimiento desarrollando portales, herramientas de detección de consumos y tecnología IoT para optimizar operaciones y garantizar la eficacia de las grandes industrias.</p>
+          <p className="flex-[1_0_0] font-['Manrope',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">En el sector de la energía, Digio aplica su amplio conocimiento desarrollando portales, herramientas de detección de consumos y tecnología IoT para optimizar operaciones y garantizar la eficacia de las grandes industrias.</p>
         </div>
       </div>
     </div>
@@ -525,7 +525,7 @@ function TextContent3() {
       <div aria-hidden="true" className="absolute border border-[#583bff] border-solid inset-0 pointer-events-none rounded-bl-[32px] rounded-br-[32px]" />
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center p-[48px] relative size-full">
-          <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">Las smart cities están mejorando los transportes públicos y en Digio somos expertos en crear aplicaciones para planificar rutas. Nuestras apps informan a los ciudadanos sobre las mejores opciones de trayecto, tiempos de viaje y posibles incidencias en la carretera.</p>
+          <p className="flex-[1_0_0] font-['Manrope',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">Las smart cities están mejorando los transportes públicos y en Digio somos expertos en crear aplicaciones para planificar rutas. Nuestras apps informan a los ciudadanos sobre las mejores opciones de trayecto, tiempos de viaje y posibles incidencias en la carretera.</p>
         </div>
       </div>
     </div>
@@ -583,7 +583,7 @@ function TextContent4() {
       <div aria-hidden="true" className="absolute border border-[#583bff] border-solid inset-0 pointer-events-none rounded-bl-[32px] rounded-br-[32px]" />
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center p-[48px] relative size-full">
-          <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">El sector industrial ha sido otra de las áreas en las que Digio ha desplegado su conocimiento acumulado. Desarrollando grandes portales, buscando formulas para desarrollar herramientas que automaticen presupuestos online, o trabajando sobre herramientas basadas en la tecnología IoT que optimicen las operaciones con el único objetivo de garantizar la eficacia de las grandes industrias.</p>
+          <p className="flex-[1_0_0] font-['Manrope',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">El sector industrial ha sido otra de las áreas en las que Digio ha desplegado su conocimiento acumulado. Desarrollando grandes portales, buscando formulas para desarrollar herramientas que automaticen presupuestos online, o trabajando sobre herramientas basadas en la tecnología IoT que optimicen las operaciones con el único objetivo de garantizar la eficacia de las grandes industrias.</p>
         </div>
       </div>
     </div>
@@ -658,7 +658,7 @@ function TextContent5() {
       <div aria-hidden="true" className="absolute border border-[#583bff] border-solid inset-0 pointer-events-none rounded-bl-[32px] rounded-br-[32px]" />
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center p-[48px] relative size-full">
-          <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">La revolución de las tecnologías de la información y la comunicación ha marcado una nueva era. En Digio, nos dedicamos a innovar en tecnologías para la comunicación y el entretenimiento, desarrollando grandes portales y ADS. Colaboramos con importantes empresas del sector, como Vocento, iVoox y Mobile Nations, líderes en su campo.</p>
+          <p className="flex-[1_0_0] font-['Manrope',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">La revolución de las tecnologías de la información y la comunicación ha marcado una nueva era. En Digio, nos dedicamos a innovar en tecnologías para la comunicación y el entretenimiento, desarrollando grandes portales y ADS. Colaboramos con importantes empresas del sector, como Vocento, iVoox y Mobile Nations, líderes en su campo.</p>
         </div>
       </div>
     </div>
@@ -798,7 +798,7 @@ function TextContent6() {
       <div aria-hidden="true" className="absolute border border-[#583bff] border-solid inset-0 pointer-events-none rounded-bl-[32px] rounded-br-[32px]" />
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center p-[48px] relative size-full">
-          <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">En Digio, promovemos la difusión del conocimiento desde el principio. Colaboramos con la mayoría de las universidades españolas y creamos Symposium, una plataforma de gestión de eventos. Ahora, Symposium es el portal líder en España y se está expandiendo a América Latina. Además también hemos participado en la creación de otros portales destacados en el sector de la educación.</p>
+          <p className="flex-[1_0_0] font-['Manrope',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">En Digio, promovemos la difusión del conocimiento desde el principio. Colaboramos con la mayoría de las universidades españolas y creamos Symposium, una plataforma de gestión de eventos. Ahora, Symposium es el portal líder en España y se está expandiendo a América Latina. Además también hemos participado en la creación de otros portales destacados en el sector de la educación.</p>
         </div>
       </div>
     </div>
@@ -873,7 +873,7 @@ function TextContent7() {
       <div aria-hidden="true" className="absolute border border-[#583bff] border-solid inset-0 pointer-events-none rounded-bl-[32px] rounded-br-[32px]" />
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center p-[48px] relative size-full">
-          <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">Las nuevas tecnologías han transformado el comercio para siempre. En Digio, nos especializamos en el desarrollo de portales de comercio electrónico. En la actualidad somos especialistas en desarrollo de portales e-commerce y desarrollamos con tecnología IoT, Wizeye, el sistema que está revolucionando la concepción de espacios físicos de venta.</p>
+          <p className="flex-[1_0_0] font-['Manrope',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">Las nuevas tecnologías han transformado el comercio para siempre. En Digio, nos especializamos en el desarrollo de portales de comercio electrónico. En la actualidad somos especialistas en desarrollo de portales e-commerce y desarrollamos con tecnología IoT, Wizeye, el sistema que está revolucionando la concepción de espacios físicos de venta.</p>
         </div>
       </div>
     </div>
@@ -926,7 +926,7 @@ function TextContent8() {
       <div aria-hidden="true" className="absolute border border-[#583bff] border-solid inset-0 pointer-events-none rounded-bl-[32px] rounded-br-[32px]" />
       <div className="flex flex-row items-center justify-center size-full">
         <div className="content-stretch flex items-center justify-center p-[48px] relative size-full">
-          <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">Desde hace más de diez años trabajamos con todo tipo de entidades y administraciones publicas colaborando en proyectos relacionados con la administración electrónica, aplicaciones móviles para servicios exclusivos, desarrollo de grandes portales, utilizando metodologías Business Intelligencecon el objetivo de permitir el acceso y el análisis de la información para mejorar y optimizar los procesos del sector público.</p>
+          <p className="flex-[1_0_0] font-['Manrope',sans-serif] h-full leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-white">Desde hace más de diez años trabajamos con todo tipo de entidades y administraciones publicas colaborando en proyectos relacionados con la administración electrónica, aplicaciones móviles para servicios exclusivos, desarrollo de grandes portales, utilizando metodologías Business Intelligencecon el objetivo de permitir el acceso y el análisis de la información para mejorar y optimizar los procesos del sector público.</p>
         </div>
       </div>
     </div>
@@ -981,7 +981,7 @@ function Title() {
 function Description() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">Licenciado en Física y Doctor en matemáticas. Fundador de Symposium. Advisor y socio en Roomonitor. Socio e inversor en varias startups (iVoox, eMagister).</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">Licenciado en Física y Doctor en matemáticas. Fundador de Symposium. Advisor y socio en Roomonitor. Socio e inversor en varias startups (iVoox, eMagister).</p>
     </div>
   );
 }
@@ -1020,7 +1020,7 @@ function Title1() {
 function Description1() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">MBA IESE, Ingeniero Industrial. Ejecutivo en multinacionales como IBM, everis, Amgen, Maersk. CEO y COO en startups en Barcelona y San Francisco, USA. Business Angel.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">MBA IESE, Ingeniero Industrial. Ejecutivo en multinacionales como IBM, everis, Amgen, Maersk. CEO y COO en startups en Barcelona y San Francisco, USA. Business Angel.</p>
     </div>
   );
 }
@@ -1061,7 +1061,7 @@ function Title2() {
 function Description2() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">Ingeniero de software. 16 años de experiencia, 14 en Digio liderando I+D y proyectos de alta complejidad tecnológica y uso masivo. Socio y advisor tecnológico en varias startups.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">Ingeniero de software. 16 años de experiencia, 14 en Digio liderando I+D y proyectos de alta complejidad tecnológica y uso masivo. Socio y advisor tecnológico en varias startups.</p>
     </div>
   );
 }
@@ -1095,7 +1095,7 @@ function Title3() {
 function Description3() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">Ingeniero Informático y Scrum Master. Ingeniero en Microsoft. 14 años en Digio liderando proyectos, organización de equipos e implantación de metodologías ágiles. Socio en startups.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">Ingeniero Informático y Scrum Master. Ingeniero en Microsoft. 14 años en Digio liderando proyectos, organización de equipos e implantación de metodologías ágiles. Socio en startups.</p>
     </div>
   );
 }
@@ -1144,7 +1144,7 @@ function Title4() {
 function Description4() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full whitespace-pre-wrap">{`Economista. Más de 20 años trabajando con startups. Socio de  In & Out Ventures. CEO y fundador de incubadora tecnológica (Atina) y mentor en Stanford. Consejero en varias startups (USA y España). `}</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full whitespace-pre-wrap">{`Economista. Más de 20 años trabajando con startups. Socio de  In & Out Ventures. CEO y fundador de incubadora tecnológica (Atina) y mentor en Stanford. Consejero en varias startups (USA y España). `}</p>
     </div>
   );
 }
@@ -1176,7 +1176,7 @@ function Title5() {
 function Description5() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">{`PADE & PDD IESE. Ingeniero Telecomunicaciones. 20 años de experiencia en la creación de startups como VP de Grupo Intercom. Con éxitos como Infojobs, Softonic, Emagister, iVoox, Bodas.net, etc.`}</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">{`PADE & PDD IESE. Ingeniero Telecomunicaciones. 20 años de experiencia en la creación de startups como VP de Grupo Intercom. Con éxitos como Infojobs, Softonic, Emagister, iVoox, Bodas.net, etc.`}</p>
     </div>
   );
 }
@@ -1208,7 +1208,7 @@ function Title6() {
 function Description6() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">MBA por Wharton. Ingeniero de Minas. Consultor de Estrategia especializado en internacionalización y operaciones corporativas. BCG, Bain, Repsol. Business Angel y Asesor / Consejero en diversas empresas.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#e2dfda] text-[16px] w-full">MBA por Wharton. Ingeniero de Minas. Consultor de Estrategia especializado en internacionalización y operaciones corporativas. BCG, Bain, Repsol. Business Angel y Asesor / Consejero en diversas empresas.</p>
     </div>
   );
 }

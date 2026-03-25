@@ -114,7 +114,7 @@ function SeccionMedia() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-[472px]">
         <p className="leading-[40px]">Potencia tu negocio con nuestra solución bancaria integrada y personalizada</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">NM permite agregar una capa bancaria a tu negocio o colectivo. Ofecemos una experiencia de banca digital moderna y sin complicaciones. Accede a tu dinero fácilmente, realiza transferencias rápidas y gestiona tus finanzas desde cualquier lugar.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">NM permite agregar una capa bancaria a tu negocio o colectivo. Ofecemos una experiencia de banca digital moderna y sin complicaciones. Accede a tu dinero fácilmente, realiza transferencias rápidas y gestiona tus finanzas desde cualquier lugar.</p>
     </div>
   );
 }
@@ -213,7 +213,7 @@ function Text() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[576px]">
         <p className="leading-[48px]">En la era actual, la banca como servicio se ha convertido en un pilar fundamental para el crecimiento y la innovación</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">NM destaca como una solución integral que te permite agregar una capa bancaria a tu negocio o colectivo, brindándote acceso a una amplia gama de servicios financieros controlados por tu organización.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">NM destaca como una solución integral que te permite agregar una capa bancaria a tu negocio o colectivo, brindándote acceso a una amplia gama de servicios financieros controlados por tu organización.</p>
     </div>
   );
 }
@@ -368,7 +368,7 @@ function TextContent1() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[368px]">
         <p className="leading-[48px]">Una respuesta con la innovación y la evolución como señas de identidad</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">NM ofrece una banca digital moderna y sencilla, para acceder fácilmente a tu dinero, realizar transferencias rápidas y gestionar tus finanzas desde cualquier lugar.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">NM ofrece una banca digital moderna y sencilla, para acceder fácilmente a tu dinero, realizar transferencias rápidas y gestionar tus finanzas desde cualquier lugar.</p>
     </div>
   );
 }
@@ -401,7 +401,7 @@ function Text1() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[576px]">
         <p className="leading-[48px]">Brand Colors</p>
       </div>
-      <div className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">
+      <div className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">
         <p className="mb-[24px]">Esta variedad de tonos permite una versatilidad en el diseño y la comunicación visual de Neom, adaptándose a diferentes contextos y audiencias.</p>
         <p>Además, la paleta de colores se podrá adaptar en su totalidad para cualquier caso de uso de tu producto o negocio.</p>
       </div>
@@ -937,7 +937,7 @@ function TextContent2() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[368px]">
         <p className="leading-[48px]">El resultado de nuestro trabajo</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Neom, una plataforma personalizable diseñada con una promesa clara: simplificar la gestión financiera, ya sea a nivel personal o empresarial. Desde la transferencia de fondos con un solo toque hasta la gestión segura de activos y la recepción eficiente de pagos.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Neom, una plataforma personalizable diseñada con una promesa clara: simplificar la gestión financiera, ya sea a nivel personal o empresarial. Desde la transferencia de fondos con un solo toque hasta la gestión segura de activos y la recepción eficiente de pagos.</p>
     </div>
   );
 }

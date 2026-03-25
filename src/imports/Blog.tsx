@@ -138,7 +138,7 @@ function Frame() {
 function Subtitle() {
   return (
     <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="subtitle">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">18 MAY 2023</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">18 MAY 2023</p>
       <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="tag">
         <Frame />
       </div>
@@ -184,7 +184,7 @@ function Frame1() {
 function Subtitle1() {
   return (
     <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="subtitle">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">16 JUL 2023</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">16 JUL 2023</p>
       <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="tag">
         <Frame1 />
       </div>
@@ -242,7 +242,7 @@ function Frame2() {
 function Subtitle2() {
   return (
     <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="subtitle">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">12 SEP 2022</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">12 SEP 2022</p>
       <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="tag">
         <Frame2 />
       </div>
@@ -285,7 +285,7 @@ function Frame3() {
 function Subtitle3() {
   return (
     <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="subtitle">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">13 AGO 2022</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">13 AGO 2022</p>
       <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="tag">
         <Frame3 />
       </div>
@@ -331,7 +331,7 @@ function Frame4() {
 function Subtitle4() {
   return (
     <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="subtitle">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">16 ENE 2022</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">16 ENE 2022</p>
       <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="tag">
         <Frame4 />
       </div>
@@ -378,7 +378,7 @@ function Frame5() {
 function Subtitle5() {
   return (
     <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="subtitle">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">16 FEB 2021</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">16 FEB 2021</p>
       <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="tag">
         <Frame5 />
       </div>

@@ -112,7 +112,7 @@ function SeccionMedia() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-[472px]">
         <p className="leading-[40px]">La plataforma líder para organizar, gestionar y difundir eventos universitarios</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Symposium es un proyecto propio de Digio que debido a su crecimiento imparable tuvo que tomar entidad propia convirtiéndose en una empresa satélite. La plataforma se ideó como una herramienta online que permite crear, gestionar y difundir eventos relacionados con el conocimiento de una manera sencilla y diferenciada.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Symposium es un proyecto propio de Digio que debido a su crecimiento imparable tuvo que tomar entidad propia convirtiéndose en una empresa satélite. La plataforma se ideó como una herramienta online que permite crear, gestionar y difundir eventos relacionados con el conocimiento de una manera sencilla y diferenciada.</p>
     </div>
   );
 }
@@ -214,7 +214,7 @@ function Text() {
         <p className="mb-0">en que se organizan</p>
         <p>los eventos académicos</p>
       </div>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] relative shrink-0 text-[16px] w-[500px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] relative shrink-0 text-[16px] w-[500px]">
         <p className="leading-[normal]">Symposium comenzó en 2008 como un proyecto propio de Digio. Diseñada para crear, gestionar y difundir eventos relacionados con el conocimiento. La plataforma creció rápidamente, lo que llevó a su transformación en una empresa independiente.</p>
       </div>
     </div>
@@ -283,7 +283,7 @@ function Text1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Valor y oferta</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Symposium ofrece una plataforma intuitiva para organizar eventos académicos y científicos. Centraliza congresos y conferencias, gestiona inscripciones y pagos, envía notificaciones automáticas, y genera informes, mejorando la eficiencia y ampliando la difusión de los eventos.</p>
       </div>
     </div>
@@ -1567,7 +1567,7 @@ function Frame6() {
 function TextContent1() {
   return (
     <div className="content-stretch flex gap-[134px] items-start relative shrink-0 w-[580px]" data-name="text content">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[368px]">La plataforma centraliza la organización de congresos y conferencias, facilitando su gestión y ampliando su visibilidad e impacto. Symposium conecta a investigadores, académicos y profesionales, asegurando una gestión eficiente y profesional de sus actividades científicas.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[368px]">La plataforma centraliza la organización de congresos y conferencias, facilitando su gestión y ampliando su visibilidad e impacto. Symposium conecta a investigadores, académicos y profesionales, asegurando una gestión eficiente y profesional de sus actividades científicas.</p>
     </div>
   );
 }
@@ -1619,7 +1619,7 @@ function BigSymImgSection() {
 function TextContent2() {
   return (
     <div className="content-stretch flex gap-[134px] items-start relative shrink-0" data-name="text content">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[368px]">La plataforma centraliza la organización de congresos y conferencias, facilitando su gestión y ampliando su visibilidad e impacto. Symposium conecta a investigadores, académicos y profesionales, asegurando una gestión eficiente y profesional de sus actividades científicas.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[368px]">La plataforma centraliza la organización de congresos y conferencias, facilitando su gestión y ampliando su visibilidad e impacto. Symposium conecta a investigadores, académicos y profesionales, asegurando una gestión eficiente y profesional de sus actividades científicas.</p>
     </div>
   );
 }
@@ -2881,7 +2881,7 @@ function TextContent4() {
         <p className="mb-0">Mejorando la experiencia</p>
         <p>de usuario final</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Desde Digio, también hemos creado las APPS de Symposium para iOS y Android. Gracias a la APP móvil de Symposium, los asistentes de los eventos tienen la oportunidad de obtener información sobre los distintos eventos con opciones de filtros de información y búsqueda personalizada.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Desde Digio, también hemos creado las APPS de Symposium para iOS y Android. Gracias a la APP móvil de Symposium, los asistentes de los eventos tienen la oportunidad de obtener información sobre los distintos eventos con opciones de filtros de información y búsqueda personalizada.</p>
     </div>
   );
 }
@@ -7643,7 +7643,7 @@ function Text2() {
         <p className="mb-0">Expandiendo horizontes,</p>
         <p>Alcance y cifras.</p>
       </div>
-      <div className="font-['Manrope:SemiBold',sans-serif] relative shrink-0 text-[16px] w-[368px]">
+      <div className="font-['Manrope',sans-serif] relative shrink-0 text-[16px] w-[368px]">
         <p className="mb-[24px]">Las principales universidades y sociedades científicas utilizan Symposium diariamente para gestionar sus eventos académicos y científicos.</p>
         <p>Además, Symposium continúa su expansión, posicionándose en la actualidad en varios países de América Latina, porque ya sabemos que los límites del conocimiento no están escritos.</p>
       </div>
@@ -7662,7 +7662,7 @@ function Content6() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center not-italic relative shrink-0 text-[100px] text-black tracking-[-3px] whitespace-nowrap">
         <p className="leading-[0.9]">+50%</p>
       </div>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center not-italic relative shrink-0 text-[16px] text-black text-center w-[250px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center not-italic relative shrink-0 text-[16px] text-black text-center w-[250px]">
         <p className="leading-[normal]">De universidades en España ya usan Symposium</p>
       </div>
     </div>
@@ -7688,7 +7688,7 @@ function Content7() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center not-italic relative shrink-0 text-[100px] text-black tracking-[-3px] whitespace-nowrap">
         <p className="leading-[0.9]">+1500</p>
       </div>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center not-italic relative shrink-0 text-[16px] text-black text-center w-[250px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center not-italic relative shrink-0 text-[16px] text-black text-center w-[250px]">
         <p className="leading-[normal]">Eventos mensuales creados</p>
       </div>
     </div>
@@ -7714,7 +7714,7 @@ function Content8() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center not-italic relative shrink-0 text-[100px] text-black tracking-[-3px] whitespace-nowrap">
         <p className="leading-[0.9]">+3500</p>
       </div>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center not-italic relative shrink-0 text-[16px] text-black text-center w-[250px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center not-italic relative shrink-0 text-[16px] text-black text-center w-[250px]">
         <p className="leading-[normal]">Inscripciones mensuales en nuestros eventos</p>
       </div>
     </div>

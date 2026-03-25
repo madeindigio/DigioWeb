@@ -119,6 +119,8 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
   const targetFrameRef = useRef(0);
   const currentFrameRef = useRef(0);
   const rafRef = useRef<number | null>(null);
+  const scrollRafRef = useRef<number | null>(null);
+  const maxScrollableRef = useRef(1);
   const totalFrames = 200;
 
   useEffect(() => {
@@ -174,26 +176,45 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
     return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current); };
   }, []);
 
+  const updateMaxScrollable = useCallback(() => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    maxScrollableRef.current = Math.max(max, 1);
+  }, []);
+
   const handleScroll = useCallback(() => {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (docHeight <= 0) return;
-    const pct = Math.min(Math.max(scrollTop / (docHeight * 0.6), 0), 1);
-    const newTarget = pct * (totalFrames - 1);
-    
-    if (Math.abs(targetFrameRef.current - newTarget) > 0.1) {
-      targetFrameRef.current = newTarget;
-      if (rafRef.current === null && tickRef.current) {
-        rafRef.current = requestAnimationFrame(tickRef.current);
+    if (scrollRafRef.current !== null) return;
+    scrollRafRef.current = requestAnimationFrame(() => {
+      scrollRafRef.current = null;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const pct = Math.min(Math.max(scrollTop / (maxScrollableRef.current * 0.6), 0), 1);
+      const newTarget = pct * (totalFrames - 1);
+
+      if (Math.abs(targetFrameRef.current - newTarget) > 0.1) {
+        targetFrameRef.current = newTarget;
+        if (rafRef.current === null && tickRef.current) {
+          rafRef.current = requestAnimationFrame(tickRef.current);
+        }
       }
-    }
+    });
   }, []);
 
   useEffect(() => {
+    updateMaxScrollable();
+    const ro = new ResizeObserver(() => updateMaxScrollable());
+    ro.observe(document.documentElement);
+    window.addEventListener("resize", updateMaxScrollable);
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", updateMaxScrollable);
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollRafRef.current !== null) {
+        cancelAnimationFrame(scrollRafRef.current);
+        scrollRafRef.current = null;
+      }
+    };
+  }, [handleScroll, updateMaxScrollable]);
 
   return (
     <motion.div
@@ -541,8 +562,12 @@ export function Header() {
   );
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
+    let rafId: number | null = null;
+    let lastY = window.scrollY;
+
+    const applyScrollState = () => {
+      rafId = null;
+      const y = lastY;
       // Hysteresis
       if (!scrolledRef.current && y > 80) {
         scrolledRef.current = true;
@@ -554,9 +579,20 @@ export function Header() {
       // Smooth shadow ramp (0 → 1 over first 200px)
       rawShadowOpacity.set(Math.min(y / 200, 1));
     };
+
+    const onScroll = () => {
+      lastY = window.scrollY;
+      if (rafId === null) {
+        rafId = requestAnimationFrame(applyScrollState);
+      }
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, [rawShadowOpacity]);
 
   useEffect(() => {

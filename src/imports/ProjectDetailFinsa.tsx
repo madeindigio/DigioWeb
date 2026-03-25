@@ -113,7 +113,7 @@ function SeccionMedia() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-[472px]">
         <p className="leading-[40px]">Plataforma web de cálculo y simulación estructural</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">{`Desde Digio, hemos diseñado y construido una solución web que permite simular el pre-cálculo de estructuras de madera CLT (Cross-laminated timber) para el gigante gallego Finsa. `}</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">{`Desde Digio, hemos diseñado y construido una solución web que permite simular el pre-cálculo de estructuras de madera CLT (Cross-laminated timber) para el gigante gallego Finsa. `}</p>
     </div>
   );
 }
@@ -220,7 +220,7 @@ function Text1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">El reto</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Finsa necesitaba una solución integral que permitiera a arquitectos e ingenieros diseñar modelos de estructuras de manera rápida y precisa, realizar cálculos estructurales complejos para garantizar la seguridad de las edificaciones, y gestionar usuarios, proyectos y recursos de forma centralizada y eficiente.</p>
       </div>
     </div>
@@ -231,7 +231,7 @@ function Text2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Nuestro trabajo</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">En Digio, desarrollamos una solución integral para Finsa que incluye una interfaz intuitiva para el diseño de modelos, un potente motor de análisis estructural en la nube y una plataforma centralizada que gestiona eficientemente usuarios, proyectos y recursos.</p>
       </div>
     </div>
@@ -299,7 +299,7 @@ function TextContent2() {
         <p className="mb-0">Análisis preciso y</p>
         <p>gestión integral</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[355px]">Uno de los grandes retos al que nos enfrentamos era al de crear una perfecta sincronización entre el entorno de diseño y el motor de análisis estructural, asegurando que los datos fluyeran sin interrupciones y los cálculos fueran precisos.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[355px]">Uno de los grandes retos al que nos enfrentamos era al de crear una perfecta sincronización entre el entorno de diseño y el motor de análisis estructural, asegurando que los datos fluyeran sin interrupciones y los cálculos fueran precisos.</p>
     </div>
   );
 }
@@ -371,7 +371,7 @@ function ImgContent1() {
 function TextContent3() {
   return (
     <div className="content-stretch flex gap-[134px] items-start relative shrink-0 w-[580px]" data-name="text content">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[368px]">Desarrollar una plataforma en la nube que no solo soportara todas las funcionalidades requeridas, sino que también fuera segura, escalable y capaz de manejar múltiples proyectos y usuarios simultáneamente.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[368px]">Desarrollar una plataforma en la nube que no solo soportara todas las funcionalidades requeridas, sino que también fuera segura, escalable y capaz de manejar múltiples proyectos y usuarios simultáneamente.</p>
     </div>
   );
 }
@@ -411,7 +411,7 @@ function TextContent4() {
         <p className="mb-0">Elaboración de informes</p>
         <p>de forma automática</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Además de poder trabajar en la web desde cualquier lugar, la plataforma ofrece elaboración de informes estructurados y documentados con toda la información detallada.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Además de poder trabajar en la web desde cualquier lugar, la plataforma ofrece elaboración de informes estructurados y documentados con toda la información detallada.</p>
     </div>
   );
 }
@@ -451,7 +451,7 @@ function Text3() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[40px] tracking-[-1.6px] w-[min-content]">
         <p className="leading-[48px]">Gracias a esta solución, los ingenieros y arquitectos pueden llevar a cabo el dimensionado y la planificación de proyectos de construcción de manera ágil y eficiente.</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">La herramienta no solo acelera el proceso de diseño, sino que también minimiza errores y optimiza el uso de recursos, resultando en una planificación más precisa y un ahorro significativo de tiempo y costos.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">La herramienta no solo acelera el proceso de diseño, sino que también minimiza errores y optimiza el uso de recursos, resultando en una planificación más precisa y un ahorro significativo de tiempo y costos.</p>
     </div>
   );
 }

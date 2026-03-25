@@ -135,21 +135,21 @@ function SeccionMedia1() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#191e25] text-[32px] tracking-[-1.28px] w-[680px]">
         <p className="leading-[40px]">En la actualidad, el desarrollo de aplicaciones móviles se ha convertido en una necesidad para cualquier empresa que busque mejorar su presencia en línea y ofrecer una experiencia de usuario excepcional.</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">Cuando abordamos el desarrollo de una nueva aplicación móvil, surge el dilema de escoger entre una app híbrida o nativa. En DIGIO, entendemos que esta elección puede ser difícil y puede marcar una gran diferencia en el éxito de la aplicación. Por lo tanto, siempre recomendamos a nuestros clientes que realicen una reflexión previa sobre sus prioridades y necesidades antes de tomar una decisión.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">Cuando abordamos el desarrollo de una nueva aplicación móvil, surge el dilema de escoger entre una app híbrida o nativa. En DIGIO, entendemos que esta elección puede ser difícil y puede marcar una gran diferencia en el éxito de la aplicación. Por lo tanto, siempre recomendamos a nuestros clientes que realicen una reflexión previa sobre sus prioridades y necesidades antes de tomar una decisión.</p>
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#191e25] text-[32px] tracking-[-1.28px] w-[680px]">
         <p className="leading-[40px]">El dilema entre híbrido vs. nativo en desarrollo mobile</p>
       </div>
-      <div className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">
+      <div className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">
         <p className="mb-[24px]">En la actualidad, el desarrollo de aplicaciones móviles se ha convertido en una necesidad para cualquier empresa que busque mejorar su presencia en línea y ofrecer una experiencia de usuario excepcional.</p>
         <p>Cuando abordamos el desarrollo de una nueva aplicación móvil, surge el dilema de escoger entre una app híbrida o nativa. En DIGIO, entendemos que esta elección puede ser difícil y puede marcar una gran diferencia en el éxito de la aplicación. Por lo tanto, siempre recomendamos a nuestros clientes que realicen una reflexión previa sobre sus prioridades y necesidades antes de tomar una decisión.</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">En DIGIO llevamos más de 15 años desarrollando aplicaciones móviles, tanto nativas como híbridas. De hecho, fuimos pioneros en el desarrollo de APPs nativas cuando Apple y Android lanzaron al mercado en torno a 2007 sus sistemas operativos y entornos de desarrollo. Después adoptamos multitud de paradigma de desarrollo híbrido, hasta llegar a ser capaces a día de hoy de combinar lo mejor de ambos mundos.</p>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">Nuestra experiencia nos permite hablar con conocimiento de causa, y en este artículo, exploraremos en profundidad el dilema entre desarrollar una aplicación híbrida o nativa, y proporcionaremos información detallada sobre las ventajas y desventajas de cada una de ellas. También analizaremos los factores que influyen en la elección y ofreceremos sugerencias para que nuestros clientes tomen la decisión más adecuada.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">En DIGIO llevamos más de 15 años desarrollando aplicaciones móviles, tanto nativas como híbridas. De hecho, fuimos pioneros en el desarrollo de APPs nativas cuando Apple y Android lanzaron al mercado en torno a 2007 sus sistemas operativos y entornos de desarrollo. Después adoptamos multitud de paradigma de desarrollo híbrido, hasta llegar a ser capaces a día de hoy de combinar lo mejor de ambos mundos.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">Nuestra experiencia nos permite hablar con conocimiento de causa, y en este artículo, exploraremos en profundidad el dilema entre desarrollar una aplicación híbrida o nativa, y proporcionaremos información detallada sobre las ventajas y desventajas de cada una de ellas. También analizaremos los factores que influyen en la elección y ofreceremos sugerencias para que nuestros clientes tomen la decisión más adecuada.</p>
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#191e25] text-[32px] tracking-[-1.28px] w-[680px]">
         <p className="leading-[40px]">¿Qué es una app nativa?</p>
       </div>
       <Content />
-      <div className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">
+      <div className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">
         <p className="mb-[24px]">Una app nativa es una aplicación diseñada específicamente para un sistema operativo móvil en particular, como iOS o Android. Estas aplicaciones se desarrollan utilizando las herramientas y lenguajes de programación oficiales que proveen tanto Apple como Google. Esto permite una mayor integración con el sistema operativo, que redunda en un mayor control del hardware y un desarrollo a nivel más bajo.</p>
         <p className="mb-[24px]">Esta característica resulta especialmente útil cuando el proyecto requiere de un control más fino de ciertas características del dispositivo, como el GPS, procesos que se ejecutan en segundo plano, reproducción de contenido multimedia, etc.</p>
         <p>Tener este nivel de acceso al dispositivo también resulta muy interesante a la hora de poder optimizar el rendimiento de la App y mejorar la experiencia de usuario.</p>
@@ -157,7 +157,7 @@ function SeccionMedia1() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#191e25] text-[32px] tracking-[-1.28px] w-[680px]">
         <p className="leading-[40px]">¿Qué es una app híbrida?</p>
       </div>
-      <div className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">
+      <div className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[680px]">
         <p className="mb-[24px]">A diferencia de las nativas, los frameworks de desarrollo de apps híbridas lo que buscan es permitir generar binarios ejecutables en dispositivos con diferentes arquitecturas y SO, partiendo de un mismo código fuente.</p>
         <p className="mb-[24px]">En la actualidad existen múltiples tecnologías, con diferentes enfoques, cuyas particularidades bien merecen un artículo específico. No obstante, sin ánimo de entrar a detalle, podemos generalizar afirmando que estas tecnologías se basan en interpretar un lenguaje común, generalmente JavaScript, y generar código nativo a partir de este.</p>
         <p className="mb-[24px]">Los frameworks más antiguos se basaban en interpretar en tiempo de ejecución código JavaScript o incluso estaban basadas en un navegador web embebido pero, en tecnologías más recientes como React Native, gran parte del trabajo se hace en tiempo de compilación, obteniendo como resultado una aplicación esencialmente nativa que se ejecuta en el dispositivo. En definitiva, lo que caracteriza a todas estas tecnologías es la utilización de un SDK no oficial desarrollado por un tercero, el cual nos permite abstraernos de las particularidades del desarrollo sobre cada plataforma (lenguaje, SO, componentes, etc).</p>
@@ -196,7 +196,7 @@ function TitleDescription() {
   return (
     <div className="content-stretch flex flex-col gap-[24px] items-start not-italic relative shrink-0 text-[#191e25] w-full" data-name="title & description">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">Lanzamos plataformas innovadoras para el sector energético</p>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">En la actualidad, el desarrollo de aplicaciones móviles se ha convertido en una necesidad para cualquier empresa que busque mejorar su presencia en línea y ofrecer una experiencia de usuario excepcional. Cuando abordamos el...</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">En la actualidad, el desarrollo de aplicaciones móviles se ha convertido en una necesidad para cualquier empresa que busque mejorar su presencia en línea y ofrecer una experiencia de usuario excepcional. Cuando abordamos el...</p>
     </div>
   );
 }
@@ -217,7 +217,7 @@ function TitleDescription1() {
   return (
     <div className="content-stretch flex flex-col gap-[24px] items-start not-italic relative shrink-0 text-[#191e25] w-full" data-name="title & description">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">Misión comercial en Suecia</p>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Aunque la innovación digital forma parte de la solución en el contexto actual de incremento de precios energéticos, inflación y escasez de materias primas. En DIGIO estamos trabajando para impulsar una revolución energética...</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Aunque la innovación digital forma parte de la solución en el contexto actual de incremento de precios energéticos, inflación y escasez de materias primas. En DIGIO estamos trabajando para impulsar una revolución energética...</p>
     </div>
   );
 }
@@ -241,7 +241,7 @@ function TitleDescription2() {
         <p className="mb-0">Desarrollamos</p>
         <p>el primer MVP en IoP</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Recientemente hemos finalizado la primera fase de un proyecto IoP que mapea el espacio físico real, para conectar servicios digitales de forma universal en cualquier lugar. Mediante la colaboración de Smarttech Cluster, Siemens...</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Recientemente hemos finalizado la primera fase de un proyecto IoP que mapea el espacio físico real, para conectar servicios digitales de forma universal en cualquier lugar. Mediante la colaboración de Smarttech Cluster, Siemens...</p>
     </div>
   );
 }

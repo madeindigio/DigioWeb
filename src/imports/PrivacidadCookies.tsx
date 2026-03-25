@@ -84,11 +84,11 @@ function TextContent() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">
         <p className="leading-[40px]">Introducción</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">En Digio, valoramos tu privacidad y nos comprometemos a proteger tus datos personales. Esta política de privacidad describe cómo recopilamos, utilizamos y protegemos la información que nos proporcionas cuando utilizas nuestra página web.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">En Digio, valoramos tu privacidad y nos comprometemos a proteger tus datos personales. Esta política de privacidad describe cómo recopilamos, utilizamos y protegemos la información que nos proporcionas cuando utilizas nuestra página web.</p>
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">
         <p className="leading-[40px]">Datos de uso</p>
       </div>
-      <div className="font-['Manrope:SemiBold',sans-serif] leading-[0] relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
+      <div className="font-['Manrope',sans-serif] leading-[0] relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
         <p className="leading-[normal] mb-[24px]">Recopilamos datos de uso mínimos para comprender mejor cómo interactúas con nuestro sitio web y mejorar tu experiencia de usuario. Estos datos pueden incluir:</p>
         <p className="leading-[normal] mb-[24px]">&nbsp;</p>
         <ul className="list-disc">
@@ -109,11 +109,11 @@ function TextContent() {
           </li>
         </ul>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Utilizamos Google Analytics para ayudarnos a analizar el tráfico de nuestra web y entender cómo los visitantes utilizan nuestro sitio. Google Analytics recopila información de forma anónima y nos proporciona informes sobre las tendencias del sitio web sin identificar a los visitantes individuales.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Utilizamos Google Analytics para ayudarnos a analizar el tráfico de nuestra web y entender cómo los visitantes utilizan nuestro sitio. Google Analytics recopila información de forma anónima y nos proporciona informes sobre las tendencias del sitio web sin identificar a los visitantes individuales.</p>
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">
         <p className="leading-[40px]">Uso de la Información Recopilada</p>
       </div>
-      <div className="font-['Manrope:SemiBold',sans-serif] leading-[0] relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
+      <div className="font-['Manrope',sans-serif] leading-[0] relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
         <p className="leading-[normal] mb-[24px]">Uso de la Información Recopilada</p>
         <p className="leading-[normal] mb-[24px]">Los datos que recopilamos se utilizan para:</p>
         <p className="leading-[normal] mb-[24px]">&nbsp;</p>
@@ -132,7 +132,7 @@ function TextContent() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">
         <p className="leading-[40px]">Protección de la información</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Implementamos medidas de seguridad adecuadas para proteger tus datos personales contra el acceso no autorizado, la alteración, la divulgación o la destrucción de la información. Utilizamos tecnologías de cifrado y otros métodos de protección para salvaguardar tus datos.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Implementamos medidas de seguridad adecuadas para proteger tus datos personales contra el acceso no autorizado, la alteración, la divulgación o la destrucción de la información. Utilizamos tecnologías de cifrado y otros métodos de protección para salvaguardar tus datos.</p>
     </div>
   );
 }

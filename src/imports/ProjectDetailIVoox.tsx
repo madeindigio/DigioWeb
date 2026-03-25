@@ -123,7 +123,7 @@ function SeccionMedia() {
         <p className="mb-0">La aplicación de podcasting líder</p>
         <p>en español</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Mediante un equipo dedicado, desarrollamos desde hace más de 10 años las aplicaciones móviles para iOS y Android de iVoox, una aplicación que cuenta con más de 15 millones de descargas. iVoox es un referente mundial que supone para digio un reto constante en cuanto a calidad y rendimiento.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Mediante un equipo dedicado, desarrollamos desde hace más de 10 años las aplicaciones móviles para iOS y Android de iVoox, una aplicación que cuenta con más de 15 millones de descargas. iVoox es un referente mundial que supone para digio un reto constante en cuanto a calidad y rendimiento.</p>
     </div>
   );
 }
@@ -237,7 +237,7 @@ function Text1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">El reto</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Nos enfrentamos al emocionante desafío de diseñar una aplicación que alojara miles de audios y ofreciera una experiencia intuitiva para los oyentes. Sabíamos que la clave estaba en combinar una sólida infraestructura técnica con un diseño centrado en el usuario, asegurando interacciones fluidas y satisfactorias.</p>
       </div>
     </div>
@@ -248,7 +248,7 @@ function Text2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Nuestro trabajo</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">En Digio, hemos desarrollado una aplicación móvil para escuchar, compartir y descargar podcasts. Además, permite explorar audios según los temas favoritos seleccionados por el usuario o por categorías populares. También ofrece una gestión sencilla de contenidos a través de listas y suscripciones, facilitando el acceso a los audios.</p>
       </div>
     </div>
@@ -355,7 +355,7 @@ function Text3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Valor y oferta</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Desde Digio hemos llevado a cabo todo el desarrollo mobile para escuchar, compartir y descargar audios, cuando y donde quieras. Nos enfrentamos al desafío de diseñar una app que alojase los miles de audios que se encuentran en la plataforma y por supuesto debía ser fácil de usar para los oyentes.</p>
       </div>
     </div>
@@ -429,7 +429,7 @@ function Text4() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Usabilidad a gran escala</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">En cuanto al diseño optamos por una interfaz sencilla y clara, que ayudase a jerarquizar los contenidos por los gustos de los ususarios para faciltar el acceso. Debido al trabajo llevado a cabo a lo largo de estos años, nos hemos convertido en el departamento móvil de iVoox, les aconsejamos la mejor manera de llevar a cabo implementaciones y participamos en la toma de decisiones.</p>
       </div>
     </div>
@@ -565,7 +565,7 @@ function TextContent2() {
         <p className="mb-0">Más de 10 millones</p>
         <p>de descargas</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Este es el resultado de nuestro trabajo: aplicaciones nativas diseñadas para ofrecer la mejor experiencia de uso. Con sencillez y funcionalidad, permitimos que los usuarios disfruten de iVoox en cualquier lugar, con o sin conexión. La APP se convirtió en la más valorada del sector rápidamente, aumentando así el valor de iVoox.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Este es el resultado de nuestro trabajo: aplicaciones nativas diseñadas para ofrecer la mejor experiencia de uso. Con sencillez y funcionalidad, permitimos que los usuarios disfruten de iVoox en cualquier lugar, con o sin conexión. La APP se convirtió en la más valorada del sector rápidamente, aumentando así el valor de iVoox.</p>
     </div>
   );
 }
@@ -621,7 +621,7 @@ function TextContent3() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[435px]">
         <p className="leading-[48px]">La experiencia de iVoox también en tu coche</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">También hemos desarrollado la aplicación para Android Auto y Car Play, permitiendo a los usuarios disfrutar de iVoox en todos sus trayectos. Gestiona suscripciones y favoritos, y escucha todas las radios en directo disponibles en iVoox, directamente desde tu coche.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">También hemos desarrollado la aplicación para Android Auto y Car Play, permitiendo a los usuarios disfrutar de iVoox en todos sus trayectos. Gestiona suscripciones y favoritos, y escucha todas las radios en directo disponibles en iVoox, directamente desde tu coche.</p>
     </div>
   );
 }

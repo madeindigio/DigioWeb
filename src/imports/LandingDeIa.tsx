@@ -920,7 +920,7 @@ function SectionTitle1() {
 function TextContent1() {
   return (
     <div className="bg-[#bbffe8] content-stretch flex h-[500px] items-center justify-end p-[48px] relative shrink-0 w-[288px]" data-name="text content">
-      <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]">Plataforma con IA que permite catalogar, etiquetar y extraer información crucial de documentos relativos a análisis forenses, declaraciones de testigos y otros tipos de información para investigar casos abiertos en los Estados Unidos.</p>
+      <p className="flex-[1_0_0] font-['Manrope',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]">Plataforma con IA que permite catalogar, etiquetar y extraer información crucial de documentos relativos a análisis forenses, declaraciones de testigos y otros tipos de información para investigar casos abiertos en los Estados Unidos.</p>
     </div>
   );
 }
@@ -977,7 +977,7 @@ function CardDescription() {
 function TextContent2() {
   return (
     <div className="bg-[#bbffe8] content-stretch flex h-[500px] items-center justify-end p-[48px] relative shrink-0 w-[288px]" data-name="text content">
-      <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]">Convierte automáticamente correos electrónicos en pedidos estructurados listos para enviar. Un programa que agiliza la operativa comercial, reduce tiempos de gestión manual y garantiza una integración fluida con su flujo de ventas.</p>
+      <p className="flex-[1_0_0] font-['Manrope',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]">Convierte automáticamente correos electrónicos en pedidos estructurados listos para enviar. Un programa que agiliza la operativa comercial, reduce tiempos de gestión manual y garantiza una integración fluida con su flujo de ventas.</p>
     </div>
   );
 }
@@ -1054,7 +1054,7 @@ function Component1CardsSection() {
 function TextContent3() {
   return (
     <div className="bg-[#bbffe8] content-stretch flex h-[500px] items-center justify-end p-[48px] relative shrink-0 w-[288px]" data-name="text content">
-      <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]">Plataforma inteligente para la Universidad de Murcia capaz de leer y analizar documentación técnica, y generar de forma ágil memorias justificativas completas. La solución elabora propuestas y presupuestos ajustados, asegurando el cumplimiento de las bases y requisitos específicos en cada convocatoria.</p>
+      <p className="flex-[1_0_0] font-['Manrope',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]">Plataforma inteligente para la Universidad de Murcia capaz de leer y analizar documentación técnica, y generar de forma ágil memorias justificativas completas. La solución elabora propuestas y presupuestos ajustados, asegurando el cumplimiento de las bases y requisitos específicos en cada convocatoria.</p>
     </div>
   );
 }
@@ -1116,7 +1116,7 @@ function CardDescription2() {
 function TextContent4() {
   return (
     <div className="bg-[#bbffe8] content-stretch flex h-[500px] items-center justify-end p-[48px] relative shrink-0 w-[288px]" data-name="text content">
-      <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]">Desarrollo de punto a punto una plataforma IoT, que incluye programación del firmware de los sensores, así como de la plataforma, la infraestructura de más de 15 servicios interconectados y las aplicaciones móviles. Un sistema de control para la confianza del propietario y la comodidad del huésped.</p>
+      <p className="flex-[1_0_0] font-['Manrope',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]">Desarrollo de punto a punto una plataforma IoT, que incluye programación del firmware de los sensores, así como de la plataforma, la infraestructura de más de 15 servicios interconectados y las aplicaciones móviles. Un sistema de control para la confianza del propietario y la comodidad del huésped.</p>
     </div>
   );
 }

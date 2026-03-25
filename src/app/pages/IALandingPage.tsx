@@ -546,6 +546,7 @@ function UseCasesSection() {
   const COUNT = CARDS.length;
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const metricsRef = useRef({ vh: 0, scrollableDistance: 1 });
 
   const setCardRef = useCallback(
     (i: number) => (el: HTMLDivElement | null) => {
@@ -559,11 +560,15 @@ function UseCasesSection() {
     if (!section) return;
     let rafId = 0;
 
+    const updateMetrics = () => {
+      const vh = window.innerHeight;
+      const scrollableDistance = Math.max(section.offsetHeight - vh, 1);
+      metricsRef.current = { vh, scrollableDistance };
+    };
+
     const update = () => {
       const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const scrollableDistance = section.offsetHeight - vh;
-      if (scrollableDistance <= 0) return;
+      const { scrollableDistance } = metricsRef.current;
 
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
@@ -595,15 +600,27 @@ function UseCasesSection() {
     };
 
     const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(update);
+      if (rafId !== 0) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        update();
+      });
     };
 
+    updateMetrics();
+    const ro = new ResizeObserver(() => {
+      updateMetrics();
+      onScroll();
+    });
+    ro.observe(section);
+    window.addEventListener("resize", updateMetrics);
     window.addEventListener("scroll", onScroll, { passive: true });
     update();
     return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", updateMetrics);
       window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(rafId);
+      if (rafId !== 0) cancelAnimationFrame(rafId);
     };
   }, [COUNT]);
 

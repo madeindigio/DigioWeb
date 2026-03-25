@@ -137,7 +137,7 @@ function TextContent() {
         <p className="mb-0">Nuestro principal activo</p>
         <p>es el talento de las personas</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] relative shrink-0 text-[16px] w-[264px]">Somos un equipo joven, dinámico y multidisciplinar con ganas de afrontar retos y ofrecer soluciones que satisfagan las necesidades de nuestros clientes.</p>
+      <p className="font-['Manrope',sans-serif] relative shrink-0 text-[16px] w-[264px]">Somos un equipo joven, dinámico y multidisciplinar con ganas de afrontar retos y ofrecer soluciones que satisfagan las necesidades de nuestros clientes.</p>
     </div>
   );
 }
@@ -253,7 +253,7 @@ function TextContent1() {
 function Description() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Cada proyecto ofrece una oportunidad única para trabajar con talento altamente específico y cualificado. Participamos en proyectos internacionales, que van desde EEUU hasta Asia. Tanto grandes multinacionales como startups de todos los tamaños.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Cada proyecto ofrece una oportunidad única para trabajar con talento altamente específico y cualificado. Participamos en proyectos internacionales, que van desde EEUU hasta Asia. Tanto grandes multinacionales como startups de todos los tamaños.</p>
     </div>
   );
 }
@@ -285,7 +285,7 @@ function Frame3() {
 function Description1() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Creemos en la responsabilidad del equipo, por eso trabajamos en base a objetivos y nos centramos en los resultados ofreciendo a nuestros empleados horarios flexibles y la posibilidad de realizar jornada intensiva.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Creemos en la responsabilidad del equipo, por eso trabajamos en base a objetivos y nos centramos en los resultados ofreciendo a nuestros empleados horarios flexibles y la posibilidad de realizar jornada intensiva.</p>
     </div>
   );
 }
@@ -334,7 +334,7 @@ function Services1() {
 function Description2() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Incluye en tu nómina de forma opcional ciertos gastos de productos de consumo habitual como guardería y restaurantes. Digio pagará estos servicios por ti, te los descontará de tu nómina y obtendrás beneficios en la declaración de la renta.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Incluye en tu nómina de forma opcional ciertos gastos de productos de consumo habitual como guardería y restaurantes. Digio pagará estos servicios por ti, te los descontará de tu nómina y obtendrás beneficios en la declaración de la renta.</p>
     </div>
   );
 }
@@ -366,7 +366,7 @@ function Frame6() {
 function Description3() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">En Digio trabajamos con metodologías ágiles y contamos con departamentos especializados de Producto/UX/UI, Desarrollo, QA y DevOps. Creemos en el trabajo en equipo basado en una buena organización y lo llevamos a la práctica.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">En Digio trabajamos con metodologías ágiles y contamos con departamentos especializados de Producto/UX/UI, Desarrollo, QA y DevOps. Creemos en el trabajo en equipo basado en una buena organización y lo llevamos a la práctica.</p>
     </div>
   );
 }
@@ -415,7 +415,7 @@ function Services2() {
 function Description4() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Desde nuestras oficinas se puede disfrutar de unas de las mejores vistas de Murcia. Estamos ubicados en uno de los centros de negocios más emblemáticos de la ciudad, que cuenta con todos los servicios necesarios para mantener cuerpo y mente sanos, desde el gimnasio hasta la piscina climatizada. ¡Te ayudamos a mantenerte en forma!</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Desde nuestras oficinas se puede disfrutar de unas de las mejores vistas de Murcia. Estamos ubicados en uno de los centros de negocios más emblemáticos de la ciudad, que cuenta con todos los servicios necesarios para mantener cuerpo y mente sanos, desde el gimnasio hasta la piscina climatizada. ¡Te ayudamos a mantenerte en forma!</p>
     </div>
   );
 }
@@ -447,7 +447,7 @@ function Frame10() {
 function Description5() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="description">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Creemos en la evolución constante y confiamos en la formación como un recurso primordial. Ofrecemos clases de inglés gratuitas a nuestros empleados y organizamos sesiones técnicas de formación para compartir experiencias entre departamentos.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Creemos en la evolución constante y confiamos en la formación como un recurso primordial. Ofrecemos clases de inglés gratuitas a nuestros empleados y organizamos sesiones técnicas de formación para compartir experiencias entre departamentos.</p>
     </div>
   );
 }
@@ -519,7 +519,7 @@ function TextContent2() {
         <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[48px] tracking-[-1.92px] w-[680px]">
           <p className="leading-[normal]">Ofertas de crecimiento</p>
         </div>
-        <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Buscamos personas apasionadas y creativas con ganas de aportar valor a nuestra empresa. Queremos que el próximo miembro de nuestro equipo seas tú. ¿Aceptas el reto?</p>
+        <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Buscamos personas apasionadas y creativas con ganas de aportar valor a nuestra empresa. Queremos que el próximo miembro de nuestro equipo seas tú. ¿Aceptas el reto?</p>
       </div>
     </div>
   );
@@ -536,7 +536,7 @@ function TextContent3() {
 function TextContent4() {
   return (
     <div className="content-stretch flex flex-col h-[66px] items-center justify-center relative shrink-0 w-[180px]" data-name="text content">
-      <div className="flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
+      <div className="flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
         <p className="leading-[normal]">Desarrollo, Remoto</p>
       </div>
     </div>
@@ -586,7 +586,7 @@ function TextContent5() {
 function TextContent6() {
   return (
     <div className="content-stretch flex flex-col h-[66px] items-center justify-center relative shrink-0 w-[180px]" data-name="text content">
-      <div className="flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
+      <div className="flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
         <p className="leading-[normal]">Desarrollo, Remoto</p>
       </div>
     </div>
@@ -622,11 +622,11 @@ function Frame14() {
 function TextContent7() {
   return (
     <div className="content-stretch flex flex-col gap-[16px] items-start justify-center not-italic relative shrink-0 text-[#191e25] w-[680px]" data-name="text content">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Se requiere programador con experiencia demostrable en lo enumerado a continuación, con alta capacidad de aprendizaje, trabajador dinámico que sepa integrarse en un grupo de trabajo joven y colaborativo. Se valorará experiencia en maquetación HTML y CSS.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Se requiere programador con experiencia demostrable en lo enumerado a continuación, con alta capacidad de aprendizaje, trabajador dinámico que sepa integrarse en un grupo de trabajo joven y colaborativo. Se valorará experiencia en maquetación HTML y CSS.</p>
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[27px] relative shrink-0 text-[20px] tracking-[-0.8px] w-full">Requisitos del candidato/a</p>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Al menos 2 años de experiencia en programación frontend con frameworks.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Al menos 2 años de experiencia en programación frontend con frameworks.</p>
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[27px] relative shrink-0 text-[20px] tracking-[-0.8px] w-full">Tecnologías</p>
-      <ul className="block font-['Manrope:SemiBold',sans-serif] leading-[0] list-disc relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
+      <ul className="block font-['Manrope',sans-serif] leading-[0] list-disc relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
         <li className="mb-0 ms-[24px]">
           <span className="leading-[normal]">React.js</span>
         </li>
@@ -650,7 +650,7 @@ function TextContent7() {
         </li>
       </ul>
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[27px] relative shrink-0 text-[20px] tracking-[-0.8px] w-full">Se valorará</p>
-      <ul className="block font-['Manrope:SemiBold',sans-serif] leading-[0] list-disc relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
+      <ul className="block font-['Manrope',sans-serif] leading-[0] list-disc relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
         <li className="mb-0 ms-[24px]">
           <span className="leading-[normal]">TypeScript</span>
         </li>
@@ -674,7 +674,7 @@ function TextContent7() {
         </li>
       </ul>
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[27px] relative shrink-0 text-[20px] tracking-[-0.8px] w-full">Conocimiento de alguno de estos entornos de desarrollo</p>
-      <ul className="block font-['Manrope:SemiBold',sans-serif] leading-[0] list-disc relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
+      <ul className="block font-['Manrope',sans-serif] leading-[0] list-disc relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
         <li className="mb-0 ms-[24px]">
           <span className="leading-[normal]">Visual Studio Code</span>
         </li>
@@ -689,7 +689,7 @@ function TextContent7() {
         </li>
       </ul>
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[27px] relative shrink-0 text-[20px] tracking-[-0.8px] w-full">Qué ofrecemos</p>
-      <ul className="block font-['Manrope:SemiBold',sans-serif] leading-[0] list-disc relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
+      <ul className="block font-['Manrope',sans-serif] leading-[0] list-disc relative shrink-0 text-[16px] w-full whitespace-pre-wrap">
         <li className="mb-0 ms-[24px]">
           <span className="leading-[normal]">Teletrabajo 100%</span>
         </li>
@@ -767,7 +767,7 @@ function TextContent8() {
 function TextContent9() {
   return (
     <div className="content-stretch flex flex-col h-[66px] items-center justify-center relative shrink-0 w-[180px]" data-name="text content">
-      <div className="flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
+      <div className="flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
         <p className="leading-[normal]">Desarrollo, Remoto</p>
       </div>
     </div>
@@ -820,7 +820,7 @@ function TextContent10() {
 function TextContent11() {
   return (
     <div className="content-stretch flex flex-col h-[66px] items-center justify-center relative shrink-0 w-[180px]" data-name="text content">
-      <div className="flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
+      <div className="flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px] w-full">
         <p className="leading-[normal]">Desarrollo, Remoto</p>
       </div>
     </div>

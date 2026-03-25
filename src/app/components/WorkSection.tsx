@@ -7,6 +7,7 @@ import imgRectangle7 from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.
 import imgBgImg2 from "figma:asset/2214d58f15337db66ff6aba0f5e9cef891db63d8.png";
 import imgRectangle8 from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
 import imgVivla from "figma:asset/43cdb3e72f58cd88be954c02c14019a69bab0bb8.png";
+import { imgEkhilurPlaceholder } from "./projectData";
 
 import type { ReactNode } from "react";
 import { useRef, useState, useCallback, useEffect } from "react";
@@ -418,6 +419,19 @@ export function WorkSection() {
 
         {/* Cards */}
         <div className="flex flex-col gap-[56px] max-md:gap-[32px]">
+          {/* Full width - ekhilur */}
+          <ScrollReveal>
+            <FullWidthCard
+              slug="ekhilur"
+              image={imgEkhilurPlaceholder}
+              tag={t("work.projects.ekhilur.tag")}
+              projectName={t("work.projects.ekhilur.name")}
+              description={t("work.projects.ekhilur.description")}
+              tagBg="bg-[rgba(25,30,37,0.18)]"
+              eager
+            />
+          </ScrollReveal>
+
           {/* Full width - NM */}
           <ScrollReveal>
             <FullWidthCard

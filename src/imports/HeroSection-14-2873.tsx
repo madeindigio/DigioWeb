@@ -7,7 +7,7 @@ function TextContent() {
         <p className="mb-0">{`Transformation `}</p>
         <p>is our code</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[1.35] not-italic relative shrink-0 text-[#e2dfda] text-[24px] tracking-[0.48px] w-[242px]">Vivimos en ese lugar intermedio entre la visión y la creación.</p>
+      <p className="font-['Manrope',sans-serif] leading-[1.35] not-italic relative shrink-0 text-[#e2dfda] text-[24px] tracking-[0.48px] w-[242px]">Vivimos en ese lugar intermedio entre la visión y la creación.</p>
       <div className="absolute h-[6px] left-[664px] right-[600px] top-[234px]" data-name="Dash">
         <div className="absolute bg-[#d9d9d9] inset-0" />
       </div>

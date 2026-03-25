@@ -86,7 +86,7 @@ function TextContent() {
         <p className="mb-0">Una muestra</p>
         <p>de nuestro trabajo</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[1.35] relative shrink-0 text-[24px] tracking-[0.48px] w-[242px]">Testimonio de nuestra dedicación y excelencia en todos los verticales</p>
+      <p className="font-['Manrope',sans-serif] leading-[1.35] relative shrink-0 text-[24px] tracking-[0.48px] w-[242px]">Testimonio de nuestra dedicación y excelencia en todos los verticales</p>
     </div>
   );
 }
@@ -280,7 +280,7 @@ function Logo() {
 
 function OurFunction() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
+    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
       <p className="relative shrink-0 w-full">Visión y conceptualización</p>
       <p className="relative shrink-0 w-full">Diseño UX UI</p>
       <p className="relative shrink-0 w-full">Desarrollo iOS</p>
@@ -295,7 +295,7 @@ function CardContent() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">{`MijnGeldzaken, la startup holandesa, adquirida por Söderberg & Partners, multinacional sueca de seguros. Digio ha desarrollado una APP de gestión de finanzas personales (PFM) con conexión a APIs bancarias, recibos y alertas.`}</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">{`MijnGeldzaken, la startup holandesa, adquirida por Söderberg & Partners, multinacional sueca de seguros. Digio ha desarrollado una APP de gestión de finanzas personales (PFM) con conexión a APIs bancarias, recibos y alertas.`}</p>
           <OurFunction />
         </div>
       </div>
@@ -332,7 +332,7 @@ function Logo1() {
 
 function OurFunction1() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
+    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
       <p className="relative shrink-0 w-full">Desarrollo iOS</p>
       <p className="relative shrink-0 w-full">Desarrollo Android</p>
     </div>
@@ -345,7 +345,7 @@ function CardContent1() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo1 />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Trabajamos en diferentes proyectos en el área de aplicaciones móviles para Gestión de Patrimonios y Fondos de Pensiones de una de las principales aseguradoras suecas. Lanzamos dos aplicaciones completas con éxito en el país, abarcando backend, frontend UI/UX e integración con APIs de Open Banking.</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Trabajamos en diferentes proyectos en el área de aplicaciones móviles para Gestión de Patrimonios y Fondos de Pensiones de una de las principales aseguradoras suecas. Lanzamos dos aplicaciones completas con éxito en el país, abarcando backend, frontend UI/UX e integración con APIs de Open Banking.</p>
           <OurFunction1 />
         </div>
       </div>
@@ -416,7 +416,7 @@ function Logo2() {
 
 function OurFunction2() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
+    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
       <p className="relative shrink-0 w-full">Conceptualización de producto</p>
       <p className="relative shrink-0 w-full">Diseño UX UI</p>
       <p className="relative shrink-0 w-full">Desarrollo iOS</p>
@@ -431,7 +431,7 @@ function CardContent2() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo2 />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Digio está desarrollando íntegramente la primera APP de España que permitirá conceder créditos e hipotecas casi instantáneamente desde el móvil. La plataforma está basada en los servicios de Open Banking de UNNAX, partner tecnológico de Digio.</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Digio está desarrollando íntegramente la primera APP de España que permitirá conceder créditos e hipotecas casi instantáneamente desde el móvil. La plataforma está basada en los servicios de Open Banking de UNNAX, partner tecnológico de Digio.</p>
           <OurFunction2 />
         </div>
       </div>
@@ -466,7 +466,7 @@ function Logo3() {
 
 function OurFunction3() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
+    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
       <p className="relative shrink-0 w-full">Visión y conceptualización</p>
       <p className="relative shrink-0 w-full">Propuesta solución tecnológica</p>
     </div>
@@ -479,7 +479,7 @@ function CardContent3() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo3 />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Con el objetivo de fidelizar y apoyar al “long tail” de pequeños talleres independientes / de barrio (+30.000) se aporta acceso selectivo (foco en los de mejor rating) a una plataforma de fraccionamiento instantáneo y exclusivo de pedidos de recambios vía PSD2 / Open Banking.</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Con el objetivo de fidelizar y apoyar al “long tail” de pequeños talleres independientes / de barrio (+30.000) se aporta acceso selectivo (foco en los de mejor rating) a una plataforma de fraccionamiento instantáneo y exclusivo de pedidos de recambios vía PSD2 / Open Banking.</p>
           <OurFunction3 />
         </div>
       </div>
@@ -523,7 +523,7 @@ function Logo4() {
 function OurFunction4() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center min-h-px min-w-px relative" data-name="our function">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Desarrollo plataforma Web</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Desarrollo plataforma Web</p>
     </div>
   );
 }
@@ -534,7 +534,7 @@ function CardContent4() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo4 />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Spock es la energtech que está revolucionando el sector de la energía con soluciones completas para comercializadoras y clientes. Sus módulos incluyen validación de titularidad, integración de datos y lectura automatizada de facturas y consumos de energía, entre otros a través de su plataforma.</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Spock es la energtech que está revolucionando el sector de la energía con soluciones completas para comercializadoras y clientes. Sus módulos incluyen validación de titularidad, integración de datos y lectura automatizada de facturas y consumos de energía, entre otros a través de su plataforma.</p>
           <OurFunction4 />
         </div>
       </div>
@@ -583,7 +583,7 @@ function Logo5() {
 
 function OurFunction5() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
+    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
       <p className="relative shrink-0 w-full">Conceptualización de producto</p>
       <p className="relative shrink-0 w-full">Desarrollo plataforma</p>
     </div>
@@ -596,7 +596,7 @@ function CardContent5() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo5 />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Digio creó una app para Soltec Energías Renovables que permite la autoinstalación de captadores fotovoltaicos mediante la red wifi del hogar. Los usuarios pueden controlar la producción de energía y programar acciones según el clima, como replegar los paneles en caso de viento fuerte, entre otras funciones.</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Digio creó una app para Soltec Energías Renovables que permite la autoinstalación de captadores fotovoltaicos mediante la red wifi del hogar. Los usuarios pueden controlar la producción de energía y programar acciones según el clima, como replegar los paneles en caso de viento fuerte, entre otras funciones.</p>
           <OurFunction5 />
         </div>
       </div>
@@ -651,7 +651,7 @@ function Logo6() {
 
 function OurFunction6() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
+    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
       <p className="relative shrink-0 w-full">Conceptualización de producto</p>
       <p className="relative shrink-0 w-full">Diseño UX UI</p>
       <p className="relative shrink-0 w-full">Desarrollo plataformas Web</p>
@@ -665,7 +665,7 @@ function CardContent6() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo6 />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Hemos resuelto desafíos tecnológicos junto a Turning Tables, como la creación de una plataforma para gestionar subastas de energía y calcular automáticamente volúmenes. Desarrollo de una herramienta para optimizar la distribución de energía y detectar autoconsumo. Creación de un panel de control para monitorear el impacto energético de plantas solares municipales.</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Hemos resuelto desafíos tecnológicos junto a Turning Tables, como la creación de una plataforma para gestionar subastas de energía y calcular automáticamente volúmenes. Desarrollo de una herramienta para optimizar la distribución de energía y detectar autoconsumo. Creación de un panel de control para monitorear el impacto energético de plantas solares municipales.</p>
           <OurFunction6 />
         </div>
       </div>
@@ -707,7 +707,7 @@ function Logo7() {
 
 function OurFunction7() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
+    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
       <p className="relative shrink-0 w-full">Diseño UX UI</p>
       <p className="relative shrink-0 w-full">Desarrollo plataforma Web</p>
     </div>
@@ -720,7 +720,7 @@ function CardContent7() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo7 />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Desarrollamos una plataforma web para mejorar la gestión de pedidos para compradores y proveedores. También se creó una solución personalizada para optimizar la gestión del recepcionado de mercancías en sus almacenes.</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Desarrollamos una plataforma web para mejorar la gestión de pedidos para compradores y proveedores. También se creó una solución personalizada para optimizar la gestión del recepcionado de mercancías en sus almacenes.</p>
           <OurFunction7 />
         </div>
       </div>
@@ -752,7 +752,7 @@ function Logo8() {
 
 function OurFunction8() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope:SemiBold',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
+    <div className="content-stretch flex flex-[1_0_0] flex-col font-['Manrope',sans-serif] gap-[8px] items-center leading-[normal] min-h-px min-w-px not-italic relative text-[#191e25] text-[16px]" data-name="our function">
       <p className="relative shrink-0 w-full">Visión y conceptualización</p>
       <p className="relative shrink-0 w-full">Desarrollo plataforma Web</p>
     </div>
@@ -765,7 +765,7 @@ function CardContent8() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo8 />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Desarrollamos una plataforma web para mejorar la gestión de pedidos para compradores y proveedores. También se creó una solución personalizada para optimizar la gestión del recepcionado de mercancías en sus almacenes.</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Desarrollamos una plataforma web para mejorar la gestión de pedidos para compradores y proveedores. También se creó una solución personalizada para optimizar la gestión del recepcionado de mercancías en sus almacenes.</p>
           <OurFunction8 />
         </div>
       </div>
@@ -806,7 +806,7 @@ function Logo9() {
 function OurFunction9() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center min-h-px min-w-px relative" data-name="our function">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Desarrollo plataforma Web</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-full">Desarrollo plataforma Web</p>
     </div>
   );
 }
@@ -817,7 +817,7 @@ function CardContent9() {
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex gap-[40px] items-start justify-center px-[120px] relative w-full">
           <Logo9 />
-          <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Nektria ofrece una solución de logística de última milla para grandes cadenas de distribución que permite optimizar rutas de transporte y ofrecer al consumidor la posibilidad de escoger el día y la hora y la franja horaria exacta en la que desea recibir su pedido. Desde Digio colaboramos en sus inicios con Nektria, desarrollando el plugin de Magento para integrar su solución en cualquier eCommerce.</p>
+          <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[700px]">Nektria ofrece una solución de logística de última milla para grandes cadenas de distribución que permite optimizar rutas de transporte y ofrecer al consumidor la posibilidad de escoger el día y la hora y la franja horaria exacta en la que desea recibir su pedido. Desde Digio colaboramos en sus inicios con Nektria, desarrollando el plugin de Magento para integrar su solución en cualquier eCommerce.</p>
           <OurFunction9 />
         </div>
       </div>

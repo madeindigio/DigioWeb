@@ -90,7 +90,7 @@ function SeccionMedia() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-[472px]">
         <p className="leading-[40px]">Ayudando a impulsar la evolución tecnológica de VIVLA</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Digio se une a VIVLA para redefinir el mercado inmobiliario a través de soluciones tecnológicas avanzadas. Nuestra colaboración se centra en el diseño y desarrollo de herramientas digitales que simplifican la gestión de copropiedades y elevan la experiencia del usuario final.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Digio se une a VIVLA para redefinir el mercado inmobiliario a través de soluciones tecnológicas avanzadas. Nuestra colaboración se centra en el diseño y desarrollo de herramientas digitales que simplifican la gestión de copropiedades y elevan la experiencia del usuario final.</p>
     </div>
   );
 }
@@ -199,7 +199,7 @@ function Text1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">El reto</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Diseñamos una herramienta de medición de satisfacción que recopila feedback directo de los copropietarios. Esto permite a VIVLA iterar y mejorar continuamente su servicio.</p>
       </div>
     </div>
@@ -210,7 +210,7 @@ function Text2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Nuestro trabajo</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Diseñamos una herramienta de medición de satisfacción que recopila feedback directo de los copropietarios. Esto permite a VIVLA iterar y mejorar continuamente su servicio. Nos enfocamos en la claridad de los costes y la transparencia de la gestión financiera. Creamos una interfaz intuitiva para que los copropietarios puedan seguir el estado de sus inversiones en tiempo real.</p>
       </div>
     </div>
@@ -268,7 +268,7 @@ function Text3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Diseño del Panel de NPS</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Diseñamos una herramienta de medición de satisfacción que recopila feedback directo de los copropietarios. Esto permite a VIVLA iterar y mejorar continuamente su servicio.</p>
       </div>
     </div>
@@ -340,7 +340,7 @@ function Text4() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Datos para la mejora de procesos</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Transformamos datos complejos en insights accionables. Nuestro diseño permite visualizar las tendencias de satisfacción para tomar decisiones estratégicas basadas en información real.</p>
       </div>
     </div>
@@ -436,7 +436,7 @@ function TextContent2() {
         <p className="mb-0">Crecimiento y gestión</p>
         <p>de las Casas</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Desarrollamos una plataforma centralizada para la gestión de incidencias, reservas y mantenimiento de las propiedades. Un ecosistema eficiente para asegurar una experiencia de usuario sin fricciones.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Desarrollamos una plataforma centralizada para la gestión de incidencias, reservas y mantenimiento de las propiedades. Un ecosistema eficiente para asegurar una experiencia de usuario sin fricciones.</p>
     </div>
   );
 }
@@ -483,7 +483,7 @@ function TextContent3() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[435px]">
         <p className="leading-[48px]">Accesibilidad e innovación</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Gracias a nuestras soluciones y a la colaboración establecida, VIVLA puede optimizar sus procesos internos, facilitando una gestión eficiente de sus activos y ofreciendo una respuesta ágil a las necesidades de los copropietarios, incluso en contextos de alta movilidad.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Gracias a nuestras soluciones y a la colaboración establecida, VIVLA puede optimizar sus procesos internos, facilitando una gestión eficiente de sus activos y ofreciendo una respuesta ágil a las necesidades de los copropietarios, incluso en contextos de alta movilidad.</p>
     </div>
   );
 }

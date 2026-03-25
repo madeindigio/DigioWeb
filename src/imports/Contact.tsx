@@ -85,7 +85,7 @@ function TextContent() {
         <p className="mb-0">Contacta</p>
         <p>con nosotros</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[1.35] relative shrink-0 text-[24px] tracking-[0.48px] w-[370px]">Cuéntanos los detalles sobre tu proyecto y descubre cómo nuestra experiencia puede ayudarte a marcar la diferencia</p>
+      <p className="font-['Manrope',sans-serif] leading-[1.35] relative shrink-0 text-[24px] tracking-[0.48px] w-[370px]">Cuéntanos los detalles sobre tu proyecto y descubre cómo nuestra experiencia puede ayudarte a marcar la diferencia</p>
     </div>
   );
 }
@@ -93,7 +93,7 @@ function TextContent() {
 function Container1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-start justify-center min-h-px min-w-px relative" data-name="Container">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#c0bbb3] text-[16px] w-[min-content]">Tu nombre</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#c0bbb3] text-[16px] w-[min-content]">Tu nombre</p>
     </div>
   );
 }
@@ -122,7 +122,7 @@ function TextFieldFilled() {
 function Container3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-start justify-center min-h-px min-w-px relative" data-name="Container">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#c0bbb3] text-[16px] w-[min-content]">Tu dirección email</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#c0bbb3] text-[16px] w-[min-content]">Tu dirección email</p>
     </div>
   );
 }
@@ -152,11 +152,11 @@ function Row() {
   return (
     <div className="content-stretch flex gap-[24px] items-start justify-center relative shrink-0" data-name="row">
       <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-[354px]" data-name="Inputs">
-        <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[16px] text-black whitespace-nowrap">Nombre</p>
+        <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[16px] text-black whitespace-nowrap">Nombre</p>
         <TextFieldFilled />
       </div>
       <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-[354px]" data-name="Inputs">
-        <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[16px] text-black whitespace-nowrap">Email</p>
+        <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[16px] text-black whitespace-nowrap">Email</p>
         <TextFieldFilled1 />
       </div>
     </div>
@@ -166,7 +166,7 @@ function Row() {
 function Container5() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-start justify-center min-h-px min-w-px relative" data-name="Container">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#c0bbb3] text-[16px] w-[min-content]">Selecciona un motivo</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#c0bbb3] text-[16px] w-[min-content]">Selecciona un motivo</p>
     </div>
   );
 }
@@ -205,7 +205,7 @@ function Row1() {
   return (
     <div className="content-stretch flex gap-[24px] items-start justify-center relative shrink-0 w-full" data-name="row">
       <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-start min-h-px min-w-px relative" data-name="Inputs">
-        <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[16px] text-black whitespace-nowrap">Motivo del contacto</p>
+        <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[16px] text-black whitespace-nowrap">Motivo del contacto</p>
         <TextFieldFilled2 />
       </div>
     </div>
@@ -215,7 +215,7 @@ function Row1() {
 function Container7() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-start min-h-px min-w-px relative" data-name="Container">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#c0bbb3] text-[16px] w-[min-content]">Escribe tu mensaje</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#c0bbb3] text-[16px] w-[min-content]">Escribe tu mensaje</p>
     </div>
   );
 }
@@ -242,7 +242,7 @@ function TextFieldFilled3() {
 function Frame7() {
   return (
     <div className="content-stretch flex h-[32px] items-center justify-between pb-[8px] pr-[8px] relative shrink-0 w-[732px]">
-      <p className="flex-[1_0_0] font-['Manrope:SemiBold',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-black">Información sobre protección de datos personales</p>
+      <p className="flex-[1_0_0] font-['Manrope',sans-serif] leading-[normal] min-h-px min-w-px not-italic relative text-[16px] text-black">Información sobre protección de datos personales</p>
       <div className="relative shrink-0 size-[24px]" data-name="Icons">
         <div className="absolute inset-[24.22%_0]" data-name="Dropdown arrow icon">
           <div className="absolute inset-[-11.25%_-5.98%_-23.22%_-5.98%]">
@@ -277,7 +277,7 @@ function TextContent1() {
       <Row />
       <Row1 />
       <div className="content-stretch flex flex-col gap-[8px] h-[171px] items-start relative shrink-0 w-[732px]" data-name="Inputs">
-        <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[16px] text-black whitespace-nowrap">Mensaje</p>
+        <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[16px] text-black whitespace-nowrap">Mensaje</p>
         <TextFieldFilled3 />
       </div>
       <Frame6 />
@@ -309,7 +309,7 @@ function ContactSection() {
 function Frame1() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[264px]">Edificio Plazarte, Calle Jose Manuel Sanchez Pedreño, 1, Planta 5 puerta A, 30009 Murcia, España.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[264px]">Edificio Plazarte, Calle Jose Manuel Sanchez Pedreño, 1, Planta 5 puerta A, 30009 Murcia, España.</p>
     </div>
   );
 }
@@ -317,7 +317,7 @@ function Frame1() {
 function Frame2() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0">
-      <div className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[0px] text-[16px] w-[264px]">
+      <div className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[0px] text-[16px] w-[264px]">
         <p className="mb-[24px]">+34 868 611 206</p>
         <p className="text-[#583bff]">info@digio.es</p>
       </div>
@@ -346,7 +346,7 @@ function Project() {
 function Frame4() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[264px]">Paseo de la Infanta Isabel, 17, Esc. Dcha. 1º, 28014 Madrid, España</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[264px]">Paseo de la Infanta Isabel, 17, Esc. Dcha. 1º, 28014 Madrid, España</p>
     </div>
   );
 }
@@ -371,7 +371,7 @@ function Project1() {
 function Frame5() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0">
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[264px]">Paseo de Gracia, 37, Planta 3, 08007 Barcelona, España</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[16px] w-[264px]">Paseo de Gracia, 37, Planta 3, 08007 Barcelona, España</p>
     </div>
   );
 }

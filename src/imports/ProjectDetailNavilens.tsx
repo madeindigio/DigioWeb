@@ -112,7 +112,7 @@ function SeccionMedia() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-[472px]">
         <p className="leading-[40px]">La plataforma de generación de códigos QR accesibles NaviLens</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Las personas con discapacidad visual enfrentan dificultades al utilizar la señalética tradicional, lo que limita su autonomía en entornos desconocidos. Los códigos NaviLens ofrecen una solución, ya que no requieren que los usuarios sepan su ubicación exacta. En Digio, hemos contribuido al desarrollo de la plataforma de generación de códigos accesibles NaviLens, facilitando así la independencia de las personas con discapacidad visual.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Las personas con discapacidad visual enfrentan dificultades al utilizar la señalética tradicional, lo que limita su autonomía en entornos desconocidos. Los códigos NaviLens ofrecen una solución, ya que no requieren que los usuarios sepan su ubicación exacta. En Digio, hemos contribuido al desarrollo de la plataforma de generación de códigos accesibles NaviLens, facilitando así la independencia de las personas con discapacidad visual.</p>
     </div>
   );
 }
@@ -251,7 +251,7 @@ function Text1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">El reto</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">A través de la app de NaviLens, tanto personas con problemas de visión como cualquier usuario pueden escanear los códigos accesibles. NaviLens necesitaba una nueva plataforma que permitiera la creación sencilla y rápida de estos códigos, facilitando su generación y compartición por parte de cualquier usuario o empresa.</p>
       </div>
     </div>
@@ -262,7 +262,7 @@ function Text2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Nuestro trabajo</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">En Digio, hemos colaborado en el desarrollo de NaviLens, creando códigos accesibles que promueven la independencia y autonomía. Los códigos NaviLens proporcionan información precisa sobre la distancia y orientación de las etiquetas, y permiten la lectura múltiple, detectando y presentando varias etiquetas simultáneamente de manera cómoda para el usuario.</p>
       </div>
     </div>
@@ -333,7 +333,7 @@ function Text3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Interacción inclusiva</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">El Código QR Accesible NaviLens facilita el uso de códigos QR para todos, incluidas las personas con discapacidad visual. Permite escanear fácilmente los códigos QR sin necesidad de enfocar ni encuadrar, lo que proporciona accesibilidad universal y promueve la independencia en la interacción con la tecnología digital.</p>
       </div>
     </div>
@@ -689,7 +689,7 @@ function Text4() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Funcionamiento</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Para una persona con discapacidad visual, escanear un código QR puede ser muy difícil. El Código QR Accesible NaviLens permite que cualquier persona pueda utilizarlo fácilmente, facilitando la interacción y accesibilidad para todos.</p>
       </div>
     </div>
@@ -2340,7 +2340,7 @@ function TextContent2() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[435px]">
         <p className="leading-[48px]">La importancia de la accesibilidad</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Los Códigos QR Accesible NaviLens generados a través de la plataforma, se pueden leer desde más lejos, en movimiento, y no necesitan ser enfocados ni encuadrados. Todo el mundo puede usarlos fácilmente.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Los Códigos QR Accesible NaviLens generados a través de la plataforma, se pueden leer desde más lejos, en movimiento, y no necesitan ser enfocados ni encuadrados. Todo el mundo puede usarlos fácilmente.</p>
     </div>
   );
 }
@@ -2391,7 +2391,7 @@ function TextContent3() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[435px]">
         <p className="leading-[48px]">Accesibilidad e innovación</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Aunque hemos ayudado a crear la plataforma para hacer que los códigos QR sean accesibles a través de las apps de NaviLens, el valor de NaviLens va mucho más allá. Las personas con discapacidad visual reciben información auditiva contextualizada al escanear cada código, incluso desde muy lejos y sin necesidad de enfocar o encuadrar. Nuestro trabajo conjunto con NaviLens ha permitido mejorar significativamente la accesibilidad y autonomía de estos usuarios.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Aunque hemos ayudado a crear la plataforma para hacer que los códigos QR sean accesibles a través de las apps de NaviLens, el valor de NaviLens va mucho más allá. Las personas con discapacidad visual reciben información auditiva contextualizada al escanear cada código, incluso desde muy lejos y sin necesidad de enfocar o encuadrar. Nuestro trabajo conjunto con NaviLens ha permitido mejorar significativamente la accesibilidad y autonomía de estos usuarios.</p>
     </div>
   );
 }

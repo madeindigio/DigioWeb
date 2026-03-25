@@ -104,7 +104,7 @@ function SeccionMedia() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-[472px]">
         <p className="leading-[40px]">La plataforma de servicios tecnológicos para el sector de la energía</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Spock es la energtech que está transformando el sector energético, ayudando a miles de usuarios a ahorrar en sus facturas de luz y gas mediante compras colectivas.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Spock es la energtech que está transformando el sector energético, ayudando a miles de usuarios a ahorrar en sus facturas de luz y gas mediante compras colectivas.</p>
     </div>
   );
 }
@@ -239,7 +239,7 @@ function Text1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">El reto</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Antes de la llegada de Spock, las comercializadoras y los consumidores enfrentaban desafíos como procesos administrativos complejos, falta de datos precisos, tarifas elevadas y poca transparencia en el consumo energético. Spock asumió el reto de crear una plataforma que integrara y automatizara estos procesos, proporcionando un valor añadido a todos los actores del mercado energético.</p>
       </div>
     </div>
@@ -250,7 +250,7 @@ function Text2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Nuestro trabajo</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">En Digio, nos dedicamos al desarrollo de módulos innovadores que facilitan la inscripción de usuarios en compras de energía colectivas. Esto permite reducir la factura de luz o gas hasta en un 40% en algunos casos. Además, Spock simplifica todo el proceso de contratación tras la subasta, eliminando la necesidad de que los usuarios se preocupende la parte burocrática posterior.</p>
       </div>
     </div>
@@ -310,7 +310,7 @@ function Text3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px not-italic relative text-[#191e25]" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Transparencia y ahorro</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Spock ofrece una solución integral que simplifica la validación del titular del suministro, integra diversas fuentes de datos para proporcionar información precisa, automatiza la lectura y análisis de facturas de energía para calcular el potencial ahorro en el usuario.</p>
       </div>
     </div>
@@ -365,13 +365,13 @@ function Secondary1() {
 function Frame10() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch flex flex-col gap-[8.788px] h-[138.412px] items-center justify-center leading-[0] left-[calc(50%+141.24px)] not-italic text-center text-white top-[calc(50%+0.55px)] w-[128.526px] whitespace-nowrap">
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center relative shrink-0 text-[17.576px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center relative shrink-0 text-[17.576px]">
         <p className="leading-[normal]">Tarifa actual</p>
       </div>
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] justify-center relative shrink-0 text-[52.728px] tracking-[-2.1091px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] font-[700] justify-center relative shrink-0 text-[52.728px] tracking-[-2.1091px]">
         <p className="leading-[normal]">0,16€</p>
       </div>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center relative shrink-0 text-[17.576px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center relative shrink-0 text-[17.576px]">
         <p className="leading-[normal]">kWh</p>
       </div>
     </div>
@@ -394,14 +394,14 @@ function Group6() {
 function Frame12() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch flex flex-col gap-[10.609px] items-center justify-center left-[calc(50%-114.71px)] not-italic text-center text-white top-[calc(50%+0.66px)] whitespace-nowrap">
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[normal] relative shrink-0 text-[21.219px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[normal] relative shrink-0 text-[21.219px]">
         <p className="mb-0">Tarifa compra</p>
         <p>colectiva</p>
       </div>
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] justify-center leading-[0] relative shrink-0 text-[63.657px] tracking-[-2.5463px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] font-[700] justify-center leading-[0] relative shrink-0 text-[63.657px] tracking-[-2.5463px]">
         <p className="leading-[normal]">0,13€</p>
       </div>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] relative shrink-0 text-[21.219px]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] relative shrink-0 text-[21.219px]">
         <p className="leading-[normal]">kWh</p>
       </div>
     </div>
@@ -790,7 +790,7 @@ function TextContent2() {
         <p className="mb-0">Reducción de facturas</p>
         <p>y mejora de la transparencia</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Spock no solo ha superado los desafíos del sector energético, sino que también ha establecido un nuevo estándar en la gestión de energía. Al unirse a Spock, los usuarios se benefician de una plataforma que los ayuda a ahorrar significativamente en sus facturas de luz o gas.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Spock no solo ha superado los desafíos del sector energético, sino que también ha establecido un nuevo estándar en la gestión de energía. Al unirse a Spock, los usuarios se benefician de una plataforma que los ayuda a ahorrar significativamente en sus facturas de luz o gas.</p>
     </div>
   );
 }
@@ -829,7 +829,7 @@ function Text10() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[40px] tracking-[-1.6px] w-[min-content]">
         <p className="leading-[48px]">El poder del grupo: mayor tamaño, mayor ahorro</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Un grupo grande es clave para negociar tarifas más bajas en luz y gas. Participar es muy sencillo y completamente gratis. Al darte de alta en Spock, se encargarán de formar y organizar el grupo para ti. Cuanto más grande sea el grupo, más grande será el posible ahorro.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Un grupo grande es clave para negociar tarifas más bajas en luz y gas. Participar es muy sencillo y completamente gratis. Al darte de alta en Spock, se encargarán de formar y organizar el grupo para ti. Cuanto más grande sea el grupo, más grande será el posible ahorro.</p>
     </div>
   );
 }

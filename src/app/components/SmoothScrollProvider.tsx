@@ -19,6 +19,15 @@ import { useProjectTransition } from "./ProjectTransitionContext";
 
 /* ── Singleton reference so exported helpers can reach it ── */
 let _lenis: Lenis | null = null;
+let _resizeRafId: number | null = null;
+
+function scheduleLenisResize() {
+  if (!_lenis || _resizeRafId !== null) return;
+  _resizeRafId = requestAnimationFrame(() => {
+    _resizeRafId = null;
+    _lenis?.resize();
+  });
+}
 
 /**
  * Custom ease-in-out quart — matches the existing premium feel.
@@ -64,9 +73,7 @@ export function stopSmoothScroll() {
  * (e.g. accordion expand, lazy-loaded sections, pagination).
  */
 export function resizeSmoothScroll() {
-  if (_lenis) {
-    _lenis.resize();
-  }
+  scheduleLenisResize();
 }
 
 /* ─── Provider ─── */
@@ -117,24 +124,16 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
      * we tell Lenis to recalculate its scroll `limit`.
      * Using requestIdleCallback to avoid blocking the main thread.
      */
-    let resizeIdleId: number | null = null;
     const ro = new ResizeObserver(() => {
-      // Cancel any pending idle callback
-      if (resizeIdleId !== null) {
-        cancelIdleCallback(resizeIdleId);
-      }
-      // Schedule resize during idle time to avoid blocking scroll
-      resizeIdleId = requestIdleCallback(() => {
-        lenis.resize();
-        resizeIdleId = null;
-      }, { timeout: 100 });
+      scheduleLenisResize();
     });
-    ro.observe(document.body);
+    ro.observe(document.documentElement);
 
     return () => {
       ro.disconnect();
-      if (resizeIdleId !== null) {
-        cancelIdleCallback(resizeIdleId);
+      if (_resizeRafId !== null) {
+        cancelAnimationFrame(_resizeRafId);
+        _resizeRafId = null;
       }
       cancelAnimationFrame(rafId);
       lenis.destroy();
@@ -163,10 +162,10 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       lenis.start();
       overlayWasActive.current = false;
       requestAnimationFrame(() => {
-        lenis.resize();
-        setTimeout(() => lenis.resize(), 300);
-        setTimeout(() => lenis.resize(), 800);
-        setTimeout(() => lenis.resize(), 1500);
+        resizeSmoothScroll();
+        setTimeout(() => resizeSmoothScroll(), 300);
+        setTimeout(() => resizeSmoothScroll(), 800);
+        setTimeout(() => resizeSmoothScroll(), 1500);
       });
     }
   }, [isOverlayActive, phase]);
@@ -191,12 +190,12 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
        */
       const timers: ReturnType<typeof setTimeout>[] = [];
       const scheduleResize = (delay: number) => {
-        timers.push(setTimeout(() => lenis.resize(), delay));
+        timers.push(setTimeout(() => resizeSmoothScroll(), delay));
       };
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          lenis.resize();
+          resizeSmoothScroll();
           scheduleResize(150);
           scheduleResize(400);
           scheduleResize(800);

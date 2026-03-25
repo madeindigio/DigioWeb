@@ -108,7 +108,7 @@ function SeccionMedia() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[32px] tracking-[-1.28px] w-[472px]">
         <p className="leading-[40px]">La última tecnología para alojamientos turísticos</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Roomonitor ofrece una solución avanzada para la monitorización en tiempo real de niveles de ruido, notificándote de inmediato cuando los sensores identifican secuencias de sonido que podrían afectar negativamente a la convivencia.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[16px] w-[min-content]">Roomonitor ofrece una solución avanzada para la monitorización en tiempo real de niveles de ruido, notificándote de inmediato cuando los sensores identifican secuencias de sonido que podrían afectar negativamente a la convivencia.</p>
     </div>
   );
 }
@@ -233,7 +233,7 @@ function Text1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">El reto</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">Roomonitor necesitaba actualizar su hardware de medición para adaptarse a los nuevos requisitos de los clientes y los nuevos desafíos que se presentaban en el ámbito del alquiler vacacional. Esta actualización coincide en el tiempo con una situación en la que el mercado de la electrónica de consumo se encontraba sufriendo las consecuencias logísticas posteriores a la pandemia global de Coronavirus.</p>
       </div>
     </div>
@@ -244,7 +244,7 @@ function Text2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative" data-name="text">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] whitespace-nowrap">Nuestro trabajo</p>
-      <div className="flex flex-col font-['Manrope:SemiBold',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
+      <div className="flex flex-col font-['Manrope',sans-serif] justify-center leading-[0] min-w-full relative shrink-0 text-[16px] w-[min-content]">
         <p className="leading-[normal]">En Digio analizamos el mercado y las necesidades de Roomonitor para desarrollar el nuevo hardware de medición. Trabajando conjuntamente con equipo de diseño industrial y el equipo de producción, Digio desarrolló la electrónica del nuevo dispositivo hardware con el que Roomonitor puede seguir creciendo en su modelo de negocio.</p>
       </div>
     </div>
@@ -371,7 +371,7 @@ function TextContent1() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[380px]">
         <p className="leading-[48px]">Una nueva dimensión en la gestión de la propiedad</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">{`La APP ofrece acceso instantáneo a monitoreos en tiempo real de niveles de ruido, ocupación y presencia de humo u otras sustancias nocivas. Una experiencia incomparable que, eleva el estándar de comodidad y seguridad en su propiedad. `}</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">{`La APP ofrece acceso instantáneo a monitoreos en tiempo real de niveles de ruido, ocupación y presencia de humo u otras sustancias nocivas. Una experiencia incomparable que, eleva el estándar de comodidad y seguridad en su propiedad. `}</p>
     </div>
   );
 }
@@ -651,7 +651,7 @@ function TextContent2() {
       <div className="flex flex-col font-['GT_Ultra_Median:Regular',sans-serif] justify-center leading-[0] relative shrink-0 text-[40px] tracking-[-1.6px] w-[435px]">
         <p className="leading-[48px]">Monitorización continua y privacidad garantizada</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Con Roomonitor los propietarios consiguen mejorar la eficiencia y el ahorro por medio de sensores que controlan el ruido, el aire acondicionado o la apertura de puertas mediante una sencilla APP, consiguiendo también una mejor experiencia para el huésped, sin esperas ni preocupaciones.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-[368px]">Con Roomonitor los propietarios consiguen mejorar la eficiencia y el ahorro por medio de sensores que controlan el ruido, el aire acondicionado o la apertura de puertas mediante una sencilla APP, consiguiendo también una mejor experiencia para el huésped, sin esperas ni preocupaciones.</p>
     </div>
   );
 }

@@ -98,7 +98,7 @@ function TextContent() {
         <p className="mb-0">{`Transformation `}</p>
         <p>is our code</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[1.35] not-italic relative shrink-0 text-[#e2dfda] text-[24px] tracking-[0.48px] w-[242px]">Vivimos en ese lugar intermedio entre la visión y la creación.</p>
+      <p className="font-['Manrope',sans-serif] leading-[1.35] not-italic relative shrink-0 text-[#e2dfda] text-[24px] tracking-[0.48px] w-[242px]">Vivimos en ese lugar intermedio entre la visión y la creación.</p>
       <div className="absolute h-[6px] left-[664px] right-[600px] top-[234px]" data-name="Dash">
         <div className="absolute bg-[#d9d9d9] inset-0" />
       </div>
@@ -137,7 +137,7 @@ function LeftContent() {
     <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-[478px]" data-name="left content">
       <p className="font-['GT_Ultra_Median:Bold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[20px] tracking-[-0.8px] whitespace-nowrap">QUIÉNES SOMOS</p>
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[48px] tracking-[-1.92px] w-[min-content]">Somos un motor de cambio que ofrece soluciones digitales sólidas para el corto y largo plazo</p>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] w-[min-content]">Con el mejor equipo, tecnología y un proceso riguroso, generamos impacto en las empresas, la industria y los usuarios.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] w-[min-content]">Con el mejor equipo, tecnología y un proceso riguroso, generamos impacto en las empresas, la industria y los usuarios.</p>
       <div className="bg-[rgba(255,255,255,0)] content-stretch flex items-center justify-center px-[48px] py-[16px] relative shrink-0" data-name="Buttons square">
         <div aria-hidden="true" className="absolute border border-[#191e25] border-solid inset-0 pointer-events-none" />
         <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[27px] not-italic relative shrink-0 text-[#191e25] text-[20px] text-center tracking-[-0.8px] whitespace-nowrap">Saber más</p>
@@ -185,7 +185,7 @@ function LeftContent1() {
     <div className="content-stretch flex flex-col gap-[32px] items-start relative shrink-0 w-[478px]" data-name="left content">
       <p className="font-['GT_Ultra_Median:Bold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[20px] tracking-[-0.8px] whitespace-nowrap">El reto, la estrategia y la solución</p>
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[48px] tracking-[-1.92px] w-[min-content]">Digio: Nuestro rebranding</p>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] w-[min-content]">Presentamos una nueva identidad de marca que fusiona nuestra amplia experiencia técnica con un enfoque integral de soluciones digitales.</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#191e25] text-[16px] w-[min-content]">Presentamos una nueva identidad de marca que fusiona nuestra amplia experiencia técnica con un enfoque integral de soluciones digitales.</p>
       <div className="bg-[rgba(255,255,255,0)] content-stretch flex items-center justify-center px-[48px] py-[16px] relative shrink-0" data-name="Buttons square">
         <div aria-hidden="true" className="absolute border border-[#191e25] border-solid inset-0 pointer-events-none" />
         <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[27px] not-italic relative shrink-0 text-[#191e25] text-[20px] text-center tracking-[-0.8px] whitespace-nowrap">Ver el caso</p>
@@ -703,7 +703,7 @@ function TitleDescription() {
   return (
     <div className="content-stretch flex flex-col gap-[24px] items-start not-italic relative shrink-0 text-[#191e25] w-full" data-name="title & description">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">Lanzamos plataformas innovadoras para el sector energético</p>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">En la actualidad, el desarrollo de aplicaciones móviles se ha convertido en una necesidad para cualquier empresa que busque mejorar su presencia en línea y ofrecer una experiencia de usuario excepcional. Cuando abordamos el...</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">En la actualidad, el desarrollo de aplicaciones móviles se ha convertido en una necesidad para cualquier empresa que busque mejorar su presencia en línea y ofrecer una experiencia de usuario excepcional. Cuando abordamos el...</p>
     </div>
   );
 }
@@ -724,7 +724,7 @@ function TitleDescription1() {
   return (
     <div className="content-stretch flex flex-col gap-[24px] items-start not-italic relative shrink-0 text-[#191e25] w-full" data-name="title & description">
       <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">Misión comercial en Suecia</p>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Aunque la innovación digital forma parte de la solución en el contexto actual de incremento de precios energéticos, inflación y escasez de materias primas. En DIGIO estamos trabajando para impulsar una revolución energética...</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Aunque la innovación digital forma parte de la solución en el contexto actual de incremento de precios energéticos, inflación y escasez de materias primas. En DIGIO estamos trabajando para impulsar una revolución energética...</p>
     </div>
   );
 }
@@ -748,7 +748,7 @@ function TitleDescription2() {
         <p className="mb-0">Desarrollamos</p>
         <p>el primer MVP en IoP</p>
       </div>
-      <p className="font-['Manrope:SemiBold',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Recientemente hemos finalizado la primera fase de un proyecto IoP que mapea el espacio físico real, para conectar servicios digitales de forma universal en cualquier lugar. Mediante la colaboración de Smarttech Cluster, Siemens...</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">Recientemente hemos finalizado la primera fase de un proyecto IoP que mapea el espacio físico real, para conectar servicios digitales de forma universal en cualquier lugar. Mediante la colaboración de Smarttech Cluster, Siemens...</p>
     </div>
   );
 }

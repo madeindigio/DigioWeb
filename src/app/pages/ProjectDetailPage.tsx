@@ -15,10 +15,16 @@ import { ProjectDetailIVoox } from "./ProjectDetailIVoox";
 import { ProjectDetailIDermApp } from "./ProjectDetailIDermApp";
 import { ProjectDetailNavilens } from "./ProjectDetailNavilens";
 import { ProjectDetailVivla } from "./ProjectDetailVivla";
+import { ProjectDetailEkhilur } from "./ProjectDetailEkhilur";
 
 export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useTranslation();
+
+  /* NM has its own dedicated page */
+  if (slug === "ekhilur") {
+    return <ProjectDetailEkhilur />;
+  }
 
   /* NM has its own dedicated page */
   if (slug === "nm") {
