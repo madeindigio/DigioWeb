@@ -22,61 +22,27 @@ const sectorOrder: VerticalKey[] = [
   "pharma",
 ];
 
-const buildPath = (points: Array<[number, number]>) => {
-  const padded = [...points];
-  while (padded.length < 24) padded.push(padded[padded.length - 1]);
-
-  const targetMin = 12;
-  const targetMax = 88;
-  const source = padded.slice(0, 24);
-  const xs = source.map(([x]) => x);
-  const ys = source.map(([, y]) => y);
-  const minX = Math.min(...xs);
-  const maxX = Math.max(...xs);
-  const minY = Math.min(...ys);
-  const maxY = Math.max(...ys);
-  const width = Math.max(maxX - minX, 1);
-  const height = Math.max(maxY - minY, 1);
-
-  const normalized = source.map(([x, y]) => {
-    const nx = targetMin + ((x - minX) / width) * (targetMax - targetMin);
-    const ny = targetMin + ((y - minY) / height) * (targetMax - targetMin);
-    return [Number(nx.toFixed(2)), Number(ny.toFixed(2))] as [number, number];
-  });
-
-  return `M ${normalized.map(([x, y]) => `${x},${y}`).join(" L ")} Z`;
-};
-
-const morphShapes: Record<VerticalKey, string> = {
-  fintech: buildPath(Array.from({ length: 24 }, (_, i) => [50 + 38 * Math.cos((i * Math.PI) / 12), 50 + 38 * Math.sin((i * Math.PI) / 12)])),
-  energy: buildPath([[52, 8], [61, 33], [86, 33], [39, 92], [49, 59], [21, 59]]),
-  logistics: buildPath([[18, 28], [71, 28], [71, 41], [84, 41], [91, 53], [91, 68], [82, 68], [78, 74], [66, 74], [62, 68], [18, 68]]),
-  industry: buildPath([[50, 12], [58, 18], [68, 16], [71, 26], [80, 31], [76, 42], [82, 50], [76, 58], [80, 69], [71, 74], [68, 84], [58, 82], [50, 88], [42, 82], [32, 84], [29, 74], [20, 69], [24, 58], [18, 50], [24, 42], [20, 31], [29, 26], [32, 16], [42, 18]]),
-  telco: buildPath([[15, 86], [24, 74], [35, 64], [46, 54], [50, 14], [54, 54], [65, 64], [76, 74], [85, 86], [75, 86], [66, 76], [56, 66], [44, 66], [34, 76], [25, 86]]),
-  education: buildPath([[12, 36], [34, 27], [50, 22], [66, 27], [88, 36], [88, 64], [66, 73], [50, 78], [34, 73], [12, 64]]),
-  portals: buildPath([[14, 28], [50, 14], [86, 28], [86, 86], [14, 86], [14, 63], [34, 63], [34, 86], [66, 86], [66, 63], [86, 63]]),
-  pharma: buildPath([[40, 18], [60, 18], [60, 40], [82, 40], [82, 60], [60, 60], [60, 82], [40, 82], [40, 60], [18, 60], [18, 40], [40, 40]]),
-};
-
-const backgroundByVertical: Record<VerticalKey, string> = {
-  fintech: "/images/verticales/bg%20verticals/fintech.jpeg",
-  energy: "/images/verticales/bg%20verticals/energy.jpeg",
-  logistics: "/images/verticales/bg%20verticals/transport.jpeg",
-  industry: "/images/verticales/bg%20verticals/industry40.jpeg",
-  telco: "/images/verticales/bg%20verticals/streaming.jpeg",
-  education: "/images/verticales/bg%20verticals/education.jpeg",
-  portals: "/images/verticales/bg%20verticals/ecommerce.jpeg",
-  pharma: "/images/verticales/bg%20verticals/pharma.jpeg",
+const illustrationByVertical: Record<VerticalKey, string> = {
+  fintech: "/images/verticales/Fintech.svg",
+  energy: "/images/verticales/energia.svg",
+  logistics: "/images/verticales/logistica.svg",
+  industry: "/images/verticales/Industria.svg",
+  telco: "/images/verticales/telco-media.svg",
+  education: "/images/verticales/educacion.svg",
+  portals: "/images/verticales/grandes-portales.svg",
+  pharma: "/images/verticales/Farma.svg",
 };
 
 export function AboutSectors() {
   const { t } = useTranslation();
-  const [activeVertical, setActiveVertical] = useState<VerticalKey | null>(null);
-  const [activePath, setActivePath] = useState<string | null>(null);
+  const [activeVertical, setActiveVertical] = useState<VerticalKey>(sectorOrder[0]);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
+  const [visibleMobileCards, setVisibleMobileCards] = useState<Record<VerticalKey, boolean>>(() =>
+    Object.fromEntries(sectorOrder.map((key) => [key, false])) as Record<VerticalKey, boolean>,
+  );
   const stepRefs = useRef<Array<HTMLElement | null>>([]);
   const sectionRef = useRef<HTMLElement | null>(null);
-  const imageLayerRef = useRef<HTMLDivElement | null>(null);
+  const illustrationLayerRef = useRef<HTMLDivElement | null>(null);
 
   const sectors = useMemo(
     () =>
@@ -84,8 +50,7 @@ export function AboutSectors() {
         key,
         title: t(`pages.sobreDigio.sectors.${key}.title`),
         desc: t(`pages.sobreDigio.sectors.${key}.desc`),
-        image: backgroundByVertical[key],
-        path: morphShapes[key],
+        illustration: illustrationByVertical[key],
       })),
     [t],
   );
@@ -99,55 +64,59 @@ export function AboutSectors() {
   }, []);
 
   useEffect(() => {
-    if (!isLargeScreen) return;
+    const cards = stepRefs.current.filter(Boolean) as HTMLElement[];
+    if (cards.length === 0) return;
 
     const syncActiveFromViewport = () => {
       const centerY = window.innerHeight / 2;
-      let closest: { key: VerticalKey; path: string; distance: number } | null = null;
+      let closest: { key: VerticalKey; distance: number } | null = null;
 
-      stepRefs.current.forEach((step) => {
-        if (!step) return;
+      cards.forEach((step) => {
         const rect = step.getBoundingClientRect();
         const stepCenter = rect.top + rect.height / 2;
         const distance = Math.abs(stepCenter - centerY);
         const key = (step.dataset.vertical || "fintech") as VerticalKey;
-        const path = step.dataset.path || morphShapes.fintech;
 
         if (!closest || distance < closest.distance) {
-          closest = { key, path, distance };
+          closest = { key, distance };
         }
       });
 
       if (closest) {
         setActiveVertical(closest.key);
-        setActivePath(closest.path);
       }
     };
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
           const step = entry.target as HTMLElement;
           const key = (step.dataset.vertical || "fintech") as VerticalKey;
-          const path = step.dataset.path || morphShapes.fintech;
-          setActiveVertical(key);
-          setActivePath(path);
+
+          if (entry.isIntersecting) {
+            setVisibleMobileCards((prev) =>
+              prev[key] ? prev : { ...prev, [key]: true },
+            );
+            setActiveVertical(key);
+          }
         });
       },
       {
-        threshold: 0.5,
+        threshold: isLargeScreen ? 0.5 : 0.35,
+        rootMargin: isLargeScreen ? "0px" : "0px 0px -12% 0px",
       },
     );
 
-    stepRefs.current.forEach((step) => {
-      if (step) observer.observe(step);
+    cards.forEach((step) => {
+      observer.observe(step);
     });
 
     syncActiveFromViewport();
+    window.addEventListener("scroll", syncActiveFromViewport, { passive: true });
     window.addEventListener("resize", syncActiveFromViewport);
 
     return () => {
+      window.removeEventListener("scroll", syncActiveFromViewport);
       window.removeEventListener("resize", syncActiveFromViewport);
       observer.disconnect();
     };
@@ -155,9 +124,9 @@ export function AboutSectors() {
 
   useEffect(() => {
     const section = sectionRef.current;
-    const imageLayer = imageLayerRef.current;
+    const illustrationLayer = illustrationLayerRef.current;
 
-    if (!isLargeScreen || !section || !imageLayer) return;
+    if (!isLargeScreen || !section || !illustrationLayer) return;
 
     const maxShift = 14;
     const current = { x: 0, y: 0 };
@@ -167,8 +136,8 @@ export function AboutSectors() {
     const applyShift = () => {
       current.x += (target.x - current.x) * 0.12;
       current.y += (target.y - current.y) * 0.12;
-      imageLayer.style.setProperty("--bg-shift-x", `${current.x.toFixed(2)}px`);
-      imageLayer.style.setProperty("--bg-shift-y", `${current.y.toFixed(2)}px`);
+      illustrationLayer.style.setProperty("--illustration-shift-x", `${current.x.toFixed(2)}px`);
+      illustrationLayer.style.setProperty("--illustration-shift-y", `${current.y.toFixed(2)}px`);
       frameId = window.requestAnimationFrame(applyShift);
     };
 
@@ -204,17 +173,69 @@ export function AboutSectors() {
   if (!isLargeScreen) {
     return (
       <section className="bg-[#191e25] w-full px-[24px] py-[56px]">
-        <div className="max-w-[1000px] mx-auto flex flex-col gap-[28px]">
-          {sectors.map((sector) => (
-            <article key={sector.key} className="w-full">
-              <p className="font-['GT_Ultra_Median',sans-serif] font-[700] text-white text-[32px] tracking-[-1px] leading-[1.08]">
-                {sector.title}
-              </p>
-              <p className="mt-[14px] font-['Manrope',sans-serif] font-[500] text-[#d0d6de] text-[16px] leading-[1.5]">
-                {sector.desc}
-              </p>
-            </article>
-          ))}
+        <div className="mx-auto flex flex-col gap-[20px]">
+          {sectors.map((sector, index) => {
+            const isActive = activeVertical === sector.key;
+            const isVisible = visibleMobileCards[sector.key];
+
+            return (
+              <article
+                key={sector.key}
+                ref={(element) => {
+                  stepRefs.current[index] = element;
+                }}
+                className="rounded-[28px] border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] px-[20px] py-[24px]"
+                data-vertical={sector.key}
+                style={{
+                  opacity: isVisible ? 1 : 0.4,
+                  transform: isVisible ? "translateY(0px)" : "translateY(32px)",
+                  transition: "opacity 700ms cubic-bezier(0.22,1,0.36,1), transform 700ms cubic-bezier(0.22,1,0.36,1), border-color 350ms ease, background-color 350ms ease",
+                  borderColor: isActive ? "rgba(88,59,255,0.45)" : "rgba(255,255,255,0.08)",
+                  backgroundColor: isActive ? "rgba(88,59,255,0.08)" : "rgba(255,255,255,0.02)",
+                }}
+              >
+                <div className="flex flex-col gap-[18px]">
+                  <p
+                    className="font-['GT_Ultra_Median',sans-serif] text-white text-[30px] tracking-[-1px] leading-[1.02]"
+                    style={{
+                      opacity: isActive ? 1 : 0.56,
+                      transform: isActive ? "translateY(0px) scale(1)" : "translateY(10px) scale(0.98)",
+                      transformOrigin: "left top",
+                      transition: "opacity 500ms ease, transform 500ms cubic-bezier(0.22,1,0.36,1)",
+                    }}
+                  >
+                    {sector.title}
+                  </p>
+
+                  <div className="relative flex h-[180px] items-center justify-center overflow-hidden rounded-[22px]">
+                    <img
+                      src={sector.illustration}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-[96px] w-[96px] object-contain"
+                      style={{
+                        opacity: isVisible ? 1 : 0,
+                        transform: isActive ? "translateY(0px) scale(1)" : "translateY(12px) scale(0.94)",
+                        filter: isActive ? "blur(0px)" : "blur(6px)",
+                        transition: "opacity 650ms cubic-bezier(0.22,1,0.36,1), transform 650ms cubic-bezier(0.22,1,0.36,1), filter 500ms ease",
+                      }}
+                    />
+                  </div>
+
+                  <p
+                    className="font-['Manrope',sans-serif] font-[500] text-[#d0d6de] text-[16px] leading-[1.55]"
+                    style={{
+                      opacity: isActive ? 1 : 0.66,
+                      transform: isActive ? "translateY(0px)" : "translateY(12px)",
+                      transition: "opacity 500ms ease, transform 500ms cubic-bezier(0.22,1,0.36,1)",
+                    }}
+                  >
+                    {sector.desc}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
     );
@@ -225,53 +246,28 @@ export function AboutSectors() {
       <div className="mx-auto max-w-[1480px] px-[56px] relative">
         <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
           <div className="sticky top-0 h-screen w-full flex items-center justify-center">
-            <div className="absolute top-1/2 left-0 right-0 h-px bg-[rgba(255,255,255,0.15)] -translate-y-1/2" />
-
-            <div className="relative w-[clamp(420px,42vw,680px)] aspect-square flex items-center justify-center">
-              <div ref={imageLayerRef} className="absolute inset-[2%] overflow-hidden">
+            <div className="relative w-[clamp(320px,32vw,500px)] aspect-square flex items-center justify-center">
+              <div
+                ref={illustrationLayerRef}
+                className="absolute inset-[12%] overflow-hidden flex items-center justify-center"
+              >
                 {sectors.map((sector) => (
                   <img
                     key={sector.key}
-                    src={sector.image}
+                    src={sector.illustration}
                     alt=""
                     aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-cover transition-[opacity,transform,filter] duration-[1300ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    className="absolute inset-0 w-full h-full object-contain transition-[opacity,transform,filter] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
                     style={{
-                      opacity: activeVertical === sector.key ? 0.24 : 0,
-                      transform: `translate3d(var(--bg-shift-x, 0px), var(--bg-shift-y, 0px), 0) scale(${activeVertical === sector.key ? 1.085 : 1.025})`,
+                      opacity: activeVertical === sector.key ? 1 : 0,
+                      transform: `translate3d(var(--illustration-shift-x, 0px), calc(var(--illustration-shift-y, 0px) * 0.7 + ${activeVertical === sector.key ? "0px" : "24px"}), 0) scale(${activeVertical === sector.key ? 1 : 0.92})`,
                       transformOrigin: "center",
                       willChange: "transform, opacity, filter",
-                      filter: activeVertical === sector.key ? "grayscale(50%) brightness(0.6)" : "grayscale(56%) brightness(0.54)",
+                      filter: activeVertical === sector.key ? "blur(0px)" : "blur(10px)",
                     }}
                   />
                 ))}
               </div>
-
-              <div
-                className="absolute w-[350px] h-[350px] rounded-full"
-                style={{
-                  background: "radial-gradient(circle, rgba(15,22,33,0.78) 0%, rgba(15,22,33,0.48) 48%, rgba(15,22,33,0) 78%)",
-                }}
-              />
-
-              {activePath && (
-                <svg 
-                  viewBox="0 0 100 100" 
-                  preserveAspectRatio="xMidYMid meet" 
-                  className="relative z-20 w-[330px] h-[330px]"
-                  style={{ aspectRatio: "1", display: "flex" }}
-                >
-                  <path
-                    d={activePath}
-                    fill="none"
-                    stroke="#583BFF"
-                    strokeWidth="10"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    style={{ transition: "d 1.2s cubic-bezier(0.22, 1, 0.36, 1)", vectorEffect: "non-scaling-stroke" }}
-                  />
-                </svg>
-              )}
             </div>
           </div>
         </div>
@@ -288,7 +284,6 @@ export function AboutSectors() {
                 }}
                 className="scroll-step min-h-[82vh] flex items-center"
                 data-vertical={sector.key}
-                data-path={sector.path}
               >
                 <div className="w-[30%] pr-16 text-right">
                   <p
