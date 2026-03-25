@@ -609,7 +609,7 @@ const es = {
       title: "Sobre Digio",
       subtitle: "Somos un motor de cambio que ofrece soluciones digitales sólidas para el corto y largo plazo.",
       hero: {
-        heading: "Somos un factor de cambio e impulso al servicio de las soluciones digitales más sólidas.",
+        heading: "Transformamos empresas y organizaciones a través de experiencias digitales únicas",
         body: "Operamos entre la duda y la certeza, navegamos entre la imaginación y la ejecución: en ese espacio donde el ingenio actúa, el crecimiento prospera y la solución florece.",
       },
       stats: {
