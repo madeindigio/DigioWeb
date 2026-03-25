@@ -121,7 +121,7 @@ export function ProjectTransitionOverlay() {
             {/* Solid fallback bg */}
             <div className="absolute inset-0 bg-[#d8d8d8]" />
 
-            {/* Hero image — clean, no text overlay (unified NM style) */}
+            {/* Hero image — clean, no text overlay */}
             <motion.img
               alt={name}
               className="absolute inset-0 w-full h-full object-cover"

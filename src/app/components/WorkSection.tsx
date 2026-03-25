@@ -1,4 +1,3 @@
-const imgNm = "/images/nm.png";
 import imgRectangle3 from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
 import imgRectangle4 from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
 import imgBgImg1 from "figma:asset/4372bc2c881ed32f89039f0e0dfa1bfa882f228a.png";
@@ -428,18 +427,6 @@ export function WorkSection() {
               projectName={t("work.projects.ekhilur.name")}
               description={t("work.projects.ekhilur.description")}
               tagBg="bg-[rgba(25,30,37,0.18)]"
-              eager
-            />
-          </ScrollReveal>
-
-          {/* Full width - NM */}
-          <ScrollReveal>
-            <FullWidthCard
-              slug="nm"
-              image={imgNm}
-              tag={t("work.projects.nm.tag")}
-              projectName={t("work.projects.nm.name")}
-              description={t("work.projects.nm.description")}
               eager
             />
           </ScrollReveal>

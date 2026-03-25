@@ -77,11 +77,6 @@ const en = {
         name: "ekhilur",
         description: "Mock for the new ekhilur project. Initial structure ready to be filled later with real content, visuals and metrics.",
       },
-      nm: {
-        tag: "VISION, DESIGN & DEVELOPMENT",
-        name: "NM",
-        description: "Boost your business with our integrated and personalised banking solution. Neom lets you add a banking layer to your business or community",
-      },
       roomonitor: {
         tag: "DESIGN & TECHNOLOGY DEVELOPMENT",
         name: "Roomonitor",

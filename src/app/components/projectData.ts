@@ -1,4 +1,3 @@
-const imgNm = "/images/nm.png";
 export const imgEkhilurPlaceholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='%23e7e7e7'/%3E%3Crect x='80' y='80' width='1440' height='740' rx='24' fill='%23efefef' stroke='%23d8d8d8' stroke-width='8'/%3E%3C/svg%3E";
 import imgRectangle3 from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
 import imgRectangle4 from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
@@ -19,7 +18,6 @@ export interface ProjectData {
 
 export const PROJECTS: ProjectData[] = [
   { slug: "ekhilur", i18nKey: "ekhilur", image: imgEkhilurPlaceholder, layout: "full", tagBg: "bg-[rgba(25,30,37,0.18)]" },
-  { slug: "nm", i18nKey: "nm", image: imgNm, layout: "full" },
   { slug: "roomonitor", i18nKey: "roomonitor", image: imgRectangle3, layout: "half" },
   { slug: "finsa", i18nKey: "finsa", image: imgRectangle4, layout: "half" },
   { slug: "symposium", i18nKey: "symposium", image: imgBgImg1, layout: "full", tagBg: "bg-[rgba(163,163,163,0.24)]" },

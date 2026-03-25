@@ -18,7 +18,7 @@ import img05MurosDatos from "figma:asset/ccbe102234a6e9c43349002ce6d75ca0193b44c
 import imgBgReports from "figma:asset/df226d0605f3725c1e406fd86f32f8db22ad9b26.png";
 import imgMockup2x from "figma:asset/ab8d614a77eb1f04083cccd6e78d093fbefe1e53.png";
 import imgRelatedRoomonitor from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
-import imgRelatedNM from "figma:asset/2c60dc5e690df788bd1fb4c5c103bc60310340f8.png";
+import { imgEkhilurPlaceholder } from "../components/projectData";
 
 /* ============================================================
    1. HERO — clean image, fixed responsive height
@@ -362,11 +362,11 @@ function RelatedProjects() {
         description={t("work.projects.roomonitor.description")}
       />
       <RelatedProjectCard
-        slug="nm"
-        image={imgRelatedNM}
-        tag={t("work.projects.nm.tag")}
-        name={t("work.projects.nm.name")}
-        description={t("work.projects.nm.description")}
+        slug="ekhilur"
+        image={imgEkhilurPlaceholder}
+        tag={t("work.projects.ekhilur.tag")}
+        name={t("work.projects.ekhilur.name")}
+        description={t("work.projects.ekhilur.description")}
       />
     </RelatedProjectsSection>
   );

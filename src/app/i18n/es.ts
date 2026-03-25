@@ -77,11 +77,6 @@ const es = {
         name: "ekhilur",
         description: "Reimaginando el comercio local con una plataforma pensada para las personas",
       },
-      nm: {
-        tag: "VISIÓN, DISEÑO & DESARROLLO",
-        name: "NM",
-        description: "Potencia tu negocio con nuestra solución bancaria integrada y personalizada. Neom permite agregar una capa bancaria a tu negocio o colectivo",
-      },
       roomonitor: {
         tag: "DISEÑO & DESARROLLO TECNOLÓGICO",
         name: "Roomonitor",

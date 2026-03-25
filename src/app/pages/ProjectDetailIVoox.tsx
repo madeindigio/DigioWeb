@@ -31,8 +31,8 @@ import imgWatchGroup from "figma:asset/84b40fa14715ef193a79093404279cc54d8d5f40.
 import imgWatchRight from "figma:asset/f1ffa57ef5716a937a052b6e2809269a9d411878.png";
 import imgCarBg from "figma:asset/85f15f66f0304bc17952ce96660e8838c0c6a414.png";
 import imgCarOverlay from "figma:asset/27a79dd74148a5c48814b0452de45a7c6a46ed7d.png";
-import imgRelatedNM from "figma:asset/2c60dc5e690df788bd1fb4c5c103bc60310340f8.png";
 import imgRelatedRoomonitor from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
+import { imgEkhilurPlaceholder } from "../components/projectData";
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -424,11 +424,11 @@ function RelatedProjects() {
           </p>
           <div className="flex gap-[48px] max-md:flex-col max-md:gap-[32px]">
             <RelatedProjectCard
-              slug="nm"
-              image={imgRelatedNM}
-              tag={t("work.projects.nm.tag")}
-              name={t("work.projects.nm.name")}
-              description={t("work.projects.nm.description")}
+              slug="ekhilur"
+              image={imgEkhilurPlaceholder}
+              tag={t("work.projects.ekhilur.tag")}
+              name={t("work.projects.ekhilur.name")}
+              description={t("work.projects.ekhilur.description")}
             />
             <RelatedProjectCard
               slug="roomonitor"

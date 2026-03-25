@@ -128,7 +128,7 @@ Pixel-perfect replica of the Digio corporate website, built from Figma designs a
 │           ├── CookiesPage.tsx               # Cookie policy
 │           ├── NotFoundPage.tsx              # 404
 │           ├── ProjectDetailPage.tsx         # Router: dispatches to dedicated project pages by slug
-│           ├── ProjectDetailNM.tsx           # New Meridia case study
+│           ├── ProjectDetailEkhilur.tsx      # Ekhilur case study
 │           ├── ProjectDetailRoomonitor.tsx   # Roomonitor case study
 │           ├── ProjectDetailFinsa.tsx        # Finsa case study
 │           ├── ProjectDetailSymposium.tsx    # Symposium case study
@@ -162,7 +162,7 @@ All routes are nested under a shared `Layout` component that provides the header
 
 ### Project Slugs
 
-`nm` | `roomonitor` | `finsa` | `symposium` | `spock` | `idermapp` | `ivoox` | `navilens` | `vivla`
+`ekhilur` | `roomonitor` | `finsa` | `symposium` | `spock` | `idermapp` | `ivoox` | `navilens` | `vivla`
 
 Each slug resolves to a dedicated page component inside `ProjectDetailPage.tsx`.
 
@@ -290,7 +290,7 @@ Rendered sequentially in `HomePage.tsx`:
 
 ### Project Detail Pages
 
-Each of the 9 projects has a dedicated page component (`ProjectDetailNM.tsx`, `ProjectDetailFinsa.tsx`, etc.) with custom layouts, section compositions, and unique visual treatments. `ProjectDetailPage.tsx` acts as a router that dispatches to the correct component based on the `:slug` param.
+Each of the 9 projects has a dedicated page component (`ProjectDetailEkhilur.tsx`, `ProjectDetailFinsa.tsx`, etc.) with custom layouts, section compositions, and unique visual treatments. `ProjectDetailPage.tsx` acts as a router that dispatches to the correct component based on the `:slug` param.
 
 ### Shared Project Components
 

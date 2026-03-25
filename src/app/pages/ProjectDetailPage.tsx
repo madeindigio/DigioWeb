@@ -2,11 +2,11 @@ import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import { getProjectBySlug } from "../components/projectData";
 import { ContactSection } from "../components/ContactSection";
+import { SEOHead } from "../components/SEOHead";
 import {
   RevealAfterTransition,
   ScrollRevealSection,
 } from "../components/project-detail-shared";
-import { ProjectDetailNM } from "./ProjectDetailNM";
 import { ProjectDetailRoomonitor } from "./ProjectDetailRoomonitor";
 import { ProjectDetailFinsa } from "./ProjectDetailFinsa";
 import { ProjectDetailSymposium } from "./ProjectDetailSymposium";
@@ -21,14 +21,22 @@ export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useTranslation();
 
-  /* NM has its own dedicated page */
+  /* Ekhilur has its own dedicated page */
   if (slug === "ekhilur") {
     return <ProjectDetailEkhilur />;
   }
 
-  /* NM has its own dedicated page */
   if (slug === "nm") {
-    return <ProjectDetailNM />;
+    return (
+      <>
+        <SEOHead title="Proyecto no disponible" description="Este proyecto está deprecado." noSuffix noIndex />
+        <div className="w-full min-h-screen flex items-center justify-center">
+          <p className="text-[24px] font-['GT_Ultra_Median',sans-serif] text-[#191e25]">
+            Proyecto no encontrado
+          </p>
+        </div>
+      </>
+    );
   }
 
   /* Roomonitor has its own dedicated page */
@@ -89,7 +97,7 @@ export function ProjectDetailPage() {
 
   return (
     <>
-      {/* ── Hero — unified NM style: clean image, fixed height ── */}
+      {/* ── Hero — clean image, fixed height ── */}
       <section className="relative w-full h-[70vh] max-md:h-[360px]">
         <div className="absolute inset-0 bg-[#d8d8d8]" />
         {project.image && (
@@ -101,7 +109,7 @@ export function ProjectDetailPage() {
         )}
       </section>
 
-      {/* ── Intro — 3 column layout matching NM/Roomonitor pattern ── */}
+      {/* ── Intro — 3 column layout ── */}
       <RevealAfterTransition delay={0.05}>
         <section className="bg-white w-full">
           <div className="px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">

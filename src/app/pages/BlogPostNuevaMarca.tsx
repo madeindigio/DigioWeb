@@ -8,18 +8,12 @@ import { resizeSmoothScroll } from "../components/SmoothScrollProvider";
 
 /* ─── Local assets (exported from Figma) ─── */
 import imgPortada from "/images/blog/renovacion-marca-digio/00-ipad-portada-digio.png";
-import imgContainer from "/images/blog/renovacion-marca-digio/01-logotipo-digio.png";
-import imgTransformation from "/images/blog/renovacion-marca-digio/02-transformation-is-our-code.png";
 import imgMobileHome from "/images/blog/renovacion-marca-digio/03-mobile-home.png";
-import imgScrollInsta from "/images/blog/renovacion-marca-digio/04-scroll-digio-insta.png";
 import imgColorPalette from "/images/blog/renovacion-marca-digio/05-color-palette.png";
-import imgAvatarCeroUno from "/images/blog/renovacion-marca-digio/06-avatar-cero-a-uno.png";
 import imgAvatar from "/images/blog/renovacion-marca-digio/07-avatar.png";
 import imgIpadCeroUno from "/images/blog/renovacion-marca-digio/08-ipad-cero-a-uno.png";
 import imgDigioOoh from "/images/blog/renovacion-marca-digio/09-digio-ooh.png";
-import imgIconSetAnimation from "/images/blog/renovacion-marca-digio/10-icon-set-animation.png";
 import imgIconLibrary from "/images/blog/renovacion-marca-digio/11-icon-library.png";
-import imgVisualLanguage from "/images/blog/renovacion-marca-digio/12-visual-language.png";
 import imgWebsiteBlog from "/images/blog/renovacion-marca-digio/13-website-blog.png";
 import imgPosters from "/images/blog/renovacion-marca-digio/14-posters.png";
 import imgCamiseta from "/images/blog/renovacion-marca-digio/15-camiseta-digio.png";
@@ -201,20 +195,55 @@ function VisualGallery() {
   return (
     <section className="bg-white w-full">
       <div className="max-w-[1400px] mx-auto px-[56px] max-lg:px-[32px] max-md:px-[24px]">
-        {/* Full-width dark brand image */}
-        <FullWidthImage src={imgContainer} alt="Digio brand identity showcase" aspect="1920/1020" />
+        {/* Full-width dark brand video */}
+        <div className="w-full relative overflow-hidden" style={{ aspectRatio: "1920/1020" }}>
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="https://dthpinvq4u09v.cloudfront.net/images/Digio/1.-LOGOTIPO-DIGIO.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        </div>
 
         {/* Quote: Transformation is our code */}
         <QuoteBlock>
           La combinación de la experiencia de nuestro equipo y la búsqueda de soluciones impactantes para los retos de nuestros clientes establecieron la "Transformación" como la piedra angular de nuestra narrativa. <em className="font-['GT_Ultra_Median',sans-serif] italic">Transformation is our code_</em> refleja nuestro compromiso de impulsar el cambio como objetivo compartido en cada desafío digital que abordamos.
         </QuoteBlock>
 
-        {/* Transformation video/image */}
-        <FullWidthImage src={imgTransformation} alt="Transformation is our code" aspect="1485/835" />
+        {/* Transformation video */}
+        <div className="w-full relative overflow-hidden" style={{ aspectRatio: "1485/835" }}>
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="https://dthpinvq4u09v.cloudfront.net/images/Digio/3.-Transformation-is-our-code.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        </div>
 
         {/* Two-col: Mobile Home + Instagram scroll */}
         <div className="pt-[48px]">
-          <TwoColImages left={imgMobileHome} right={imgScrollInsta} alt1="Mobile home" alt2="Instagram scroll" />
+          <div className="grid grid-cols-2 gap-[40px] max-md:grid-cols-1 max-md:gap-[24px]">
+            <div className="aspect-square relative overflow-hidden">
+              <img alt="Mobile home" className="absolute inset-0 w-full h-full object-cover" src={imgMobileHome} loading="lazy" />
+            </div>
+            <div className="aspect-square relative overflow-hidden">
+              <video
+                className="absolute inset-0 w-full h-full object-cover"
+                src="https://dthpinvq4u09v.cloudfront.net/images/Digio/5.-SCROLL-DIGIO-INSTA.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Quote: Color palette */}
@@ -230,8 +259,18 @@ function VisualGallery() {
           El símbolo es una síntesis del concepto de código binario. Digio vive en el espacio entre estas dos figuras, lleno de incertidumbre y posibilidades. En ese espacio intermedio entre visión y creación. Entre la no existencia y la existencia.
         </QuoteBlock>
 
-        {/* Avatar zero to one video/image */}
-        <FullWidthImage src={imgAvatarCeroUno} alt="Avatar de cero a uno" aspect="1485/835" />
+        {/* Avatar zero to one video */}
+        <div className="w-full relative overflow-hidden" style={{ aspectRatio: "1485/835" }}>
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="https://dthpinvq4u09v.cloudfront.net/images/Digio/7.1-Si%CC%81mbolo-De-cero-a-uno.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        </div>
 
         {/* Two-col: Avatar + iPad */}
         <div className="pt-[48px]">
@@ -245,7 +284,22 @@ function VisualGallery() {
 
         {/* Two-col: OOH + Icon Set Animation */}
         <div className="pb-[56px] max-md:pb-[24px]">
-          <TwoColImages left={imgDigioOoh} right={imgIconSetAnimation} alt1="Digio OOH" alt2="Icon set animation" />
+          <div className="grid grid-cols-2 gap-[40px] max-md:grid-cols-1 max-md:gap-[24px]">
+            <div className="aspect-square relative overflow-hidden">
+              <img alt="Digio OOH" className="absolute inset-0 w-full h-full object-cover" src={imgDigioOoh} loading="lazy" />
+            </div>
+            <div className="aspect-square relative overflow-hidden">
+              <video
+                className="absolute inset-0 w-full h-full object-cover"
+                src="https://dthpinvq4u09v.cloudfront.net/images/Digio/11.1-ICON-SET-ANIMATION.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Icon Library full-width */}
@@ -256,8 +310,18 @@ function VisualGallery() {
           Basado en los valores de la empresa, el lenguaje visual se amplía para crear un sistema sencillo y completo que brinda una apariencia cohesiva que pasa de sólida a flexible en un abrir y cerrar de ojos.
         </QuoteBlock>
 
-        {/* Visual language behavior video/image */}
-        <FullWidthImage src={imgVisualLanguage} alt="Visual language behaviour" aspect="1485/835" />
+        {/* Visual language behavior video */}
+        <div className="w-full relative overflow-hidden" style={{ aspectRatio: "1485/835" }}>
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="https://dthpinvq4u09v.cloudfront.net/images/Digio/13.-VISUAL-LANGUAGE-BEHAVIOUR.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        </div>
 
         {/* Website blog image */}
         <div className="pt-[48px]">

@@ -24,6 +24,8 @@ interface SEOHeadProps {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** Do not append " | Digio" to the title. */
   noSuffix?: boolean;
+  /** Add noindex,nofollow robots directives for deprecated/private pages. */
+  noIndex?: boolean;
 }
 
 /* ─── Helpers ─── */
@@ -78,6 +80,7 @@ export function SEOHead({
   ogType = "website",
   jsonLd,
   noSuffix = false,
+  noIndex = false,
 }: SEOHeadProps) {
   const { t, i18n } = useTranslation();
   const location = useLocation();
@@ -122,6 +125,14 @@ export function SEOHead({
     setMeta("twitter:card", "summary_large_image", "name");
     setMeta("twitter:title", pageTitle, "name");
 
+    if (noIndex) {
+      setMeta("robots", "noindex, nofollow", "name");
+      setMeta("googlebot", "noindex, nofollow", "name");
+    } else {
+      removeMeta("robots", "name");
+      removeMeta("googlebot", "name");
+    }
+
     /* Language */
     document.documentElement.lang = i18n.language || "es";
 
@@ -145,6 +156,7 @@ export function SEOHead({
     ogType,
     jsonLd,
     noSuffix,
+    noIndex,
     t,
     i18n.language,
     location.pathname,

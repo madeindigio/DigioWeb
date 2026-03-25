@@ -848,18 +848,19 @@ export function Header() {
             </motion.button>
           </motion.div>
 
-          <motion.div
-            className="absolute inset-x-0 h-px pointer-events-none"
-            animate={{
-              backgroundColor: headerTextDark ? "rgba(25,30,37,0.12)" : "rgba(226,223,218,0.5)",
-              y: visibleHeaderHeight - 1,
-            }}
-            transition={{
-              backgroundColor: { duration: 0.4, ease: EASE_SMOOTH },
-              y: { duration: DUR_STATE, ease: EASE_SMOOTH },
-            }}
-          />
         </motion.div>
+
+        <motion.div
+          className="absolute inset-x-0 top-0 h-px pointer-events-none"
+          style={{ backgroundColor: "rgba(229, 225, 220, 0.32)" }}
+          animate={{ y: visibleHeaderHeight - 1, opacity: projectHide ? 0 : 1 }}
+          transition={{
+            y: projectHide
+              ? { duration: 0 }
+              : { duration: DUR_STATE, ease: EASE_SMOOTH },
+            opacity: { duration: 0.2, ease: EASE_SMOOTH },
+          }}
+        />
       </motion.header>
 
       {/* Fullscreen menu overlay */}
