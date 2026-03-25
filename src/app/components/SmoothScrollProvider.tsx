@@ -21,6 +21,17 @@ import { useProjectTransition } from "./ProjectTransitionContext";
 let _lenis: Lenis | null = null;
 let _resizeRafId: number | null = null;
 
+function getVisibleHeaderHeight() {
+  const header = document.querySelector("header");
+  if (!header) return 0;
+  const visibleHeight = header.getAttribute("data-visible-height");
+  if (visibleHeight) {
+    const parsedHeight = Number(visibleHeight);
+    if (!Number.isNaN(parsedHeight) && parsedHeight > 0) return parsedHeight;
+  }
+  return header.getBoundingClientRect().height;
+}
+
 function scheduleLenisResize() {
   if (!_lenis || _resizeRafId !== null) return;
   _resizeRafId = requestAnimationFrame(() => {
@@ -221,8 +232,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       if (!el) return;
 
       e.preventDefault();
-      const header = document.querySelector("header");
-      const headerH = header ? header.getBoundingClientRect().height : 0;
+      const headerH = getVisibleHeaderHeight();
       const top = el.getBoundingClientRect().top + window.scrollY - headerH - 16;
       smoothScrollTo(Math.max(0, top), 1400);
     }

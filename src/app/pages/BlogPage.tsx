@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import svgPaths from "../../imports/svg-hrq2igur1m";
@@ -12,21 +12,6 @@ import {
   getPostDetailUrl,
   type BlogPost,
 } from "../components/blogData";
-
-/* ─── Date formatter (locale-aware) ─── */
-function useFormattedDate(iso: string) {
-  const { i18n } = useTranslation();
-  return useMemo(() => {
-    const d = new Date(iso);
-    return d
-      .toLocaleDateString(i18n.language === "es" ? "es-ES" : "en-US", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      })
-      .toUpperCase();
-  }, [iso, i18n.language]);
-}
 
 /* ─── Hero BG pattern from Figma ─── */
 function BlogHeroPattern() {
@@ -57,7 +42,6 @@ function BlogPostCard({
   index: number;
 }) {
   const { t } = useTranslation();
-  const formattedDate = useFormattedDate(post.date);
 
   return (
     <article
@@ -82,13 +66,6 @@ function BlogPostCard({
               </span>
             </LangText>
             <div className="flex gap-[24px] items-center max-md:gap-[16px]">
-              <time
-                dateTime={post.date}
-                itemProp="datePublished"
-                className="font-['Manrope',sans-serif] font-[600] text-[#716e6a] text-[16px] leading-[normal] whitespace-nowrap max-md:text-[13px]"
-              >
-                {formattedDate}
-              </time>
               <span className="font-['GT_Ultra_Median',sans-serif] text-[#716e6a] text-[16px] leading-[normal] whitespace-nowrap max-md:text-[13px]">
                 {t(`blog.categories.${post.categoryKey}`)}
               </span>

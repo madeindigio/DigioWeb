@@ -75,7 +75,7 @@ const es = {
       ekhilur: {
         tag: "VISIÓN, DISEÑO & DESARROLLO",
         name: "ekhilur",
-        description: "Mock del nuevo proyecto ekhilur. Estructura inicial lista para completar con contenido real, visuales y métricas.",
+        description: "Reimaginando el comercio local con una plataforma pensada para las personas",
       },
       nm: {
         tag: "VISIÓN, DISEÑO & DESARROLLO",
@@ -220,6 +220,29 @@ const es = {
       marca: "MARCA",
     },
     posts: {
+      aiToolsWantedBefore: {
+        title: "Las herramientas IA que nos gustaría haber tenido antes",
+        excerpt: "En Digio construimos Remembrances y Mesnada para resolver los límites reales de la IA en producción: memoria de proyecto, contexto técnico y orquestación de agentes en paralelo.",
+        metaDescription: "Descubre Remembrances y Mesnada, dos herramientas de IA creadas por Digio para equipos de desarrollo: memoria real del código, orquestación multiagente y despliegue on-premise.",
+        body: {
+          lead: "En Digio llevamos años trabajando con IA en proyectos reales, con equipos reales y con la presión de entregar.",
+          intro: "Y lo que encontramos en el mercado no era suficiente: herramientas que funcionan bien en demos pero que se quedan cortas cuando el contexto se complica, el proyecto crece o el equipo tiene que mantener lo que la IA generó. Así que construimos las nuestras.",
+          h2_1: "Remembrances: la IA que no olvida tu proyecto",
+          p1: "Remembrances es un servidor MCP diseñado para que los asistentes de IA trabajen con memoria real del código y el conocimiento de tu equipo.",
+          p2: "Indexa semánticamente el código mediante AST con Tree-sitter, de modo que la IA entiende estructura y relaciones, no solo texto suelto.",
+          p3: "Permite embeddings locales con modelos GGUF, sin dependencia de APIs externas, para mantener control sobre costes y privacidad.",
+          p4: "Es 100% on-premise: la información permanece en tu infraestructura. En consultas complejas puede reducir de forma significativa el consumo de tokens y mejorar la precisión de respuesta.",
+          h2_2: "Mesnada: orquestación de agentes para trabajo complejo",
+          p5: "Mesnada es un servidor de orquestacion MCP que coordina agentes especializados trabajando en paralelo sobre una misma tarea.",
+          p6: "Incluye personas configurables con roles, conocimiento y herramientas específicas, para delegar flujos completos y no solo tareas aisladas.",
+          p7: "Su enfoque composable y auditable permite trazar cada agente y cada paso, con soporte ACP para integraciones de ecosistema.",
+          h2_3: "Probadas en producción y disponibles para tu equipo",
+          p8: "Estas herramientas no nacen de un hackathon. Nacen de usarlas a diario en proyectos de Digio y de acompañar a startups y empresas que necesitaban resultados reales.",
+          p9: "Las hemos probado en entornos de producción, con bases de código grandes, equipos de distintos tamaños y diferentes niveles de adopción de IA.",
+          p10: "Remembrances y Mesnada están disponibles para equipos que quieran adoptarlas con acompañamiento integral: instalación, configuración, formación y seguimiento.",
+          p11: "No es solo instalar una herramienta: es integrar una metodología para mejorar productividad y calidad de forma sostenible en el tiempo.",
+        },
+      },
       brandRenewal: {
         title: "Digio. La renovación de nuestra marca",
         excerpt: "Tras una trayectoria que se remonta a 2007, en Digio hemos decidido abordar el rediseño completo de nuestra marca con el objetivo de dotarnos de una narrativa y de un lenguaje visual propios y absolutamente diferenciados.",
@@ -328,7 +351,7 @@ const es = {
       solutionBody: "Desarrollamos una plataforma integral que combina un diseño centrado en el usuario con una arquitectura técnica robusta. Mediante metodologías ágiles y un enfoque colaborativo, entregamos un producto que superó las expectativas del cliente, mejorando significativamente sus métricas clave de negocio.",
     },
     ekhilur: {
-      introSubtitle: "Una economía por y para las personas",
+      introSubtitle: "Reimaginando el comercio local con una plataforma pensada para las personas.",
       introBody: "Estructura inicial de detalle para ekhilur. Este proyecto queda preparado con bloques mock para incorporar más adelante el storytelling, los textos definitivos, los servicios y los recursos visuales finales.",
       performanceLabel: "DESEMPEÑO",
       performanceItems: ["Visión", "Diseño UX / UI", "Desarrollo"],

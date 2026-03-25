@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { LangText } from "../components/LangText";
@@ -10,21 +10,6 @@ import {
   type BlogPost,
 } from "../components/blogData";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-
-/* ─── Date formatter ─── */
-function useFormattedDate(iso: string) {
-  const { i18n } = useTranslation();
-  return useMemo(() => {
-    const d = new Date(iso);
-    return d
-      .toLocaleDateString(i18n.language === "es" ? "es-ES" : "en-US", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      })
-      .toUpperCase();
-  }, [iso, i18n.language]);
-}
 
 /* ─── SEO ─── */
 function PostSEO({ post }: { post: BlogPost }) {
@@ -229,7 +214,6 @@ export function BlogPostDetailPage() {
   const { t } = useTranslation();
   const post = slug ? getPostBySlug(slug) : undefined;
   const relatedPosts = slug ? getRelatedPosts(slug, 3) : [];
-  const formattedDate = useFormattedDate(post?.date || "2025-01-01");
 
   // Scroll to top on slug change
   useEffect(() => {
@@ -248,8 +232,6 @@ export function BlogPostDetailPage() {
   }
 
   const title = t(`blog.posts.${post.i18nKey}.title`);
-  const category = t(`blog.categories.${post.categoryKey}`);
-
   return (
     <>
       <PostSEO post={post} />

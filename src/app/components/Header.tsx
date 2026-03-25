@@ -39,12 +39,22 @@ function isHeaderDark(pathname: string) {
   return false;
 }
 
+function getVisibleHeaderHeight() {
+  const header = document.querySelector("header");
+  if (!header) return 0;
+  const visibleHeight = header.getAttribute("data-visible-height");
+  if (visibleHeight) {
+    const parsedHeight = Number(visibleHeight);
+    if (!Number.isNaN(parsedHeight) && parsedHeight > 0) return parsedHeight;
+  }
+  return header.getBoundingClientRect().height;
+}
+
 /* ─── Smooth-scroll to a hash id, accounting for fixed header ─── */
 export function scrollToId(id: string, immediate: boolean = false) {
   const el = document.getElementById(id);
   if (!el) return;
-  const header = document.querySelector("header");
-  const headerH = header ? header.getBoundingClientRect().height : 0;
+  const headerH = getVisibleHeaderHeight();
   const top = el.getBoundingClientRect().top + window.scrollY - headerH - 16;
   smoothScrollTo(Math.max(0, top), 1400, immediate);
 }
@@ -223,11 +233,11 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
       style={{ filter: dark ? "invert(1)" : "none" }}
       animate={{
         width: isMobile
-          ? (compact ? 96 : 120)
-          : (compact ? 120 : 200),
+          ? (compact ? 80 : 112)
+          : (compact ? 104 : 200),
         height: isMobile
-          ? (compact ? 38 : 48)
-          : (compact ? 48 : 80),
+          ? (compact ? 32 : 44)
+          : (compact ? 40 : 80),
       }}
       transition={{ duration: DUR_STATE, ease: EASE_SMOOTH }}
     />
@@ -503,12 +513,16 @@ function FullscreenMenu({ onClose, onAnimatedNavigate }: { onClose: () => void; 
 /* ─── Header ─── */
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const scrolledRef = useRef(false);
+  const [scrolled, setScrolled] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.scrollY > 80;
+  });
+  const scrolledRef = useRef(typeof window !== "undefined" ? window.scrollY > 80 : false);
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const headerRef = useRef<HTMLElement>(null);
+  const headerSurfaceRef = useRef<HTMLDivElement>(null);
   const expandedHeightRef = useRef(0);
   const [spacerHeight, setSpacerHeight] = useState(0);
   const { t } = useTranslation();
@@ -526,7 +540,7 @@ export function Header() {
 
   /* ── Always measure the header's height and cache the "expanded" value ── */
   useLayoutEffect(() => {
-    const el = headerRef.current;
+    const el = headerSurfaceRef.current;
     if (!el || projectHide) return;
     const h = el.getBoundingClientRect().height;
     if (h > 0 && !scrolledRef.current) {
@@ -536,7 +550,7 @@ export function Header() {
   });
 
   useEffect(() => {
-    const el = headerRef.current;
+    const el = headerSurfaceRef.current;
     if (!el) return;
     const ro = new ResizeObserver(() => {
       if (!scrolledRef.current && !projectHide) {
@@ -562,12 +576,14 @@ export function Header() {
   );
 
   useEffect(() => {
-    let rafId: number | null = null;
-    let lastY = window.scrollY;
+    const initialScrolled = window.scrollY > 80;
+    scrolledRef.current = initialScrolled;
+    setScrolled(initialScrolled);
 
-    const applyScrollState = () => {
-      rafId = null;
-      const y = lastY;
+    let rafId = 0;
+
+    const updateScrollState = () => {
+      const y = window.scrollY;
       // Hysteresis
       if (!scrolledRef.current && y > 80) {
         scrolledRef.current = true;
@@ -578,20 +594,13 @@ export function Header() {
       }
       // Smooth shadow ramp (0 → 1 over first 200px)
       rawShadowOpacity.set(Math.min(y / 200, 1));
+      rafId = requestAnimationFrame(updateScrollState);
     };
 
-    const onScroll = () => {
-      lastY = window.scrollY;
-      if (rafId === null) {
-        rafId = requestAnimationFrame(applyScrollState);
-      }
-    };
+    rafId = requestAnimationFrame(updateScrollState);
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafId !== null) cancelAnimationFrame(rafId);
+      cancelAnimationFrame(rafId);
     };
   }, [rawShadowOpacity]);
 
@@ -604,6 +613,13 @@ export function Header() {
 
   const headerBg = getHeaderBg(location.pathname);
   const headerTextDark = isHeaderDark(location.pathname);
+  const compactHeaderHeight = isMobile ? 84 : 88;
+  const expandedHeaderMinHeight = isMobile ? 120 : 136;
+  const reservedHeaderHeight = Math.max(spacerHeight, expandedHeaderMinHeight, compactHeaderHeight);
+  const visibleHeaderHeight = scrolled ? compactHeaderHeight : reservedHeaderHeight;
+  const headerClipInset = Math.max(reservedHeaderHeight - visibleHeaderHeight, 0);
+  const headerContentOffsetY = scrolled ? -(headerClipInset * 0.5) : 0;
+  const horizontalPadding = isMobile ? 16 : 56;
 
   /* ── Animated menu navigation ──
      1. Navigate first (page renders behind the menu)
@@ -672,145 +688,177 @@ export function Header() {
       {/* Header bar — slides up/down during project transitions */}
       <motion.header
         ref={headerRef}
-        className="fixed top-0 left-0 z-50 w-full px-[56px] max-md:px-[24px] border-b"
-        style={{ boxShadow }}
+        className="fixed top-0 left-0 z-50 w-full overflow-hidden pointer-events-none"
+        data-visible-height={Math.round(projectHide ? 0 : visibleHeaderHeight).toString()}
+        style={{ height: reservedHeaderHeight }}
         animate={{
-          backgroundColor: headerBg,
-          borderBottomColor: headerTextDark ? "rgba(25,30,37,0.12)" : "rgba(226,223,218,0.5)",
           y: projectHide ? "-100%" : 0,
         }}
         transition={{
-          backgroundColor: { duration: 0.4, ease: EASE_SMOOTH },
-          borderBottomColor: { duration: 0.4, ease: EASE_SMOOTH },
           y: projectHide
             ? { duration: 0 }
             : { duration: HEADER_SLIDE_DUR, ease: HEADER_SLIDE_EASE, delay: HEADER_SLIDE_DELAY },
         }}
       >
         <motion.div
-          className="flex items-center justify-between max-w-[1400px] mx-auto relative"
-          animate={{
-            paddingTop: scrolled ? (isMobile ? 21 : 16) : 24,
-            paddingBottom: scrolled ? (isMobile ? 21 : 16) : 24,
-            paddingLeft: 0,
-            paddingRight: 0,
+          ref={headerSurfaceRef}
+          className="absolute inset-x-0 top-0 h-full pointer-events-auto"
+          style={{
+            backgroundColor: headerBg,
+            clipPath: `inset(0px 0px ${headerClipInset}px 0px)`,
+            boxShadow,
+            willChange: "clip-path, background-color, transform",
           }}
-          transition={{ duration: DUR_STATE, ease: EASE_SMOOTH }}
+          animate={{
+            backgroundColor: headerBg,
+            clipPath: `inset(0px 0px ${headerClipInset}px 0px)`,
+          }}
+          transition={{
+            backgroundColor: { duration: 0.4, ease: EASE_SMOOTH },
+            clipPath: { duration: DUR_STATE, ease: EASE_SMOOTH },
+          }}
         >
-          {/* Logo — subtle scale on hover for tactile feel */}
-          <Link to="/" className="flex items-center shrink-0" onClick={() => {
-            smoothScrollTo(0, 1100);
-          }}>
-            <motion.div
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: DUR_MICRO, ease: EASE_SMOOTH }}
-            >
-              <DigiLottie compact={scrolled} dark={headerTextDark} />
-            </motion.div>
-          </Link>
-
-          {/* Desktop nav — fades/slides out on scroll with Motion */}
-          <motion.nav
-            className="hidden md:flex items-start whitespace-nowrap relative overflow-hidden min-w-[500px] max-lg:min-w-[380px]"
-            initial={false}
-            animate={scrolled ? "folded" : "expanded"}
-            variants={{
-              folded: {
-                height: 0,
-                pointerEvents: "none",
-                transition: { duration: 0.5, ease: EASE_SMOOTH, delay: 0.2 }
-              },
-              expanded: {
-                height: "auto",
-                pointerEvents: "auto",
-                transition: { duration: 0.7, ease: EASE_SMOOTH }
-              }
-            }}
+          <motion.div
+            className="flex h-full items-center justify-between max-w-[1400px] mx-auto relative"
+            style={{ willChange: "transform", paddingInline: horizontalPadding }}
+            animate={{ y: headerContentOffsetY }}
+            transition={{ duration: DUR_STATE, ease: EASE_SMOOTH }}
           >
-            <motion.div
-              className="flex flex-col gap-[5px] items-start text-[16px] leading-[normal] font-['GT_Ultra_Median',sans-serif] shrink-0"
-              variants={{
-                folded: { opacity: 0, y: -30, transition: { duration: 0.3, ease: EASE_SMOOTH } },
-                expanded: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2, ease: EASE_SMOOTH } }
-              }}
-            >
-              {menuKeys.map((key, i) => (
-                <DesktopNavLink key={key} item={{ label: t(`nav.${key}`), href: menuHrefs[i] }} index={i} dark={headerTextDark} />
-              ))}
-            </motion.div>
-            <motion.div
-              className="ml-auto pl-[40px] shrink-0 max-lg:pl-[8px]"
-              variants={{
-                folded: { opacity: 0, y: -30, transition: { duration: 0.3, ease: EASE_SMOOTH } },
-                expanded: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2, ease: EASE_SMOOTH } }
-              }}
-            >
-              <LangSwitcher dark={headerTextDark} />
-            </motion.div>
-          </motion.nav>
+            {/* Logo — subtle scale on hover for tactile feel */}
+            <Link to="/" className="flex items-center shrink-0" onClick={() => {
+              smoothScrollTo(0, 1100);
+            }}>
+              <motion.div
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: DUR_MICRO, ease: EASE_SMOOTH }}
+              >
+                <DigiLottie compact={scrolled} dark={headerTextDark} />
+              </motion.div>
+            </Link>
 
-          {/* Hamburger / X — appears on scroll (desktop) or always (mobile) */}
-          <AnimatePresence>
-            {(scrolled || isMobile) && (
-              <motion.button
-                className={`absolute right-0 p-2 z-[60] cursor-pointer ${
-                  scrolled ? "block" : "md:hidden"
-                }`}
-                style={{ color: headerTextDark ? "#191e25" : "#e5e1dc" }}
-                onClick={() => setMenuOpen(!menuOpen)}
-                aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ 
-                  opacity: { duration: 0.4, ease: EASE_SMOOTH },
-                  scale: { duration: DUR_MICRO, ease: EASE_SMOOTH }
+            {/* Desktop nav — fades/slides out on scroll with Motion */}
+            <motion.nav
+              className="hidden md:flex items-start whitespace-nowrap relative min-w-[500px] max-lg:min-w-[380px]"
+              initial={false}
+              animate={scrolled ? "folded" : "expanded"}
+              variants={{
+                folded: {
+                  opacity: 0,
+                  y: -24,
+                  scale: 0.98,
+                  pointerEvents: "none",
+                  transition: { duration: 0.4, ease: EASE_SMOOTH }
+                },
+                expanded: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  pointerEvents: "auto",
+                  transition: { duration: 0.55, ease: EASE_SMOOTH }
+                }
+              }}
+            >
+              <motion.div
+                className="flex flex-col gap-[5px] items-start text-[16px] leading-[normal] font-['GT_Ultra_Median',sans-serif] shrink-0"
+                variants={{
+                  folded: { opacity: 0, y: -16, transition: { duration: 0.25, ease: EASE_SMOOTH } },
+                  expanded: { opacity: 1, y: 0, transition: { duration: 0.45, delay: 0.08, ease: EASE_SMOOTH } }
                 }}
               >
-                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square">
-                  {/* Top line → translates down to center (y 7→12) and rotates 45° */}
-                  <motion.line
-                    x1="3" y1="7" x2="21" y2="7"
-                    initial={false}
-                    animate={
-                      menuOpen
-                        ? { y1: 12, y2: 12, x1: 5, x2: 19, rotate: 45 }
-                        : { y1: 7, y2: 7, x1: 3, x2: 21, rotate: 0 }
-                    }
-                    style={{ transformOrigin: "center" }}
-                    transition={{ duration: 0.45, ease: EASE_SMOOTH }}
-                  />
-                  {/* Middle line → fades & scales out */}
-                  <motion.line
-                    x1="3" y1="12" x2="21" y2="12"
-                    initial={false}
-                    animate={
-                      menuOpen
-                        ? { opacity: 0, scaleX: 0 }
-                        : { opacity: 1, scaleX: 1 }
-                    }
-                    style={{ transformOrigin: "center" }}
-                    transition={{ duration: 0.3, ease: EASE_SMOOTH }}
-                  />
-                  {/* Bottom line → translates up to center (y 17→12) and rotates −45° */}
-                  <motion.line
-                    x1="3" y1="17" x2="21" y2="17"
-                    initial={false}
-                    animate={
-                      menuOpen
-                        ? { y1: 12, y2: 12, x1: 5, x2: 19, rotate: -45 }
-                        : { y1: 17, y2: 17, x1: 3, x2: 21, rotate: 0 }
-                    }
-                    style={{ transformOrigin: "center" }}
-                    transition={{ duration: 0.45, ease: EASE_SMOOTH }}
-                  />
-                </svg>
-              </motion.button>
-            )}
-          </AnimatePresence>
+                {menuKeys.map((key, i) => (
+                  <DesktopNavLink key={key} item={{ label: t(`nav.${key}`), href: menuHrefs[i] }} index={i} dark={headerTextDark} />
+                ))}
+              </motion.div>
+              <motion.div
+                className="ml-auto pl-[40px] shrink-0 max-lg:pl-[8px]"
+                variants={{
+                  folded: { opacity: 0, y: -16, transition: { duration: 0.25, ease: EASE_SMOOTH } },
+                  expanded: { opacity: 1, y: 0, transition: { duration: 0.45, delay: 0.08, ease: EASE_SMOOTH } }
+                }}
+              >
+                <LangSwitcher dark={headerTextDark} />
+              </motion.div>
+            </motion.nav>
+
+            {/* Hamburger / X — appears on scroll (desktop) or always (mobile) */}
+            <motion.button
+              className={`absolute z-[60] cursor-pointer ${
+                isMobile ? "block" : "hidden md:block"
+              }`}
+              style={{
+                right: horizontalPadding,
+                padding: isMobile ? 6 : 8,
+                color: headerTextDark ? "#191e25" : "#e5e1dc",
+                willChange: "opacity, transform",
+                pointerEvents: scrolled || isMobile ? "auto" : "none",
+              }}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+              initial={false}
+              animate={{
+                opacity: scrolled || isMobile ? 1 : 0,
+                scale: scrolled || isMobile ? 1 : 0.92,
+              }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ 
+                opacity: { duration: 0.24, ease: EASE_SMOOTH },
+                scale: { duration: DUR_MICRO, ease: EASE_SMOOTH }
+              }}
+            >
+              <svg width={isMobile ? 34 : 42} height={isMobile ? 34 : 42} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square">
+                {/* Top line → translates down to center (y 7→12) and rotates 45° */}
+                <motion.line
+                  x1="3" y1="7" x2="21" y2="7"
+                  initial={false}
+                  animate={
+                    menuOpen
+                      ? { y1: 12, y2: 12, x1: 5, x2: 19, rotate: 45 }
+                      : { y1: 7, y2: 7, x1: 3, x2: 21, rotate: 0 }
+                  }
+                  style={{ transformOrigin: "center" }}
+                  transition={{ duration: 0.45, ease: EASE_SMOOTH }}
+                />
+                {/* Middle line → fades & scales out */}
+                <motion.line
+                  x1="3" y1="12" x2="21" y2="12"
+                  initial={false}
+                  animate={
+                    menuOpen
+                      ? { opacity: 0, scaleX: 0 }
+                      : { opacity: 1, scaleX: 1 }
+                  }
+                  style={{ transformOrigin: "center" }}
+                  transition={{ duration: 0.3, ease: EASE_SMOOTH }}
+                />
+                {/* Bottom line → translates up to center (y 17→12) and rotates −45° */}
+                <motion.line
+                  x1="3" y1="17" x2="21" y2="17"
+                  initial={false}
+                  animate={
+                    menuOpen
+                      ? { y1: 12, y2: 12, x1: 5, x2: 19, rotate: -45 }
+                      : { y1: 17, y2: 17, x1: 3, x2: 21, rotate: 0 }
+                  }
+                  style={{ transformOrigin: "center" }}
+                  transition={{ duration: 0.45, ease: EASE_SMOOTH }}
+                />
+              </svg>
+            </motion.button>
+          </motion.div>
+
+          <motion.div
+            className="absolute inset-x-0 h-px pointer-events-none"
+            animate={{
+              backgroundColor: headerTextDark ? "rgba(25,30,37,0.12)" : "rgba(226,223,218,0.5)",
+              y: visibleHeaderHeight - 1,
+            }}
+            transition={{
+              backgroundColor: { duration: 0.4, ease: EASE_SMOOTH },
+              y: { duration: DUR_STATE, ease: EASE_SMOOTH },
+            }}
+          />
         </motion.div>
       </motion.header>
 

@@ -6,28 +6,28 @@ import { getRelatedPosts, getPostDetailUrl } from "../components/blogData";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { resizeSmoothScroll } from "../components/SmoothScrollProvider";
 
-/* ─── Figma assets ─── */
-import imgPortada from "figma:asset/8da87fe55774d4cd8a422bdb522d7629961cc2a3.png";
-import imgContainer from "figma:asset/d8de8c187502780b50bd628257d612bef413b890.png";
-import imgTransformation from "figma:asset/70480ee5328b06319e8915c57b84e5b3d67d6821.png";
-import imgMobileHome from "figma:asset/4db3f3354af971eb1431eaace159c557ca6ea236.png";
-import imgScrollInsta from "figma:asset/cd677e7b5265f0e81fdc515619be1204d3b55163.png";
-import imgColorPalette from "figma:asset/507d8bc7edfab7f5e4c4a01dc11b7c2fe22a525c.png";
-import imgAvatarCeroUno from "figma:asset/af4deaf57ad05fe129e694f76e61856cd65546fa.png";
-import imgAvatar from "figma:asset/f29add34d3270b3517aa70e68d3391e0435c60a1.png";
-import imgIpadCeroUno from "figma:asset/0182a37521e72aa65b314e3bdfc3483c9f0075a0.png";
-import imgDigioOoh from "figma:asset/4ea9bf490e9f376a1bd3e3afb763cc442b12578d.png";
-import imgIconSetAnimation from "figma:asset/4d1d33c96be7e75572bf8ac55c1e87f38b2b345a.png";
-import imgIconLibrary from "figma:asset/8543476f1080bc702ba2dc1d2ddbd0824df34217.png";
-import imgVisualLanguage from "figma:asset/955c446351b1217ff5d282fde6bf46a2715cc7e3.png";
-import imgWebsiteBlog from "figma:asset/586801db5b5955c47b6f15f68e2daaf1fafdf7d4.png";
-import imgPosters from "figma:asset/d16a16ccf2374b67ece9aafe431c85c442ed66d9.png";
-import imgCamiseta from "figma:asset/cb2ba9e8d40b4093bb3c812a8018a280629ad70c.png";
-import imgBolsaAgenda from "figma:asset/3290b65c13b344550e0cb48c4d911243e7591874.png";
-import imgTarjetas from "figma:asset/9c3dd6bbdb3b3cd85aa88b314f672baf600961d6.png";
-import imgOficina from "figma:asset/b3c5c93cad9211f2f2b808371f45181411379acc.png";
-import imgTotebag from "figma:asset/75fb4b01c43129a40e825b3abb85515a9453f4d1.png";
-import imgAgenda from "figma:asset/84aa8e8e48ae91ec5f6ac55f4308516802cae1dc.png";
+/* ─── Local assets (exported from Figma) ─── */
+import imgPortada from "/images/blog/renovacion-marca-digio/00-ipad-portada-digio.png";
+import imgContainer from "/images/blog/renovacion-marca-digio/01-logotipo-digio.png";
+import imgTransformation from "/images/blog/renovacion-marca-digio/02-transformation-is-our-code.png";
+import imgMobileHome from "/images/blog/renovacion-marca-digio/03-mobile-home.png";
+import imgScrollInsta from "/images/blog/renovacion-marca-digio/04-scroll-digio-insta.png";
+import imgColorPalette from "/images/blog/renovacion-marca-digio/05-color-palette.png";
+import imgAvatarCeroUno from "/images/blog/renovacion-marca-digio/06-avatar-cero-a-uno.png";
+import imgAvatar from "/images/blog/renovacion-marca-digio/07-avatar.png";
+import imgIpadCeroUno from "/images/blog/renovacion-marca-digio/08-ipad-cero-a-uno.png";
+import imgDigioOoh from "/images/blog/renovacion-marca-digio/09-digio-ooh.png";
+import imgIconSetAnimation from "/images/blog/renovacion-marca-digio/10-icon-set-animation.png";
+import imgIconLibrary from "/images/blog/renovacion-marca-digio/11-icon-library.png";
+import imgVisualLanguage from "/images/blog/renovacion-marca-digio/12-visual-language.png";
+import imgWebsiteBlog from "/images/blog/renovacion-marca-digio/13-website-blog.png";
+import imgPosters from "/images/blog/renovacion-marca-digio/14-posters.png";
+import imgCamiseta from "/images/blog/renovacion-marca-digio/15-camiseta-digio.png";
+import imgBolsaAgenda from "/images/blog/renovacion-marca-digio/16-bolsa-agenda.png";
+import imgTarjetas from "/images/blog/renovacion-marca-digio/17-tarjetas-personales.png";
+import imgOficina from "/images/blog/renovacion-marca-digio/18-oficina.png";
+import imgTotebag from "/images/blog/renovacion-marca-digio/19-totebag-digio.png";
+import imgAgenda from "/images/blog/renovacion-marca-digio/20-agenda.png";
 
 /* ─── Reusable components ─── */
 

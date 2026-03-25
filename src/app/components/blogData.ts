@@ -1,5 +1,3 @@
-import imgPortada from "figma:asset/b3dc0ff53799e02996e8af4152d230d4c831b092.png";
-
 export interface BlogPost {
   slug: string;
   /** i18n key inside blog.posts.<key> */
@@ -19,11 +17,20 @@ export const POSTS_PER_PAGE = 6;
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "herramientas-ia-nos-gustaria-haber-tenido-antes",
+    i18nKey: "aiToolsWantedBefore",
+    date: "2026-03-25",
+    categoryKey: "innovacionDigital",
+    image: "https://digio.es/sites/default/files/styles/generic_media_file/public/2026-03/Imagen%20Blog.jpg.webp?itok=g6mFRwM6",
+    contentImage: "https://digio.es/sites/default/files/styles/generic_media_file/public/2026-03/Imagen%20Blog.jpg.webp?itok=g6mFRwM6",
+    author: "Digio",
+  },
+  {
     slug: "renovacion-marca-digio",
     i18nKey: "brandRenewal",
     date: "2025-09-10",
     categoryKey: "marca",
-    image: imgPortada,
+    image: "/images/blog/renovacion-marca-digio/00-ipad-portada-digio.png",
     customDetailPath: "/blog/renovacion-marca-digio",
     author: "Digio",
   },
