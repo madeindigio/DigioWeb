@@ -189,8 +189,12 @@ function PhoneSpecialistPanels() {
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
           {/* Phone mockup with consultation */}
-          <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden"
-            style={{ backgroundImage: `url(${imgIdermBg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+          <motion.div
+            className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden"
+            style={{ backgroundImage: `url(${imgIdermBg})`, backgroundSize: 'cover', backgroundPosition: '50% 50%', backgroundRepeat: 'no-repeat' }}
+            animate={{ backgroundPosition: ["50% 50%", "54% 50%", "50% 50%"] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          >
             <div className="absolute left-1/2 -translate-x-1/2 top-[100px] max-lg:top-[60px] max-md:top-[40px]">
               <div className="relative w-[296px] h-[642px] max-lg:w-[220px] max-lg:h-[477px] max-md:w-[200px] max-md:h-[434px]">
                 {/* Consultation screen content */}
@@ -212,7 +216,7 @@ function PhoneSpecialistPanels() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
           {/* Specialist grid */}
           <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden"
             style={{ backgroundImage: `url(${imgIdermCreme})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
