@@ -1,5 +1,5 @@
 import svgPaths from "../../imports/svg-5maq4jyelf";
-import { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo } from "react";
 import type { AnimationItem } from "lottie-web";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
 import { Link, useNavigate, useLocation } from "react-router";
@@ -26,6 +26,8 @@ const HEADER_BG_MAP: Record<string, string> = {
 const DEFAULT_HEADER_BG = "#191e25";
 function getHeaderBg(pathname: string) {
   if (HEADER_BG_MAP[pathname]) return HEADER_BG_MAP[pathname];
+  // Project detail pages use a white header for visual harmony.
+  if (pathname.startsWith("/proyecto/")) return "#ffffff";
   // Blog post detail pages → white header
   if (pathname.startsWith("/blog/")) return "#ffffff";
   return DEFAULT_HEADER_BG;
@@ -35,8 +37,103 @@ function getHeaderBg(pathname: string) {
 const HEADER_DARK_TEXT_ROUTES = new Set(["/trabajo", "/contacto"]);
 function isHeaderDark(pathname: string) {
   if (HEADER_DARK_TEXT_ROUTES.has(pathname)) return true;
+  if (pathname.startsWith("/proyecto/")) return true;
   if (pathname.startsWith("/blog/")) return true;
   return false;
+}
+
+type RgbColor = { r: number; g: number; b: number };
+type MenuTheme = {
+  background: string;
+  text: string;
+  mutedText: string;
+  separator: string;
+  underline: string;
+  hoverSurface: string;
+  isDarkText: boolean;
+};
+
+function parseColor(input: string): RgbColor | null {
+  const value = input.trim();
+  if (value.startsWith("#")) {
+    const hex = value.slice(1);
+    if (hex.length === 3) {
+      return {
+        r: parseInt(hex[0] + hex[0], 16),
+        g: parseInt(hex[1] + hex[1], 16),
+        b: parseInt(hex[2] + hex[2], 16),
+      };
+    }
+    if (hex.length === 6) {
+      return {
+        r: parseInt(hex.slice(0, 2), 16),
+        g: parseInt(hex.slice(2, 4), 16),
+        b: parseInt(hex.slice(4, 6), 16),
+      };
+    }
+    return null;
+  }
+  const rgbMatch = value.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+  if (!rgbMatch) return null;
+  return {
+    r: Number(rgbMatch[1]),
+    g: Number(rgbMatch[2]),
+    b: Number(rgbMatch[3]),
+  };
+}
+
+function colorWithAlpha(input: string, alpha: number): string {
+  const rgb = parseColor(input);
+  if (!rgb) return `rgba(229,225,220,${alpha})`;
+  return `rgba(${rgb.r},${rgb.g},${rgb.b},${alpha})`;
+}
+
+function relativeLuminance({ r, g, b }: RgbColor): number {
+  const toLinear = (channel: number) => {
+    const normalized = channel / 255;
+    return normalized <= 0.03928
+      ? normalized / 12.92
+      : Math.pow((normalized + 0.055) / 1.055, 2.4);
+  };
+  const lr = toLinear(r);
+  const lg = toLinear(g);
+  const lb = toLinear(b);
+  return 0.2126 * lr + 0.7152 * lg + 0.0722 * lb;
+}
+
+function contrastRatio(foreground: string, background: string): number {
+  const fg = parseColor(foreground);
+  const bg = parseColor(background);
+  if (!fg || !bg) return 21;
+  const l1 = relativeLuminance(fg);
+  const l2 = relativeLuminance(bg);
+  const lighter = Math.max(l1, l2);
+  const darker = Math.min(l1, l2);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+function getReadableTextColor(background: string): string {
+  const bg = parseColor(background);
+  if (!bg) return "#e5e1dc";
+  const lum = relativeLuminance(bg);
+  return lum > 0.45 ? "#191e25" : "#e5e1dc";
+}
+
+function createMenuTheme(background: string, prefersDarkText: boolean): MenuTheme {
+  const preferred = prefersDarkText ? "#191e25" : "#e5e1dc";
+  const fallback = getReadableTextColor(background);
+  const text = contrastRatio(preferred, background) >= 4.5 ? preferred : fallback;
+  const isDarkText = text === "#191e25";
+
+  return {
+    background,
+    text,
+    mutedText: colorWithAlpha(text, 0.3),
+    separator: colorWithAlpha(text, 0.16),
+    underline: colorWithAlpha(text, 0.6),
+    hoverSurface: colorWithAlpha(text, 0.07),
+    isDarkText,
+  };
 }
 
 function getVisibleHeaderHeight() {
@@ -363,10 +460,12 @@ function MenuNavItem({
   item,
   index,
   onNavigate,
+  theme,
 }: {
   item: { label: string; href: string };
   index: number;
   onNavigate: (href: string) => void;
+  theme: MenuTheme;
 }) {
   return (
     <motion.div
@@ -389,15 +488,22 @@ function MenuNavItem({
       <motion.button
         onClick={() => onNavigate(item.href)}
         className="block w-full text-left py-[20px] max-md:py-[14px] relative overflow-hidden cursor-pointer"
+        style={{ color: theme.text }}
         whileHover="hover"
+        whileFocus={{ backgroundColor: theme.hoverSurface }}
         whileTap={{ scale: 0.985 }}
         initial="rest"
         animate="rest"
+        variants={{
+          rest: { backgroundColor: "rgba(0,0,0,0)" },
+          hover: { backgroundColor: theme.hoverSurface },
+        }}
       >
         <div className="flex items-center gap-[24px]">
           {/* Number index */}
           <motion.span
-            className="font-['Satoshi',sans-serif] text-[#e5e1dc]/30 text-[20px] tracking-[-0.4px] tabular-nums max-md:text-[14px]"
+            className="font-['Satoshi',sans-serif] text-[20px] tracking-[-0.4px] tabular-nums max-md:text-[14px]"
+            style={{ color: theme.mutedText }}
             variants={{
               rest: { opacity: 0.3, x: 0 },
               hover: { opacity: 1, x: 0 },
@@ -409,7 +515,8 @@ function MenuNavItem({
 
           {/* Label */}
           <motion.span
-            className="font-['GT_Ultra_Median',sans-serif] text-[#e5e1dc] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]"
+            className="font-['GT_Ultra_Median',sans-serif] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]"
+            style={{ color: theme.text }}
             variants={{
               rest: { x: 0 },
               hover: { x: 12 },
@@ -421,7 +528,8 @@ function MenuNavItem({
 
           {/* Arrow */}
           <motion.span
-            className="font-['Satoshi',sans-serif] text-[#e5e1dc] text-[32px] max-md:text-[22px]"
+            className="font-['Satoshi',sans-serif] text-[32px] max-md:text-[22px]"
+            style={{ color: theme.text }}
             variants={{
               rest: { opacity: 0, x: -16 },
               hover: { opacity: 1, x: 0 },
@@ -434,7 +542,8 @@ function MenuNavItem({
 
         {/* Animated underline */}
         <motion.div
-          className="absolute bottom-0 left-0 h-[1px] bg-[#e5e1dc]/60"
+          className="absolute bottom-0 left-0 h-[1px]"
+          style={{ backgroundColor: theme.underline }}
           variants={{
             rest: { width: "0%" },
             hover: { width: "100%" },
@@ -444,13 +553,21 @@ function MenuNavItem({
       </motion.button>
 
       {/* Separator */}
-      <div className="w-full h-[1px] bg-white/[0.12]" />
+      <div className="w-full h-[1px]" style={{ backgroundColor: theme.separator }} />
     </motion.div>
   );
 }
 
 /* ─── Fullscreen menu overlay ─── */
-function FullscreenMenu({ onClose, onAnimatedNavigate }: { onClose: () => void; onAnimatedNavigate: (href: string) => void }) {
+function FullscreenMenu({
+  onClose,
+  onAnimatedNavigate,
+  theme,
+}: {
+  onClose: () => void;
+  onAnimatedNavigate: (href: string) => void;
+  theme: MenuTheme;
+}) {
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -462,7 +579,8 @@ function FullscreenMenu({ onClose, onAnimatedNavigate }: { onClose: () => void; 
 
   return (
     <motion.div
-      className="fixed inset-0 z-40 bg-[#191e25] flex flex-col"
+      className="fixed inset-0 z-40 flex flex-col"
+      style={{ backgroundColor: theme.background, color: theme.text }}
       variants={{
         hidden: { 
           y: "-100%", 
@@ -481,7 +599,7 @@ function FullscreenMenu({ onClose, onAnimatedNavigate }: { onClose: () => void; 
         <div className="w-full max-w-[1400px] mx-auto flex flex-col justify-between flex-1">
         <nav className="flex flex-col gap-0 w-full">
           {menuKeys.map((key, i) => (
-            <MenuNavItem key={key} item={{ label: t(`nav.${key}`), href: menuHrefs[i] }} index={i} onNavigate={onAnimatedNavigate} />
+            <MenuNavItem key={key} item={{ label: t(`nav.${key}`), href: menuHrefs[i] }} index={i} onNavigate={onAnimatedNavigate} theme={theme} />
           ))}
         </nav>
 
@@ -502,7 +620,7 @@ function FullscreenMenu({ onClose, onAnimatedNavigate }: { onClose: () => void; 
           animate="visible"
           exit="hidden"
         >
-          <LangSwitcher size="menu" />
+          <LangSwitcher size="menu" dark={theme.isDarkText} />
         </motion.div>
         </div>
       </div>
@@ -524,7 +642,10 @@ export function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const headerSurfaceRef = useRef<HTMLDivElement>(null);
   const expandedHeightRef = useRef(0);
-  const [spacerHeight, setSpacerHeight] = useState(0);
+  const [spacerHeight, setSpacerHeight] = useState(() => {
+    if (typeof window === "undefined") return 136;
+    return window.innerWidth < 768 ? 120 : 136;
+  });
   const { t } = useTranslation();
   const { isTransitioning, isOverlayActive } = useProjectTransition();
   const animatedNavRef = useRef(false);
@@ -613,6 +734,7 @@ export function Header() {
 
   const headerBg = getHeaderBg(location.pathname);
   const headerTextDark = isHeaderDark(location.pathname);
+  const menuTheme = useMemo(() => createMenuTheme(headerBg, headerTextDark), [headerBg, headerTextDark]);
   const compactHeaderHeight = isMobile ? 84 : 88;
   const expandedHeaderMinHeight = isMobile ? 120 : 136;
   const reservedHeaderHeight = Math.max(spacerHeight, expandedHeaderMinHeight, compactHeaderHeight);
@@ -865,7 +987,7 @@ export function Header() {
 
       {/* Fullscreen menu overlay */}
       <AnimatePresence>
-        {menuOpen && <FullscreenMenu onClose={() => setMenuOpen(false)} onAnimatedNavigate={handleAnimatedNavigate} />}
+        {menuOpen && <FullscreenMenu onClose={() => setMenuOpen(false)} onAnimatedNavigate={handleAnimatedNavigate} theme={menuTheme} />}
       </AnimatePresence>
     </>
   );

@@ -73,21 +73,53 @@ function VideoWithFallback({
 /* ─── Figma Assets ─── */
 import imgFaces1 from "figma:asset/8951edeb8a88c0f2c72219029fc8517b4f3c1aad.png";
 import imgVideoSection from "figma:asset/466288b3bf160615a37556f78a49b1c2916e3116.png";
-import imgComponents1 from "figma:asset/8248144bee0567971009064f5e3b715fac005bc2.png";
-import imgBigSymImgSection from "figma:asset/e1aa3acf99db0e469f2465cb0347c5009b8d662b.png";
 import imgUmuScreenPortada from "figma:asset/703843218cd8ffc6ec7f6b8dbf51eaa41fd78e98.png";
-import imgAppIconMockup from "figma:asset/204d01c55480fc4b8d5d299ad46b8ac11fad161a.png";
-import imgMobileSectionRight from "figma:asset/6d586f6f05918ad0dc4389f8627c0d1a22937c69.png";
 import imgIPhone from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
 import imgRelatedIdermapp from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
 import imgRelatedIdermapp2 from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
 import imgRelatedFinsa from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
-import imgProgramaAgenda from "figma:asset/25d86c03236a312e95060d58003048a837cd84ed.png";
-import imgEventCreation from "figma:asset/0a6a82bb8c497f63bd68f4806f6adde4bbe831b6.png";
-import imgMobileQR from "figma:asset/611da82cc27e23945cfd2334c8c9bea1eb1622c2.png";
 
 const EASE = [0.22, 1, 0.36, 1];
 const VIDEO_URL = "https://digio.es/sites/default/files/2024-04/Symposium-header-2.mp4";
+const BIG_SYM_IMAGE_URL = "/images/symposium/Big%20SYM%20IMG%20section.jpg";
+const LEFT_SYM_IMAGE_URL = "/images/symposium/Left%20Sym.jpg";
+const RIGHT_SYM_IMAGE_URL = "/images/symposium/Right%20Sym.jpg";
+const DS_SECTION_IMAGE_URL = "/images/symposium/DS%20Section.jpg";
+const MOBILE_SECTION_LEFT_IMAGE_URL = "/images/symposium/Mobile%20section%20SYM%20left.jpg";
+const MOBILE_SECTION_RIGHT_IMAGE_URL = "/images/symposium/Mobile%20section%20SYM%20right.jpg";
+
+function parseDisplayValue(value: string) {
+  const numericMatch = value.match(/-?\d+(?:[.,]\d+)?/);
+  if (!numericMatch) {
+    return {
+      prefix: "",
+      suffix: "",
+      target: 0,
+      decimals: 0,
+      hasNumericValue: false,
+    };
+  }
+
+  const rawNumericPart = numericMatch[0];
+  const normalizedNumber = rawNumericPart.replace(",", ".");
+  const target = Number(normalizedNumber);
+  const decimals = normalizedNumber.includes(".")
+    ? normalizedNumber.split(".")[1].length
+    : 0;
+
+  return {
+    prefix: value.slice(0, numericMatch.index ?? 0),
+    suffix: value.slice((numericMatch.index ?? 0) + rawNumericPart.length),
+    target,
+    decimals,
+    hasNumericValue: true,
+  };
+}
+
+function formatCountValue(current: number, decimals: number) {
+  if (decimals > 0) return current.toFixed(decimals);
+  return Math.round(current).toString();
+}
 
 /* ─── Animation helpers ─── */
 
@@ -214,13 +246,11 @@ function VideoAndDsSection() {
             </div>
             {/* Components / DS section */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden">
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1326px] h-[602px] max-lg:w-[900px] max-lg:h-[410px]" style={{ marginLeft: "290px", maxWidth: "none" }}>
-                <img
-                  alt="Symposium components"
-                  className="w-full h-full object-cover"
-                  src={imgComponents1}
-                />
-              </div>
+              <img
+                alt="Symposium components"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                src={DS_SECTION_IMAGE_URL}
+              />
             </div>
           </div>
           {/* Value text — right-aligned */}
@@ -256,7 +286,7 @@ function PlatformSection() {
               <img
                 alt="Symposium programa agenda"
                 className="absolute inset-0 w-full h-full object-cover object-center"
-                src={imgProgramaAgenda}
+                src={LEFT_SYM_IMAGE_URL}
               />
             </div>
             {/* Event creation / mobile section */}
@@ -264,7 +294,7 @@ function PlatformSection() {
               <img
                 alt="Symposium event creation"
                 className="absolute inset-0 w-full h-full object-cover object-center"
-                src={imgEventCreation}
+                src={RIGHT_SYM_IMAGE_URL}
               />
             </div>
           </div>
@@ -289,7 +319,7 @@ function BigImageSection() {
       <img
         alt="Symposium overview"
         className="absolute inset-0 w-full h-full object-cover"
-        src={imgBigSymImgSection}
+        src={BIG_SYM_IMAGE_URL}
       />
     </section>
   );
@@ -317,16 +347,18 @@ function UxSection() {
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
             {/* App icon mockup */}
             <div className="flex-1 h-[600px] max-lg:h-[450px] max-md:h-[350px] bg-[#f8f9fa] relative overflow-hidden">
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[967px] h-[748px] max-lg:w-[700px] max-lg:h-[542px] max-md:w-[500px] max-md:h-[387px]" style={{ marginLeft: "86px", marginTop: "27px" }}>
-                <img alt="Symposium app" className="w-full h-full object-cover" src={imgAppIconMockup} />
-              </div>
+              <img
+                alt="Symposium app"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                src={MOBILE_SECTION_LEFT_IMAGE_URL}
+              />
             </div>
             {/* iPhone mockup */}
             <div className="flex-1 h-[600px] max-lg:h-[450px] max-md:h-[350px] bg-[#f8f9fa] relative overflow-hidden">
               <img
                 alt="Symposium mobile QR inscription"
                 className="absolute inset-0 w-full h-full object-cover object-center"
-                src={imgMobileQR}
+                src={MOBILE_SECTION_RIGHT_IMAGE_URL}
               />
             </div>
           </div>
@@ -340,15 +372,63 @@ function UxSection() {
    9. STATS — "Expandiendo horizontes" + metrics
    ============================================================ */
 function StatCard({ value, label }: { value: string; label: string }) {
+  const [displayValue, setDisplayValue] = useState(value);
+  const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
+  const hasAnimatedRef = useRef(false);
+
+  useEffect(() => {
+    if (!hasEnteredViewport || hasAnimatedRef.current) return;
+
+    const parsed = parseDisplayValue(value);
+    if (!parsed.hasNumericValue) {
+      setDisplayValue(value);
+      hasAnimatedRef.current = true;
+      return;
+    }
+
+    hasAnimatedRef.current = true;
+
+    const durationMs = 1100;
+    const startValue = parsed.target >= 10 ? 0 : Math.max(parsed.target - 3, 0);
+    const startTime = performance.now();
+    let rafId = 0;
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = startValue + (parsed.target - startValue) * eased;
+
+      setDisplayValue(`${parsed.prefix}${formatCountValue(current, parsed.decimals)}${parsed.suffix}`);
+
+      if (progress < 1) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+
+    rafId = requestAnimationFrame(tick);
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [hasEnteredViewport, value]);
+
   return (
-    <div className="bg-[#f8f9fa] w-full flex flex-col items-center justify-center py-[56px] max-md:py-[40px]">
+    <motion.div
+      className="bg-[#f8f9fa] w-full flex flex-col items-center justify-center py-[56px] max-md:py-[40px]"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.55, ease: EASE }}
+      onViewportEnter={() => setHasEnteredViewport(true)}
+    >
       <p className="font-['GT_Ultra_Median',sans-serif] text-black text-[100px] tracking-[-3px] leading-[0.9] max-lg:text-[72px] max-md:text-[56px]">
-        {value}
+        {displayValue}
       </p>
       <p className="font-['Manrope',sans-serif] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px]">
         {label}
       </p>
-    </div>
+    </motion.div>
   );
 }
 
