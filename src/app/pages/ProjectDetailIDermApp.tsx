@@ -18,6 +18,7 @@ import imgDermAppScreens from "/images/idermapp/iDermApp Screens.jpg";
 import imgIdermMobileSection from "/images/idermapp/iDerm APP mobile section.jpg";
 import imgIdermResume from "/images/idermapp/iDermApp Resume IMG.jpg";
 import imgIdermUser from "/images/idermapp/iDermApp User IMG.jpg";
+import imgAvatarPatient from "/images/idermapp/usuario-idermapp.jpg";
 import imgChangeThis1 from "figma:asset/af57cfdcb86aed762c8a6b3c477ef348ad6f2a8b.png";
 import imgShadow from "figma:asset/0e574b340d591487fd4f938ab54f1795774692f9.png";
 import imgReflection from "figma:asset/e112cd78c1cd95b303446e0e110c9d0a9f9069ab.png";
@@ -361,6 +362,48 @@ function QualitySection() {
 /* ============================================================
    10. MOBILE APP — Full-width image
    ============================================================ */
+function NotificationStackCard() {
+  return (
+    <motion.div
+      className="relative w-full h-full bg-[#f8f9fa] flex items-center justify-center p-[30px] max-lg:p-[24px] max-md:p-[18px]"
+      style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+      initial={{ opacity: 0, y: 48 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.8, ease: EASE }}
+    >
+      <div className="relative w-full max-w-[560px]">
+        <div className="absolute inset-x-[18px] top-[18px] h-[158px] max-md:h-[124px] rounded-[20px] bg-[#f5f6f7] shadow-[0px_12px_22px_rgba(17,24,39,0.07)]" />
+        <div className="absolute inset-x-[9px] top-[9px] h-[158px] max-md:h-[124px] rounded-[20px] bg-[#f6f7f8] shadow-[0px_8px_16px_rgba(17,24,39,0.06)]" />
+
+        <motion.div
+          className="relative z-10 h-[158px] max-md:h-[124px] rounded-[20px] bg-[#f8f9fa] shadow-[0px_12px_28px_rgba(17,24,39,0.10)] px-[20px] max-md:px-[14px] flex items-center gap-[16px] max-md:gap-[10px] transition-transform duration-300"
+          whileHover={{ y: -6 }}
+        >
+          <img alt="Avatar paciente" className="w-[88px] h-[88px] max-md:w-[56px] max-md:h-[56px] rounded-full object-cover shrink-0" src={imgAvatarPatient} />
+
+          <div className="min-w-0 flex-1">
+            <p className="text-[#0b0d11] text-[28px] leading-[1.1] max-lg:text-[24px] max-md:text-[18px] font-[700] tracking-[-0.02em] truncate">
+              Roberto Jimenez
+            </p>
+            <p className="text-[#8a9098] text-[20px] max-lg:text-[18px] max-md:text-[14px] mt-[8px] max-md:mt-[4px] font-[400]">
+              14/12/1982
+            </p>
+          </div>
+
+          <motion.span
+            className="absolute -top-[16px] -right-[16px] w-[54px] h-[54px] max-md:-top-[10px] max-md:-right-[10px] max-md:w-[34px] max-md:h-[34px] rounded-full bg-[#ff4d57] text-white flex items-center justify-center font-[800] text-[24px] max-md:text-[16px] shadow-[0px_10px_18px_rgba(255,77,87,0.35)]"
+            animate={{ scale: [1, 1.08, 1] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            1
+          </motion.span>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
 function MobileAppSection() {
   return (
     <section className="bg-white w-full">
@@ -371,7 +414,7 @@ function MobileAppSection() {
               <img alt="iDermApp resume" className="absolute inset-0 w-full h-full object-cover" src={imgIdermResume} />
             </div>
             <div className="relative w-full aspect-square overflow-hidden">
-              <img alt="iDermApp user" className="absolute inset-0 w-full h-full object-cover" src={imgIdermUser} />
+              <NotificationStackCard />
             </div>
           </div>
           <div
