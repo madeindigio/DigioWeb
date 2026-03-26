@@ -87,6 +87,27 @@ const RIGHT_SYM_IMAGE_URL = "/images/symposium/Right%20Sym.jpg";
 const DS_SECTION_IMAGE_URL = "/images/symposium/DS%20Section.jpg";
 const MOBILE_SECTION_LEFT_IMAGE_URL = "/images/symposium/Mobile%20section%20SYM%20left.jpg";
 const MOBILE_SECTION_RIGHT_IMAGE_URL = "/images/symposium/Mobile%20section%20SYM%20right.jpg";
+const UNIVERSITY_LOGOS = [
+  "/images/symposium/universidades/1-complutense%20madrid.svg",
+  "/images/symposium/universidades/10-rey-juanc%20arlos.svg",
+  "/images/symposium/universidades/2-upf.svg",
+  "/images/symposium/universidades/24-uni-valencia.svg",
+  "/images/symposium/universidades/25-uoc.svg",
+  "/images/symposium/universidades/26-uex.svg",
+  "/images/symposium/universidades/28-uni-girona.svg",
+  "/images/symposium/universidades/3-uam.svg",
+  "/images/symposium/universidades/30-uni-pablo-de-olavide.svg",
+  "/images/symposium/universidades/4-uni-salamanca.svg",
+  "/images/symposium/universidades/9-politecnica-madrid.svg",
+  "/images/symposium/universidades/COMILLAS-1.png",
+  "/images/symposium/universidades/UC3M-1.png",
+  "/images/symposium/universidades/UCA.png",
+  "/images/symposium/universidades/UCO.png",
+  "/images/symposium/universidades/UI1.png",
+  "/images/symposium/universidades/UMU.png",
+  "/images/symposium/universidades/UPSA.png",
+  "/images/symposium/universidades/US.png",
+];
 
 function parseDisplayValue(value: string) {
   const numericMatch = value.match(/-?\d+(?:[.,]\d+)?/);
@@ -371,10 +392,12 @@ function UxSection() {
 /* ============================================================
    9. STATS — "Expandiendo horizontes" + metrics
    ============================================================ */
-function StatCard({ value, label }: { value: string; label: string }) {
+function StatCard({ value, label, showLogoHover = false }: { value: string; label: string; showLogoHover?: boolean }) {
   const [displayValue, setDisplayValue] = useState(value);
   const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const hasAnimatedRef = useRef(false);
+  const logoTrack = useMemo(() => [...UNIVERSITY_LOGOS, ...UNIVERSITY_LOGOS], []);
 
   useEffect(() => {
     if (!hasEnteredViewport || hasAnimatedRef.current) return;
@@ -415,17 +438,435 @@ function StatCard({ value, label }: { value: string; label: string }) {
 
   return (
     <motion.div
-      className="bg-[#f8f9fa] w-full flex flex-col items-center justify-center py-[56px] max-md:py-[40px]"
+      className="group relative bg-[#f8f9fa] w-full flex flex-col items-center justify-center py-[56px] max-md:py-[40px] overflow-hidden"
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
       transition={{ duration: 0.55, ease: EASE }}
       onViewportEnter={() => setHasEnteredViewport(true)}
+      onMouseEnter={() => showLogoHover && setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <p className="font-['GT_Ultra_Median',sans-serif] text-black text-[100px] tracking-[-3px] leading-[0.9] max-lg:text-[72px] max-md:text-[56px]">
+      <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+        <div className="absolute inset-0 bg-[#f8f9fa]/90" />
+        <div className="absolute inset-0 flex flex-col justify-between py-[26px] max-md:py-[18px]">
+          <div className="relative h-[52px] max-md:h-[40px] overflow-hidden">
+            <motion.div
+              className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-[34px] w-max pr-[34px]"
+              animate={isHovered ? { x: ["-50%", "0%"] } : { x: "-50%" }}
+              transition={
+                isHovered
+                  ? { duration: 34, ease: "linear", repeat: Infinity }
+                  : { duration: 0.5, ease: "easeOut" }
+              }
+            >
+              {logoTrack.map((logo, index) => (
+                <img
+                  key={`logo-top-${index}`}
+                  src={logo}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-[24px] max-md:h-[18px] w-auto object-contain grayscale opacity-20"
+                  draggable={false}
+                />
+              ))}
+            </motion.div>
+          </div>
+
+          <div className="relative h-[52px] max-md:h-[40px] overflow-hidden">
+            <motion.div
+              className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-[34px] w-max pr-[34px]"
+              animate={isHovered ? { x: ["0%", "-50%"] } : { x: "0%" }}
+              transition={
+                isHovered
+                  ? { duration: 30, ease: "linear", repeat: Infinity }
+                  : { duration: 0.5, ease: "easeOut" }
+              }
+            >
+              {logoTrack.map((logo, index) => (
+                <img
+                  key={`logo-middle-${index}`}
+                  src={logo}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-[24px] max-md:h-[18px] w-auto object-contain grayscale opacity-20"
+                  draggable={false}
+                />
+              ))}
+            </motion.div>
+          </div>
+
+          <div className="relative h-[52px] max-md:h-[40px] overflow-hidden">
+            <motion.div
+              className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-[34px] w-max pr-[34px]"
+              animate={isHovered ? { x: ["-50%", "0%"] } : { x: "-50%" }}
+              transition={
+                isHovered
+                  ? { duration: 36, ease: "linear", repeat: Infinity }
+                  : { duration: 0.5, ease: "easeOut" }
+              }
+            >
+              {logoTrack.map((logo, index) => (
+                <img
+                  key={`logo-bottom-${index}`}
+                  src={logo}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-[24px] max-md:h-[18px] w-auto object-contain grayscale opacity-20"
+                  draggable={false}
+                />
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      <p className="relative z-10 font-['GT_Ultra_Median',sans-serif] text-black text-[100px] tracking-[-3px] leading-[0.9] max-lg:text-[72px] max-md:text-[56px] transition-all duration-500 group-hover:[text-shadow:0_10px_26px_rgba(25,30,37,0.20)]">
         {displayValue}
       </p>
-      <p className="font-['Manrope',sans-serif] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px]">
+      <p className="relative z-10 font-['Manrope',sans-serif] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px] transition-colors duration-500">
+        {label}
+      </p>
+    </motion.div>
+  );
+}
+
+/* ── StatCardEvents: floating pills cloud on hover ── */
+type PillPlane = "far" | "mid" | "near";
+const PILL_PLANE_STYLES: Record<PillPlane, { blur: string; opacity: number; fontSize: string }> = {
+  far:  { blur: "2.5px", opacity: 0.13, fontSize: "12px" },
+  mid:  { blur: "1px",   opacity: 0.22, fontSize: "13px" },
+  near: { blur: "0px",   opacity: 0.34, fontSize: "14px" },
+};
+const EVENT_PILLS: {
+  label: string; top: string; left: string; plane: PillPlane;
+  duration: number; delay: number; ampY: number; ampX: number;
+}[] = [
+  { label: "Congresos",      top: "11%",  left: "8%",  plane: "far",  duration: 7.2, delay: 0,   ampY: 10, ampX: 5 },
+  { label: "Webinars",       top: "21%",  left: "63%", plane: "near", duration: 5.8, delay: 0.4, ampY: 7,  ampX: 4 },
+  { label: "Cursos",         top: "38%",  left: "28%", plane: "mid",  duration: 6.5, delay: 1.2, ampY: 9,  ampX: 6 },
+  { label: "Talleres",       top: "55%",  left: "72%", plane: "near", duration: 6.0, delay: 0.8, ampY: 8,  ampX: 3 },
+  { label: "Ponencias",      top: "70%",  left: "14%", plane: "mid",  duration: 7.8, delay: 0.2, ampY: 11, ampX: 7 },
+  { label: "Seminarios",     top: "82%",  left: "56%", plane: "far",  duration: 5.5, delay: 1.6, ampY: 6,  ampX: 5 },
+  { label: "Jornadas",       top: "8%",   left: "79%", plane: "mid",  duration: 6.9, delay: 0.6, ampY: 9,  ampX: 4 },
+  { label: "Simposios",      top: "47%",  left: "4%",  plane: "far",  duration: 7.4, delay: 1.0, ampY: 12, ampX: 6 },
+  { label: "Conferencias",   top: "64%",  left: "41%", plane: "near", duration: 5.3, delay: 1.8, ampY: 7,  ampX: 3 },
+  { label: "Workshops",      top: "29%",  left: "86%", plane: "far",  duration: 8.0, delay: 0.3, ampY: 10, ampX: 8 },
+  { label: "Mesas redondas", top: "88%",  left: "26%", plane: "near", duration: 6.3, delay: 1.4, ampY: 8,  ampX: 5 },
+  { label: "Hackathons",     top: "17%",  left: "44%", plane: "mid",  duration: 7.1, delay: 0.9, ampY: 10, ampX: 6 },
+  { label: "Cursos online",  top: "74%",  left: "83%", plane: "far",  duration: 6.7, delay: 2.0, ampY: 9,  ampX: 4 },
+  { label: "Formación",      top: "41%",  left: "51%", plane: "near", duration: 5.7, delay: 0.5, ampY: 6,  ampX: 3 },
+  { label: "Networking",     top: "93%",  left: "67%", plane: "mid",  duration: 7.5, delay: 1.3, ampY: 11, ampX: 7 },
+  { label: "Coloquios",      top: "5%",   left: "33%", plane: "far",  duration: 6.8, delay: 0.7, ampY: 8,  ampX: 5 },
+  /* — extra pills para cubrir mejor el espacio — */
+  { label: "Actos académicos", top: "32%", left: "91%", plane: "far",  duration: 7.6, delay: 1.1, ampY: 9,  ampX: 5 },
+  { label: "Recitales",       top: "60%",  left: "58%", plane: "mid",  duration: 6.2, delay: 0.3, ampY: 8,  ampX: 6 },
+  { label: "Inauguraciones",  top: "15%",  left: "22%", plane: "near", duration: 5.9, delay: 1.7, ampY: 7,  ampX: 4 },
+  { label: "Premiaciones",    top: "78%",  left: "38%", plane: "far",  duration: 7.9, delay: 0.6, ampY: 10, ampX: 5 },
+  { label: "Foros",           top: "46%",  left: "74%", plane: "near", duration: 5.4, delay: 2.2, ampY: 6,  ampX: 3 },
+  { label: "Simposios UX",    top: "25%",  left: "7%",  plane: "mid",  duration: 6.4, delay: 1.5, ampY: 9,  ampX: 7 },
+  { label: "Concursos",       top: "87%",  left: "82%", plane: "far",  duration: 7.3, delay: 0.9, ampY: 11, ampX: 6 },
+  { label: "Exposiciones",    top: "52%",  left: "19%", plane: "near", duration: 5.6, delay: 0.2, ampY: 7,  ampX: 4 },
+  { label: "Debates",         top: "3%",   left: "57%", plane: "mid",  duration: 8.1, delay: 1.2, ampY: 10, ampX: 8 },
+  { label: "Presentaciones",  top: "67%",  left: "92%", plane: "far",  duration: 6.6, delay: 0.4, ampY: 8,  ampX: 5 },
+  { label: "Encuentros",      top: "96%",  left: "11%", plane: "near", duration: 5.2, delay: 1.9, ampY: 6,  ampX: 3 },
+  { label: "Ferias",          top: "34%",  left: "46%", plane: "far",  duration: 7.0, delay: 0.8, ampY: 9,  ampX: 6 },
+];
+
+function StatCardEvents({ value, label }: { value: string; label: string }) {
+  const [displayValue, setDisplayValue] = useState(value);
+  const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const hasAnimatedRef = useRef(false);
+
+  useEffect(() => {
+    if (!hasEnteredViewport || hasAnimatedRef.current) return;
+    const parsed = parseDisplayValue(value);
+    if (!parsed.hasNumericValue) {
+      setDisplayValue(value);
+      hasAnimatedRef.current = true;
+      return;
+    }
+    hasAnimatedRef.current = true;
+    const durationMs = 1100;
+    const startValue = parsed.target >= 10 ? 0 : Math.max(parsed.target - 3, 0);
+    const startTime = performance.now();
+    let rafId = 0;
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = startValue + (parsed.target - startValue) * eased;
+      setDisplayValue(`${parsed.prefix}${formatCountValue(current, parsed.decimals)}${parsed.suffix}`);
+      if (progress < 1) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => { if (rafId) cancelAnimationFrame(rafId); };
+  }, [hasEnteredViewport, value]);
+
+  return (
+    <motion.div
+      className="relative bg-[#f8f9fa] w-full flex flex-col items-center justify-center py-[56px] max-md:py-[40px] overflow-hidden"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.55, ease: EASE }}
+      onViewportEnter={() => setHasEnteredViewport(true)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Pills cloud — far plane (most blurred, rendered first so it's behind) */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+        style={{ opacity: isHovered ? 1 : 0, zIndex: 1 }}
+      >
+        {EVENT_PILLS.filter(p => p.plane === "far").map((pill, i) => {
+          const ps = PILL_PLANE_STYLES.far;
+          return (
+            <motion.span
+              key={`far-${i}`}
+              className="absolute whitespace-nowrap rounded-full border border-black font-['Manrope',sans-serif] font-medium text-black select-none"
+              style={{
+                top: pill.top, left: pill.left,
+                fontSize: ps.fontSize, opacity: ps.opacity,
+                filter: `blur(${ps.blur})`,
+                padding: "3px 10px",
+                transform: "translate(-50%, -50%)",
+              }}
+              animate={isHovered
+                ? { y: [0, -pill.ampY, pill.ampY * 0.4, -pill.ampY * 0.65, 0], x: [0, pill.ampX * 0.5, -pill.ampX, pill.ampX * 0.3, 0] }
+                : { y: 0, x: 0 }
+              }
+              transition={isHovered
+                ? { duration: pill.duration, delay: pill.delay, repeat: Infinity, ease: "easeInOut" }
+                : { duration: 0.4, ease: "easeOut" }
+              }
+            >
+              {pill.label}
+            </motion.span>
+          );
+        })}
+      </div>
+
+      {/* Pills cloud — mid plane */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+        style={{ opacity: isHovered ? 1 : 0, zIndex: 2 }}
+      >
+        {EVENT_PILLS.filter(p => p.plane === "mid").map((pill, i) => {
+          const ps = PILL_PLANE_STYLES.mid;
+          return (
+            <motion.span
+              key={`mid-${i}`}
+              className="absolute whitespace-nowrap rounded-full border border-black font-['Manrope',sans-serif] font-medium text-black select-none"
+              style={{
+                top: pill.top, left: pill.left,
+                fontSize: ps.fontSize, opacity: ps.opacity,
+                filter: `blur(${ps.blur})`,
+                padding: "4px 12px",
+                transform: "translate(-50%, -50%)",
+              }}
+              animate={isHovered
+                ? { y: [0, -pill.ampY, pill.ampY * 0.45, -pill.ampY * 0.6, 0], x: [0, -pill.ampX * 0.4, pill.ampX, -pill.ampX * 0.25, 0] }
+                : { y: 0, x: 0 }
+              }
+              transition={isHovered
+                ? { duration: pill.duration, delay: pill.delay, repeat: Infinity, ease: "easeInOut" }
+                : { duration: 0.4, ease: "easeOut" }
+              }
+            >
+              {pill.label}
+            </motion.span>
+          );
+        })}
+      </div>
+
+      {/* Pills cloud — near plane (sharpest, highest opacity) */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+        style={{ opacity: isHovered ? 1 : 0, zIndex: 3 }}
+      >
+        {EVENT_PILLS.filter(p => p.plane === "near").map((pill, i) => {
+          const ps = PILL_PLANE_STYLES.near;
+          return (
+            <motion.span
+              key={`near-${i}`}
+              className="absolute whitespace-nowrap rounded-full border border-black font-['Manrope',sans-serif] font-semibold text-black select-none"
+              style={{
+                top: pill.top, left: pill.left,
+                fontSize: ps.fontSize, opacity: ps.opacity,
+                filter: `blur(${ps.blur})`,
+                padding: "4px 13px",
+                transform: "translate(-50%, -50%)",
+              }}
+              animate={isHovered
+                ? { y: [0, -pill.ampY, pill.ampY * 0.35, -pill.ampY * 0.7, 0], x: [0, pill.ampX * 0.6, -pill.ampX * 0.8, pill.ampX * 0.2, 0] }
+                : { y: 0, x: 0 }
+              }
+              transition={isHovered
+                ? { duration: pill.duration, delay: pill.delay, repeat: Infinity, ease: "easeInOut" }
+                : { duration: 0.4, ease: "easeOut" }
+              }
+            >
+              {pill.label}
+            </motion.span>
+          );
+        })}
+      </div>
+
+      {/* subtle frosted tint so text stays readable */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+        style={{ opacity: isHovered ? 1 : 0, background: "rgba(248,249,250,0.72)", zIndex: 4 }}
+      />
+
+      {/* Main text — always on top */}
+      <p
+        className="relative font-['GT_Ultra_Median',sans-serif] text-black text-[100px] tracking-[-3px] leading-[0.9] max-lg:text-[72px] max-md:text-[56px] transition-all duration-500"
+        style={{ zIndex: 10, textShadow: isHovered ? "0 8px 24px rgba(25,30,37,0.16)" : "none" }}
+      >
+        {displayValue}
+      </p>
+      <p
+        className="relative font-['Manrope',sans-serif] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px] transition-all duration-500"
+        style={{ zIndex: 10 }}
+      >
+        {label}
+      </p>
+    </motion.div>
+  );
+}
+
+/* ── StatCardBubbles: rising user-bubble cloud on hover ── */
+const BUBBLE_COLOR   = "rgba(113, 113, 130, 0.12)";
+const BUBBLE_BORDER  = "rgba(113, 113, 130, 0.22)";
+const BUBBLE_ICON_COLOR = "rgba(113, 113, 130, 0.52)";
+
+const BUBBLE_DEFS: {
+  id: number; left: string; size: number; duration: number; delay: number;
+}[] = [
+  { id:  0, left:  "6%", size: 40, duration: 5.2, delay: 0.0 },
+  { id:  1, left: "19%", size: 28, duration: 4.8, delay: 0.7 },
+  { id:  2, left: "34%", size: 52, duration: 6.1, delay: 1.4 },
+  { id:  3, left: "51%", size: 34, duration: 5.7, delay: 0.3 },
+  { id:  4, left: "67%", size: 46, duration: 4.5, delay: 2.0 },
+  { id:  5, left: "83%", size: 24, duration: 5.9, delay: 1.1 },
+  { id:  6, left: "13%", size: 58, duration: 6.8, delay: 0.5 },
+  { id:  7, left: "43%", size: 30, duration: 5.3, delay: 1.8 },
+  { id:  8, left: "59%", size: 44, duration: 4.9, delay: 0.4 },
+  { id:  9, left: "75%", size: 38, duration: 5.5, delay: 2.5 },
+  { id: 10, left: "28%", size: 50, duration: 6.3, delay: 1.0 },
+  { id: 11, left: "91%", size: 26, duration: 4.7, delay: 1.3 },
+  { id: 12, left:  "4%", size: 36, duration: 5.8, delay: 3.1 },
+  { id: 13, left: "50%", size: 32, duration: 6.0, delay: 0.6 },
+  { id: 14, left: "72%", size: 54, duration: 5.1, delay: 2.2 },
+  { id: 15, left: "22%", size: 42, duration: 4.6, delay: 1.6 },
+  { id: 16, left: "80%", size: 48, duration: 6.5, delay: 0.2 },
+  { id: 17, left: "38%", size: 22, duration: 5.4, delay: 2.7 },
+  { id: 18, left: "62%", size: 60, duration: 7.0, delay: 0.9 },
+  { id: 19, left:  "8%", size: 20, duration: 4.3, delay: 3.6 },
+];
+
+function UserSilhouette({ size }: { size: number }) {
+  return (
+    <svg
+      width={Math.round(size * 0.55)}
+      height={Math.round(size * 0.55)}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="7.5" r="3.5" fill={BUBBLE_ICON_COLOR} />
+      <path
+        d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8"
+        stroke={BUBBLE_ICON_COLOR}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
+function StatCardBubbles({ value, label }: { value: string; label: string }) {
+  const [displayValue, setDisplayValue] = useState(value);
+  const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const hasAnimatedRef = useRef(false);
+
+  useEffect(() => {
+    if (!hasEnteredViewport || hasAnimatedRef.current) return;
+    const parsed = parseDisplayValue(value);
+    if (!parsed.hasNumericValue) {
+      setDisplayValue(value);
+      hasAnimatedRef.current = true;
+      return;
+    }
+    hasAnimatedRef.current = true;
+    const durationMs = 1100;
+    const startValue = parsed.target >= 10 ? 0 : Math.max(parsed.target - 3, 0);
+    const startTime = performance.now();
+    let rafId = 0;
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = startValue + (parsed.target - startValue) * eased;
+      setDisplayValue(`${parsed.prefix}${formatCountValue(current, parsed.decimals)}${parsed.suffix}`);
+      if (progress < 1) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => { if (rafId) cancelAnimationFrame(rafId); };
+  }, [hasEnteredViewport, value]);
+
+  return (
+    <motion.div
+      className="relative bg-[#f8f9fa] w-full flex flex-col items-center justify-center py-[56px] max-md:py-[40px] overflow-hidden"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.55, ease: EASE }}
+      onViewportEnter={() => setHasEnteredViewport(true)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* ── Bubble layer ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ opacity: isHovered ? 1 : 0, transition: "opacity 0.5s ease", zIndex: 1 }}
+      >
+        {BUBBLE_DEFS.map((b) => (
+          <motion.div
+            key={b.id}
+            className="absolute rounded-full flex items-center justify-center"
+            style={{
+              left: b.left,
+              bottom: -b.size - 4,
+              width: b.size,
+              height: b.size,
+              background: BUBBLE_COLOR,
+              border: `1px solid ${BUBBLE_BORDER}`,
+              transform: "translateX(-50%)",
+            }}
+            animate={{ y: [0, -(420 + b.size)] }}
+            transition={{ duration: b.duration, delay: b.delay, repeat: Infinity, ease: "linear" }}
+          >
+            {b.size >= 28 && <UserSilhouette size={b.size} />}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* ── Main text ── */}
+      <p
+        className="relative font-['GT_Ultra_Median',sans-serif] text-black text-[100px] tracking-[-3px] leading-[0.9] max-lg:text-[72px] max-md:text-[56px]"
+        style={{ zIndex: 10 }}
+      >
+        {displayValue}
+      </p>
+      <p
+        className="relative font-['Manrope',sans-serif] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px]"
+        style={{ zIndex: 10 }}
+      >
         {label}
       </p>
     </motion.div>
@@ -523,9 +964,9 @@ function StatsSection() {
           </div>
           {/* Stats column */}
           <div className="flex-1 flex flex-col gap-[32px] min-w-0">
-            <StatCard value={t("pages.symposium.stat1Value")} label={t("pages.symposium.stat1Label")} />
-            <StatCard value={t("pages.symposium.stat2Value")} label={t("pages.symposium.stat2Label")} />
-            <StatCard value={t("pages.symposium.stat3Value")} label={t("pages.symposium.stat3Label")} />
+            <StatCard value={t("pages.symposium.stat1Value")} label={t("pages.symposium.stat1Label")} showLogoHover />
+            <StatCardEvents value={t("pages.symposium.stat2Value")} label={t("pages.symposium.stat2Label")} />
+            <StatCardBubbles value={t("pages.symposium.stat3Value")} label={t("pages.symposium.stat3Label")} />
           </div>
         </div>
       </div>

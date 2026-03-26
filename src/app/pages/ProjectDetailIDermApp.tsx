@@ -10,7 +10,14 @@ import {
 } from "../components/project-detail-shared";
 
 /* ─── Figma Assets ─── */
-import imgIdermappHero from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
+import imgIdermappHero from "/images/idermapp/iDermApp hero section IMG.jpg";
+import imgIdLogo from "/images/idermapp/iD Logo.jpg";
+import imgIdermBg from "/images/idermapp/iDerm Section small mobile.svg";
+import imgIdermCreme from "/images/idermapp/iDerm Section creme.jpeg";
+import imgDermAppScreens from "/images/idermapp/iDermApp Screens.jpg";
+import imgIdermMobileSection from "/images/idermapp/iDerm APP mobile section.jpg";
+import imgIdermResume from "/images/idermapp/iDermApp Resume IMG.jpg";
+import imgIdermUser from "/images/idermapp/iDermApp User IMG.jpg";
 import imgChangeThis1 from "figma:asset/af57cfdcb86aed762c8a6b3c477ef348ad6f2a8b.png";
 import imgShadow from "figma:asset/0e574b340d591487fd4f938ab54f1795774692f9.png";
 import imgReflection from "figma:asset/e112cd78c1cd95b303446e0e110c9d0a9f9069ab.png";
@@ -35,7 +42,6 @@ import imgSpecialist10 from "figma:asset/92073aa164052f6930d07585d71805c037eb3b9
 import imgSpecialist11 from "figma:asset/04df2abfc07c4d6920ed98aef43835d447dbf84a.png";
 import imgSpecialist12 from "figma:asset/eea520e15969cc36cfbbd938c37927050c82784a.png";
 import imgSpecialist13 from "figma:asset/69b4616642b8fe99b098f259cfa7604ec2e4e290.png";
-import imgBgImg1 from "figma:asset/1c3edbfeb0f95918683cbf91eed3775a3fb68a55.png";
 import imgRelatedRoomonitor from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
 import imgRelatedNavilens from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
 import imgIPhone15Pro from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
@@ -114,7 +120,15 @@ function LogoSection() {
     <section className="bg-white w-full">
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto">
-          <div className="w-full h-[600px] max-lg:h-[420px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden flex items-center justify-center">
+          <div 
+            className="w-full h-[600px] max-lg:h-[420px] max-md:h-[300px] relative overflow-hidden flex items-center justify-center"
+            style={{
+              backgroundImage: `url(${imgIdLogo})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
             <img
               alt="iDermApp logo"
               className="w-[444px] h-[444px] max-lg:w-[320px] max-lg:h-[320px] max-md:w-[220px] max-md:h-[220px] object-cover"
@@ -175,7 +189,7 @@ function PhoneSpecialistPanels() {
         <div className="max-w-[1400px] mx-auto flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
           {/* Phone mockup with consultation */}
           <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden"
-            style={{ backgroundImage: "linear-gradient(115.314deg, rgb(247, 255, 252) 0%, rgb(248, 250, 252) 100%)" }}>
+            style={{ backgroundImage: `url(${imgIdermBg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
             <div className="absolute left-1/2 -translate-x-1/2 top-[100px] max-lg:top-[60px] max-md:top-[40px]">
               <div className="relative w-[296px] h-[642px] max-lg:w-[220px] max-lg:h-[477px] max-md:w-[200px] max-md:h-[434px]">
                 {/* Consultation screen content */}
@@ -199,7 +213,8 @@ function PhoneSpecialistPanels() {
             </div>
           </div>
           {/* Specialist grid */}
-          <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden">
+          <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden"
+            style={{ backgroundImage: `url(${imgIdermCreme})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
             <img alt="iDermApp specialists" className="absolute inset-0 w-full h-full object-cover" src={imgIDermSlider} />
           </div>
         </div>
@@ -242,7 +257,7 @@ function ScreensSection() {
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           {/* Gradient screen area */}
           <div className="w-full h-[800px] max-lg:h-[560px] max-md:h-[380px] relative overflow-hidden"
-            style={{ backgroundImage: "linear-gradient(123.69deg, rgb(247, 255, 252) 0%, rgb(248, 250, 252) 100%)" }}>
+            style={{ backgroundImage: `url(${imgDermAppScreens})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
             {/* Display app screens as images from Figma */}
             <div className="absolute inset-0 flex items-center justify-center">
               <img alt="iDermApp screens" className="h-full object-contain" src={imgBgImg} />
@@ -350,14 +365,24 @@ function MobileAppSection() {
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] max-md:px-[24px]">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="w-full h-[670px] max-lg:h-[470px] max-md:h-[320px] relative overflow-hidden">
-            <img
-              alt="iDermApp mobile"
-              className="absolute inset-0 w-full h-full object-cover"
-              src={imgBgImg1}
-            />
+        <div className="max-w-[1400px] mx-auto flex flex-col gap-[24px] max-md:gap-[16px]">
+          <div className="grid grid-cols-2 max-md:grid-cols-1 gap-[24px] max-md:gap-[16px]">
+            <div className="relative w-full aspect-square overflow-hidden">
+              <img alt="iDermApp resume" className="absolute inset-0 w-full h-full object-cover" src={imgIdermResume} />
+            </div>
+            <div className="relative w-full aspect-square overflow-hidden">
+              <img alt="iDermApp user" className="absolute inset-0 w-full h-full object-cover" src={imgIdermUser} />
+            </div>
           </div>
+          <div
+            className="w-full h-[670px] max-lg:h-[470px] max-md:h-[320px] relative overflow-hidden"
+            style={{
+              backgroundImage: `url(${imgIdermMobileSection})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
         </div>
       </div>
     </section>

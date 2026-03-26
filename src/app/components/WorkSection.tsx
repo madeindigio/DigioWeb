@@ -2,10 +2,10 @@ import imgRectangle3 from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.
 import imgRectangle4 from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
 import imgBgImg1 from "figma:asset/4372bc2c881ed32f89039f0e0dfa1bfa882f228a.png";
 import imgRectangle5 from "figma:asset/a1910742e185dcdfa1bd4e5e8356e39259500eba.png";
-import imgRectangle7 from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
 import imgBgImg2 from "figma:asset/2214d58f15337db66ff6aba0f5e9cef891db63d8.png";
 import imgRectangle8 from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
 import imgVivla from "figma:asset/43cdb3e72f58cd88be954c02c14019a69bab0bb8.png";
+import imgRectangle7 from "/images/idermapp/iDermApp hero section IMG.jpg";
 import { imgEkhilurPlaceholder } from "./projectData";
 
 import type { ReactNode } from "react";
