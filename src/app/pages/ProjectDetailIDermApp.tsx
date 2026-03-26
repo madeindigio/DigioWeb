@@ -10,15 +10,15 @@ import {
 } from "../components/project-detail-shared";
 
 /* ─── Figma Assets ─── */
-import imgIdermappHero from "/images/idermapp/iDermApp hero section IMG.jpg";
-import imgIdLogo from "/images/idermapp/iD Logo.jpg";
-import imgIdermBg from "/images/idermapp/iDerm Section small mobile.svg";
-import imgIdermCreme from "/images/idermapp/iDerm Section creme.jpeg";
-import imgDermAppScreens from "/images/idermapp/iDermApp Screens.jpg";
-import imgIdermMobileSection from "/images/idermapp/iDerm APP mobile section.jpg";
-import imgIdermResume from "/images/idermapp/iDermApp Resume IMG.jpg";
-import imgIdermUser from "/images/idermapp/iDermApp User IMG.jpg";
-import imgAvatarPatient from "/images/idermapp/usuario-idermapp.jpg";
+import imgIdermappHero from "/images/projects/idermapp/iDermApp hero section IMG.jpg";
+import imgIdLogo from "/images/projects/idermapp/iD Logo.jpg";
+import imgIdermBg from "/images/projects/idermapp/iDerm Section small mobile.svg";
+import imgIdermCreme from "/images/projects/idermapp/iDerm Section creme.jpeg";
+import imgDermAppScreens from "/images/projects/idermapp/iDermApp Screens.jpg";
+import imgIdermMobileSection from "/images/projects/idermapp/iDerm APP mobile section.jpg";
+import imgIdermResume from "/images/projects/idermapp/iDermApp Resume IMG.jpg";
+import imgIdermUser from "/images/projects/idermapp/iDermApp User IMG.jpg";
+import imgAvatarPatient from "/images/projects/idermapp/usuario-idermapp.jpg";
 import imgChangeThis1 from "figma:asset/af57cfdcb86aed762c8a6b3c477ef348ad6f2a8b.png";
 import imgShadow from "figma:asset/0e574b340d591487fd4f938ab54f1795774692f9.png";
 import imgReflection from "figma:asset/e112cd78c1cd95b303446e0e110c9d0a9f9069ab.png";
@@ -43,7 +43,7 @@ import imgSpecialist10 from "figma:asset/92073aa164052f6930d07585d71805c037eb3b9
 import imgSpecialist11 from "figma:asset/04df2abfc07c4d6920ed98aef43835d447dbf84a.png";
 import imgSpecialist12 from "figma:asset/eea520e15969cc36cfbbd938c37927050c82784a.png";
 import imgSpecialist13 from "figma:asset/69b4616642b8fe99b098f259cfa7604ec2e4e290.png";
-import imgRelatedRoomonitor from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
+const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
 import imgRelatedNavilens from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
 import imgIPhone15Pro from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
 import imgMore from "figma:asset/7d0f8cb44063907f7befe3440f5f9d72bff8e579.png";

@@ -10,7 +10,7 @@ import {
 } from "../components/project-detail-shared";
 
 /* ─── Figma Assets ─── */
-import imgHero from "figma:asset/2214d58f15337db66ff6aba0f5e9cef891db63d8.png";
+const imgHero = "/images/projects/ivoox/ivoox-hero-section.jpg";
 import imgMobileSection from "figma:asset/01fe94b2981c6ab9c0a636bd8e3ca57a93f93fc4.png";
 import imgScreen from "figma:asset/15d8f14cde01fd9533954caa5d8c0023a9453a10.png";
 import imgIPhone15Pro from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
@@ -31,7 +31,7 @@ import imgWatchGroup from "figma:asset/84b40fa14715ef193a79093404279cc54d8d5f40.
 import imgWatchRight from "figma:asset/f1ffa57ef5716a937a052b6e2809269a9d411878.png";
 import imgCarBg from "figma:asset/85f15f66f0304bc17952ce96660e8838c0c6a414.png";
 import imgCarOverlay from "figma:asset/27a79dd74148a5c48814b0452de45a7c6a46ed7d.png";
-import imgRelatedRoomonitor from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
+const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
 import { imgEkhilurPlaceholder } from "../components/projectData";
 
 const EASE = [0.22, 1, 0.36, 1];

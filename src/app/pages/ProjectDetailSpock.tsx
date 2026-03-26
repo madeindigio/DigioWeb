@@ -11,7 +11,7 @@ import {
 
 /* ─── Figma Assets ─── */
 import svgPaths from "../../imports/svg-ajllqqcr1j";
-import imgHero from "figma:asset/a1910742e185dcdfa1bd4e5e8356e39259500eba.png";
+const imgHero = "/images/projects/spock/spock-hero-img.jpg";
 import imgMockup from "figma:asset/f1244955f8876e7aedebd803c6e1b6b98bd16965.png";
 import imgPiggyBank from "figma:asset/2b799a9d2f876f0cdc1feb9750bf57144be230d0.png";
 import imgIMac from "figma:asset/1340efa0945e04447f7f497887c081a1d97a3220.png";

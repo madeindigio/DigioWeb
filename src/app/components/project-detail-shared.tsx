@@ -112,6 +112,8 @@ export function RelatedProjectCard({
   /* Use the canonical project image for the FLIP overlay so the hero matches */
   const project = getProjectBySlug(slug);
   const flipImage = project?.image || image;
+  const displayImage = project?.image || image;
+  const displayImage2 = project?.image ? undefined : image2;
   const handleClick = useProjectClick(slug, containerRef, flipImage, tag);
 
   return (
@@ -127,15 +129,15 @@ export function RelatedProjectCard({
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
           loading="lazy"
           decoding="async"
-          src={image}
+          src={displayImage}
         />
-        {image2 && (
+        {displayImage2 && (
           <img
             alt=""
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
             loading="lazy"
             decoding="async"
-            src={image2}
+            src={displayImage2}
           />
         )}
         <div className="absolute left-[24px] top-[24px] z-10 backdrop-blur-[5px] bg-[rgba(25,30,37,0.24)] rounded-[300px] px-[16px] py-[8px] max-md:left-[12px] max-md:top-[12px]">

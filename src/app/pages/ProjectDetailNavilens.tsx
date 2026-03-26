@@ -10,7 +10,7 @@ import {
 } from "../components/project-detail-shared";
 
 /* ─── Figma Assets ─── */
-import imgHero from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
+const imgHero = "/images/projects/navilens/navilens-hero-section.jpg";
 import imgTagNaqr from "figma:asset/d5a03f14492f6f672b4e5c610c56e8c79edebc54.png";
 import imgStreet from "figma:asset/f0c1c4d02f69e5e63daedc44868f23f30c404734.png";
 import imgQrMarco from "figma:asset/7a28753056a0a6eb4839b9820ba854bcc92afe2b.png";
@@ -21,7 +21,7 @@ import imgQrPreview from "figma:asset/4f3378a6358c68dceda7107151fa5e43f67070bf.p
 import imgMockup from "figma:asset/e067d82de5db73bf481d1273fc14fd687fc6179b.png";
 import imgPersonScanning from "figma:asset/1658f5ee0ee468d764665432c2e429b585e5b54e.png";
 import imgRelatedIDermApp from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
-import imgRelatedFinsa from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
+const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 import svgPaths from "../../imports/svg-7k2kxsrz4w";
 
 const EASE = [0.22, 1, 0.36, 1];

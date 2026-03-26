@@ -15,8 +15,8 @@ import IDermAppScreens from "../../imports/IDermAppScreens";
 
 /* ─── Related project images (NaviLens + Finsa) ─── */
 import imgRelatedNavilens from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
-import imgRelatedFinsa from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
-import imgVivlaHero from "figma:asset/43cdb3e72f58cd88be954c02c14019a69bab0bb8.png";
+const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
+const imgVivlaHero = "/images/projects/vivla/vivla-hero-section.jpg";
 import imgPanelNpsMobile from "figma:asset/b9f9d81e22e799a7fb13feaf3583a7e2e2bbc347.png";
 
 const EASE = [0.22, 1, 0.36, 1];

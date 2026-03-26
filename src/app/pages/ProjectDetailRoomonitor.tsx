@@ -11,7 +11,7 @@ import {
 } from "../components/project-detail-shared";
 
 /* ─── Figma Assets ─── */
-import imgHero from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
+const imgHero = "/images/projects/roomonitor/Roomheadersection.jpg";
 import imgRoom from "figma:asset/7eecf58295746eeffc9a8d31a745f878cf3a52e1.png";
 import imgChip from "figma:asset/da621a7989c6be6dd520928301dc6915dbea23c1.png";
 import imgDevice from "figma:asset/1f3facd6db6ba7a80b971a879bffff5b7c0d6627.png";

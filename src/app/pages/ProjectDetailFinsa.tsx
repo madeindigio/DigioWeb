@@ -8,7 +8,7 @@ import {
 } from "../components/project-detail-shared";
 
 /* ─── Figma Assets ─── */
-import imgHero from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
+const imgHero = "/images/projects/finsa/finsa-bg-hero.jpg";
 import img36 from "figma:asset/68f3bcc323b3e4038473906580d192aad0d6a8dd.png";
 import imgMobileSection from "figma:asset/e886ab9817aac0a00c61aff042b48adf73ecc76a.png";
 import img0363Muro1 from "figma:asset/a19769ca28fef8413f76c1e664081fd22f6dcb83.png";
@@ -17,7 +17,7 @@ import img0363Muro2 from "figma:asset/b0428bd14e80e23be65fc4e7e722d9d000f7fdd9.p
 import img05MurosDatos from "figma:asset/ccbe102234a6e9c43349002ce6d75ca0193b44c2.png";
 import imgBgReports from "figma:asset/df226d0605f3725c1e406fd86f32f8db22ad9b26.png";
 import imgMockup2x from "figma:asset/ab8d614a77eb1f04083cccd6e78d093fbefe1e53.png";
-import imgRelatedRoomonitor from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
+const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
 import { imgEkhilurPlaceholder } from "../components/projectData";
 
 /* ============================================================

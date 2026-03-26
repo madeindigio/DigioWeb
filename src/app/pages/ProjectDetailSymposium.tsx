@@ -72,41 +72,40 @@ function VideoWithFallback({
 
 /* ─── Figma Assets ─── */
 import imgFaces1 from "figma:asset/8951edeb8a88c0f2c72219029fc8517b4f3c1aad.png";
-import imgVideoSection from "figma:asset/466288b3bf160615a37556f78a49b1c2916e3116.png";
 import imgUmuScreenPortada from "figma:asset/703843218cd8ffc6ec7f6b8dbf51eaa41fd78e98.png";
 import imgIPhone from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
 import imgRelatedIdermapp from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
 import imgRelatedIdermapp2 from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
-import imgRelatedFinsa from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
+const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 
 const EASE = [0.22, 1, 0.36, 1];
 const VIDEO_URL = "https://digio.es/sites/default/files/2024-04/Symposium-header-2.mp4";
-const BIG_SYM_IMAGE_URL = "/images/symposium/Big%20SYM%20IMG%20section.jpg";
-const LEFT_SYM_IMAGE_URL = "/images/symposium/Left%20Sym.jpg";
-const RIGHT_SYM_IMAGE_URL = "/images/symposium/Right%20Sym.jpg";
-const DS_SECTION_IMAGE_URL = "/images/symposium/DS%20Section.jpg";
-const MOBILE_SECTION_LEFT_IMAGE_URL = "/images/symposium/Mobile%20section%20SYM%20left.jpg";
-const MOBILE_SECTION_RIGHT_IMAGE_URL = "/images/symposium/Mobile%20section%20SYM%20right.jpg";
+const BIG_SYM_IMAGE_URL = "/images/projects/symposium/Big%20SYM%20IMG%20section.jpg";
+const LEFT_SYM_IMAGE_URL = "/images/projects/symposium/Left%20Sym.jpg";
+const RIGHT_SYM_IMAGE_URL = "/images/projects/symposium/Right%20Sym.jpg";
+const DS_SECTION_IMAGE_URL = "/images/projects/symposium/DS%20Section.jpg";
+const MOBILE_SECTION_LEFT_IMAGE_URL = "/images/projects/symposium/Mobile%20section%20SYM%20left.jpg";
+const MOBILE_SECTION_RIGHT_IMAGE_URL = "/images/projects/symposium/Mobile%20section%20SYM%20right.jpg";
 const UNIVERSITY_LOGOS = [
-  "/images/symposium/universidades/1-complutense%20madrid.svg",
-  "/images/symposium/universidades/10-rey-juanc%20arlos.svg",
-  "/images/symposium/universidades/2-upf.svg",
-  "/images/symposium/universidades/24-uni-valencia.svg",
-  "/images/symposium/universidades/25-uoc.svg",
-  "/images/symposium/universidades/26-uex.svg",
-  "/images/symposium/universidades/28-uni-girona.svg",
-  "/images/symposium/universidades/3-uam.svg",
-  "/images/symposium/universidades/30-uni-pablo-de-olavide.svg",
-  "/images/symposium/universidades/4-uni-salamanca.svg",
-  "/images/symposium/universidades/9-politecnica-madrid.svg",
-  "/images/symposium/universidades/COMILLAS-1.png",
-  "/images/symposium/universidades/UC3M-1.png",
-  "/images/symposium/universidades/UCA.png",
-  "/images/symposium/universidades/UCO.png",
-  "/images/symposium/universidades/UI1.png",
-  "/images/symposium/universidades/UMU.png",
-  "/images/symposium/universidades/UPSA.png",
-  "/images/symposium/universidades/US.png",
+  "/images/projects/symposium/universidades/1-complutense%20madrid.svg",
+  "/images/projects/symposium/universidades/10-rey-juanc%20arlos.svg",
+  "/images/projects/symposium/universidades/2-upf.svg",
+  "/images/projects/symposium/universidades/24-uni-valencia.svg",
+  "/images/projects/symposium/universidades/25-uoc.svg",
+  "/images/projects/symposium/universidades/26-uex.svg",
+  "/images/projects/symposium/universidades/28-uni-girona.svg",
+  "/images/projects/symposium/universidades/3-uam.svg",
+  "/images/projects/symposium/universidades/30-uni-pablo-de-olavide.svg",
+  "/images/projects/symposium/universidades/4-uni-salamanca.svg",
+  "/images/projects/symposium/universidades/9-politecnica-madrid.svg",
+  "/images/projects/symposium/universidades/COMILLAS-1.png",
+  "/images/projects/symposium/universidades/UC3M-1.png",
+  "/images/projects/symposium/universidades/UCA.png",
+  "/images/projects/symposium/universidades/UCO.png",
+  "/images/projects/symposium/universidades/UI1.png",
+  "/images/projects/symposium/universidades/UMU.png",
+  "/images/projects/symposium/universidades/UPSA.png",
+  "/images/projects/symposium/universidades/US.png",
 ];
 
 function parseDisplayValue(value: string) {
@@ -151,13 +150,10 @@ function HeroSection() {
   return (
     <section className="relative w-full h-[70vh] max-md:h-[360px] overflow-hidden">
       <div className="absolute inset-0 bg-[#d8d8d8]" />
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+      <VideoWithFallback
         src={VIDEO_URL}
+        poster={BIG_SYM_IMAGE_URL}
+        alt="Symposium hero"
       />
     </section>
   );
@@ -261,7 +257,7 @@ function VideoAndDsSection() {
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden">
               <VideoWithFallback
                 src="https://digio.es/sites/default/files/2024-06/SYM%20Caso%20Digio%20-%20Compressed.mp4"
-                poster={imgVideoSection}
+                poster={BIG_SYM_IMAGE_URL}
                 alt="Symposium video"
               />
             </div>

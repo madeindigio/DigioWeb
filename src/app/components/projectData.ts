@@ -1,12 +1,14 @@
 export const imgEkhilurPlaceholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='%23e7e7e7'/%3E%3Crect x='80' y='80' width='1440' height='740' rx='24' fill='%23efefef' stroke='%23d8d8d8' stroke-width='8'/%3E%3C/svg%3E";
-import imgRectangle3 from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
-import imgRectangle4 from "figma:asset/9df4b0260f9f37c4401ad84e556ad9e573c8702b.png";
-import imgBgImg1 from "figma:asset/4372bc2c881ed32f89039f0e0dfa1bfa882f228a.png";
-import imgRectangle5 from "figma:asset/a1910742e185dcdfa1bd4e5e8356e39259500eba.png";
-import imgRectangle7 from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
-import imgBgImg2 from "figma:asset/2214d58f15337db66ff6aba0f5e9cef891db63d8.png";
-import imgRectangle8 from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
-import imgVivla from "figma:asset/43cdb3e72f58cd88be954c02c14019a69bab0bb8.png";
+const imgEkhilurHeader = "/images/projects/ekhilur/ekhilur-hero-section.jpg";
+const imgRoomonitorHeader = "/images/projects/roomonitor/Roomheadersection.jpg";
+const imgFinsaHeader = "/images/projects/finsa/finsa-bg-hero.jpg";
+const imgSpockHeader = "/images/projects/spock/spock-hero-img.jpg";
+const imgIvooxHeader = "/images/projects/ivoox/ivoox-hero-section.jpg";
+const imgNavilensHeader = "/images/projects/navilens/navilens-hero-section.jpg";
+const imgVivlaHeader = "/images/projects/vivla/vivla-hero-section.jpg";
+
+const imgSymposiumHeader = "/images/projects/symposium/Big SYM IMG section.jpg";
+const imgIdermappHeader = "/images/projects/idermapp/iDermApp hero section IMG.jpg";
 
 export interface ProjectData {
   slug: string;
@@ -17,15 +19,15 @@ export interface ProjectData {
 }
 
 export const PROJECTS: ProjectData[] = [
-  { slug: "ekhilur", i18nKey: "ekhilur", image: imgEkhilurPlaceholder, layout: "full", tagBg: "bg-[rgba(25,30,37,0.18)]" },
-  { slug: "roomonitor", i18nKey: "roomonitor", image: imgRectangle3, layout: "half" },
-  { slug: "finsa", i18nKey: "finsa", image: imgRectangle4, layout: "half" },
-  { slug: "symposium", i18nKey: "symposium", image: imgBgImg1, layout: "full", tagBg: "bg-[rgba(163,163,163,0.24)]" },
-  { slug: "spock", i18nKey: "spock", image: imgRectangle5, layout: "half", tagBg: "bg-[rgba(146,146,146,0.24)]" },
-  { slug: "idermapp", i18nKey: "idermapp", image: imgRectangle7, layout: "half" },
-  { slug: "ivoox", i18nKey: "ivoox", image: imgBgImg2, layout: "full" },
-  { slug: "navilens", i18nKey: "navilens", image: imgRectangle8, layout: "half" },
-  { slug: "vivla", i18nKey: "vivla", image: imgVivla, layout: "half" },
+  { slug: "ekhilur", i18nKey: "ekhilur", image: imgEkhilurHeader, layout: "full", tagBg: "bg-[rgba(25,30,37,0.18)]" },
+  { slug: "roomonitor", i18nKey: "roomonitor", image: imgRoomonitorHeader, layout: "half" },
+  { slug: "finsa", i18nKey: "finsa", image: imgFinsaHeader, layout: "half" },
+  { slug: "symposium", i18nKey: "symposium", image: imgSymposiumHeader, layout: "full", tagBg: "bg-[rgba(163,163,163,0.24)]" },
+  { slug: "spock", i18nKey: "spock", image: imgSpockHeader, layout: "half", tagBg: "bg-[rgba(146,146,146,0.24)]" },
+  { slug: "idermapp", i18nKey: "idermapp", image: imgIdermappHeader, layout: "half" },
+  { slug: "ivoox", i18nKey: "ivoox", image: imgIvooxHeader, layout: "full" },
+  { slug: "navilens", i18nKey: "navilens", image: imgNavilensHeader, layout: "half" },
+  { slug: "vivla", i18nKey: "vivla", image: imgVivlaHeader, layout: "half" },
 ];
 
 export function getProjectBySlug(slug: string) {

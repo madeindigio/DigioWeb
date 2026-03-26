@@ -6,7 +6,7 @@ import {
   RevealAfterTransition,
   ScrollRevealSection,
 } from "../components/project-detail-shared";
-import { imgEkhilurPlaceholder } from "../components/projectData";
+const imgEkhilurHero = "/images/projects/ekhilur/ekhilur-hero-section.jpg";
 
 import imgRelatedVivla from "figma:asset/43cdb3e72f58cd88be954c02c14019a69bab0bb8.png";
 import imgRelatedNavilens from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
@@ -33,10 +33,8 @@ function MockPanel({
 
 function HeroSection() {
   return (
-    <section className="relative w-full h-[70vh] max-md:h-[360px] overflow-hidden bg-[linear-gradient(180deg,#f8b12d_0%,#fff2cb_100%)]">
-      <div className="absolute inset-0 opacity-0">
-        <img alt="ekhilur hero" className="w-full h-full object-cover" src={imgEkhilurPlaceholder} />
-      </div>
+    <section className="relative w-full h-[70vh] max-md:h-[360px] overflow-hidden">
+      <img alt="ekhilur hero" className="absolute inset-0 w-full h-full object-cover" src={imgEkhilurHero} />
       <div className="max-w-[1400px] mx-auto h-full px-[56px] max-md:px-[24px] flex items-center justify-center gap-[48px] max-md:gap-[16px]">
         <MockPanel label="Mock app 01" className="w-[260px] h-[520px] rounded-[40px] shadow-[0_30px_80px_rgba(0,0,0,0.18)] max-lg:w-[220px] max-lg:h-[440px] max-md:w-[140px] max-md:h-[280px]" />
         <MockPanel label="Mock app 02" className="w-[260px] h-[520px] rounded-[40px] shadow-[0_30px_80px_rgba(0,0,0,0.18)] translate-y-[56px] max-lg:w-[220px] max-lg:h-[440px] max-md:w-[140px] max-md:h-[280px] max-md:translate-y-[20px]" />
