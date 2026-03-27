@@ -92,7 +92,8 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
   const { isOverlayActive, phase } = useProjectTransition();
   const lenisRef = useRef<Lenis | null>(null);
-  const overlayWasActive = useRef(false);
+  const transitionWasActive = useRef(false);
+  const topForcedRef = useRef(false);
 
   /* ── Create & destroy Lenis ── */
   useEffect(() => {
@@ -158,20 +159,29 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     const lenis = lenisRef.current;
     if (!lenis) return;
 
-    const overlayActive = isOverlayActive || phase !== "idle";
+    const transitionActive = phase !== "idle";
+    const shouldForceTop = phase === "animating" || phase === "done";
 
-    if (overlayActive && !overlayWasActive.current) {
-      /* Overlay just activated → freeze & jump to top */
+    if (transitionActive && !transitionWasActive.current) {
+      /* Transition just activated → freeze immediately */
       lenis.stop();
+      transitionWasActive.current = true;
+      topForcedRef.current = false;
+    }
+
+    if (transitionActive && shouldForceTop && !topForcedRef.current) {
       lenis.scrollTo(0, { immediate: true, force: true });
-      overlayWasActive.current = true;
-    } else if (!overlayActive && overlayWasActive.current) {
+      topForcedRef.current = true;
+    }
+
+    if (!transitionActive && transitionWasActive.current) {
       /* Overlay just exited → unfreeze & recalculate dimensions
          because the page content changed during the transition.
          Chain multiple resize calls to cover the full animation timeline
          (header slide-in ~0.6s + content reveal ~0.65s + stagger delays). */
       lenis.start();
-      overlayWasActive.current = false;
+      transitionWasActive.current = false;
+      topForcedRef.current = false;
       requestAnimationFrame(() => {
         resizeSmoothScroll();
         setTimeout(() => resizeSmoothScroll(), 300);

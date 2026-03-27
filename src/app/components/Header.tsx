@@ -647,17 +647,15 @@ export function Header() {
     return window.innerWidth < 768 ? 120 : 136;
   });
   const { t } = useTranslation();
-  const { isTransitioning, isOverlayActive } = useProjectTransition();
+  const { isTransitioning, isOverlayActive, phase } = useProjectTransition();
   const animatedNavRef = useRef(false);
 
   /*
-   * During the FLIP transition the header hides instantly (the overlay's
-   * solid white backdrop covers everything). It stays hidden until the
-   * overlay has FULLY exited (isOverlayActive → false), preventing any
-   * content shift visible through the semi-transparent fading overlay.
-   * Once the overlay is gone, the header slides down from above.
+  * Keep header visible during the short "preparing" fade-out so it doesn't
+  * pop out one frame before the overlay is fully opaque.
+  * Hide it only once the main shared-image motion starts.
    */
-  const projectHide = isOverlayActive;
+  const projectHide = phase === "animating" || phase === "done";
 
   /* ── Always measure the header's height and cache the "expanded" value ── */
   useLayoutEffect(() => {

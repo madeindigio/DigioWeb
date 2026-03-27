@@ -21,8 +21,8 @@ export const blogPosts: BlogPost[] = [
     i18nKey: "aiToolsWantedBefore",
     date: "2026-03-25",
     categoryKey: "innovacionDigital",
-    image: "https://digio.es/sites/default/files/styles/generic_media_file/public/2026-03/Imagen%20Blog.jpg.webp?itok=g6mFRwM6",
-    contentImage: "https://digio.es/sites/default/files/styles/generic_media_file/public/2026-03/Imagen%20Blog.jpg.webp?itok=g6mFRwM6",
+    image: "/images/blog/herramientas-ia-hero-blog.jpg",
+    contentImage: "/images/blog/herramientas-ia-hero-blog.jpg",
     author: "Digio",
   },
   {

@@ -60,6 +60,7 @@ function VideoWithFallback({
             videoReady ? "opacity-100" : "opacity-0"
           }`}
           src={src}
+          autoPlay
           muted
           loop
           playsInline

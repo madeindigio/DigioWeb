@@ -17,6 +17,57 @@ import { LangText } from "./LangText";
 import { useProjectTransition } from "./ProjectTransitionContext";
 
 const EASE_SMOOTH: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const PRE_TRANSITION_CLEANUP_MS = 170;
+const PRELOAD_IMAGE_MAX_WAIT_MS = 260;
+const PRELOAD_VIDEO_MAX_WAIT_MS = 320;
+
+function wait(ms: number) {
+  return new Promise<void>((resolve) => {
+    window.setTimeout(resolve, ms);
+  });
+}
+
+function preloadImage(src: string) {
+  return new Promise<void>((resolve) => {
+    if (!src) {
+      resolve();
+      return;
+    }
+
+    const img = new Image();
+    img.src = src;
+
+    if (img.complete) {
+      resolve();
+      return;
+    }
+
+    const finish = () => resolve();
+    img.onload = finish;
+    img.onerror = finish;
+  });
+}
+
+function preloadVideo(src: string) {
+  return new Promise<void>((resolve) => {
+    if (!src) {
+      resolve();
+      return;
+    }
+
+    const video = document.createElement("video");
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "auto";
+
+    const finish = () => resolve();
+    video.onloadeddata = finish;
+    video.oncanplay = finish;
+    video.onerror = finish;
+    video.src = src;
+    video.load();
+  });
+}
 
 function ScrollReveal({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   return (
@@ -52,19 +103,54 @@ export function useProjectClick(
   imageSrc: string,
   tag: string,
   tagBg?: string,
+  videoSrc?: string,
 ) {
   const navigate = useNavigate();
-  const { startTransition } = useProjectTransition();
+  const { startTransition, beginTransition, phase } = useProjectTransition();
 
   return useCallback(() => {
+    if (phase !== "idle") return;
+
     if (imageSrc) {
       const rect = containerRef.current?.getBoundingClientRect();
       if (rect) {
-        startTransition({ slug, imageSrc, rect, tag, tagBg });
+        startTransition({ slug, imageSrc, videoSrc, rect, tag, tagBg });
+
+        void Promise.all([
+          wait(PRE_TRANSITION_CLEANUP_MS),
+          Promise.all([
+            Promise.race([
+              preloadImage(imageSrc),
+              wait(PRELOAD_IMAGE_MAX_WAIT_MS),
+            ]),
+            videoSrc
+              ? Promise.race([
+                  preloadVideo(videoSrc),
+                  wait(PRELOAD_VIDEO_MAX_WAIT_MS),
+                ])
+              : Promise.resolve(),
+          ]),
+        ]).then(() => {
+          beginTransition();
+          navigate(`/proyecto/${slug}`);
+        });
+
+        return;
       }
     }
     navigate(`/proyecto/${slug}`);
-  }, [slug, containerRef, imageSrc, tag, tagBg, navigate, startTransition]);
+  }, [
+    slug,
+    containerRef,
+    imageSrc,
+    tag,
+    tagBg,
+    navigate,
+    startTransition,
+    beginTransition,
+    phase,
+    videoSrc,
+  ]);
 }
 
 /* ── Hover overlay with cursor-following button ─── */
@@ -323,7 +409,7 @@ function FullWidthCard({
   eager?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const handleClick = useProjectClick(slug, containerRef, image, tag, tagBg);
+  const handleClick = useProjectClick(slug, containerRef, image, tag, tagBg, videoSrc);
 
   return (
     <div className="flex flex-col items-start w-full">

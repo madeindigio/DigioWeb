@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 export interface TransitionSnapshot {
   slug: string;
   imageSrc: string;
+  videoSrc?: string;
   rect: DOMRect;
   tag: string;
   tagBg?: string;
@@ -12,16 +13,19 @@ export interface TransitionSnapshot {
 /**
  * Simplified phase machine:
  *   idle      → nothing happening
+ *   preparing → fast visual cleanup before FLIP starts
  *   animating → overlay visible, card flying from original rect → hero
  *   done      → card landed; overlay fading out, content revealing
  */
-type Phase = "idle" | "animating" | "done";
+type Phase = "idle" | "preparing" | "animating" | "done";
 
 interface ProjectTransitionContextValue {
   snapshot: TransitionSnapshot | null;
   phase: Phase;
-  /** Capture snapshot + start animation immediately */
+  /** Capture snapshot + start pre-transition visual cleanup */
   startTransition: (s: TransitionSnapshot) => void;
+  /** Cleanup finished → start the FLIP motion */
+  beginTransition: () => void;
   /** Card landed → trigger overlay exit + content reveal */
   finishTransition: () => void;
   /** Full cleanup after overlay exit animation completes */
@@ -36,6 +40,7 @@ const Ctx = createContext<ProjectTransitionContextValue>({
   snapshot: null,
   phase: "idle",
   startTransition: () => {},
+  beginTransition: () => {},
   finishTransition: () => {},
   clearTransition: () => {},
   isTransitioning: false,
@@ -48,7 +53,11 @@ export function ProjectTransitionProvider({ children }: { children: ReactNode })
 
   const startTransition = useCallback((s: TransitionSnapshot) => {
     setSnapshot(s);
-    setPhase("animating");
+    setPhase("preparing");
+  }, []);
+
+  const beginTransition = useCallback(() => {
+    setPhase((current) => (current === "preparing" ? "animating" : current));
   }, []);
 
   const finishTransition = useCallback(() => {
@@ -69,6 +78,7 @@ export function ProjectTransitionProvider({ children }: { children: ReactNode })
         snapshot,
         phase,
         startTransition,
+        beginTransition,
         finishTransition,
         clearTransition,
         isTransitioning,

@@ -9,11 +9,13 @@ const imgVivlaHeader = "/images/projects/vivla/vivla-hero-section.jpg";
 
 const imgSymposiumHeader = "/images/projects/symposium/Big SYM IMG section.jpg";
 const imgIdermappHeader = "/images/projects/idermapp/iDermApp hero section IMG.jpg";
+const symposiumHeroVideo = "https://digio.es/sites/default/files/2024-04/Symposium-header-2.mp4";
 
 export interface ProjectData {
   slug: string;
   i18nKey: string;
   image: string;
+  heroVideo?: string;
   tagBg?: string;
   layout: "full" | "half";
 }
@@ -22,7 +24,7 @@ export const PROJECTS: ProjectData[] = [
   { slug: "ekhilur", i18nKey: "ekhilur", image: imgEkhilurHeader, layout: "full", tagBg: "bg-[rgba(25,30,37,0.18)]" },
   { slug: "roomonitor", i18nKey: "roomonitor", image: imgRoomonitorHeader, layout: "half" },
   { slug: "finsa", i18nKey: "finsa", image: imgFinsaHeader, layout: "half" },
-  { slug: "symposium", i18nKey: "symposium", image: imgSymposiumHeader, layout: "full", tagBg: "bg-[rgba(163,163,163,0.24)]" },
+  { slug: "symposium", i18nKey: "symposium", image: imgSymposiumHeader, heroVideo: symposiumHeroVideo, layout: "full", tagBg: "bg-[rgba(163,163,163,0.24)]" },
   { slug: "spock", i18nKey: "spock", image: imgSpockHeader, layout: "half", tagBg: "bg-[rgba(146,146,146,0.24)]" },
   { slug: "idermapp", i18nKey: "idermapp", image: imgIdermappHeader, layout: "half" },
   { slug: "ivoox", i18nKey: "ivoox", image: imgIvooxHeader, layout: "full" },

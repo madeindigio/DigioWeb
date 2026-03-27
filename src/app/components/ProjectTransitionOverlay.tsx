@@ -8,6 +8,7 @@ import { stopSmoothScroll } from "./SmoothScrollProvider";
 const EASE: [number, number, number, number] = [0.33, 1, 0.68, 1]; // swift ease-out for snappiness
 
 /* ── Timing ── */
+const PREPARE_FADE_DURATION = 0.17;
 const CARD_DURATION = 0.55;       // swift, smooth expansion
 const HOLD_MS = 50;              
 const EXIT_DURATION = 0.35;       // fast fade-out
@@ -33,19 +34,28 @@ export function ProjectTransitionOverlay() {
   const { t } = useTranslation();
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
   const hasLandedRef = useRef(false);
+  const topForcedRef = useRef(false);
 
-  /* Lock scroll while any phase is active */
+  /* Lock scroll while transition is active */
   useEffect(() => {
     if (phase !== "idle") {
       stopSmoothScroll();
       document.body.style.overflow = "hidden";
-      window.scrollTo(0, 0);
     } else {
       document.body.style.overflow = "";
+      topForcedRef.current = false;
     }
     return () => {
       document.body.style.overflow = "";
     };
+  }, [phase]);
+
+  /* Force top only when the main movement starts, not during preparing fade */
+  useEffect(() => {
+    if (phase === "animating" && !topForcedRef.current) {
+      topForcedRef.current = true;
+      window.scrollTo(0, 0);
+    }
   }, [phase]);
 
   /* Reset landed guard when a new transition starts */
@@ -57,10 +67,11 @@ export function ProjectTransitionOverlay() {
 
   /* Card FLIP finished → hold briefly, then advance to done */
   const handleCardLanded = useCallback(() => {
+    if (phase !== "animating") return;
     if (hasLandedRef.current) return;
     hasLandedRef.current = true;
     timerRef.current = setTimeout(() => finishTransition(), HOLD_MS);
-  }, [finishTransition]);
+  }, [finishTransition, phase]);
 
   /* Cleanup timers */
   useEffect(() => {
@@ -86,6 +97,9 @@ export function ProjectTransitionOverlay() {
   const heroHeight = getHeroHeight();
 
   const showChild = isOverlayActive && phase !== "done";
+  const isPreparing = phase === "preparing";
+  const isAnimating = phase === "animating";
+  const hasTransitionVideo = Boolean(snapshot?.videoSrc);
 
   return (
     <AnimatePresence onExitComplete={handleExitComplete}>
@@ -96,7 +110,12 @@ export function ProjectTransitionOverlay() {
           exit={{ opacity: 0 }}
           transition={{ duration: EXIT_DURATION }}
         >
-          <div className="absolute inset-0 bg-white" />
+          <motion.div
+            className="absolute inset-0 bg-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: isPreparing ? PREPARE_FADE_DURATION : 0.01, ease: EASE }}
+          />
 
           {/* ─── CARD CLONE ─── */}
           <motion.div
@@ -109,27 +128,50 @@ export function ProjectTransitionOverlay() {
               borderRadius: "16px",
             }}
             animate={{
-              y: 0,
-              x: 0,
-              width: "100%",
-              height: heroHeight,
-              borderRadius: "0px",
+              y: isAnimating ? 0 : snapshot.rect.top,
+              x: isAnimating ? 0 : snapshot.rect.left,
+              width: isAnimating ? "100%" : snapshot.rect.width,
+              height: isAnimating ? heroHeight : snapshot.rect.height,
+              borderRadius: isAnimating ? "0px" : "16px",
             }}
-            transition={{ duration: CARD_DURATION, ease: EASE }}
+            transition={{ duration: isAnimating ? CARD_DURATION : 0.01, ease: EASE }}
             onAnimationComplete={handleCardLanded}
           >
             {/* Solid fallback bg */}
             <div className="absolute inset-0 bg-[#d8d8d8]" />
 
-            {/* Hero image — clean, no text overlay */}
-            <motion.img
-              alt={name}
-              className="absolute inset-0 w-full h-full object-cover"
-              src={snapshot.imageSrc}
-              initial={{ scale: PARALLAX_SCALE_START, y: PARALLAX_Y_START }}
-              animate={{ scale: PARALLAX_SCALE_END, y: PARALLAX_Y_END }}
-              transition={{ duration: CARD_DURATION * 1.2, ease: EASE }}
-            />
+            {hasTransitionVideo ? (
+              <motion.video
+                aria-label={name}
+                className="absolute inset-0 w-full h-full object-cover"
+                src={snapshot.videoSrc}
+                poster={snapshot.imageSrc}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                initial={{ scale: PARALLAX_SCALE_START, y: PARALLAX_Y_START }}
+                animate={{
+                  scale: isAnimating ? PARALLAX_SCALE_END : PARALLAX_SCALE_START,
+                  y: isAnimating ? PARALLAX_Y_END : PARALLAX_Y_START,
+                }}
+                transition={{ duration: isAnimating ? CARD_DURATION * 1.2 : 0.01, ease: EASE }}
+              />
+            ) : (
+              /* Hero image — clean, no text overlay */
+              <motion.img
+                alt={name}
+                className="absolute inset-0 w-full h-full object-cover"
+                src={snapshot.imageSrc}
+                initial={{ scale: PARALLAX_SCALE_START, y: PARALLAX_Y_START }}
+                animate={{
+                  scale: isAnimating ? PARALLAX_SCALE_END : PARALLAX_SCALE_START,
+                  y: isAnimating ? PARALLAX_Y_END : PARALLAX_Y_START,
+                }}
+                transition={{ duration: isAnimating ? CARD_DURATION * 1.2 : 0.01, ease: EASE }}
+              />
+            )}
           </motion.div>
         </motion.div>
       )}

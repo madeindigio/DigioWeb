@@ -112,9 +112,10 @@ export function RelatedProjectCard({
   /* Use the canonical project image for the FLIP overlay so the hero matches */
   const project = getProjectBySlug(slug);
   const flipImage = project?.image || image;
+  const flipVideo = project?.heroVideo;
   const displayImage = project?.image || image;
   const displayImage2 = project?.image ? undefined : image2;
-  const handleClick = useProjectClick(slug, containerRef, flipImage, tag);
+  const handleClick = useProjectClick(slug, containerRef, flipImage, tag, undefined, flipVideo);
 
   return (
     <div className="flex flex-col items-start flex-1 min-w-0">
