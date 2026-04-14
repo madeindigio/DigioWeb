@@ -154,7 +154,7 @@ export function useProjectClick(
 }
 
 /* ── Hover overlay with cursor-following button ─── */
-function CardHoverOverlay({
+export function CardHoverOverlay({
   containerRef,
   onClick,
 }: {

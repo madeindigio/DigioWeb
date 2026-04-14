@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
 import { useProjectTransition } from "./ProjectTransitionContext";
-import { useProjectClick } from "./WorkSection";
+import { useProjectClick, CardHoverOverlay } from "./WorkSection";
 import { getProjectBySlug } from "./projectData";
 import { resizeSmoothScroll } from "./SmoothScrollProvider";
 
@@ -121,13 +121,12 @@ export function RelatedProjectCard({
     <div className="flex flex-col items-start flex-1 min-w-0">
       <div
         ref={containerRef}
-        onClick={handleClick}
-        className="relative w-full h-[500px] max-lg:h-[350px] max-md:h-[250px] overflow-hidden cursor-pointer group"
+        className="relative w-full h-[500px] max-lg:h-[350px] max-md:h-[250px] overflow-hidden cursor-pointer"
       >
         <div className="absolute inset-0 bg-[#d8d8d8]" />
         <img
           alt={name}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
           loading="lazy"
           decoding="async"
           src={displayImage}
@@ -135,7 +134,7 @@ export function RelatedProjectCard({
         {displayImage2 && (
           <img
             alt=""
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             loading="lazy"
             decoding="async"
             src={displayImage2}
@@ -146,8 +145,7 @@ export function RelatedProjectCard({
             {tag}
           </p>
         </div>
-        {/* Hover darken overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-400 pointer-events-none" />
+        <CardHoverOverlay containerRef={containerRef} onClick={handleClick} />
       </div>
       <div className="flex gap-[40px] items-start py-[32px] w-full max-md:flex-col max-md:gap-[12px] max-md:py-[20px]">
         <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] whitespace-nowrap shrink-0 max-md:text-[20px] max-md:leading-[28px]">
