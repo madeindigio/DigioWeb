@@ -1,12 +1,12 @@
 import svgPaths from "./svg-bh13mdqhi0";
-import imgDigioIaGenerativa2025Es12 from "figma:asset/9d0f922d0477228e80fbc7f2e8e4bd47a4e0e7bd.png";
-import imgDigioIaGenerativa2025Es13 from "figma:asset/ff915408b604c39a5bc7a9a9f548136e44e25a9a.png";
-import imgDigioIaGenerativa2025Es14 from "figma:asset/8ff2390c0e8c205e4dcf0cfa9ce2296e461c781f.png";
-import imgRectangle from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
-import imgLogoFderTransparente1 from "figma:asset/e5dabf104c5abe32475f6bcaae852ddc54fc749b.png";
-import imgPymeInnovadora from "figma:asset/35f3caeb73f22e49c33064103bb67b4b842b4074.png";
-import imgLogoCdti2023SoportesDigitalesNegativo011 from "figma:asset/a45f9c6de6e4af962973880e08cc9f61a4cb7a4b.png";
-import imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 from "figma:asset/0b034c1574c942b05d0a38022768fb36d72a69d5.png";
+const imgDigioIaGenerativa2025Es12 = "/images/placeholder-gray.svg";
+const imgDigioIaGenerativa2025Es13 = "/images/placeholder-gray.svg";
+const imgDigioIaGenerativa2025Es14 = "/images/placeholder-gray.svg";
+const imgRectangle = "/images/placeholder-gray.svg";
+const imgLogoFderTransparente1 = "/images/placeholder-gray.svg";
+const imgPymeInnovadora = "/images/placeholder-gray.svg";
+const imgLogoCdti2023SoportesDigitalesNegativo011 = "/images/placeholder-gray.svg";
+const imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 = "/images/placeholder-gray.svg";
 import { imgDigioIaGenerativa2025Es11 } from "./svg-uqyud";
 
 function LogoSection() {

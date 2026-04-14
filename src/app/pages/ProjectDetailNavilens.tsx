@@ -9,18 +9,19 @@ import {
   RelatedProjectsSection,
 } from "../components/project-detail-shared";
 
-/* ─── Figma Assets ─── */
+/* ─── Assets ─── */
 const imgHero = "/images/projects/navilens/navilens-hero-section.jpg";
-import imgTagNaqr from "figma:asset/d5a03f14492f6f672b4e5c610c56e8c79edebc54.png";
-import imgStreet from "figma:asset/f0c1c4d02f69e5e63daedc44868f23f30c404734.png";
-import imgQrMarco from "figma:asset/7a28753056a0a6eb4839b9820ba854bcc92afe2b.png";
-import imgLogotipo from "figma:asset/941e389e96bb84d33ad691c56a9d484b9544a6f2.png";
-import imgQrCode from "figma:asset/5ab6df32e8bf8890fa2e5f85367e789db00c753a.png";
-import imgHand from "figma:asset/279c21454eea12e4f8003e0f9c57466cb2b2bdf7.png";
-import imgQrPreview from "figma:asset/4f3378a6358c68dceda7107151fa5e43f67070bf.png";
-import imgMockup from "figma:asset/e067d82de5db73bf481d1273fc14fd687fc6179b.png";
-import imgPersonScanning from "figma:asset/1658f5ee0ee468d764665432c2e429b585e5b54e.png";
-import imgRelatedIDermApp from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
+// Image placeholders - replace with actual assets in /public/images/
+const imgTagNaqr = "/images/placeholder-gray.svg";
+const imgStreet = "/images/placeholder-gray.svg";
+const imgQrMarco = "/images/placeholder-gray.svg";
+const imgLogotipo = "/images/placeholder-gray.svg";
+const imgQrCode = "/images/placeholder-gray.svg";
+const imgHand = "/images/placeholder-gray.svg";
+const imgQrPreview = "/images/placeholder-gray.svg";
+const imgMockup = "/images/placeholder-gray.svg";
+const imgPersonScanning = "/images/placeholder-gray.svg";
+const imgRelatedIDermApp = "/images/placeholder-gray.svg";
 const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 import svgPaths from "../../imports/svg-7k2kxsrz4w";
 

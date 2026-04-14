@@ -7,12 +7,13 @@ import { SEOHead, breadcrumbJsonLd } from "../components/SEOHead";
 
 import svgPaths from "../../imports/svg-ws9geozil5";
 import svgArrow from "../../imports/svg-0193fyzoz5";
-import imgBgImg4 from "figma:asset/8212896e6a60fb7b1b52ab2f32566ba0c7b8603e.png";
-import imgBgImg2 from "figma:asset/a731754f2b62b4e67b1191130818f67104f0d42a.png";
-import imgBgImg from "figma:asset/fed975d4171deac24b90e8520b6be34b7d0e512b.png";
-import imgBgImg6 from "figma:asset/102eaa9b04d8efe5a345951a0cb8223d13efbf8e.png";
-import imgBgImg1 from "figma:asset/2c7b4bcead3f083cb8f55f216893a62053cf893a.png";
-import imgBgImg7 from "figma:asset/f54413152b0707aab69826d5c7f56ff019ea170f.png";
+// Unete gallery images from /public/images/unete
+const imgBgImg4 = "/images/unete/01.jpg";
+const imgBgImg2 = "/images/unete/02.jpg";
+const imgBgImg = "/images/unete/03.jpg";
+const imgBgImg6 = "/images/unete/04.jpg";
+const imgBgImg1 = "/images/unete/05.jpg";
+const imgBgImg7 = "/images/unete/06.jpg";
 
 const EASE_SMOOTH = [0.22, 1, 0.36, 1] as const;
 

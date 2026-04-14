@@ -1,10 +1,11 @@
 import svgPaths from "./svg-ro6oo4s0ax";
-import img65F04D016Da2E3540E4044E4CostaBlanca1 from "figma:asset/b7ea83d5969b2f3a7deb02783e2dc44461a24de7.png";
-import img65Eb03A09E811290E6582930CostaDelSol1 from "figma:asset/6bf59f9ec37a80499a6cc04a0ab53520fb2da06f.png";
-import img65Ca4C591D754Cb3Fb6A6485Ibiza1 from "figma:asset/5c3d5fd88111539ad34b20f6e04ca00cc79d14f0.png";
-import img65Ca4670F46654A8F774Ca51Menorca1 from "figma:asset/7c319932ad2328b1ff6501407e7a093b2e234a24.png";
-import img65Ca4670F46654A8F774Ca51Menorca2 from "figma:asset/616dcfba367ac30ab59f0f8faa5a089aeb3b9ceb.png";
-import img65Ca4670F46654A8F774Ca51Menorca3 from "figma:asset/c964f4f561c83468778838cc24f354cf29d41ed0.png";
+// Image placeholders - replace with actual assets in /public/images/
+const img65F04D016Da2E3540E4044E4CostaBlanca1 = "/images/placeholder-gray.svg";
+const img65Eb03A09E811290E6582930CostaDelSol1 = "/images/placeholder-gray.svg";
+const img65Ca4C591D754Cb3Fb6A6485Ibiza1 = "/images/placeholder-gray.svg";
+const img65Ca4670F46654A8F774Ca51Menorca1 = "/images/placeholder-gray.svg";
+const img65Ca4670F46654A8F774Ca51Menorca2 = "/images/placeholder-gray.svg";
+const img65Ca4670F46654A8F774Ca51Menorca3 = "/images/placeholder-gray.svg";
 
 function Group() {
   return (

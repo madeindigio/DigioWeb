@@ -1,8 +1,9 @@
 import svgPaths from "./svg-t0r270z3oc";
-import imgRectangle from "figma:asset/7a93632d01396aaeb116675c2c12c3e8d87dbeac.png";
-import imgRectangle1 from "figma:asset/a73d9ed7d58297211c427a6abd40547dda6c4f79.png";
-import imgRectangle2 from "figma:asset/3da4185df7dad6147b3cbea712dbdb048b56e256.png";
-import imgRectangle3 from "figma:asset/136b542261afa712670248a0cc0cf6d1ad3ad35e.png";
+// Image placeholders - replace with actual assets in /public/images/
+const imgRectangle = "/images/placeholder-gray.svg";
+const imgRectangle1 = "/images/placeholder-gray.svg";
+const imgRectangle2 = "/images/placeholder-gray.svg";
+const imgRectangle3 = "/images/placeholder-gray.svg";
 
 function HeaderContent() {
   return (

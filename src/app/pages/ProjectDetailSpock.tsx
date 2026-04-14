@@ -9,16 +9,17 @@ import {
   RelatedProjectsSection,
 } from "../components/project-detail-shared";
 
-/* ─── Figma Assets ─── */
+/* ─── Assets ─── */
 import svgPaths from "../../imports/svg-ajllqqcr1j";
 const imgHero = "/images/projects/spock/spock-hero-img.jpg";
-import imgMockup from "figma:asset/f1244955f8876e7aedebd803c6e1b6b98bd16965.png";
-import imgPiggyBank from "figma:asset/2b799a9d2f876f0cdc1feb9750bf57144be230d0.png";
-import imgIMac from "figma:asset/1340efa0945e04447f7f497887c081a1d97a3220.png";
-import imgPeopleGroup from "figma:asset/7cf4026e53d985130f9bd2a3eb6fdc9282b0f373.png";
-import imgRelatedIdermapp from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
-import imgRelatedIdermapp2 from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
-import imgRelatedNavilens from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
+// Image placeholders - replace with actual assets in /public/images/
+const imgMockup = "/images/placeholder-gray.svg";
+const imgPiggyBank = "/images/placeholder-gray.svg";
+const imgIMac = "/images/placeholder-gray.svg";
+const imgPeopleGroup = "/images/placeholder-gray.svg";
+const imgRelatedIdermapp = "/images/placeholder-gray.svg";
+const imgRelatedIdermapp2 = "/images/placeholder-gray.svg";
+const imgRelatedNavilens = "/images/placeholder-gray.svg";
 
 const EASE = [0.22, 1, 0.36, 1];
 

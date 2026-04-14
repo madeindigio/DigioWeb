@@ -1,8 +1,8 @@
 import svgPaths from "./svg-15iyko70bm";
-import imgLogoFderTransparente1 from "figma:asset/e5dabf104c5abe32475f6bcaae852ddc54fc749b.png";
-import imgPymeInnovadora from "figma:asset/35f3caeb73f22e49c33064103bb67b4b842b4074.png";
-import imgLogoCdti2023SoportesDigitalesNegativo011 from "figma:asset/a45f9c6de6e4af962973880e08cc9f61a4cb7a4b.png";
-import imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 from "figma:asset/0b034c1574c942b05d0a38022768fb36d72a69d5.png";
+const imgLogoFderTransparente1 = "/images/placeholder-gray.svg";
+const imgPymeInnovadora = "/images/placeholder-gray.svg";
+const imgLogoCdti2023SoportesDigitalesNegativo011 = "/images/placeholder-gray.svg";
+const imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 = "/images/placeholder-gray.svg";
 
 function LogoSection() {
   return (

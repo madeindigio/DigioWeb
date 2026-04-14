@@ -9,7 +9,7 @@ import {
   RelatedProjectsSection,
 } from "../components/project-detail-shared";
 
-/* ─── Figma Assets ─── */
+/* ─── Assets ─── */
 import imgIdermappHero from "/images/projects/idermapp/iDermApp hero section IMG.jpg";
 import imgIdLogo from "/images/projects/idermapp/iD Logo.jpg";
 import imgIdermBg from "/images/projects/idermapp/iDerm Section small mobile.svg";
@@ -19,34 +19,35 @@ import imgIdermMobileSection from "/images/projects/idermapp/iDerm APP mobile se
 import imgIdermResume from "/images/projects/idermapp/iDermApp Resume IMG.jpg";
 import imgIdermUser from "/images/projects/idermapp/iDermApp User IMG.jpg";
 import imgAvatarPatient from "/images/projects/idermapp/usuario-idermapp.jpg";
-import imgChangeThis1 from "figma:asset/af57cfdcb86aed762c8a6b3c477ef348ad6f2a8b.png";
-import imgShadow from "figma:asset/0e574b340d591487fd4f938ab54f1795774692f9.png";
-import imgReflection from "figma:asset/e112cd78c1cd95b303446e0e110c9d0a9f9069ab.png";
-import imgShadow1 from "figma:asset/cf242ff9a2d9085d35108e511edcea9a29ea5729.png";
-import imgChangeThis3 from "figma:asset/62c14272d7b1b6797a139627839f1aef7fa8f410.png";
-import imgShadow2 from "figma:asset/8f2321113c61d9c781dbec59f631ad1340396f15.png";
-import imgReflection1 from "figma:asset/7299a1c8400b155f522aeab52d8df4a31de242e5.png";
-import imgRectangle from "figma:asset/586c0ce3d1a80221215ae04074caaef793ecccca.png";
-import imgIDermSlider from "figma:asset/b91f06f27caaa434dac39a7317b48928dd38c4ee.png";
-import imgBgImg from "figma:asset/629ab9435a15ff8977689debec5177909435096d.png";
-import imgSpecialist1 from "figma:asset/1eb8762b1aefff04ba6a8807183288ed88bba7cb.png";
-import imgSpecialist2 from "figma:asset/208255154bad2997b238349e733c82a6d904b677.png";
-import imgSpecialist3 from "figma:asset/58570655c8c6856d80de4f4bc3dfd1242d34d858.png";
-import imgSpecialist4 from "figma:asset/e76bb89dba2dff28764ac10504b15994e8e28074.png";
-import imgSpecialist5 from "figma:asset/ac94a2ccc0128e254b7df2300894f976e2918ce4.png";
-import imgDoctorBg from "figma:asset/fedd8b8a1376de87fe4f4c4be91e8eb744d9b2d8.png";
-import imgSpecialist6 from "figma:asset/2a15dbc8d3b4f838af6d2bc881c52286a576d809.png";
-import imgSpecialist7 from "figma:asset/7846df17dc692d2a0d48025b3fb410e07c702819.png";
-import imgSpecialist8 from "figma:asset/94764661a7ad565b9559c1d107c28f10d278995d.png";
-import imgSpecialist9 from "figma:asset/e69471e67ec124e980846cfe4fd536379b074a95.png";
-import imgSpecialist10 from "figma:asset/92073aa164052f6930d07585d71805c037eb3b90.png";
-import imgSpecialist11 from "figma:asset/04df2abfc07c4d6920ed98aef43835d447dbf84a.png";
-import imgSpecialist12 from "figma:asset/eea520e15969cc36cfbbd938c37927050c82784a.png";
-import imgSpecialist13 from "figma:asset/69b4616642b8fe99b098f259cfa7604ec2e4e290.png";
+// Image placeholders - replace with actual assets in /public/images/
+const imgChangeThis1 = "/images/placeholder-gray.svg";
+const imgShadow = "/images/placeholder-gray.svg";
+const imgReflection = "/images/placeholder-gray.svg";
+const imgShadow1 = "/images/placeholder-gray.svg";
+const imgChangeThis3 = "/images/placeholder-gray.svg";
+const imgShadow2 = "/images/placeholder-gray.svg";
+const imgReflection1 = "/images/placeholder-gray.svg";
+const imgRectangle = "/images/placeholder-gray.svg";
+const imgIDermSlider = "/images/placeholder-gray.svg";
+const imgBgImg = "/images/placeholder-gray.svg";
+const imgSpecialist1 = "/images/placeholder-gray.svg";
+const imgSpecialist2 = "/images/placeholder-gray.svg";
+const imgSpecialist3 = "/images/placeholder-gray.svg";
+const imgSpecialist4 = "/images/placeholder-gray.svg";
+const imgSpecialist5 = "/images/placeholder-gray.svg";
+const imgDoctorBg = "/images/placeholder-gray.svg";
+const imgSpecialist6 = "/images/placeholder-gray.svg";
+const imgSpecialist7 = "/images/placeholder-gray.svg";
+const imgSpecialist8 = "/images/placeholder-gray.svg";
+const imgSpecialist9 = "/images/placeholder-gray.svg";
+const imgSpecialist10 = "/images/placeholder-gray.svg";
+const imgSpecialist11 = "/images/placeholder-gray.svg";
+const imgSpecialist12 = "/images/placeholder-gray.svg";
+const imgSpecialist13 = "/images/placeholder-gray.svg";
 const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
-import imgRelatedNavilens from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
-import imgIPhone15Pro from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
-import imgMore from "figma:asset/7d0f8cb44063907f7befe3440f5f9d72bff8e579.png";
+const imgRelatedNavilens = "/images/placeholder-gray.svg";
+const imgIPhone15Pro = "/images/placeholder-gray.svg";
+const imgMore = "/images/placeholder-gray.svg";
 import { imgChangeThis, imgChangeThis2 } from "../../imports/svg-f2917";
 import svgPaths from "../../imports/svg-aeu4f9zq8x";
 

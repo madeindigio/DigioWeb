@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { RouterProvider } from "react-router";
 import { router } from "./routes";
 import { ProjectTransitionProvider } from "./components/ProjectTransitionContext";
-import faviconUrl from "figma:asset/353b9f0f5cc88993d1aedb344d635785c54ef015.png";
+const faviconUrl = "/images/placeholder-gray.svg";
 
 export default function App() {
   useEffect(() => {

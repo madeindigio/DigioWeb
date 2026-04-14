@@ -1,16 +1,16 @@
 import svgPaths from "./svg-ws9geozil5";
-import imgBgImg4 from "figma:asset/8212896e6a60fb7b1b52ab2f32566ba0c7b8603e.png";
-import imgBgImg5 from "figma:asset/d98435baf92859ef828633f7a5affa80246aad9d.png";
-import imgBgImg2 from "figma:asset/a731754f2b62b4e67b1191130818f67104f0d42a.png";
-import imgBgImg from "figma:asset/fed975d4171deac24b90e8520b6be34b7d0e512b.png";
-import imgBgImg6 from "figma:asset/102eaa9b04d8efe5a345951a0cb8223d13efbf8e.png";
-import imgBgImg1 from "figma:asset/2c7b4bcead3f083cb8f55f216893a62053cf893a.png";
-import imgBgImg3 from "figma:asset/76106ad2f358c802282da63e46b0920bb73038ac.png";
-import imgBgImg7 from "figma:asset/f54413152b0707aab69826d5c7f56ff019ea170f.png";
-import imgLogoFderTransparente1 from "figma:asset/e5dabf104c5abe32475f6bcaae852ddc54fc749b.png";
-import imgPymeInnovadora from "figma:asset/35f3caeb73f22e49c33064103bb67b4b842b4074.png";
-import imgLogoCdti2023SoportesDigitalesNegativo011 from "figma:asset/a45f9c6de6e4af962973880e08cc9f61a4cb7a4b.png";
-import imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 from "figma:asset/0b034c1574c942b05d0a38022768fb36d72a69d5.png";
+const imgBgImg4 = "/images/placeholder-gray.svg";
+const imgBgImg5 = "/images/placeholder-gray.svg";
+const imgBgImg2 = "/images/placeholder-gray.svg";
+const imgBgImg = "/images/placeholder-gray.svg";
+const imgBgImg6 = "/images/placeholder-gray.svg";
+const imgBgImg1 = "/images/placeholder-gray.svg";
+const imgBgImg3 = "/images/placeholder-gray.svg";
+const imgBgImg7 = "/images/placeholder-gray.svg";
+const imgLogoFderTransparente1 = "/images/placeholder-gray.svg";
+const imgPymeInnovadora = "/images/placeholder-gray.svg";
+const imgLogoCdti2023SoportesDigitalesNegativo011 = "/images/placeholder-gray.svg";
+const imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 = "/images/placeholder-gray.svg";
 
 function LogoSection() {
   return (

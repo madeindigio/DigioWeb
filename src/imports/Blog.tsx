@@ -1,14 +1,15 @@
 import svgPaths from "./svg-hrq2igur1m";
-import imgPlaceholderImg from "figma:asset/5e90f543a6c677b6193fd4f657643800aadf8c32.png";
-import imgPlaceholderImg1 from "figma:asset/0f08033a837bc4d163ea3a576d6791283a03df20.png";
-import imgPlaceholderImg2 from "figma:asset/a2416ee58b1bdf68073fb38be04266783a20295c.png";
-import imgPlaceholderImg3 from "figma:asset/517802f30a9e6cf70cd910bf3769204b12ca9cd4.png";
-import imgPlaceholderImg4 from "figma:asset/472a119f4cfcbb6e63ae01228511910fdb40c7f7.png";
-import imgPlaceholderImg5 from "figma:asset/72f20e59698a350ad9bf813435b9055a590439f9.png";
-import imgLogoFderTransparente1 from "figma:asset/e5dabf104c5abe32475f6bcaae852ddc54fc749b.png";
-import imgPymeInnovadora from "figma:asset/35f3caeb73f22e49c33064103bb67b4b842b4074.png";
-import imgLogoCdti2023SoportesDigitalesNegativo011 from "figma:asset/a45f9c6de6e4af962973880e08cc9f61a4cb7a4b.png";
-import imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 from "figma:asset/0b034c1574c942b05d0a38022768fb36d72a69d5.png";
+// Image placeholders - replace with actual assets in /public/images/
+const imgPlaceholderImg = "/images/placeholder-gray.svg";
+const imgPlaceholderImg1 = "/images/placeholder-gray.svg";
+const imgPlaceholderImg2 = "/images/placeholder-gray.svg";
+const imgPlaceholderImg3 = "/images/placeholder-gray.svg";
+const imgPlaceholderImg4 = "/images/placeholder-gray.svg";
+const imgPlaceholderImg5 = "/images/placeholder-gray.svg";
+const imgLogoFderTransparente1 = "/images/placeholder-gray.svg";
+const imgPymeInnovadora = "/images/placeholder-gray.svg";
+const imgLogoCdti2023SoportesDigitalesNegativo011 = "/images/placeholder-gray.svg";
+const imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 = "/images/placeholder-gray.svg";
 
 function LogoSection() {
   return (

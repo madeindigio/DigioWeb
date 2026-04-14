@@ -1,5 +1,5 @@
 import svgPaths from "./svg-ufyeptj0u5";
-import imgStatBackground from "figma:asset/577358e58d2c796fbd710a434f58e1adf694d85e.png";
+const imgStatBackground = "/images/placeholder-gray.svg";
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
 
 /* ─── Visibility context for scroll-triggered animations ─── */

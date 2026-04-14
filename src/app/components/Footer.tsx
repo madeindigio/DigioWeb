@@ -3,10 +3,10 @@ import { FooterLogo } from "./Header";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { LangText } from "./LangText";
-import imgLogoFderTransparente1 from "figma:asset/e5dabf104c5abe32475f6bcaae852ddc54fc749b.png";
-import imgPymeInnovadora from "figma:asset/35f3caeb73f22e49c33064103bb67b4b842b4074.png";
-import imgLogoCdti2023SoportesDigitalesNegativo011 from "figma:asset/a45f9c6de6e4af962973880e08cc9f61a4cb7a4b.png";
-import imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 from "figma:asset/0b034c1574c942b05d0a38022768fb36d72a69d5.png";
+const imgLogoFderTransparente1 = "/images/footer/LOGO_FDER_transparente_1.png";
+const imgPymeInnovadora = "/images/footer/PYME Innovadora.png";
+const imgLogoCdti2023SoportesDigitalesNegativo011 = "/images/footer/gob es.png";
+const imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 = "/images/footer/financiado UE.png";
 import UeRed from "../../imports/UeRed-106-135";
 
 function XLogo() {

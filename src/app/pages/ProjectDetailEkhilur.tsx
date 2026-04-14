@@ -8,8 +8,8 @@ import {
 } from "../components/project-detail-shared";
 const imgEkhilurHero = "/images/projects/ekhilur/ekhilur-hero-section.jpg";
 
-import imgRelatedVivla from "figma:asset/43cdb3e72f58cd88be954c02c14019a69bab0bb8.png";
-import imgRelatedNavilens from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
+const imgRelatedVivla = "/images/placeholder-gray.svg";
+const imgRelatedNavilens = "/images/placeholder-gray.svg";
 
 function MockPanel({
   label,

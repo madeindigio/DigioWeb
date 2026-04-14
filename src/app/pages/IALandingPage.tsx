@@ -1,9 +1,10 @@
 import svgPaths from "../../imports/svg-bh13mdqhi0";
 import { imgDigioIaGenerativa2025Es11 } from "../../imports/svg-uqyud";
-import imgDigioIaGenerativa2025Es12 from "figma:asset/9d0f922d0477228e80fbc7f2e8e4bd47a4e0e7bd.png";
-import imgDigioIaGenerativa2025Es13 from "figma:asset/ff915408b604c39a5bc7a9a9f548136e44e25a9a.png";
-import imgDigioIaGenerativa2025Es14 from "figma:asset/8ff2390c0e8c205e4dcf0cfa9ce2296e461c781f.png";
-import imgRectangle from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
+// Image placeholders - replace with actual assets in /public/images/
+const imgDigioIaGenerativa2025Es12 = "/images/placeholder-gray.svg";
+const imgDigioIaGenerativa2025Es13 = "/images/placeholder-gray.svg";
+const imgDigioIaGenerativa2025Es14 = "/images/placeholder-gray.svg";
+const imgRectangle = "/images/placeholder-gray.svg";
 import { Link } from "react-router";
 import { useRef, useEffect, useCallback } from "react";
 

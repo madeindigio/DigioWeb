@@ -1,19 +1,20 @@
 import svgPaths from "./svg-ypkts5i38r";
-import imgBgImg from "figma:asset/2fbb29b05a2e172d48b3873c17f761d3c2317ef5.png";
-import imgBgImg1 from "figma:asset/7eecf58295746eeffc9a8d31a745f878cf3a52e1.png";
-import imgImage17 from "figma:asset/65244daa89879874284e64a4af852a9154acf3ad.png";
-import imgCapturaDePantalla20240522ALas18381 from "figma:asset/da621a7989c6be6dd520928301dc6915dbea23c1.png";
-import imgMacBookProOnASofaMockup1 from "figma:asset/64539e9c6b26f935aaa4892a70ae2efa82e5ff4b.png";
-import imgIPhone15ProBlackTitaniumPortrait from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
-import imgMobileSection from "figma:asset/92c386fb966f32fa625b55ce807ab4e76a4554b6.png";
-import imgLargeDeskop1 from "figma:asset/74fc63919e2cd6b6e9ca4a23c8516e3989ab2642.png";
-import imgRectangle2 from "figma:asset/f46281ba4ce9df63691f9809f2f371bd9ae328bd.png";
-import imgRectangle3 from "figma:asset/2905c6e70150c14862ccacb60aaf8d71e16a875d.png";
-import imgRectangle4 from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
-import imgLogoFderTransparente1 from "figma:asset/e5dabf104c5abe32475f6bcaae852ddc54fc749b.png";
-import imgPymeInnovadora from "figma:asset/35f3caeb73f22e49c33064103bb67b4b842b4074.png";
-import imgLogoCdti2023SoportesDigitalesNegativo011 from "figma:asset/a45f9c6de6e4af962973880e08cc9f61a4cb7a4b.png";
-import imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 from "figma:asset/0b034c1574c942b05d0a38022768fb36d72a69d5.png";
+// Image placeholders - replace with actual assets in /public/images/
+const imgBgImg = "/images/placeholder-gray.svg";
+const imgBgImg1 = "/images/placeholder-gray.svg";
+const imgImage17 = "/images/placeholder-gray.svg";
+const imgCapturaDePantalla20240522ALas18381 = "/images/placeholder-gray.svg";
+const imgMacBookProOnASofaMockup1 = "/images/placeholder-gray.svg";
+const imgIPhone15ProBlackTitaniumPortrait = "/images/placeholder-gray.svg";
+const imgMobileSection = "/images/placeholder-gray.svg";
+const imgLargeDeskop1 = "/images/placeholder-gray.svg";
+const imgRectangle2 = "/images/placeholder-gray.svg";
+const imgRectangle3 = "/images/placeholder-gray.svg";
+const imgRectangle4 = "/images/placeholder-gray.svg";
+const imgLogoFderTransparente1 = "/images/placeholder-gray.svg";
+const imgPymeInnovadora = "/images/placeholder-gray.svg";
+const imgLogoCdti2023SoportesDigitalesNegativo011 = "/images/placeholder-gray.svg";
+const imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 = "/images/placeholder-gray.svg";
 
 function LogoSection() {
   return (

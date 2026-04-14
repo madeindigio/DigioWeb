@@ -333,18 +333,18 @@ Located in `/src/app/components/trabajo/`:
 
 ### `/src/imports/` Directory
 
-This directory contains Figma-exported assets:
+This directory contains design-exported assets:
 
 - **SVG path modules** (`svg-*.ts`): Exported path data for inline SVG rendering. Each module exports an object with named path properties.
-- **Figma frame components** (`*.tsx`): Reference implementations from Figma exports (e.g., `About.tsx`, `Homepage.tsx`, project detail frames).
+- **Reference frame components** (`*.tsx`): Reference implementations from design exports (e.g., `About.tsx`, `Homepage.tsx`, project detail frames).
 - **Lottie animation**: `digio_scroll_animation_white.json` / `.ts` - Header logo scroll animation.
-- **Raster images**: Referenced via `figma:asset/[hash].[ext]` virtual import scheme.
+- **Raster images**: Referenced via local paths under `/public/images`.
 
 ### Image Import Conventions
 
 ```tsx
-// Raster images (PNG, JPG) - virtual module scheme
-import img from "figma:asset/abc123.png";
+// Raster images (PNG, JPG) - local public asset path
+const img = "/images/placeholder.jpg";
 
 // SVG path data - relative file import
 import svgPaths from "../../imports/svg-xyz789";

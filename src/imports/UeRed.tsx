@@ -1,5 +1,5 @@
 import svgPaths from "./svg-vcptndkw97";
-import imgLogoFderTransparente1 from "figma:asset/e5dabf104c5abe32475f6bcaae852ddc54fc749b.png";
+const imgLogoFderTransparente1 = "/images/placeholder-gray.svg";
 
 function Group2Copy() {
   return (

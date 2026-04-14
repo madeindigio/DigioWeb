@@ -71,12 +71,12 @@ function VideoWithFallback({
   );
 }
 
-/* ─── Figma Assets ─── */
-import imgFaces1 from "figma:asset/8951edeb8a88c0f2c72219029fc8517b4f3c1aad.png";
-import imgUmuScreenPortada from "figma:asset/703843218cd8ffc6ec7f6b8dbf51eaa41fd78e98.png";
-import imgIPhone from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
-import imgRelatedIdermapp from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
-import imgRelatedIdermapp2 from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
+/* ─── Assets ─── */
+const imgFaces1 = "/images/placeholder-gray.svg";
+const imgUmuScreenPortada = "/images/placeholder-gray.svg";
+const imgIPhone = "/images/placeholder-gray.svg";
+const imgRelatedIdermapp = "/images/placeholder-gray.svg";
+const imgRelatedIdermapp2 = "/images/placeholder-gray.svg";
 const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 
 const EASE = [0.22, 1, 0.36, 1];

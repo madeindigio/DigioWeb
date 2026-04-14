@@ -1,4 +1,4 @@
-import imgPanelNpsSmMovil1 from "figma:asset/b9f9d81e22e799a7fb13feaf3583a7e2e2bbc347.png";
+const imgPanelNpsSmMovil1 = "/images/placeholder-gray.svg";
 
 export default function NaviLensSectionStreet() {
   return (

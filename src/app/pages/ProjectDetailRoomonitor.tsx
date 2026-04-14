@@ -10,18 +10,19 @@ import {
   RelatedProjectsSection,
 } from "../components/project-detail-shared";
 
-/* ─── Figma Assets ─── */
+/* ─── Assets ─── */
 const imgHero = "/images/projects/roomonitor/Roomheadersection.jpg";
-import imgRoom from "figma:asset/7eecf58295746eeffc9a8d31a745f878cf3a52e1.png";
-import imgChip from "figma:asset/da621a7989c6be6dd520928301dc6915dbea23c1.png";
-import imgDevice from "figma:asset/1f3facd6db6ba7a80b971a879bffff5b7c0d6627.png";
-import imgMacBook from "figma:asset/64539e9c6b26f935aaa4892a70ae2efa82e5ff4b.png";
-import imgMobileSection from "figma:asset/92c386fb966f32fa625b55ce807ab4e76a4554b6.png";
-import imgDesktop from "figma:asset/74fc63919e2cd6b6e9ca4a23c8516e3989ab2642.png";
-import imgIPhoneBezel from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
-import imgRelated1 from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
-import imgRelated1b from "figma:asset/8ea4e58ef8895b1cc70f7cc7edb3e7033bf3c223.png";
-import imgRelated2 from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
+// Image placeholders - replace with actual assets in /public/images/
+const imgRoom = "/images/placeholder-gray.svg";
+const imgChip = "/images/placeholder-gray.svg";
+const imgDevice = "/images/placeholder-gray.svg";
+const imgMacBook = "/images/placeholder-gray.svg";
+const imgMobileSection = "/images/placeholder-gray.svg";
+const imgDesktop = "/images/placeholder-gray.svg";
+const imgIPhoneBezel = "/images/placeholder-gray.svg";
+const imgRelated1 = "/images/placeholder-gray.svg";
+const imgRelated1b = "/images/placeholder-gray.svg";
+const imgRelated2 = "/images/placeholder-gray.svg";
 
 const EASE = [0.22, 1, 0.36, 1];
 

@@ -14,10 +14,10 @@ import { VivlaLocationsGrid } from "../components/VivlaLocationsGrid";
 import IDermAppScreens from "../../imports/IDermAppScreens";
 
 /* ─── Related project images (NaviLens + Finsa) ─── */
-import imgRelatedNavilens from "figma:asset/703c1bbb0750e4d852aeb246e01ec3e480282103.png";
+const imgRelatedNavilens = "/images/placeholder-gray.svg";
 const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 const imgVivlaHero = "/images/projects/vivla/vivla-hero-section.jpg";
-import imgPanelNpsMobile from "figma:asset/b9f9d81e22e799a7fb13feaf3583a7e2e2bbc347.png";
+const imgPanelNpsMobile = "/images/placeholder-gray.svg";
 
 const EASE = [0.22, 1, 0.36, 1];
 

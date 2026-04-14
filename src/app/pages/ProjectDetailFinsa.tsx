@@ -7,16 +7,17 @@ import {
   RelatedProjectsSection,
 } from "../components/project-detail-shared";
 
-/* ─── Figma Assets ─── */
+/* ─── Assets ─── */
 const imgHero = "/images/projects/finsa/finsa-bg-hero.jpg";
-import img36 from "figma:asset/68f3bcc323b3e4038473906580d192aad0d6a8dd.png";
-import imgMobileSection from "figma:asset/e886ab9817aac0a00c61aff042b48adf73ecc76a.png";
-import img0363Muro1 from "figma:asset/a19769ca28fef8413f76c1e664081fd22f6dcb83.png";
-import imgFinsaLeft from "figma:asset/2d6c010cf4512650509c6e63a3f0e478c70fd60d.png";
-import img0363Muro2 from "figma:asset/b0428bd14e80e23be65fc4e7e722d9d000f7fdd9.png";
-import img05MurosDatos from "figma:asset/ccbe102234a6e9c43349002ce6d75ca0193b44c2.png";
-import imgBgReports from "figma:asset/df226d0605f3725c1e406fd86f32f8db22ad9b26.png";
-import imgMockup2x from "figma:asset/ab8d614a77eb1f04083cccd6e78d093fbefe1e53.png";
+// Image placeholders - replace with actual assets in /public/images/
+const img36 = "/images/placeholder-gray.svg";
+const imgMobileSection = "/images/placeholder-gray.svg";
+const img0363Muro1 = "/images/placeholder-gray.svg";
+const imgFinsaLeft = "/images/placeholder-gray.svg";
+const img0363Muro2 = "/images/placeholder-gray.svg";
+const img05MurosDatos = "/images/placeholder-gray.svg";
+const imgBgReports = "/images/placeholder-gray.svg";
+const imgMockup2x = "/images/placeholder-gray.svg";
 const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
 import { imgEkhilurPlaceholder } from "../components/projectData";
 
@@ -139,7 +140,7 @@ function SecondarySection() {
 
 /* ============================================================
    5. BIG IMAGE — Desk with monitor, masked screen overlay
-   Figma: 1440×900 container. Screen 906×684 at left:267 top:108
+  Reference design: 1440×900 container. Screen 906×684 at left:267 top:108
    (centered). Inside: scrolling screenshot 179% tall.
    Responsive: use % positions relative to container.
    ============================================================ */
@@ -162,7 +163,7 @@ function BigImageSection() {
 
 /*
  * Full-width screenshot composition.
- * Figma: 545px container, background imgMobileSection,
+ * Reference design: 545px container, background imgMobileSection,
  * screenshot 820×916 centered at (50%, 50%+272.56px) = bottom edge.
  * Visible: top ~16% is background, rest is the screenshot card.
  * Responsive: % width + bottom-anchored, overflow hides excess.
@@ -189,7 +190,7 @@ function FullWidthScreenshot() {
 
 /*
  * Left card: textured bg + screenshot shifted left.
- * Figma: flex-1 (~580px), 545px tall. Screenshot 819×915
+ * Reference design: flex-1 (~580px), 545px tall. Screenshot 819×915
  * centered at (50%-204.5px, 50%+270.09px) with -translate-x/y-1/2.
  * → Screenshot starts at ~85px from top, shifted far-left.
  * Responsive: use % values, let overflow clip naturally.
@@ -217,7 +218,7 @@ function LeftCard() {
 
 /*
  * Right card: textured bg + screenshot shifted right.
- * Figma: flex-1 (~580px), 545px tall. Screenshot 810×837
+ * Reference design: flex-1 (~580px), 545px tall. Screenshot 810×837
  * centered at (50%+200px, 50%+231.09px) with -translate-x/y-1/2.
  * → Screenshot shifted right, appears from bottom-right.
  */
@@ -298,7 +299,7 @@ function AnalysisSection() {
 
 /* ============================================================
    7. RESULT — Text + iMac/laptop mockup composition
-   Figma: flex layout, text left + mockup right (flex-1, 520px tall).
+  Reference design: flex layout, text left + mockup right (flex-1, 520px tall).
    Inside mockup: background imgFinsaLeft, iMac at (90,90),
    laptop centered at top:-68px. Both exceed container, clipped.
    Responsive: scale entire composition proportionally.
@@ -330,7 +331,7 @@ function ResultSection() {
               />
             </div>
             {/* Laptop mockup: centered, overflows top
-                Figma: w-976, h-656, top: -68px, centered.
+                Reference design: w-976, h-656, top: -68px, centered.
                 At 520px height container: the laptop extends from -68 to 588px.
                 Use % of container: top ~-13%, width ~168% of container (~580px).
                 On tablet/mobile: keep ratios, scale naturally via %. */}

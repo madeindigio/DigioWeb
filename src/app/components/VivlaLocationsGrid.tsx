@@ -3,12 +3,12 @@ import { useRef, useState, useEffect } from "react";
 import svgPaths from "../../imports/svg-ro6oo4s0ax";
 
 /* ─── Location images ─── */
-import imgCostaBlanca from "figma:asset/b7ea83d5969b2f3a7deb02783e2dc44461a24de7.png";
-import imgCostaDelSol from "figma:asset/6bf59f9ec37a80499a6cc04a0ab53520fb2da06f.png";
-import imgIbiza from "figma:asset/5c3d5fd88111539ad34b20f6e04ca00cc79d14f0.png";
-import imgMenorca1 from "figma:asset/7c319932ad2328b1ff6501407e7a093b2e234a24.png";
-import imgMenorca2 from "figma:asset/616dcfba367ac30ab59f0f8faa5a089aeb3b9ceb.png";
-import imgMenorca3 from "figma:asset/c964f4f561c83468778838cc24f354cf29d41ed0.png";
+const imgCostaBlanca = "/images/placeholder-gray.svg";
+const imgCostaDelSol = "/images/placeholder-gray.svg";
+const imgIbiza = "/images/placeholder-gray.svg";
+const imgMenorca1 = "/images/placeholder-gray.svg";
+const imgMenorca2 = "/images/placeholder-gray.svg";
+const imgMenorca3 = "/images/placeholder-gray.svg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 

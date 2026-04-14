@@ -9,28 +9,29 @@ import {
   RelatedProjectsSection,
 } from "../components/project-detail-shared";
 
-/* ─── Figma Assets ─── */
+/* ─── Assets ─── */
 const imgHero = "/images/projects/ivoox/ivoox-hero-section.jpg";
-import imgMobileSection from "figma:asset/01fe94b2981c6ab9c0a636bd8e3ca57a93f93fc4.png";
-import imgScreen from "figma:asset/15d8f14cde01fd9533954caa5d8c0023a9453a10.png";
-import imgIPhone15Pro from "figma:asset/6c3fa3d2a87e60f389f86dc1c5503e4b69f06ec8.png";
-import imgPodcast1 from "figma:asset/3f35741dd3a922d2ebac22f0ccdc772db242d2ea.png";
-import imgPodcast2 from "figma:asset/27ee712bee7d2d9760d5990ad6e243d78e8757e3.png";
-import imgPodcast3 from "figma:asset/3f4181b8517e6659a68b4a2f2aaa743ce89007bd.png";
-import imgPodcast4 from "figma:asset/343da669f5ad2d878895f04bd2c52906c9a7d1e5.png";
-import imgPodcast5 from "figma:asset/ef70319c91850cb426aa075375c419901e6d1ed7.png";
-import imgPodcast6 from "figma:asset/a11ca6b377d4b2d293be6febec808cb6d31e9f38.png";
-import imgPodcast7 from "figma:asset/1c3b0d3c507dfb7bbeedcf9be2eb4b7de8ed645c.png";
-import imgPodcast8 from "figma:asset/8ef1048144c370436df59d47f9ce0b30b6f4e518.png";
-import imgPodcast9 from "figma:asset/c6598211364a17c96d25254842a81cfc0e318897.png";
-import imgMetro from "figma:asset/9eee9eb611ee559259e7863fc2483cb453170850.png";
-import imgSpockCircles from "figma:asset/cf7e7859c99d98630d969b07ba0bedba7de4bbd5.png";
-import imgDownloadMockup from "figma:asset/92aa781b11a4eb0f7b4063a2afdbf90472e6218c.png";
-import imgScreen1 from "figma:asset/db1043e92bfba1f4d28be08e1bca010ec3a52405.png";
-import imgWatchGroup from "figma:asset/84b40fa14715ef193a79093404279cc54d8d5f40.png";
-import imgWatchRight from "figma:asset/f1ffa57ef5716a937a052b6e2809269a9d411878.png";
-import imgCarBg from "figma:asset/85f15f66f0304bc17952ce96660e8838c0c6a414.png";
-import imgCarOverlay from "figma:asset/27a79dd74148a5c48814b0452de45a7c6a46ed7d.png";
+// Image placeholders - replace with actual assets in /public/images/
+const imgMobileSection = "/images/placeholder-gray.svg";
+const imgScreen = "/images/placeholder-gray.svg";
+const imgIPhone15Pro = "/images/placeholder-gray.svg";
+const imgPodcast1 = "/images/placeholder-gray.svg";
+const imgPodcast2 = "/images/placeholder-gray.svg";
+const imgPodcast3 = "/images/placeholder-gray.svg";
+const imgPodcast4 = "/images/placeholder-gray.svg";
+const imgPodcast5 = "/images/placeholder-gray.svg";
+const imgPodcast6 = "/images/placeholder-gray.svg";
+const imgPodcast7 = "/images/placeholder-gray.svg";
+const imgPodcast8 = "/images/placeholder-gray.svg";
+const imgPodcast9 = "/images/placeholder-gray.svg";
+const imgMetro = "/images/placeholder-gray.svg";
+const imgSpockCircles = "/images/placeholder-gray.svg";
+const imgDownloadMockup = "/images/placeholder-gray.svg";
+const imgScreen1 = "/images/placeholder-gray.svg";
+const imgWatchGroup = "/images/placeholder-gray.svg";
+const imgWatchRight = "/images/placeholder-gray.svg";
+const imgCarBg = "/images/placeholder-gray.svg";
+const imgCarOverlay = "/images/placeholder-gray.svg";
 const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
 import { imgEkhilurPlaceholder } from "../components/projectData";
 
