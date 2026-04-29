@@ -33,6 +33,7 @@ export const router = createBrowserRouter([
       { path: "ia", Component: IALandingPage },
       { path: "blog", Component: BlogPage },
       { path: "blog/renovacion-marca-digio", Component: BlogPostNuevaMarca },
+      { path: "blog/digio-la-renovacion-de-nuestra-marca", Component: BlogPostNuevaMarca },
       { path: "blog/:slug", Component: BlogPostDetailPage },
       { path: "contacto", Component: ContactoPage },
       { path: "privacidad", Component: PrivacidadPage },

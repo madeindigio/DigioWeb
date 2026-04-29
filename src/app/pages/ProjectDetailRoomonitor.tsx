@@ -21,8 +21,8 @@ const imgMobileSection = "/images/projects/roomonitor/Mobile%20section.jpg";
 const imgMobileAppSelection = "/images/projects/roomonitor/Mobile%20APP%20Selection.webp";
 const imgDesktop = "/images/projects/roomonitor/apart-detail.jpg";
 const imgIPhoneBezel = "/images/placeholder-gray.svg";
-const imgRelated1 = "/images/placeholder-gray.svg";
-const imgRelated1b = "/images/placeholder-gray.svg";
+const imgRelated1 = "/images/projects/vivla/vivla-hero-section.jpg";
+const imgRelated1b = "/images/projects/vivla/vivla-hero-section.jpg";
 const imgRelated2 = "/images/placeholder-gray.svg";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -155,11 +155,11 @@ function HardwareSection() {
           </div>
           {/* Hardware text */}
           <div className="flex flex-col gap-[24px] max-w-[900px]">
-            <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[27px]">
-              {t("pages.roomonitor.hardwareLabel")}
-            </p>
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-lg:text-[24px] max-lg:leading-[32px] max-md:text-[20px] max-md:leading-[28px]">
               {t("pages.roomonitor.hardwareBody")}
+            </p>
+            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] max-w-[760px]">
+              {t("pages.roomonitor.hardwareLabel")}
             </p>
           </div>
         </div>
@@ -309,7 +309,7 @@ function AppSection() {
           <div className="relative w-full h-[800px] max-lg:h-[600px] max-md:h-[400px] overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-[#e8dfdf] to-[#f6e6cd]" />
             <div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[724px] h-[614px] max-lg:w-[560px] max-lg:h-[475px] max-md:w-[340px] max-md:h-[288px]"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[724px] max-lg:w-[560px] max-md:w-[340px] aspect-[1448/1040]"
               onMouseMove={handleDesktopMouseMove}
               onMouseLeave={handleDesktopMouseLeave}
             >
@@ -355,12 +355,12 @@ function RelatedProjects() {
   return (
     <RelatedProjectsSection title={t("pages.roomonitor.relatedTitle")}>
       <RelatedProjectCard
-        slug="idermapp"
+        slug="vivla"
         image={imgRelated1}
         image2={imgRelated1b}
-        tag={t("work.projects.idermapp.tag")}
-        name={t("work.projects.idermapp.name")}
-        description={t("work.projects.idermapp.description")}
+        tag={t("work.projects.vivla.tag")}
+        name={t("work.projects.vivla.name")}
+        description={t("work.projects.vivla.description")}
       />
       <RelatedProjectCard
         slug="navilens"

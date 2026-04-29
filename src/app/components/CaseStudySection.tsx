@@ -31,7 +31,7 @@ export function CaseStudySection() {
           <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]">
             {t("caseStudy.body")}
           </LangText>
-          <Link to="/blog/renovacion-marca-digio" className="relative px-[48px] py-[16px] border border-[#191e25] bg-transparent max-md:px-[32px] max-md:py-[12px] cursor-pointer hover:bg-[#191e25] hover:text-white transition-colors group">
+          <Link to="/blog/digio-la-renovacion-de-nuestra-marca" className="relative px-[48px] py-[16px] border border-[#191e25] bg-transparent max-md:px-[32px] max-md:py-[12px] cursor-pointer hover:bg-[#191e25] hover:text-white transition-colors group">
             <LangText as="span" stagger={3} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[27px] group-hover:text-white max-md:text-[16px]">
               {t("caseStudy.cta")}
             </LangText>

@@ -10,14 +10,12 @@ import {
 /* ─── Assets ─── */
 const imgHero = "/images/projects/finsa/finsa-bg-hero.jpg";
 // Image placeholders - replace with actual assets in /public/images/
-const img36 = "/images/placeholder-gray.svg";
-const imgMobileSection = "/images/placeholder-gray.svg";
-const img0363Muro1 = "/images/placeholder-gray.svg";
-const imgFinsaLeft = "/images/placeholder-gray.svg";
-const img0363Muro2 = "/images/placeholder-gray.svg";
-const img05MurosDatos = "/images/placeholder-gray.svg";
-const imgBgReports = "/images/placeholder-gray.svg";
-const imgMockup2x = "/images/placeholder-gray.svg";
+const img36 = "/images/projects/finsa/finsa-bg-big-sect.jpg";
+const imgMobileSection = "/images/projects/finsa/Finsa%20IMG%20Medium.jpg";
+const imgFinsaLeft = "/images/projects/finsa/Finsa%20Left.jpg";
+const img05MurosDatos = "/images/projects/finsa/Finsa%20Right.jpg";
+const imgBgReports = "/images/projects/finsa/Finsa%20informe.jpg";
+const imgProSection = "/images/projects/finsa/pro%20section.jpg";
 const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
 import { imgEkhilurPlaceholder } from "../components/projectData";
 
@@ -150,7 +148,7 @@ function BigImageSection() {
       <div className="absolute inset-0 bg-[#f9f9fb]" />
       <img
         alt="Finsa – Muros y Cargas"
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-auto h-auto max-w-[90%] max-h-[88%] max-md:max-w-[92%] max-md:max-h-[92%] object-contain rounded-[8px] shadow-[0_8px_40px_rgba(0,0,0,0.12)]"
+        className="absolute inset-0 w-full h-full object-cover"
         src={img36}
       />
     </section>
@@ -171,19 +169,7 @@ function BigImageSection() {
 function FullWidthScreenshot() {
   return (
     <div className="relative w-full h-[545px] max-lg:h-[400px] max-md:h-[280px] overflow-hidden">
-      {/* Background fills the container */}
-      <div className="absolute inset-0 overflow-hidden">
-        <img
-          alt=""
-          className="absolute max-w-none"
-          style={{ height: "160.92%", width: "110.15%", left: "-0.4%", top: "-12.25%" }}
-          src={imgMobileSection}
-        />
-      </div>
-      {/* Screenshot card: starts ~16% from top, 68% container width */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[16%] w-[68%] max-md:w-[85%] rounded-[4px] overflow-hidden">
-        <img alt="" className="w-full rounded-[4px]" src={img0363Muro1} />
-      </div>
+      <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgMobileSection} />
     </div>
   );
 }
@@ -198,20 +184,7 @@ function FullWidthScreenshot() {
 function LeftCard() {
   return (
     <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[280px] overflow-hidden relative min-w-0">
-      <div className="absolute inset-0 bg-[#f7f7f7]" />
-      <div className="absolute inset-0 overflow-hidden">
-        <img
-          alt=""
-          className="absolute max-w-none"
-          style={{ height: "211.14%", width: "346.21%", left: "-17.34%", top: "-0.95%" }}
-          src={imgFinsaLeft}
-        />
-      </div>
-      {/* Screenshot: shifted left of center, appears from bottom-left.
-          Using % based on container: left ~15% of width, top ~16% */}
-      <div className="absolute top-[16%] left-[-55%] w-[141%] max-lg:left-[-40%] max-lg:w-[130%] max-md:left-[-30%] max-md:w-[120%] rounded-[4px] overflow-hidden">
-        <img alt="" className="w-full rounded-[4px] opacity-100" src={img0363Muro2} style={{ objectFit: "cover" }} />
-      </div>
+      <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgFinsaLeft} />
     </div>
   );
 }
@@ -225,19 +198,7 @@ function LeftCard() {
 function RightCard() {
   return (
     <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[280px] overflow-hidden relative min-w-0">
-      <div className="absolute inset-0 bg-[#f7f7f7]" />
-      <div className="absolute inset-0 overflow-hidden">
-        <img
-          alt=""
-          className="absolute max-w-none"
-          style={{ height: "211.14%", width: "346.21%", left: "-81.11%", top: "-22.81%" }}
-          src={imgFinsaLeft}
-        />
-      </div>
-      {/* Screenshot: shifted right, appears from bottom-right */}
-      <div className="absolute top-[16%] right-[-55%] w-[140%] max-lg:right-[-40%] max-lg:w-[130%] max-md:right-[-30%] max-md:w-[120%] rounded-[4px] overflow-hidden">
-        <img alt="" className="w-full rounded-[4px]" src={img05MurosDatos} />
-      </div>
+      <img alt="" className="absolute inset-0 w-full h-full object-cover" src={img05MurosDatos} />
     </div>
   );
 }
@@ -321,26 +282,8 @@ function ResultSection() {
           </div>
           {/* Mockup composition: laptop over iMac, clipped container */}
           <div className="flex-1 h-[520px] max-lg:h-[400px] max-lg:w-full max-md:h-[300px] relative overflow-hidden">
-            {/* Background texture */}
-            <div className="absolute inset-0 overflow-hidden">
-              <img
-                alt=""
-                className="absolute max-w-none"
-                style={{ height: "145.81%", width: "239.08%", left: "-66.9%", top: "-35.63%" }}
-                src={imgFinsaLeft}
-              />
-            </div>
-            {/* Laptop mockup: centered, overflows top
-                Reference design: w-976, h-656, top: -68px, centered.
-                At 520px height container: the laptop extends from -68 to 588px.
-                Use % of container: top ~-13%, width ~168% of container (~580px).
-                On tablet/mobile: keep ratios, scale naturally via %. */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-              style={{ top: "-13%", width: "168%", aspectRatio: "976/656" }}
-            >
-              <img alt="" className="w-full h-full object-cover" src={imgMockup2x} />
-            </div>
+            {/* Background image */}
+            <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgProSection} />
           </div>
         </div>
       </div>

@@ -197,8 +197,8 @@ function TextContent2() {
   return (
     <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0" data-name="text content">
       <div className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[48px] tracking-[-1.92px] whitespace-nowrap">
-        <p className="mb-0">Lanzamos plataformas innovadoras</p>
-        <p>para el sector energético</p>
+        <p className="mb-0">Creamos plataformas innovadoras</p>
+        <p>en el sector energético</p>
       </div>
       <Subtitle1 />
     </div>
@@ -332,7 +332,7 @@ function Frame4() {
 function Subtitle4() {
   return (
     <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="subtitle">
-      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">16 ENE 2022</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#716e6a] text-[16px] whitespace-nowrap">16 ENE 2024</p>
       <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="tag">
         <Frame4 />
       </div>
@@ -344,9 +344,9 @@ function TextContent5() {
   return (
     <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0" data-name="text content">
       <div className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#191e25] text-[48px] tracking-[-1.92px] whitespace-nowrap">
-        <p className="mb-0">Uso de la huella RF</p>
-        <p className="mb-0">para la detección</p>
-        <p>de la ocupación</p>
+        <p className="mb-0">Detección de ocupación</p>
+        <p className="mb-0">en espacios cerrados</p>
+        <p>a partir de BLE</p>
       </div>
       <Subtitle4 />
     </div>

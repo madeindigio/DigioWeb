@@ -460,7 +460,7 @@ function MobileSection2() {
   return (
     <div className="flex-[1_0_0] h-[520px] min-h-px min-w-px overflow-clip relative" data-name="Mobile section">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[145.81%] left-[-66.9%] max-w-none top-[-35.63%] w-[239.08%]" src={imgFinsaLeft} />
+        <img alt="" className="absolute h-[145.81%] left-[-66.9%] max-w-none top-[-35.63%] w-[239.08%]" src="/images/projects/finsa/pro%20section.jpg" />
       </div>
       <div className="absolute h-[777px] left-[90px] top-[90px] w-[921px]" data-name="iMac Mockup Web 1">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgIMacMockupWeb1} />

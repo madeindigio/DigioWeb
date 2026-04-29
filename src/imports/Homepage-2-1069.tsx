@@ -702,8 +702,8 @@ function SectionTitle1() {
 function TitleDescription() {
   return (
     <div className="content-stretch flex flex-col gap-[24px] items-start not-italic relative shrink-0 text-[#191e25] w-full" data-name="title & description">
-      <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">Lanzamos plataformas innovadoras para el sector energético</p>
-      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">En la actualidad, el desarrollo de aplicaciones móviles se ha convertido en una necesidad para cualquier empresa que busque mejorar su presencia en línea y ofrecer una experiencia de usuario excepcional. Cuando abordamos el...</p>
+      <p className="font-['GT_Ultra_Median:Regular',sans-serif] leading-[40px] relative shrink-0 text-[32px] tracking-[-1.28px] w-full">Creamos plataformas innovadoras en el sector energético</p>
+      <p className="font-['Manrope',sans-serif] leading-[normal] relative shrink-0 text-[16px] w-full">La presión sobre los precios de la energía, la volatilidad geopolítica y la necesidad de acelerar nuevos modelos de consumo exigen soluciones digitales capaces de conectar eficiencia, autonomía y sostenibilidad...</p>
     </div>
   );
 }
