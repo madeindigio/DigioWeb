@@ -13,10 +13,11 @@ import {
 import svgPaths from "../../imports/svg-ajllqqcr1j";
 const imgHero = "/images/projects/spock/spock-hero-img.jpg";
 // Image placeholders - replace with actual assets in /public/images/
-const imgMockup = "/images/placeholder-gray.svg";
-const imgPiggyBank = "/images/placeholder-gray.svg";
+const imgMockup = "/images/projects/spock/spock-pro.jpg";
+const imgSpockLeft = "/images/projects/spock/Spock%20left_2.jpg";
+const imgPiggyBank = "/images/projects/spock/Spock%20Right_2.jpg";
 const imgIMac = "/images/placeholder-gray.svg";
-const imgPeopleGroup = "/images/placeholder-gray.svg";
+const imgPeopleGroup = "/images/projects/spock/people.jpg";
 const imgRelatedIdermapp = "/images/placeholder-gray.svg";
 const imgRelatedIdermapp2 = "/images/placeholder-gray.svg";
 const imgRelatedNavilens = "/images/placeholder-gray.svg";
@@ -163,10 +164,10 @@ function MockupSection() {
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto">
           <div className="bg-[#fcedd1] w-full h-[800px] max-lg:h-[550px] max-md:h-[350px] relative overflow-hidden">
-            <div className="absolute left-1/2 -translate-x-1/2 top-[33px] w-[1758px] h-[1172px] max-lg:w-[1200px] max-lg:h-[800px] max-md:w-[700px] max-md:h-[467px] max-md:top-[20px]" style={{ marginLeft: "-140px" }}>
+            <div className="absolute inset-0 flex items-center justify-center">
               <img
                 alt="Spock desktop mockup"
-                className="w-full h-full object-cover"
+                className="h-full w-auto max-w-none object-contain"
                 src={imgMockup}
               />
             </div>
@@ -376,63 +377,17 @@ function CardsPiggySection() {
         <div className="max-w-[1400px] mx-auto flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
           {/* Cards panel */}
           <div className="flex-1 bg-[#dcf8e2] h-[545px] max-lg:h-[400px] max-md:h-[300px] relative overflow-hidden">
-            {/* Stacked cards */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              {/* Back card (faded) */}
-              <div className="absolute -top-[24px] left-[24px] bg-white rounded-[8px] w-[349px] max-md:w-[260px] opacity-30 border-[2px] border-[#acccb5] overflow-hidden shadow-sm">
-                <div className="bg-[#fcedd1] px-[22px] py-[14px] rounded-t-[6px]">
-                  <p className="font-['Poppins',sans-serif] text-black text-[15px] font-[700] leading-[normal]">Compra colectiva El Rinc&oacute;n del Gas-Neptuno 2024</p>
-                </div>
-                <div className="p-[22px] flex flex-col gap-[15px]">
-                  <div className="flex flex-col gap-[7px]">
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] font-[700] leading-[normal]">Periodo de inscripci&oacute;n</p>
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] leading-[normal]">Hasta el martes 11/06/2025 (23:59h)</p>
-                  </div>
-                </div>
-              </div>
-              {/* Middle card */}
-              <div className="relative bg-white rounded-[8px] w-[349px] max-md:w-[260px] border-[2px] border-[rgba(172,204,181,0.8)] overflow-hidden shadow-sm">
-                <div className="bg-[#def7fc] px-[22px] py-[14px] rounded-t-[6px]">
-                  <p className="font-['Poppins',sans-serif] text-black text-[15px] font-[700] leading-[normal]">Compra colectiva El Rinc&oacute;n del Gas-Neptuno 2024</p>
-                </div>
-                <div className="p-[22px] flex flex-col gap-[15px]">
-                  <div className="flex flex-col gap-[7px]">
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] font-[700] leading-[normal]">Periodo de inscripci&oacute;n</p>
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] leading-[normal]">Hasta el martes 11/06/2025 (23:59h)</p>
-                  </div>
-                  <div className="flex flex-col gap-[7px]">
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] font-[700] leading-[normal]">Tipos de suministro que pueden participar</p>
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] leading-[normal]">Suministros de electricidad o gas de todo el territorio nacional, incluido Canarias.</p>
-                  </div>
-                  <div className="bg-[#132db8] rounded-[46px] px-[15px] py-[7px] w-fit">
-                    <p className="font-['Poppins',sans-serif] text-white text-[15px] font-[500] leading-[normal]">Inscribirse en la compra</p>
-                  </div>
-                </div>
-              </div>
-              {/* Front card (offset below) */}
-              <div className="absolute top-[24px] -left-[24px] bg-white rounded-[8px] w-[349px] max-md:w-[260px] border-[2px] border-[#acccb5] overflow-hidden shadow-sm">
-                <div className="bg-[#e1fce9] px-[22px] py-[14px] rounded-t-[6px]">
-                  <p className="font-['Poppins',sans-serif] text-black text-[15px] font-[700] leading-[normal]">Compra colectiva El Rinc&oacute;n del Gas-Neptuno 2024</p>
-                </div>
-                <div className="p-[22px] flex flex-col gap-[15px]">
-                  <div className="flex flex-col gap-[7px]">
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] font-[700] leading-[normal]">Periodo de inscripci&oacute;n</p>
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] leading-[normal]">Hasta el martes 11/06/2025 (23:59h)</p>
-                  </div>
-                  <div className="flex flex-col gap-[7px]">
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] font-[700] leading-[normal]">Tipos de suministro</p>
-                    <p className="font-['Poppins',sans-serif] text-black text-[13px] leading-[normal]">Suministros de electricidad o gas de todo el territorio nacional, incluido Canarias.</p>
-                  </div>
-                  <div className="bg-[#132db8] rounded-[50px] w-full py-[12px] flex items-center justify-center shadow-[0px_4px_4px_0px_rgba(19,45,184,0.08)]">
-                    <p className="font-['Poppins',sans-serif] text-white text-[15px] font-[500] leading-[normal]">Inscribirse en la compra</p>
-                  </div>
-                </div>
-              </div>
+            <div className="absolute inset-0">
+              <img
+                alt="Spock left"
+                className="w-full h-full object-cover"
+                src={imgSpockLeft}
+              />
             </div>
           </div>
           {/* Piggy bank panel */}
           <div className="flex-1 bg-[#e1f8fe] h-[545px] max-lg:h-[400px] max-md:h-[300px] relative overflow-hidden">
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[873px] h-[484px] max-lg:w-[600px] max-lg:h-[333px] max-md:w-[400px] max-md:h-[222px]" style={{ marginLeft: "87px", marginTop: "31px" }}>
+            <div className="absolute inset-0">
               <img
                 alt="Piggy bank"
                 className="w-full h-full object-cover"
