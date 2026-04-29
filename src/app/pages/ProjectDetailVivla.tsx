@@ -17,7 +17,7 @@ import IDermAppScreens from "../../imports/IDermAppScreens";
 const imgRelatedNavilens = "/images/placeholder-gray.svg";
 const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 const imgVivlaHero = "/images/projects/vivla/vivla-hero-section.jpg";
-const imgPanelNpsMobile = "/images/placeholder-gray.svg";
+const imgPanelNpsMobile = "/images/projects/vivla/Panel%20NPS%20-%20SM.jpg";
 
 const EASE = [0.22, 1, 0.36, 1];
 

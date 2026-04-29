@@ -3,12 +3,10 @@ import { useRef, useState, useEffect } from "react";
 import svgPaths from "../../imports/svg-ro6oo4s0ax";
 
 /* ─── Location images ─── */
-const imgCostaBlanca = "/images/placeholder-gray.svg";
-const imgCostaDelSol = "/images/placeholder-gray.svg";
-const imgIbiza = "/images/placeholder-gray.svg";
-const imgMenorca1 = "/images/placeholder-gray.svg";
-const imgMenorca2 = "/images/placeholder-gray.svg";
-const imgMenorca3 = "/images/placeholder-gray.svg";
+const imgEspacio1 = "/images/projects/vivla/espacios/67d89765589396077b5a070e_X767evZ_AT1DFgsdY26gzePnrVNwSfJPst1OzTprPbA.jpeg";
+const imgEspacio2 = "/images/projects/vivla/espacios/67d89765589396077b5a0724_orO5UWvsR4XKQM111j-3sSQAO2wp3NFk0QW579YzqJ8.jpeg";
+const imgEspacio3 = "/images/projects/vivla/espacios/67d89765589396077b5a0727_84PQclGZQgm1yQUW2kMZVpcsZ3rjVvqfl3ZjyvmmWO0.jpeg";
+const imgEspacio4 = "/images/projects/vivla/espacios/67d89765589396077b5a072d_gM8Oc4eG__QbNrg6bpu_xpYX5DYrcB2fTbWX0cJJZ0g.jpeg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -41,13 +39,23 @@ interface OrbitalImage {
 }
 
 const ORBITAL_IMAGES: OrbitalImage[] = [
-  { src: imgMenorca1, alt: "Menorca", angleDeg: 0, w: 190, h: 140 },
-  { src: imgCostaBlanca, alt: "Costa Blanca", angleDeg: 60, w: 180, h: 130 },
-  { src: imgMenorca3, alt: "Menorca aerial", angleDeg: 120, w: 186, h: 136 },
-  { src: imgCostaDelSol, alt: "Costa del Sol", angleDeg: 180, w: 178, h: 132 },
-  { src: imgIbiza, alt: "Ibiza", angleDeg: 240, w: 184, h: 138 },
-  { src: imgMenorca2, alt: "Menorca coast", angleDeg: 300, w: 182, h: 134 },
+  { src: imgEspacio1, alt: "Espacio VIVLA 1", angleDeg: 0, w: 208, h: 136 },
+  { src: imgEspacio2, alt: "Espacio VIVLA 2", angleDeg: 60, w: 208, h: 136 },
+  { src: imgEspacio4, alt: "Espacio VIVLA 3", angleDeg: 120, w: 208, h: 136 },
+  { src: imgEspacio1, alt: "Espacio VIVLA 4", angleDeg: 180, w: 208, h: 136 },
+  { src: imgEspacio2, alt: "Espacio VIVLA 5", angleDeg: 240, w: 208, h: 136 },
+  { src: imgEspacio4, alt: "Espacio VIVLA 6", angleDeg: 300, w: 208, h: 136 },
 ];
+
+function getOrbitFrames(angleDeg: number, radius: number, steps: number) {
+  return Array.from({ length: steps + 1 }, (_, step) => {
+    const angleRad = (((angleDeg + step * (360 / steps)) % 360) * Math.PI) / 180;
+    return {
+      x: Math.sin(angleRad) * radius,
+      y: -Math.cos(angleRad) * radius,
+    };
+  });
+}
 
 /* ─── Intersection-driven trigger ─── */
 function useInView(threshold = 0.35) {
@@ -115,23 +123,16 @@ export function VivlaLocationsGrid() {
         <VivlaLogo className="w-[80px] h-[80px] max-md:w-[56px] max-md:h-[56px]" />
       </motion.div>
 
-      {/* ── Orbiting ring — rotates slowly and continuously ── */}
+      {/* ── Image ring — fixed layout to keep cards horizontal ── */}
       <motion.div
         className="absolute top-1/2 left-1/2 z-10"
         style={{ x: "-50%", y: "-50%", width: 0, height: 0 }}
-        animate={inView ? { rotate: 360 } : {}}
-        transition={{
-          rotate: {
-            duration: 300,
-            ease: "linear",
-            repeat: Infinity,
-          },
-        }}
       >
         {ORBITAL_IMAGES.map((img, i) => {
           const angleRad = (img.angleDeg * Math.PI) / 180;
-          const tx = Math.sin(angleRad) * radius;
-          const ty = -Math.cos(angleRad) * radius;
+          const orbitFrames = getOrbitFrames(img.angleDeg, radius, ORBITAL_IMAGES.length);
+          const orbitXs = orbitFrames.map((frame) => frame.x);
+          const orbitYs = orbitFrames.map((frame) => frame.y);
 
           return (
             <motion.div
@@ -140,8 +141,8 @@ export function VivlaLocationsGrid() {
               style={{
                 width: img.w,
                 height: img.h,
-                top: ty - img.h / 2,
-                left: tx - img.w / 2,
+                top: -(img.h / 2),
+                left: -(img.w / 2),
               }}
               /* Entry: fade-in from the edge toward its orbit position */
               initial={{
@@ -155,20 +156,23 @@ export function VivlaLocationsGrid() {
                   ? {
                       opacity: 1,
                       scale: 1,
-                      x: 0,
-                      y: 0,
-                      /* counter-rotate to stay upright */
-                      rotate: -360,
+                      x: orbitXs,
+                      y: orbitYs,
                     }
                   : {}
               }
               transition={{
                 opacity: { duration: 1, delay: 0.55 + i * 0.14, ease: EASE },
                 scale: { duration: 1, delay: 0.55 + i * 0.14, ease: EASE },
-                x: { duration: 1, delay: 0.55 + i * 0.14, ease: EASE },
-                y: { duration: 1, delay: 0.55 + i * 0.14, ease: EASE },
-                rotate: {
-                  duration: 300,
+                x: {
+                  duration: 240,
+                  delay: 0.55 + i * 0.14,
+                  ease: "linear",
+                  repeat: Infinity,
+                },
+                y: {
+                  duration: 240,
+                  delay: 0.55 + i * 0.14,
                   ease: "linear",
                   repeat: Infinity,
                 },
