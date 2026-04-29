@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { LangText } from "./LangText";
 const imgLogoFderTransparente1 = "/images/footer/LOGO_FDER_transparente_1.png";
 const imgPymeInnovadora = "/images/footer/PYME Innovadora.png";
-const imgLogoCdti2023SoportesDigitalesNegativo011 = "/images/footer/gob es.png";
-const imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 = "/images/footer/financiado UE.png";
+const imgLogoCdti2023SoportesDigitalesNegativo011 = "/images/footer/gob.png";
+const imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 = "/images/footer/eu.png";
 import UeRed from "../../imports/UeRed-106-135";
 
 function XLogo() {
@@ -122,7 +122,7 @@ export function Footer() {
         <div className="flex flex-col gap-[48px] max-md:gap-[32px]">
           <div className="w-full h-[1px] bg-[rgba(255,255,255,0.24)]" />
           <div className="flex items-center justify-between flex-wrap gap-[24px] max-md:gap-[16px] max-md:justify-start">
-            <div className="h-[48px] shrink-0">
+            <div className="h-[56px] shrink-0">
               <UeRed />
             </div>
             <div className="h-[56px] w-[58px] relative shrink-0">
@@ -130,12 +130,10 @@ export function Footer() {
             </div>
             <InfoLogo />
             <div className="h-[56px] w-[319px] relative shrink-0 max-md:w-[200px] max-md:h-[35px]">
-              <img alt="CDTI" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" src={imgLogoCdti2023SoportesDigitalesNegativo011} />
-              <div className="absolute inset-0 bg-white mix-blend-color" />
+              <img alt="CDTI" className="absolute inset-0 w-full h-full object-contain object-left" loading="lazy" decoding="async" src={imgLogoCdti2023SoportesDigitalesNegativo011} />
             </div>
             <div className="h-[56px] w-[214px] relative shrink-0 max-md:w-[140px] max-md:h-[37px]">
-              <img alt="EU Funded" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" src={imgEsFinanciadoPorLaUnionEuropeaRgbNeg01} />
-              <div className="absolute inset-0 bg-white mix-blend-color" />
+              <img alt="EU Funded" className="absolute inset-0 w-full h-full object-contain object-left" loading="lazy" decoding="async" src={imgEsFinanciadoPorLaUnionEuropeaRgbNeg01} />
             </div>
           </div>
         </div>

@@ -13,12 +13,13 @@ import {
 /* ─── Assets ─── */
 const imgHero = "/images/projects/roomonitor/Roomheadersection.jpg";
 // Image placeholders - replace with actual assets in /public/images/
-const imgRoom = "/images/placeholder-gray.svg";
+const imgRoom = "/images/projects/roomonitor/Roomonitor%20section%20BG%20IMG.jpg";
 const imgChip = "/images/placeholder-gray.svg";
-const imgDevice = "/images/placeholder-gray.svg";
-const imgMacBook = "/images/placeholder-gray.svg";
-const imgMobileSection = "/images/placeholder-gray.svg";
-const imgDesktop = "/images/placeholder-gray.svg";
+const imgDevice = "/images/projects/roomonitor/sec%20section.webp";
+const imgMacBook = "/images/projects/roomonitor/big%20panel%20room.jpg";
+const imgMobileSection = "/images/projects/roomonitor/Mobile%20section.jpg";
+const imgMobileAppSelection = "/images/projects/roomonitor/Mobile%20APP%20Selection.webp";
+const imgDesktop = "/images/projects/roomonitor/apart-detail.jpg";
 const imgIPhoneBezel = "/images/placeholder-gray.svg";
 const imgRelated1 = "/images/placeholder-gray.svg";
 const imgRelated1b = "/images/placeholder-gray.svg";
@@ -172,10 +173,12 @@ function HardwareSection() {
    ============================================================ */
 function MacBookSection() {
   return (
-    <section className="bg-[#191e25] w-full overflow-hidden relative h-[900px] max-lg:h-[600px] max-md:h-[400px] flex items-center justify-center">
-      <div className="absolute bottom-[-67px] right-[-398px] w-[2841px] h-[1894px] max-lg:w-[1800px] max-lg:h-[1200px] max-lg:right-[-200px] max-md:w-[1200px] max-md:h-[800px] max-md:right-[-100px]">
-        <img alt="MacBook con Roomonitor" className="w-full h-full object-cover" src={imgMacBook} />
-      </div>
+    <section className="bg-[#191e25] w-full overflow-hidden relative h-[900px] max-lg:h-[600px] max-md:h-[400px]">
+      <img
+        alt="MacBook con Roomonitor"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        src={imgMacBook}
+      />
     </section>
   );
 }
@@ -241,6 +244,41 @@ function LottieRoomonitorButton() {
 
 function AppSection() {
   const { t } = useTranslation();
+  const [desktopTilt, setDesktopTilt] = useState({
+    rotateX: 0,
+    rotateY: 0,
+    glowX: 50,
+    glowY: 50,
+    glowOpacity: 0,
+  });
+
+  const handleDesktopMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    const rotateY = (x - 0.5) * 12;
+    const rotateX = (0.5 - y) * 10;
+
+    setDesktopTilt({
+      rotateX,
+      rotateY,
+      glowX: x * 100,
+      glowY: y * 100,
+      glowOpacity: 0.32,
+    });
+  };
+
+  const handleDesktopMouseLeave = () => {
+    setDesktopTilt({
+      rotateX: 0,
+      rotateY: 0,
+      glowX: 50,
+      glowY: 50,
+      glowOpacity: 0,
+    });
+  };
+
   return (
     <section className="w-full">
       <div className="px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
@@ -259,19 +297,38 @@ function AppSection() {
           <div className="flex gap-[40px] items-start max-md:flex-col max-md:gap-[24px]">
             {/* Mobile app with iPhone bezel */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] max-md:w-full bg-[#e8dfdf] relative overflow-hidden">
-              <LottieRoomonitorButton />
+              <img alt="Roomonitor mobile section" className="absolute inset-0 w-full h-full object-cover" src={imgMobileSection} />
             </div>
             {/* App icons section */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] max-md:w-full relative overflow-hidden">
-              <img alt="Roomonitor app icons" className="absolute inset-0 w-full h-full object-cover" src={imgMobileSection} />
+              <img alt="Roomonitor app icons" className="absolute inset-0 w-full h-full object-cover" src={imgMobileAppSelection} />
             </div>
           </div>
 
           {/* Desktop screenshot with gradient background */}
           <div className="relative w-full h-[800px] max-lg:h-[600px] max-md:h-[400px] overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-[#e8dfdf] to-[#f6e6cd]" />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[724px] h-[614px] max-lg:w-[560px] max-lg:h-[475px] max-md:w-[340px] max-md:h-[288px]">
-              <img alt="Roomonitor desktop" className="w-full h-full object-cover" src={imgDesktop} />
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[724px] h-[614px] max-lg:w-[560px] max-lg:h-[475px] max-md:w-[340px] max-md:h-[288px]"
+              onMouseMove={handleDesktopMouseMove}
+              onMouseLeave={handleDesktopMouseLeave}
+            >
+              <div
+                className="relative w-full h-full rounded-[8px] overflow-hidden shadow-[0_18px_55px_rgba(25,30,37,0.16)] transition-transform duration-200 ease-out will-change-transform"
+                style={{
+                  transform: `perspective(1200px) rotateX(${desktopTilt.rotateX}deg) rotateY(${desktopTilt.rotateY}deg)`,
+                }}
+              >
+                <img alt="Roomonitor desktop" className="w-full h-full object-contain" src={imgDesktop} />
+                <div
+                  className="pointer-events-none absolute inset-0 transition-opacity duration-200"
+                  style={{
+                    opacity: desktopTilt.glowOpacity,
+                    background: `radial-gradient(circle at ${desktopTilt.glowX}% ${desktopTilt.glowY}%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.26) 20%, rgba(255,255,255,0) 55%)`,
+                  }}
+                />
+                <div className="pointer-events-none absolute inset-0 rounded-[8px] ring-1 ring-white/35" />
+              </div>
             </div>
           </div>
 

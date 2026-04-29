@@ -242,36 +242,36 @@ export function AboutSectors() {
   }
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-[#191e25] text-white py-[120px]">
-      <div className="mx-auto max-w-[1480px] px-[56px] relative">
-        <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
-          <div className="sticky top-0 h-screen w-full flex items-center justify-center">
-            <div className="relative w-[clamp(320px,32vw,500px)] aspect-square flex items-center justify-center">
-              <div
-                ref={illustrationLayerRef}
-                className="absolute inset-[12%] overflow-hidden flex items-center justify-center"
-              >
-                {sectors.map((sector) => (
-                  <img
-                    key={sector.key}
-                    src={sector.illustration}
-                    alt=""
-                    aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-contain transition-[opacity,transform,filter] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-                    style={{
-                      opacity: activeVertical === sector.key ? 1 : 0,
-                      transform: `translate3d(var(--illustration-shift-x, 0px), calc(var(--illustration-shift-y, 0px) * 0.7 + ${activeVertical === sector.key ? "0px" : "24px"}), 0) scale(${activeVertical === sector.key ? 1 : 0.92})`,
-                      transformOrigin: "center",
-                      willChange: "transform, opacity, filter",
-                      filter: activeVertical === sector.key ? "blur(0px)" : "blur(10px)",
-                    }}
-                  />
-                ))}
-              </div>
+    <section ref={sectionRef} className="relative w-full bg-[#191e25] text-white pt-[9vh] pb-[9vh]">
+      <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
+        <div className="sticky top-0 h-screen w-full flex items-center justify-center">
+          <div className="relative w-[clamp(320px,32vw,500px)] aspect-square flex items-center justify-center">
+            <div
+              ref={illustrationLayerRef}
+              className="absolute inset-[12%] overflow-hidden flex items-center justify-center"
+            >
+              {sectors.map((sector) => (
+                <img
+                  key={sector.key}
+                  src={sector.illustration}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-contain transition-[opacity,transform,filter] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  style={{
+                    opacity: activeVertical === sector.key ? 1 : 0,
+                    transform: `translate3d(var(--illustration-shift-x, 0px), calc(var(--illustration-shift-y, 0px) * 0.7 + ${activeVertical === sector.key ? "0px" : "24px"}), 0) scale(${activeVertical === sector.key ? 1 : 0.92})`,
+                    transformOrigin: "center",
+                    willChange: "transform, opacity, filter",
+                    filter: activeVertical === sector.key ? "blur(0px)" : "blur(10px)",
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
+      </div>
 
+      <div className="mx-auto max-w-[1480px] px-[56px] relative">
         <div className="relative z-20">
           {sectors.map((sector, index) => {
             const isActive = activeVertical !== null && sector.key === activeVertical;
