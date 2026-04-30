@@ -9,9 +9,17 @@ import {
 } from "../components/project-detail-shared";
 const imgEkhilurHero = "/images/projects/ekhilur/ekhilur-hero-section.jpg";
 const imgEkhilurLogo = "/images/projects/ekhilur/logo%20ekhilur.svg";
+const imgEkhilurIsotipo = "/images/projects/ekhilur/isotipo.svg";
+const imgEkhilurTipografia = "/images/projects/ekhilur/tipografia.svg";
 const imgEkhilurScreens = "/images/projects/ekhilur/ekhiscreens.jpg";
 const imgEkhilurMobile01 = "/images/projects/ekhilur/Ekhi_mobile_01.jpg";
 const imgEkhilurMobile02 = "/images/projects/ekhilur/Ekhi_mobile_02.jpg";
+const ekhilurBusinessImages = [
+  { src: "/images/projects/ekhilur/ekhi-sites/site_1.jpeg", alt: "Negocio 1" },
+  { src: "/images/projects/ekhilur/ekhi-sites/site_2.jpeg", alt: "Negocio 2" },
+  { src: "/images/projects/ekhilur/ekhi-sites/site_3.jpeg", alt: "Negocio 3" },
+  { src: "/images/projects/ekhilur/ekhi-sites/site_4.jpeg", alt: "Negocio 4" },
+];
 const ekhilurIllustrations = [
   "/images/projects/ekhilur/ekhillustrations/ekhi_01.svg",
   "/images/projects/ekhilur/ekhillustrations/ekhi_02.svg",
@@ -94,14 +102,87 @@ function IntroSection() {
 function LogoSection() {
   return (
     <section className="bg-white w-full">
+      <style>
+        {`@keyframes ekhiIsotipoMove {
+          0%, 5%    { transform: translateX(0); }
+          12%, 86%  { transform: translateX(-60px); }
+          93%, 100% { transform: translateX(0); }
+        }
+        @keyframes ekhiTipografiaMove {
+          0%, 5%    { transform: translateX(0); }
+          12%, 86%  { transform: translateX(60px); }
+          93%, 100% { transform: translateX(0); }
+        }
+        @keyframes ekhiWindowReveal {
+          0%, 5%    { opacity: 0; width: 0px; }
+          12%, 86%  { opacity: 1; width: 220px; }
+          93%, 100% { opacity: 0; width: 0px; }
+        }
+        @keyframes ekhiBizImageSwap {
+          0%, 24.999% { opacity: 1; }
+          25%, 100%   { opacity: 0; }
+        }
+        @media (max-width: 1024px) {
+          @keyframes ekhiIsotipoMove  { 0%,5%{transform:translateX(0)} 12%,86%{transform:translateX(-44px)} 93%,100%{transform:translateX(0)} }
+          @keyframes ekhiTipografiaMove { 0%,5%{transform:translateX(0)} 12%,86%{transform:translateX(44px)} 93%,100%{transform:translateX(0)} }
+          @keyframes ekhiWindowReveal { 0%,5%{opacity:0;width:0px} 12%,86%{opacity:1;width:160px} 93%,100%{opacity:0;width:0px} }
+        }
+        @media (max-width: 768px) {
+          @keyframes ekhiIsotipoMove  { 0%,5%{transform:translateX(0)} 12%,86%{transform:translateX(-32px)} 93%,100%{transform:translateX(0)} }
+          @keyframes ekhiTipografiaMove { 0%,5%{transform:translateX(0)} 12%,86%{transform:translateX(32px)} 93%,100%{transform:translateX(0)} }
+          @keyframes ekhiWindowReveal { 0%,5%{opacity:0;width:0px} 12%,86%{opacity:1;width:96px} 93%,100%{opacity:0;width:0px} }
+        }`}
+      </style>
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto">
-          <div className="w-full h-[600px] max-xl:h-[520px] max-lg:h-[440px] max-md:h-[320px] rounded-[4px] bg-[#F8F9FA] flex items-center justify-center px-[24px]">
-            <img
-              alt="Logo Ekhilur"
-              className="w-[460px] max-xl:w-[400px] max-lg:w-[320px] max-md:w-[220px] h-auto"
-              src={imgEkhilurLogo}
-            />
+          <div className="w-full h-[600px] max-xl:h-[520px] max-lg:h-[440px] max-md:h-[320px] rounded-[4px] bg-[#F8F9FA] flex items-center justify-center px-[24px] overflow-hidden">
+            <div className="flex items-center gap-[12px] max-lg:gap-[8px] max-md:gap-[6px]" aria-label="Animacion logo Ekhilur">
+
+              {/* Isotipo naranja — se mueve a la izquierda */}
+              <img
+                src={imgEkhilurIsotipo}
+                alt="Isotipo Ekhilur"
+                className="h-[160px] max-lg:h-[116px] max-md:h-[80px] w-auto shrink-0 relative z-20 pointer-events-none"
+                style={{ animation: "ekhiIsotipoMove 6s ease-in-out infinite", willChange: "transform" }}
+                draggable={false}
+              />
+
+              {/* Ventana central cuadrada con imágenes de negocios */}
+              <div
+                className="shrink-0 overflow-hidden relative z-10 rounded-[10px] shadow-[0_6px_24px_rgba(25,30,37,0.16)]"
+                style={{
+                  height: "220px",
+                  animation: "ekhiWindowReveal 6s ease-in-out infinite",
+                  willChange: "opacity, width",
+                }}
+              >
+                <div className="relative h-full w-[220px] max-lg:w-[160px] max-md:w-[96px]">
+                  {ekhilurBusinessImages.map((image, index) => (
+                    <img
+                      key={image.src}
+                      src={image.src}
+                      alt={image.alt}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      style={{
+                        animation: "ekhiBizImageSwap 6s steps(1, end) infinite",
+                        animationDelay: `${index * -1.5}s`,
+                        willChange: "opacity",
+                      }}
+                      draggable={false}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Tipografía — se mueve a la derecha */}
+              <img
+                src={imgEkhilurTipografia}
+                alt="ekhilur"
+                className="h-[88px] max-lg:h-[66px] max-md:h-[46px] w-auto shrink-0 relative z-20 pointer-events-none"
+                style={{ animation: "ekhiTipografiaMove 6s ease-in-out infinite", willChange: "transform" }}
+                draggable={false}
+              />
+            </div>
           </div>
         </div>
       </div>
