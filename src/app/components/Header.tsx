@@ -700,6 +700,7 @@ export function Header() {
     setScrolled(initialScrolled);
 
     let rafId = 0;
+    let ticking = false;
 
     const updateScrollState = () => {
       const y = window.scrollY;
@@ -713,12 +714,23 @@ export function Header() {
       }
       // Smooth shadow ramp (0 → 1 over first 200px)
       rawShadowOpacity.set(Math.min(y / 200, 1));
-      rafId = requestAnimationFrame(updateScrollState);
     };
 
-    rafId = requestAnimationFrame(updateScrollState);
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      rafId = requestAnimationFrame(() => {
+        ticking = false;
+        updateScrollState();
+      });
+    };
+
+    // Prime state on mount.
+    updateScrollState();
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
+      window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafId);
     };
   }, [rawShadowOpacity]);

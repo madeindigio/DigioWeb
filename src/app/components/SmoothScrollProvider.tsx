@@ -94,6 +94,20 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
   const transitionWasActive = useRef(false);
   const topForcedRef = useRef(false);
+  const resizeTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const clearResizeTimers = () => {
+    if (resizeTimersRef.current.length === 0) return;
+    resizeTimersRef.current.forEach(clearTimeout);
+    resizeTimersRef.current = [];
+  };
+
+  const scheduleResizeSeries = (delays: number[]) => {
+    clearResizeTimers();
+    delays.forEach((delay) => {
+      resizeTimersRef.current.push(setTimeout(() => resizeSmoothScroll(), delay));
+    });
+  };
 
   /* ── Create & destroy Lenis ── */
   useEffect(() => {
@@ -142,6 +156,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     ro.observe(document.documentElement);
 
     return () => {
+      clearResizeTimers();
       ro.disconnect();
       if (_resizeRafId !== null) {
         cancelAnimationFrame(_resizeRafId);
@@ -184,9 +199,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       topForcedRef.current = false;
       requestAnimationFrame(() => {
         resizeSmoothScroll();
-        setTimeout(() => resizeSmoothScroll(), 300);
-        setTimeout(() => resizeSmoothScroll(), 800);
-        setTimeout(() => resizeSmoothScroll(), 1500);
+        scheduleResizeSeries([220, 700, 1300]);
       });
     }
   }, [isOverlayActive, phase]);
@@ -209,23 +222,14 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
        * to cover: React commit, Suspense lazy resolution, image
        * decode, font load, and any other async layout shift.
        */
-      const timers: ReturnType<typeof setTimeout>[] = [];
-      const scheduleResize = (delay: number) => {
-        timers.push(setTimeout(() => resizeSmoothScroll(), delay));
-      };
-
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           resizeSmoothScroll();
-          scheduleResize(150);
-          scheduleResize(400);
-          scheduleResize(800);
-          scheduleResize(1500);
-          scheduleResize(3000);
+          scheduleResizeSeries([140, 420, 900, 1600]);
         });
       });
 
-      return () => timers.forEach(clearTimeout);
+      return clearResizeTimers;
     } else {
       window.scrollTo(0, 0);
     }

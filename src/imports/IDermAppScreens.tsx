@@ -280,116 +280,6 @@ function Title() {
   );
 }
 
-function FilterBar() {
-  return (
-    <div className="content-stretch flex gap-[11.273px] items-center relative shrink-0" data-name="Filter Bar">
-      <div className="bg-white content-stretch flex gap-[5.636px] items-center p-[8.455px] relative rounded-[4px] shrink-0 w-[140.91px]" data-name="dropdown">
-        <div aria-hidden="true" className="absolute border-[#c8c8c8] border-[0.705px] border-solid inset-0 pointer-events-none rounded-[4px]" />
-        <p className="flex-[1_0_0] font-['Sneak:Regular',sans-serif] leading-[normal] min-h-px min-w-px not-italic overflow-hidden relative text-[11.27px] text-black text-ellipsis whitespace-nowrap">Último mes</p>
-        <div className="overflow-clip relative shrink-0 size-[11.273px]" data-name="Dropdown Icon">
-          <div className="-translate-y-1/2 absolute aspect-[5.636400840496947/2.8182004202484734] flex items-center justify-center left-1/4 right-1/4 top-1/2">
-            <div className="flex-none h-[5.636px] rotate-90 w-[2.818px]">
-              <div className="relative size-full" data-name="Vector">
-                <div className="absolute inset-[-7.14%_-14.29%]">
-                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 3.6234 6.4416">
-                    <path d={svgPaths.pb2cda00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.8052" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-white content-stretch flex gap-[5.636px] items-center p-[8.455px] relative rounded-[4px] shrink-0 w-[140.91px]" data-name="dropdown">
-        <div aria-hidden="true" className="absolute border-[#c8c8c8] border-[0.705px] border-solid inset-0 pointer-events-none rounded-[4px]" />
-        <p className="flex-[1_0_0] font-['Sneak:Regular',sans-serif] leading-[normal] min-h-px min-w-px not-italic overflow-hidden relative text-[11.27px] text-black text-ellipsis whitespace-nowrap">Formentera</p>
-        <div className="overflow-clip relative shrink-0 size-[11.273px]" data-name="Dropdown Icon">
-          <div className="-translate-y-1/2 absolute aspect-[5.636400840496947/2.8182004202484734] flex items-center justify-center left-1/4 right-1/4 top-1/2">
-            <div className="flex-none h-[5.636px] rotate-90 w-[2.818px]">
-              <div className="relative size-full" data-name="Vector">
-                <div className="absolute inset-[-7.14%_-14.29%]">
-                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 3.6234 6.4416">
-                    <path d={svgPaths.pb2cda00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.8052" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-white content-stretch flex items-center justify-between p-[8.455px] relative rounded-[4px] shrink-0 w-[140.91px]" data-name="dropdown">
-        <div aria-hidden="true" className="absolute border-[#c8c8c8] border-[0.705px] border-solid inset-0 pointer-events-none rounded-[4px]" />
-        <p className="flex-[1_0_0] font-['Sneak:Regular',sans-serif] leading-[normal] min-h-px min-w-px not-italic overflow-hidden relative text-[11.27px] text-black text-ellipsis whitespace-nowrap">Casa Saona</p>
-        <div className="overflow-clip relative shrink-0 size-[11.273px]" data-name="Dropdown Icon">
-          <div className="-translate-y-1/2 absolute aspect-[5.636400840496947/2.8182004202484734] flex items-center justify-center left-1/4 right-1/4 top-1/2">
-            <div className="flex-none h-[5.636px] rotate-90 w-[2.818px]">
-              <div className="relative size-full" data-name="Vector">
-                <div className="absolute inset-[-7.14%_-14.29%]">
-                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 3.6234 6.4416">
-                    <path d={svgPaths.pb2cda00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.8052" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Filters1() {
-  return (
-    <div className="content-stretch flex gap-[11.273px] items-center relative shrink-0" data-name="filters">
-      <p className="font-['Sneak:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#5b5b67] text-[11.98px] whitespace-nowrap">Filtrar por</p>
-      <FilterBar />
-    </div>
-  );
-}
-
-function Filters() {
-  return (
-    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="filters">
-      <Filters1 />
-      <div className="bg-white content-stretch flex gap-[5.636px] items-center p-[8.455px] relative rounded-[4px] shrink-0" data-name="dropdown">
-        <div aria-hidden="true" className="absolute border-[#f0f0f0] border-[0.705px] border-solid inset-0 pointer-events-none rounded-[4px]" />
-        <p className="font-['Sneak:Regular',sans-serif] leading-[normal] not-italic overflow-hidden relative shrink-0 text-[#7e7e7e] text-[11.27px] text-ellipsis whitespace-nowrap">Exportar CSV</p>
-        <div className="overflow-clip relative shrink-0 size-[11.273px]" data-name="Dropdown Icon">
-          <div className="absolute inset-[3.57%_10.71%]" data-name="Vector">
-            <div className="absolute inset-[-3.37%_-3.98%]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.56175 11.1722">
-                <path d={svgPaths.pf803100} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.70455" />
-              </svg>
-            </div>
-          </div>
-          <div className="absolute flex inset-[57.14%_35.71%_28.57%_35.71%] items-center justify-center">
-            <div className="flex-none h-[1.61px] rotate-180 w-[3.221px]">
-              <div className="relative size-full" data-name="vector 377">
-                <div className="absolute inset-[-21.87%_-10.94%]">
-                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 3.92535 2.31495">
-                    <path d={svgPaths.pd3c3b80} id="vector 377" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.70455" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="absolute bottom-[28.57%] flex items-center justify-center left-1/2 right-1/2 top-[32.14%]">
-            <div className="flex-none h-[4.429px] rotate-180 w-0">
-              <div className="relative size-full" data-name="vector 378">
-                <div className="absolute inset-[-7.95%_-0.35px]">
-                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 0.70455 5.13315">
-                    <path d={svgPaths.p2e17ecc0} id="vector 378" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.70455" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function Tabs() {
   return (
     <div className="content-stretch flex gap-[22.546px] items-start relative shrink-0 w-full" data-name="tabs">
@@ -443,34 +333,6 @@ function Title1() {
   return (
     <div className="content-stretch flex gap-[5.636px] items-center relative shrink-0" data-name="title">
       <p className="font-['Teodor:Light',sans-serif] leading-[33.818px] not-italic relative shrink-0 text-[#020202] text-[22.55px] whitespace-nowrap">Indicadores Clave</p>
-      <div className="relative shrink-0 size-[9.864px]" data-name="help-question-1--circle-faq-frame-help-info-mark-more-query-question">
-        <div className="absolute inset-[3.57%]" data-name="Vector">
-          <div className="absolute inset-[-3.85%]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.8637 9.8637">
-              <path d={svgPaths.pe720880} id="Vector" stroke="var(--stroke-0, #9C9C9C)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.70455" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute bottom-[41.67%] left-[37.5%] right-[37.48%] top-1/4" data-name="Vector">
-          <div className="absolute inset-[-10.71%_-14.27%]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 3.17272 3.99244">
-              <path d={svgPaths.p20e59c00} id="Vector" stroke="var(--stroke-0, #9C9C9C)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.70455" />
-            </svg>
-          </div>
-        </div>
-        <Group />
-      </div>
-    </div>
-  );
-}
-
-function SelectedHouse() {
-  return (
-    <div className="content-stretch flex gap-[5.636px] items-center relative shrink-0" data-name="selected house">
-      <div className="relative rounded-[4px] shrink-0 size-[28.182px]" data-name="Stat Background">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[4px] size-full" src={imgStatBackground} />
-      </div>
-      <p className="font-['Teodor:Light',sans-serif] leading-[33.818px] not-italic relative shrink-0 text-[#1d686c] text-[22.55px] whitespace-nowrap">Casa Saona</p>
     </div>
   );
 }
@@ -479,7 +341,6 @@ function TilteContent() {
   return (
     <div className="content-stretch flex gap-[11.273px] items-center relative shrink-0" data-name="tilte content">
       <Title1 />
-      <SelectedHouse />
     </div>
   );
 }
@@ -490,16 +351,6 @@ function SectionHeader() {
       <div className="content-stretch flex flex-col items-start justify-center relative shrink-0" data-name="title">
         <TilteContent />
         <p className="font-['Sneak:Medium',sans-serif] leading-[16.909px] not-italic relative shrink-0 text-[#9c9c9c] text-[11.27px] whitespace-nowrap">Último mes (Marzo 2025)</p>
-      </div>
-      <div className="bg-white content-stretch flex items-start px-[3.523px] py-[2.818px] relative rounded-[4px] shrink-0" data-name="menubar">
-        <div aria-hidden="true" className="absolute border-[#f0f0f0] border-[0.705px] border-solid inset-0 pointer-events-none rounded-[4px]" />
-        <div className="bg-[#fbfbf9] content-stretch flex items-start px-[8.455px] py-[5.636px] relative rounded-[3px] shrink-0" data-name="menubar items">
-          <div aria-hidden="true" className="absolute border-[#c8c8c8] border-[0.705px] border-solid inset-0 pointer-events-none rounded-[3px]" />
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[14.091px] not-italic relative shrink-0 text-[#020202] text-[9.16px] whitespace-nowrap">Indicadores clave</p>
-        </div>
-        <div className="bg-white content-stretch flex items-start px-[8.455px] py-[5.636px] relative rounded-[3px] shrink-0" data-name="menubar items">
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[14.091px] not-italic relative shrink-0 text-[#020202] text-[9.16px] whitespace-nowrap">Evolución NPS</p>
-        </div>
       </div>
     </div>
   );
@@ -862,8 +713,8 @@ function Graph2() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="graph">
       <div className="content-stretch flex flex-col gap-[5.636px] items-center justify-center relative shrink-0 w-full" data-name="Stat Container">
-        <div className="bg-[rgba(102,180,78,0.12)] content-stretch flex gap-[5.636px] items-center px-[2.818px] py-[1.409px] relative rounded-[3px] shrink-0" data-name="Stat Container">
-          <div aria-hidden="true" className="absolute border-[0.705px] border-[rgba(102,180,78,0.16)] border-solid inset-0 pointer-events-none rounded-[3px]" />
+        <div className="bg-[rgba(219,75,76,0.12)] content-stretch flex gap-[5.636px] items-center px-[2.818px] py-[1.409px] relative rounded-[3px] shrink-0" data-name="Stat Container">
+          <div aria-hidden="true" className="absolute border-[0.705px] border-[rgba(219,75,76,0.16)] border-solid inset-0 pointer-events-none rounded-[3px]" />
           <div className="relative shrink-0 size-[14.091px]" data-name="Stat Icon">
             <div className="absolute bottom-1/4 left-[67.86%] right-[3.57%] top-[46.43%]" data-name="Vector">
               <div className="absolute inset-[-10.94%]">
@@ -972,8 +823,8 @@ function Graph3() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="graph">
       <div className="content-stretch flex flex-col gap-[5.636px] items-center justify-center relative shrink-0 w-full" data-name="Stat Container">
-        <div className="bg-[rgba(102,180,78,0.12)] content-stretch flex gap-[5.636px] items-center px-[2.818px] py-[1.409px] relative rounded-[3px] shrink-0" data-name="Stat Container">
-          <div aria-hidden="true" className="absolute border-[0.705px] border-[rgba(102,180,78,0.16)] border-solid inset-0 pointer-events-none rounded-[3px]" />
+        <div className="bg-[rgba(130,130,130,0.12)] content-stretch flex gap-[5.636px] items-center px-[2.818px] py-[1.409px] relative rounded-[3px] shrink-0" data-name="Stat Container">
+          <div aria-hidden="true" className="absolute border-[0.705px] border-[rgba(130,130,130,0.16)] border-solid inset-0 pointer-events-none rounded-[3px]" />
           <div className="relative shrink-0 size-[14.091px]" data-name="equal-sign--interface-math-equal-sign-mathematics">
             <div className="absolute inset-[32.14%_5.36%_67.86%_5.36%]">
               <div className="absolute inset-[-0.5px_-4%]">
@@ -2277,7 +2128,6 @@ function InfoContent() {
       <div className="content-stretch flex flex-col gap-[22.546px] items-start px-[42.273px] relative w-full">
         <div className="content-stretch flex flex-col gap-[22.546px] items-start relative shrink-0 w-[794.733px]" data-name="head">
           <Title />
-          <Filters />
           <Tabs />
         </div>
         <Indicadores />
