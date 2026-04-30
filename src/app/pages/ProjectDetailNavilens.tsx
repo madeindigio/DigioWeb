@@ -12,15 +12,18 @@ import {
 /* ─── Assets ─── */
 const imgHero = "/images/projects/navilens/navilens-hero-section.jpg";
 // Image placeholders - replace with actual assets in /public/images/
-const imgTagNaqr = "/images/placeholder-gray.svg";
-const imgStreet = "/images/placeholder-gray.svg";
-const imgQrMarco = "/images/placeholder-gray.svg";
+const imgTagNaqr = "/images/projects/navilens/NaviLens Section small mobile.jpg";
+const imgStreet = "/images/projects/navilens/NaviLens Section street.jpg";
+const imgQrMarco = "/images/projects/navilens/floatqr.png";
+const imgQrListado = "/images/projects/navilens/NaviLens QR listado.jpg";
 const imgLogotipo = "/images/placeholder-gray.svg";
 const imgQrCode = "/images/placeholder-gray.svg";
 const imgHand = "/images/placeholder-gray.svg";
 const imgQrPreview = "/images/placeholder-gray.svg";
-const imgMockup = "/images/placeholder-gray.svg";
-const imgPersonScanning = "/images/placeholder-gray.svg";
+const imgMockup = "/images/projects/navilens/Crea tu QR.png";
+const imgPersonScanning = "/images/projects/navilens/person-scan.jpg";
+const imgNaviScanner = "/images/projects/navilens/Naviscanner.png";
+const imgQrDif = "/images/projects/navilens/qrdif.png";
 const imgRelatedIDermApp = "/images/placeholder-gray.svg";
 const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 import svgPaths from "../../imports/svg-7k2kxsrz4w";
@@ -170,11 +173,7 @@ function QrStreetPanels() {
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
             {/* QR Code tag */}
-            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] bg-[#f8f9fa] relative overflow-hidden flex items-center justify-center">
-              <div className="w-[377px] h-[377px] max-lg:w-[280px] max-lg:h-[280px] max-md:w-[220px] max-md:h-[220px] relative rounded-[24px] max-lg:rounded-[18px]">
-                <img alt="NaviLens QR tag" className="absolute inset-0 w-full h-full object-cover rounded-[24px] max-lg:rounded-[18px]" src={imgTagNaqr} />
-                <div className="absolute inset-0 rounded-[24px] max-lg:rounded-[18px] border border-[#e8e8e8]" />
-              </div>
+            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url('${imgTagNaqr}')` }}>
             </div>
             {/* Street view */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] relative overflow-hidden">
@@ -205,104 +204,14 @@ function QrPlatformSection() {
   const { t } = useTranslation();
   return (
     <section className="bg-white w-full">
-      <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
+      <div className="px-[56px] pt-[56px] pb-[100px] max-lg:pt-[40px] max-lg:pb-[80px] max-md:px-[24px] max-md:pt-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           {/* Platform UI mockup */}
           <div className="w-full h-[800px] max-lg:h-[560px] max-md:h-[380px] relative overflow-hidden bg-gradient-to-b from-[#f8f9fa] to-[#f5f5f7] flex items-center justify-center">
             {/* Platform panel — proportional scaling via transform */}
             <div className="relative w-[821px] h-[540px] max-lg:scale-[0.73] max-md:scale-[0.42] origin-center">
-              <div className="absolute inset-0 bg-white rounded-[11.4px] shadow-[0px_4px_32px_rgba(0,0,0,0.08)] overflow-hidden">
-                {/* Vertical divider */}
-                <div className="absolute left-[503px] top-0 w-px h-full bg-[#dee2e6]" />
-                {/* Left side — Form */}
-                <div className="absolute left-[92px] top-[51px] w-[320px]">
-                  <p className="font-['Poppins',sans-serif] text-black text-[25.6px] font-[600] leading-[normal] w-[300px] mb-[44px]">
-                    Crear Código QR Accessible NaviLens
-                  </p>
-                  <div className="flex flex-col gap-[17px]">
-                    {/* Descripción del código */}
-                    <div className="flex flex-col gap-[5.7px]">
-                      <div className="flex items-center gap-[5.7px]">
-                        <p className="font-['Poppins',sans-serif] text-black text-[11.4px] font-[600]">Descripción del código</p>
-                        <svg className="w-[17px] h-[17px] shrink-0" viewBox="0 0 17 17" fill="none">
-                          <circle cx="8.5" cy="8.5" r="7" stroke="#868E96" strokeWidth="1" />
-                          <text x="8.5" y="12" textAnchor="middle" fill="#868E96" fontSize="10" fontFamily="Poppins">i</text>
-                        </svg>
-                      </div>
-                      <div className="border border-[#868e96] rounded-[4px] px-[7.1px] py-[7.1px] w-[318px]">
-                        <p className="font-['Poppins',sans-serif] text-black text-[11.4px]">Carta de vinos restaurante Magoga</p>
-                      </div>
-                    </div>
-                    {/* URL Destino */}
-                    <div className="flex flex-col gap-[5.7px]">
-                      <p className="font-['Poppins',sans-serif] text-black text-[11.4px] font-[600]">URL Destino</p>
-                      <div className="border border-[#868e96] rounded-[4px] px-[7.1px] py-[7.1px] w-[318px] flex items-center gap-[7.1px]">
-                        <p className="font-['Poppins',sans-serif] text-black text-[11.4px]">https://restaurantemagoga.com/carta-menu/</p>
-                      </div>
-                    </div>
-                    {/* Categoría */}
-                    <div className="flex flex-col gap-[5.7px]">
-                      <p className="font-['Poppins',sans-serif] text-black text-[11.4px] font-[600]">Categoría</p>
-                      <div className="border border-[#868e96] rounded-[4px] px-[7.8px] py-[7.8px] w-[318px] flex items-center justify-between">
-                        <p className="font-['Poppins',sans-serif] text-black text-[11.4px]">Carta de vinos</p>
-                        <svg className="w-[17px] h-[17px] shrink-0" viewBox="0 0 17 17" fill="none">
-                          <path d="M5 7L8.5 10.5L12 7" stroke="#CED4DA" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                    </div>
-                    {/* Acortador de enlace */}
-                    <div className="flex flex-col gap-[5.7px]">
-                      <div className="flex items-center gap-[5.7px]">
-                        <p className="font-['Poppins',sans-serif] text-black text-[11.4px] font-[600]">Acortador de enlace</p>
-                        <svg className="w-[17px] h-[17px] shrink-0" viewBox="0 0 17 17" fill="none">
-                          <circle cx="8.5" cy="8.5" r="7" stroke="#868E96" strokeWidth="1" />
-                          <text x="8.5" y="12" textAnchor="middle" fill="#868E96" fontSize="10" fontFamily="Poppins">i</text>
-                        </svg>
-                      </div>
-                      <p className="font-['Poppins',sans-serif] text-black text-[11.4px] leading-[normal]">
-                        Puedes crear una URL corta hacia el enlace que llevará{"\n"}al código QR.
-                      </p>
-                      <div className="flex items-center gap-[11.4px] mt-[2px]">
-                        <div className="w-[44px] h-[20px] bg-[#adb5bd] rounded-[28px] relative">
-                          <div className="absolute left-[4px] top-1/2 -translate-y-1/2 w-[13px] h-[13px] bg-white rounded-full shadow-sm" />
-                        </div>
-                        <p className="font-['Poppins',sans-serif] text-[#495057] text-[11.4px]">No acortar</p>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Button */}
-                  <div className="flex justify-end mt-[17px]">
-                    <div className="bg-[#0b7285] rounded-[40px] px-[22.7px] py-[5.7px]">
-                      <p className="font-['Poppins',sans-serif] text-white text-[11.4px]">Crear código</p>
-                    </div>
-                  </div>
-                </div>
-                {/* Right side — Preview */}
-                <div className="absolute left-[503px] top-0 right-0 bottom-0 bg-[#f6f6f6] flex flex-col items-center justify-center gap-[16px]">
-                  <p className="font-['Poppins',sans-serif] text-black text-[17px] font-[600] text-center">Previsualización</p>
-                  <div className="w-[177px] h-[177px] relative rounded-[10px]">
-                    <img alt="" className="absolute inset-0 w-full h-full object-cover rounded-[10px]" src={imgTagNaqr} />
-                    <div className="absolute inset-0 rounded-[10px] border-[1.25px] border-[#e8e8e8]" />
-                  </div>
-                  {/* Size selector */}
-                  <div className="flex items-center gap-[6px] mt-[8px]">
-                    <p className="font-['Poppins',sans-serif] text-[#495057] text-[9.5px] font-[600]">Tamaño QR</p>
-                    <div className="flex items-center gap-[2.8px]">
-                      <div className="border border-[#dee2e6] rounded-[4px] px-[7.8px] py-[4px] bg-white flex items-center gap-[16px]">
-                        <p className="font-['Poppins',sans-serif] text-black text-[11.4px]">10</p>
-                        <svg className="w-[14px] h-[14px]" viewBox="0 0 17 17" fill="none">
-                          <path d="M5 7L8.5 10.5L12 7" stroke="#CED4DA" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                      <div className="border border-[#dee2e6] rounded-[4px] px-[7.8px] py-[4px] bg-white flex items-center gap-[16px]">
-                        <p className="font-['Poppins',sans-serif] text-black text-[11.4px]">cm</p>
-                        <svg className="w-[14px] h-[14px]" viewBox="0 0 17 17" fill="none">
-                          <path d="M5 7L8.5 10.5L12 7" stroke="#CED4DA" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="absolute inset-0 rounded-[11.4px] shadow-[0px_4px_32px_rgba(0,0,0,0.08)] overflow-hidden">
+                <img alt="Crea tu QR" className="absolute inset-0 w-full h-full object-cover" src={imgMockup} />
               </div>
             </div>
           </div>
@@ -337,31 +246,8 @@ function QrPanelsSection() {
               </div>
             </div>
             {/* QR Listado - Platform listing screen */}
-            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] bg-[#f5f5f7] relative overflow-hidden flex items-center justify-center">
-              <div className="bg-white rounded-[8px] shadow-[0px_2px_16px_rgba(0,0,0,0.06)] w-[90%] h-[85%] max-md:w-[92%] max-md:h-[88%] relative overflow-hidden">
-                {/* Platform header */}
-                <div className="h-[60px] max-lg:h-[48px] max-md:h-[36px] bg-white border-b border-[#e8e8e8] flex items-center px-[24px] max-md:px-[12px]">
-                  <div className="w-[72px] h-[27px] max-lg:w-[54px] max-lg:h-[20px] max-md:w-[40px] max-md:h-[15px] relative overflow-hidden">
-                    <img alt="" className="absolute w-[144%] h-[260%] left-[-22%] top-[-76%] object-cover" src={imgLogotipo} />
-                  </div>
-                </div>
-                {/* Content area - QR list */}
-                <div className="p-[24px] max-lg:p-[16px] max-md:p-[10px] flex flex-col gap-[16px] max-md:gap-[8px]">
-                  <p className="font-['Poppins',sans-serif] text-black text-[16px] max-lg:text-[12px] max-md:text-[9px] font-[600]">Mis Códigos QR</p>
-                  {/* QR items list */}
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="flex items-center gap-[12px] max-md:gap-[6px] p-[12px] max-md:p-[6px] border border-[#f1f3f5] rounded-[8px]">
-                      <div className="w-[40px] h-[40px] max-lg:w-[30px] max-lg:h-[30px] max-md:w-[20px] max-md:h-[20px] rounded-[4px] overflow-hidden shrink-0">
-                        <img alt="" className="w-full h-full object-cover" src={imgTagNaqr} />
-                      </div>
-                      <div className="flex flex-col gap-[2px] flex-1 min-w-0">
-                        <div className="h-[10px] max-md:h-[6px] bg-[#e9ecef] rounded-[2px] w-[60%]" />
-                        <div className="h-[8px] max-md:h-[5px] bg-[#f1f3f5] rounded-[2px] w-[40%]" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] bg-[#f5f5f7] relative overflow-hidden">
+              <img alt="NaviLens QR listado" className="absolute inset-0 w-full h-full object-cover" src={imgQrListado} />
             </div>
           </div>
         </div>
@@ -375,26 +261,100 @@ function QrPanelsSection() {
    ============================================================ */
 function HandAppSection() {
   const { t } = useTranslation();
+  const scannerAreaRef = useRef<HTMLDivElement>(null);
+  const targetParallaxRef = useRef(0);
+  const currentParallaxRef = useRef(0);
+  const animRafRef = useRef(0);
+  const [scannerParallaxY, setScannerParallaxY] = useState(0);
+
+  useEffect(() => {
+    let rafId = 0;
+
+    const getMaxLift = () => {
+      if (window.innerWidth <= 768) return 56;
+      if (window.innerWidth <= 1200) return 82;
+      return 108;
+    };
+
+    const animateToTarget = () => {
+      animRafRef.current = 0;
+      const current = currentParallaxRef.current;
+      const target = targetParallaxRef.current;
+      const next = current + (target - current) * 0.28;
+
+      currentParallaxRef.current = next;
+      setScannerParallaxY(next);
+
+      if (Math.abs(target - next) > 0.1) {
+        animRafRef.current = requestAnimationFrame(animateToTarget);
+      }
+    };
+
+    const requestAnim = () => {
+      if (animRafRef.current) return;
+      animRafRef.current = requestAnimationFrame(animateToTarget);
+    };
+
+    const updateParallax = () => {
+      rafId = 0;
+      const area = scannerAreaRef.current;
+      if (!area) return;
+
+      const rect = area.getBoundingClientRect();
+      const isNearViewport = rect.bottom > -200 && rect.top < window.innerHeight + 200;
+
+      if (!isNearViewport) {
+        targetParallaxRef.current = 0;
+        requestAnim();
+        return;
+      }
+
+      // Progressive inverse movement across the visible block area.
+      const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+      const clampedProgress = Math.max(0, Math.min(1, progress));
+      const easedProgress = 1 - Math.pow(1 - clampedProgress, 1.2);
+      const maxLift = getMaxLift();
+      const startOffset = maxLift * 0.35;
+      const travel = maxLift;
+      const offset = startOffset - travel * easedProgress;
+
+      targetParallaxRef.current = Math.max(-maxLift, Math.min(startOffset, offset));
+      requestAnim();
+    };
+
+    const requestUpdate = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(updateParallax);
+    };
+
+    updateParallax();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (rafId) cancelAnimationFrame(rafId);
+      if (animRafRef.current) cancelAnimationFrame(animRafRef.current);
+    };
+  }, []);
+
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] pt-[40px] max-md:px-[24px] max-md:pt-[24px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[56px]">
           {/* Hand + phone panel */}
-          <div className="w-full h-[740px] max-lg:h-[520px] max-md:h-[400px] bg-[#f5f5f7] relative overflow-hidden">
-            {/* QR preview (blurred, top) */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-[40px] max-lg:top-[20px] max-md:top-[10px] w-[280px] h-[280px] max-lg:w-[200px] max-lg:h-[200px] max-md:w-[140px] max-md:h-[140px] blur-[7px] rounded-[10px] overflow-hidden border border-[#e8e8e8] z-10">
-              <img alt="" className="w-full h-full object-cover" src={imgQrPreview} />
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[151px] h-[151px] max-lg:w-[108px] max-lg:h-[108px] max-md:w-[75px] max-md:h-[75px] bg-[rgba(255,255,255,0.2)] overflow-hidden">
-                <img alt="" className="w-full h-full object-cover" src={imgQrCode} />
+          <div ref={scannerAreaRef} className="w-full h-[740px] max-lg:h-[520px] max-md:h-[400px] bg-[#f5f5f7] relative overflow-hidden">
+            <div
+              className="absolute left-1/2 bottom-[-96px] max-lg:bottom-[-72px] max-md:bottom-[-52px] w-[1020px] h-[744px] max-lg:w-[730px] max-lg:h-[532px] max-md:w-[480px] max-md:h-[350px]"
+              style={{ transform: "translateX(-50%)" }}
+            >
+              <div className="absolute left-1/2 top-[-92px] max-lg:top-[-74px] max-md:top-[-58px] w-[260px] h-[260px] max-lg:w-[200px] max-lg:h-[200px] max-md:w-[140px] max-md:h-[140px] z-10" style={{ transform: "translateX(calc(-50% + 24px))" }}>
+                <img alt="QR escaneado" className="w-full h-full object-contain opacity-85 blur-[1.5px]" src={imgQrDif} />
               </div>
-            </div>
-            {/* Phone with mockup (rotated 90deg) */}
-            <div className="absolute right-[15%] top-[10%] max-lg:right-[5%] max-md:right-[2%] w-[306px] h-[625px] max-lg:w-[220px] max-lg:h-[450px] max-md:w-[160px] max-md:h-[327px] z-20">
-              <img alt="NaviLens app mockup" className="w-full h-full object-contain" src={imgMockup} />
-            </div>
-            {/* Hand image */}
-            <div className="absolute left-1/2 -translate-x-[60%] bottom-0 max-lg:-translate-x-[55%] w-[597px] h-[822px] max-lg:w-[430px] max-lg:h-[592px] max-md:w-[320px] max-md:h-[440px]">
-              <img alt="" className="w-full h-full object-contain object-bottom" src={imgHand} />
+              <div className="w-full h-full relative z-20 will-change-transform" style={{ transform: `translateY(${scannerParallaxY}px)` }}>
+                <img alt="Usuario escaneando con NaviLens" className="w-full h-full object-contain object-bottom" src={imgNaviScanner} />
+              </div>
             </div>
           </div>
           {/* La importancia de la accesibilidad */}
@@ -419,7 +379,7 @@ function PersonScanningSection() {
   const { t } = useTranslation();
   return (
     <section className="bg-white w-full">
-      <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
+      <div className="px-[56px] pt-[72px] pb-[100px] max-lg:pt-[56px] max-lg:pb-[80px] max-md:px-[24px] max-md:pt-[36px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           {/* Full-width image */}
           <div className="w-full h-[670px] max-lg:h-[470px] max-md:h-[320px] relative overflow-hidden">
