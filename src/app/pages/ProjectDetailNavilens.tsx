@@ -12,9 +12,14 @@ import {
 /* ─── Assets ─── */
 const imgHero = "/images/projects/navilens/navilens-hero-section.jpg";
 // Image placeholders - replace with actual assets in /public/images/
-const imgTagNaqr = "/images/projects/navilens/NaviLens Section small mobile.jpg";
+const imgQrCenterFrame = "/images/projects/navilens/qrcenter-marco.jpg";
+const imgQrCenter = "/images/projects/navilens/qrcenter.jpg";
 const imgStreet = "/images/projects/navilens/NaviLens Section street.jpg";
-const imgQrMarco = "/images/projects/navilens/floatqr.png";
+const qrMaskedSlides = [
+  "/images/projects/navilens/masked/01.svg",
+  "/images/projects/navilens/masked/02.svg",
+  "/images/projects/navilens/masked/03.svg",
+];
 const imgQrListado = "/images/projects/navilens/NaviLens QR listado.jpg";
 const imgLogotipo = "/images/placeholder-gray.svg";
 const imgQrCode = "/images/placeholder-gray.svg";
@@ -97,7 +102,7 @@ function IntroSection() {
 function NaviLensLogoSection() {
   return (
     <section className="bg-white w-full">
-      <div className="px-[56px] max-md:px-[24px]">
+      <div className="px-[56px] py-[40px] max-lg:py-[32px] max-md:px-[24px] max-md:py-[32px]">
         <div className="max-w-[1400px] mx-auto">
           <div className="w-full h-[600px] max-lg:h-[420px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden flex items-center justify-center">
             <svg className="w-[320px] h-[344px] max-lg:w-[240px] max-lg:h-[258px] max-md:w-[180px] max-md:h-[194px]" fill="none" viewBox="0 0 320 344.186">
@@ -167,13 +172,147 @@ function VisionSection() {
    ============================================================ */
 function QrStreetPanels() {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [qrSceneProgress, setQrSceneProgress] = useState(0);
+  const lastProgressRef = useRef(0);
+  // scrollY exacto donde la animación se completó; null = no completada aún
+  const completedScrollYRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    let rafId = 0;
+
+    const updateProgress = () => {
+      rafId = 0;
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const currentScrollY = window.scrollY;
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+
+      const elementCenter = rect.top + rect.height / 2;
+      const distanceFromCenter = Math.abs(elementCenter - viewportCenter);
+      const maxDistance = (viewportHeight + rect.height) / 2;
+
+      let rawProgress = 1 - Math.min(1, distanceFromCenter / maxDistance);
+      rawProgress = Math.max(0, Math.min(1, rawProgress));
+
+      let nextProgress = rawProgress;
+
+      if (completedScrollYRef.current === null) {
+        // Animación aún no completada: seguir el progreso raw
+        if (rawProgress >= 0.95) {
+          // Completada: guardar la posición de scroll exacta
+          completedScrollYRef.current = currentScrollY;
+          nextProgress = 1;
+        }
+      } else {
+        if (currentScrollY >= completedScrollYRef.current) {
+          // Usuario sigue hacia abajo (o en la misma posición): congelado en 2D
+          nextProgress = 1;
+        } else {
+          // Usuario retrocedió por encima de donde se completó: acompañar con scroll
+          nextProgress = rawProgress;
+          // Si vuelve al inicio, resetear para que pueda completarse de nuevo
+          if (rawProgress <= 0.02) {
+            completedScrollYRef.current = null;
+          }
+        }
+      }
+
+      if (Math.abs(lastProgressRef.current - nextProgress) > 0.001) {
+        lastProgressRef.current = nextProgress;
+        setQrSceneProgress(nextProgress);
+      }
+    };
+
+    const requestUpdate = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(updateProgress);
+    };
+
+    requestUpdate();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  // 0 = fuera/parcialmente visible (separado 3D), 1 = completamente visible (2D formado)
+  const sceneT = qrSceneProgress * qrSceneProgress * (3 - 2 * qrSceneProgress);
+  const separationT = 1 - sceneT;
+
+  const frameRotateX = separationT * 30;
+  const frameTranslateY = separationT * 58;
+  const frameScale = 1 + separationT * 0.03;
+
+  const qrRotateX = separationT * 16;
+  const qrTranslateY = separationT * -112;
+  const qrTranslateZ = separationT * 112;
+  const qrScale = 1 + separationT * 0.28;
+
+  const frameRotZ = separationT * -38;
+  const qrRotZ = separationT * -38;
+
   return (
-    <section className="bg-white w-full">
-      <div className="px-[56px] max-md:px-[24px]">
+    <section className="bg-white w-full" ref={sectionRef}>
+      <div className="px-[56px] pt-[56px] pb-[56px] max-md:px-[24px] max-md:pt-[56px] max-md:pb-[32px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
             {/* QR Code tag */}
-            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url('${imgTagNaqr}')` }}>
+            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] relative overflow-hidden bg-[#f5f5f7] flex items-center justify-center">
+              <div
+                className="relative w-[320px] h-[320px] max-lg:w-[228px] max-lg:h-[228px] max-md:w-[160px] max-md:h-[160px]"
+                style={{ perspective: "1400px", transformStyle: "preserve-3d" }}
+              >
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0, y: 32, scale: 0.96 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.45 }}
+                  transition={{ duration: 1.05, ease: EASE }}
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <div
+                    style={{
+                      transform: `translateY(${frameTranslateY}px) rotateX(${frameRotateX}deg) rotateZ(${frameRotZ}deg) scale(${frameScale})`,
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
+                    <img
+                      alt="Marco QR NaviLens"
+                      className="w-full h-full object-contain drop-shadow-[0_28px_40px_rgba(0,0,0,0.12)]"
+                      src={imgQrCenterFrame}
+                    />
+                  </div>
+                </motion.div>
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0, y: 18, scale: 0.94 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.45 }}
+                  transition={{ duration: 1.1, delay: 0.14, ease: EASE }}
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <div
+                    style={{
+                      transform: `translateY(${qrTranslateY}px) translateZ(${qrTranslateZ}px) rotateX(${qrRotateX}deg) rotateZ(${qrRotZ}deg) scale(${qrScale})`,
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
+                    <img
+                      alt="QR NaviLens centrado"
+                      className="w-[166px] h-[166px] max-lg:w-[118px] max-lg:h-[118px] max-md:w-[82px] max-md:h-[82px] object-contain drop-shadow-[0_22px_34px_rgba(0,0,0,0.18)]"
+                      src={imgQrCenter}
+                    />
+                  </div>
+                </motion.div>
+              </div>
             </div>
             {/* Street view */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] relative overflow-hidden">
@@ -204,14 +343,14 @@ function QrPlatformSection() {
   const { t } = useTranslation();
   return (
     <section className="bg-white w-full">
-      <div className="px-[56px] pt-[56px] pb-[100px] max-lg:pt-[40px] max-lg:pb-[80px] max-md:px-[24px] max-md:pt-[24px] max-md:pb-[48px]">
+      <div className="px-[56px] pt-[56px] pb-[100px] max-lg:pt-[40px] max-lg:pb-[80px] max-md:px-[16px] max-md:pt-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           {/* Platform UI mockup */}
-          <div className="w-full h-[800px] max-lg:h-[560px] max-md:h-[380px] relative overflow-hidden bg-gradient-to-b from-[#f8f9fa] to-[#f5f5f7] flex items-center justify-center">
+          <div className="w-full h-[800px] max-lg:h-[560px] max-md:h-[300px] relative overflow-hidden bg-gradient-to-b from-[#f8f9fa] to-[#f5f5f7] flex items-center justify-center">
             {/* Platform panel — proportional scaling via transform */}
-            <div className="relative w-[821px] h-[540px] max-lg:scale-[0.73] max-md:scale-[0.42] origin-center">
+            <div className="relative w-[821px] h-[540px] max-lg:scale-[0.73] max-md:scale-100 max-md:w-[340px] max-md:h-[224px] origin-center">
               <div className="absolute inset-0 rounded-[11.4px] shadow-[0px_4px_32px_rgba(0,0,0,0.08)] overflow-hidden">
-                <img alt="Crea tu QR" className="absolute inset-0 w-full h-full object-cover" src={imgMockup} />
+                <img alt="Crea tu QR" className="absolute inset-0 w-full h-full object-cover max-md:object-contain" src={imgMockup} />
               </div>
             </div>
           </div>
@@ -234,20 +373,40 @@ function QrPlatformSection() {
    7. QR MARCO + LISTADO — Two panels
    ============================================================ */
 function QrPanelsSection() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % qrMaskedSlides.length);
+    }, 2600);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
   return (
     <section className="bg-white w-full">
-      <div className="px-[56px] max-md:px-[24px]">
+      <div className="px-[56px] pt-[56px] pb-[56px] max-md:px-[24px] max-md:pt-[56px] max-md:pb-[56px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
             {/* QR Marco */}
-            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] bg-[#f5f5f7] relative overflow-hidden flex items-center justify-center">
-              <div className="w-[422px] h-[422px] max-lg:w-[300px] max-lg:h-[300px] max-md:w-[220px] max-md:h-[220px]">
-                <img alt="NaviLens QR frame" className="w-full h-full object-cover" src={imgQrMarco} />
+            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[560px] max-md:py-[56px] bg-[#f5f5f7] relative overflow-hidden flex items-center justify-center">
+              <div className="relative w-[360px] h-[360px] max-lg:w-[252px] max-lg:h-[252px] max-md:w-[186px] max-md:h-[186px]">
+                {qrMaskedSlides.map((slideSrc, index) => (
+                  <motion.img
+                    key={slideSrc}
+                    alt={`NaviLens masked slide ${index + 1}`}
+                    className="absolute inset-0 w-full h-full object-contain object-center"
+                    src={slideSrc}
+                    initial={false}
+                    animate={{ opacity: index === activeSlide ? 1 : 0 }}
+                    transition={{ duration: 0.9, ease: EASE }}
+                  />
+                ))}
               </div>
             </div>
             {/* QR Listado - Platform listing screen */}
-            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] bg-[#f5f5f7] relative overflow-hidden">
-              <img alt="NaviLens QR listado" className="absolute inset-0 w-full h-full object-cover" src={imgQrListado} />
+            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[560px] bg-[#f5f5f7] relative overflow-hidden">
+              <img alt="NaviLens QR listado" className="absolute inset-0 w-full h-full object-cover object-left-top" src={imgQrListado} />
             </div>
           </div>
         </div>
@@ -341,15 +500,15 @@ function HandAppSection() {
 
   return (
     <section className="bg-white w-full">
-      <div className="px-[56px] pt-[40px] max-md:px-[24px] max-md:pt-[24px]">
+      <div className="px-[56px] pt-[40px] pb-[56px] max-md:px-[24px] max-md:pt-[24px] max-md:pb-[40px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[56px]">
           {/* Hand + phone panel */}
-          <div ref={scannerAreaRef} className="w-full h-[740px] max-lg:h-[520px] max-md:h-[400px] bg-[#f5f5f7] relative overflow-hidden">
+          <div ref={scannerAreaRef} className="w-full h-[740px] max-lg:h-[520px] max-md:h-[380px] bg-[#f5f5f7] relative overflow-hidden">
             <div
-              className="absolute left-1/2 bottom-[-96px] max-lg:bottom-[-72px] max-md:bottom-[-52px] w-[1020px] h-[744px] max-lg:w-[730px] max-lg:h-[532px] max-md:w-[480px] max-md:h-[350px]"
+              className="absolute left-1/2 bottom-[-96px] max-lg:bottom-[-72px] max-md:bottom-[-40px] w-[1020px] h-[744px] max-lg:w-[730px] max-lg:h-[532px] max-md:w-[390px] max-md:h-[320px]"
               style={{ transform: "translateX(-50%)" }}
             >
-              <div className="absolute left-1/2 top-[-92px] max-lg:top-[-74px] max-md:top-[-58px] w-[260px] h-[260px] max-lg:w-[200px] max-lg:h-[200px] max-md:w-[140px] max-md:h-[140px] z-10" style={{ transform: "translateX(calc(-50% + 24px))" }}>
+              <div className="absolute left-1/2 top-[-92px] max-lg:top-[-74px] max-md:top-[-46px] w-[260px] h-[260px] max-lg:w-[200px] max-lg:h-[200px] max-md:w-[120px] max-md:h-[120px] z-10" style={{ transform: "translateX(calc(-50% + 18px))" }}>
                 <img alt="QR escaneado" className="w-full h-full object-contain opacity-85 blur-[1.5px]" src={imgQrDif} />
               </div>
               <div className="w-full h-full relative z-20 will-change-transform" style={{ transform: `translateY(${scannerParallaxY}px)` }}>
