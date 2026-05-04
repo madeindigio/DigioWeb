@@ -21,6 +21,8 @@ const imgPanelNpsMobile = "/images/projects/vivla/Panel%20NPS%20-%20SM.jpg";
 const imgVivlaScrollBg = "/images/projects/vivla/bg-section-scroll.jpg";
 const imgNpsComments = "/images/projects/vivla/NPS-comments.svg";
 const imgVivlaLogo = "/images/projects/vivla/logo%20vivla.svg";
+const imgVivlaHomePoster = "/images/projects/vivla/vivla-home.jpg";
+const videoVivlaHome = "/images/projects/vivla/vivla-home.mp4";
 const VIVLA_LUGARES_IMAGES = [
   "/images/projects/vivla/lugares/place_01.jpeg",
   "/images/projects/vivla/lugares/place_02.jpeg",
@@ -41,11 +43,51 @@ type FloatingPlace = {
   scale: number;
 };
 
+function VideoWithFallback({
+  src,
+  poster,
+  alt,
+}: {
+  src: string;
+  poster: string;
+  alt: string;
+}) {
+  const [videoReady, setVideoReady] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
+
+  return (
+    <>
+      <img
+        alt={alt}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+          videoReady && !videoFailed ? "opacity-0" : "opacity-100"
+        }`}
+        src={poster}
+      />
+      {!videoFailed && (
+        <video
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
+          src={src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onCanPlay={() => setVideoReady(true)}
+          onError={() => setVideoFailed(true)}
+        />
+      )}
+    </>
+  );
+}
+
 const IMG_PANEL_1 = "https://images.unsplash.com/photo-1657727534685-36b09f84e193?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWFsJTIwZXN0YXRlJTIwZGFzaGJvYXJkJTIwYW5hbHl0aWNzJTIwbGFwdG9wfGVufDF8fHx8MTc3MzMxMTYyMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 const IMG_PANEL_2 = "https://images.unsplash.com/photo-1759256243437-9c8f7238c42b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBwcm9wZXJ0eSUyMHBvb2wlMjB0ZXJyYWNlJTIwc3Vuc2V0fGVufDF8fHx8MTc3MzMxMTYyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 const IMG_DATA = "https://images.unsplash.com/photo-1723987251277-18fc0a1effd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwY2hhcnRzJTIwZ3JhcGhzJTIwc2NyZWVufGVufDF8fHx8MTc3MzMxMTYzN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 const IMG_HOUSES_1 = "https://images.unsplash.com/photo-1564933170157-3af8ec882299?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjby1vd25lcnNoaXAlMjB2YWNhdGlvbiUyMGhvbWUlMjBjb3N0YSUyMGJyYXZhfGVufDF8fHx8MTc3MzMxMTY0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
-const IMG_HOUSES_2 = "https://images.unsplash.com/photo-1550079169-1e23cea6c329?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9wZXJ0eSUyMG1hbmFnZW1lbnQlMjBtb2JpbGUlMjBhcHAlMjBtb2NrdXB8ZW58MXx8fHwxNzczMzExNjQ3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
+const IMG_HOUSES_2 = "/images/projects/vivla/family.jpg";
 
 /* ============================================================
    1. HERO
@@ -320,7 +362,11 @@ function NpsPanelsSection() {
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] bg-[#f8f7f0] relative overflow-hidden">
-              <VivlaLocationsGrid />
+              <VideoWithFallback
+                src={videoVivlaHome}
+                poster={imgVivlaHomePoster}
+                alt="VIVLA co-ownership"
+              />
             </div>
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] bg-[#f8f7f0] relative overflow-hidden">
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[397px] h-[490px] max-lg:w-[320px] max-lg:h-[395px] max-md:w-[260px] max-md:h-[320px]">
@@ -438,7 +484,7 @@ function HousesSection() {
           {/* Two side-by-side panels */}
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] bg-[#f5f5f7] relative overflow-hidden">
-              <ImageWithFallback alt="VIVLA co-ownership" className="absolute inset-0 w-full h-full object-cover" src={IMG_HOUSES_1} />
+              <VivlaLocationsGrid />
             </div>
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[320px] bg-[#f5f5f7] relative overflow-hidden">
               <ImageWithFallback alt="VIVLA app" className="absolute inset-0 w-full h-full object-cover" src={IMG_HOUSES_2} />
