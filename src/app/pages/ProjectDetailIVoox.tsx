@@ -164,9 +164,30 @@ function VisionSection() {
 function PhonePodcastPanels() {
   function LottiePodcastSlider() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
+    const [shouldLoad, setShouldLoad] = useState(false);
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
+      const trigger = triggerRef.current;
+      if (!trigger) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries[0]?.isIntersecting) return;
+          setShouldLoad(true);
+          observer.disconnect();
+        },
+        { rootMargin: "280px 0px", threshold: 0.01 },
+      );
+
+      observer.observe(trigger);
+      return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+      if (!shouldLoad) return;
+
       const el = containerRef.current;
       if (!el) return;
 
@@ -200,10 +221,10 @@ function PhonePodcastPanels() {
         cancelled = true;
         anim?.destroy();
       };
-    }, []);
+    }, [shouldLoad]);
 
     return (
-      <>
+      <div ref={triggerRef} className="absolute inset-0">
         <img
           alt="iVoox podcasts slider"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isReady ? "opacity-0" : "opacity-100"}`}
@@ -213,7 +234,7 @@ function PhonePodcastPanels() {
           ref={containerRef}
           className={`absolute inset-0 w-full h-full transition-opacity duration-300 [&>svg]:w-full [&>svg]:h-full ${isReady ? "opacity-100" : "opacity-0"}`}
         />
-      </>
+      </div>
     );
   }
 
@@ -268,7 +289,25 @@ function MetroImageSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<AnimationItem | null>(null);
   const hasStartedRef = useRef(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const target = triggerRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        setShouldLoad(true);
+        observer.disconnect();
+      },
+      { rootMargin: "320px 0px", threshold: 0.01 },
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const target = triggerRef.current;
@@ -292,6 +331,8 @@ function MetroImageSection() {
   }, []);
 
   useEffect(() => {
+    if (!shouldLoad) return;
+
     const el = containerRef.current;
     if (!el) return;
 
@@ -329,7 +370,7 @@ function MetroImageSection() {
       animationRef.current?.destroy();
       animationRef.current = null;
     };
-  }, []);
+  }, [shouldLoad]);
 
   return (
     <section className="bg-white w-full">

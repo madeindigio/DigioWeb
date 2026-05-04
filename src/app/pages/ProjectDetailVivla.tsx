@@ -161,6 +161,9 @@ function IntroSection() {
    ============================================================ */
 function LogoSection() {
   const panelRef = useRef<HTMLDivElement>(null);
+  const panelRectRef = useRef<DOMRect | null>(null);
+  const cursorRafRef = useRef<number>(0);
+  const pendingCursorRef = useRef({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [floatingPlaces, setFloatingPlaces] = useState<FloatingPlace[]>([]);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -177,8 +180,36 @@ function LogoSection() {
     return () => {
       timeoutIdsRef.current.forEach((id) => window.clearTimeout(id));
       timeoutIdsRef.current = [];
+      if (cursorRafRef.current) {
+        cancelAnimationFrame(cursorRafRef.current);
+        cursorRafRef.current = 0;
+      }
     };
   }, []);
+
+  useEffect(() => {
+    if (!isHovering) return;
+
+    const refreshPanelRect = () => {
+      const panel = panelRef.current;
+      if (!panel) return;
+      panelRectRef.current = panel.getBoundingClientRect();
+    };
+
+    refreshPanelRect();
+    window.addEventListener("resize", refreshPanelRect);
+    return () => window.removeEventListener("resize", refreshPanelRect);
+  }, [isHovering]);
+
+  const scheduleCursorUpdate = (x: number, y: number) => {
+    pendingCursorRef.current = { x, y };
+    if (cursorRafRef.current) return;
+
+    cursorRafRef.current = requestAnimationFrame(() => {
+      cursorRafRef.current = 0;
+      setCursorPosition(pendingCursorRef.current);
+    });
+  };
 
   const spawnFloatingPlace = (x: number, y: number, dx: number, dy: number) => {
     const length = Math.hypot(dx, dy) || 1;
@@ -218,11 +249,12 @@ function LogoSection() {
     const panel = panelRef.current;
     if (!panel) return;
 
-    const rect = panel.getBoundingClientRect();
+    const rect = panelRectRef.current ?? panel.getBoundingClientRect();
+    panelRectRef.current = rect;
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    setCursorPosition({ x, y });
+    scheduleCursorUpdate(x, y);
 
     const now = performance.now();
     const { lastX, lastY, lastAt } = spawnStateRef.current;
@@ -244,12 +276,13 @@ function LogoSection() {
     if (!panel) return;
 
     const rect = panel.getBoundingClientRect();
+    panelRectRef.current = rect;
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     const now = performance.now();
 
     setIsHovering(true);
-    setCursorPosition({ x, y });
+    scheduleCursorUpdate(x, y);
     spawnStateRef.current.lastX = x;
     spawnStateRef.current.lastY = y;
     spawnStateRef.current.lastAt = now;
@@ -258,6 +291,7 @@ function LogoSection() {
   const handleMouseLeave = () => {
     setIsHovering(false);
     setFloatingPlaces([]);
+    panelRectRef.current = null;
   };
 
   return (
@@ -456,6 +490,8 @@ function HousesSection() {
   const [commentsParallaxY, setCommentsParallaxY] = useState(0);
 
   useEffect(() => {
+    let rafId = 0;
+
     const updateParallax = () => {
       const el = scrollPanelRef.current;
       if (!el) return;
@@ -469,13 +505,22 @@ function HousesSection() {
       setCommentsParallaxY(-clampedProgress * 185);
     };
 
+    const requestParallaxUpdate = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        updateParallax();
+      });
+    };
+
     updateParallax();
-    window.addEventListener("scroll", updateParallax, { passive: true });
-    window.addEventListener("resize", updateParallax);
+    window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
+    window.addEventListener("resize", requestParallaxUpdate);
 
     return () => {
-      window.removeEventListener("scroll", updateParallax);
-      window.removeEventListener("resize", updateParallax);
+      window.removeEventListener("scroll", requestParallaxUpdate);
+      window.removeEventListener("resize", requestParallaxUpdate);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 

@@ -19,6 +19,18 @@ const HEADER_TOTAL = HEADER_SLIDE_DELAY + HEADER_SLIDE_DURATION; // ~0.61s
 /* Extra buffer after header lands before content starts appearing */
 const CONTENT_STAGGER_OFFSET = 0.1;
 
+let revealResizeTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
+function scheduleRevealResize() {
+  if (revealResizeTimeoutId !== null) {
+    clearTimeout(revealResizeTimeoutId);
+  }
+  revealResizeTimeoutId = setTimeout(() => {
+    revealResizeTimeoutId = null;
+    resizeSmoothScroll();
+  }, 90);
+}
+
 /* ─────────────────────────────────────────────────────────
    RevealAfterTransition
    Delays children reveal until:
@@ -82,7 +94,7 @@ export function ScrollRevealSection({ children }: { children: ReactNode }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
       transition={{ duration: 0.8, ease: EASE }}
-      onAnimationComplete={() => resizeSmoothScroll()}
+      onAnimationComplete={scheduleRevealResize}
     >
       {children}
     </motion.div>

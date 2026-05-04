@@ -548,6 +548,7 @@ function UseCasesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const metricsRef = useRef({ vh: 0, scrollableDistance: 1 });
+  const lastProgressRef = useRef(-1);
 
   const setCardRef = useCallback(
     (i: number) => (el: HTMLDivElement | null) => {
@@ -569,18 +570,30 @@ function UseCasesSection() {
 
     const update = () => {
       const rect = section.getBoundingClientRect();
+      const { vh, scrollableDistance } = metricsRef.current;
+
+      const isNearViewport = rect.bottom > -vh * 0.2 && rect.top < vh * 1.2;
+      if (!isNearViewport) return;
+
       const { scrollableDistance } = metricsRef.current;
 
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
+
+      if (Math.abs(lastProgressRef.current - progress) < 0.0005) return;
+      lastProgressRef.current = progress;
 
       cardRefs.current.forEach((el, i) => {
         if (!el) return;
 
         /* First card is always visible — no animation */
         if (i === 0) {
-          el.style.transform = "translateY(0)";
-          el.style.opacity = "1";
+          if (el.style.transform !== "translateY(0)") {
+            el.style.transform = "translateY(0)";
+          }
+          if (el.style.opacity !== "1") {
+            el.style.opacity = "1";
+          }
           return;
         }
 
@@ -595,8 +608,14 @@ function UseCasesSection() {
 
         /* translateY: 110% → 0 (slides up from below viewport) */
         const ty = (1 - cardProgress) * 110;
-        el.style.transform = `translateY(${ty}%)`;
-        el.style.opacity = cardProgress > 0.02 ? "1" : "0";
+        const nextTransform = `translateY(${ty}%)`;
+        if (el.style.transform !== nextTransform) {
+          el.style.transform = nextTransform;
+        }
+        const nextOpacity = cardProgress > 0.02 ? "1" : "0";
+        if (el.style.opacity !== nextOpacity) {
+          el.style.opacity = nextOpacity;
+        }
       });
     };
 

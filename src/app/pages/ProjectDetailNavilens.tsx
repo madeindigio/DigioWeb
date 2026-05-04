@@ -33,7 +33,46 @@ const imgRelatedIDermApp = "/images/placeholder-gray.svg";
 const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 import svgPaths from "../../imports/svg-7k2kxsrz4w";
 
-const EASE = [0.22, 1, 0.36, 1];
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+type NavilensScrollSubscriber = (scrollTop: number) => void;
+
+const navilensScrollSubscribers = new Set<NavilensScrollSubscriber>();
+let navilensScrollListenerAttached = false;
+let navilensScrollRaf: number | null = null;
+
+function notifyNavilensScrollSubscribers(scrollTop: number) {
+  navilensScrollSubscribers.forEach((subscriber) => subscriber(scrollTop));
+}
+
+function onNavilensScroll() {
+  if (navilensScrollRaf !== null) return;
+  navilensScrollRaf = requestAnimationFrame(() => {
+    navilensScrollRaf = null;
+    notifyNavilensScrollSubscribers(window.scrollY || document.documentElement.scrollTop);
+  });
+}
+
+function subscribeToNavilensScroll(subscriber: NavilensScrollSubscriber): () => void {
+  navilensScrollSubscribers.add(subscriber);
+
+  if (!navilensScrollListenerAttached && typeof window !== "undefined") {
+    navilensScrollListenerAttached = true;
+    window.addEventListener("scroll", onNavilensScroll, { passive: true });
+  }
+
+  return () => {
+    navilensScrollSubscribers.delete(subscriber);
+    if (navilensScrollSubscribers.size === 0 && navilensScrollListenerAttached && typeof window !== "undefined") {
+      window.removeEventListener("scroll", onNavilensScroll);
+      navilensScrollListenerAttached = false;
+      if (navilensScrollRaf !== null) {
+        cancelAnimationFrame(navilensScrollRaf);
+        navilensScrollRaf = null;
+      }
+    }
+  };
+}
 
 /* ============================================================
    1. HERO — Full-width image
@@ -179,14 +218,9 @@ function QrStreetPanels() {
   const completedScrollYRef = useRef<number | null>(null);
 
   useEffect(() => {
-    let rafId = 0;
-
-    const updateProgress = () => {
-      rafId = 0;
+    const updateProgress = (currentScrollY: number) => {
       const section = sectionRef.current;
       if (!section) return;
-
-      const currentScrollY = window.scrollY;
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const viewportCenter = viewportHeight / 2;
@@ -228,18 +262,16 @@ function QrStreetPanels() {
     };
 
     const requestUpdate = () => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(updateProgress);
+      updateProgress(window.scrollY || document.documentElement.scrollTop);
     };
 
+    const unsubscribe = subscribeToNavilensScroll(updateProgress);
     requestUpdate();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
 
     return () => {
-      window.removeEventListener("scroll", requestUpdate);
+      unsubscribe();
       window.removeEventListener("resize", requestUpdate);
-      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -427,7 +459,7 @@ function HandAppSection() {
   const [scannerParallaxY, setScannerParallaxY] = useState(0);
 
   useEffect(() => {
-    let rafId = 0;
+    let resizeRafId = 0;
 
     const getMaxLift = () => {
       if (window.innerWidth <= 768) return 56;
@@ -455,7 +487,6 @@ function HandAppSection() {
     };
 
     const updateParallax = () => {
-      rafId = 0;
       const area = scannerAreaRef.current;
       if (!area) return;
 
@@ -481,19 +512,22 @@ function HandAppSection() {
       requestAnim();
     };
 
-    const requestUpdate = () => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(updateParallax);
+    const requestResizeUpdate = () => {
+      if (resizeRafId) return;
+      resizeRafId = requestAnimationFrame(() => {
+        resizeRafId = 0;
+        updateParallax();
+      });
     };
 
+    const unsubscribe = subscribeToNavilensScroll(updateParallax);
     updateParallax();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
+    window.addEventListener("resize", requestResizeUpdate);
 
     return () => {
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      if (rafId) cancelAnimationFrame(rafId);
+      unsubscribe();
+      window.removeEventListener("resize", requestResizeUpdate);
+      if (resizeRafId) cancelAnimationFrame(resizeRafId);
       if (animRafRef.current) cancelAnimationFrame(animRafRef.current);
     };
   }, []);

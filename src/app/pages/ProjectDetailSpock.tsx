@@ -223,10 +223,14 @@ function AnimatedPrice({
   const targetNum = parseFloat(value.replace(",", "."));
   const rafRef = useRef<number>(0);
   const startTimeRef = useRef<number>(0);
+  const displayRef = useRef("0,00");
 
   useEffect(() => {
     if (!start) {
-      setDisplay("0,00");
+      if (displayRef.current !== "0,00") {
+        displayRef.current = "0,00";
+        setDisplay("0,00");
+      }
       return;
     }
     startTimeRef.current = 0;
@@ -239,7 +243,10 @@ function AnimatedPrice({
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = targetNum * eased;
       const formatted = current.toFixed(2).replace(".", ",");
-      setDisplay(formatted);
+      if (displayRef.current !== formatted) {
+        displayRef.current = formatted;
+        setDisplay(formatted);
+      }
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(animate);
       }

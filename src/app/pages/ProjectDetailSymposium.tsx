@@ -79,7 +79,7 @@ const imgRelatedIdermapp = "/images/placeholder-gray.svg";
 const imgRelatedIdermapp2 = "/images/placeholder-gray.svg";
 const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 
-const EASE = [0.22, 1, 0.36, 1];
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const VIDEO_URL = "https://digio.es/sites/default/files/2024-04/Symposium-header-2.mp4";
 const BIG_SYM_IMAGE_URL = "/images/projects/symposium/Big%20SYM%20IMG%20section.jpg";
 const LEFT_SYM_IMAGE_URL = "/images/projects/symposium/Left%20Sym.jpg";
@@ -394,6 +394,7 @@ function StatCard({ value, label, showLogoHover = false }: { value: string; labe
   const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const hasAnimatedRef = useRef(false);
+  const lastRenderedValueRef = useRef(value);
   const logoTrack = useMemo(() => [...UNIVERSITY_LOGOS, ...UNIVERSITY_LOGOS], []);
 
   useEffect(() => {
@@ -401,7 +402,10 @@ function StatCard({ value, label, showLogoHover = false }: { value: string; labe
 
     const parsed = parseDisplayValue(value);
     if (!parsed.hasNumericValue) {
-      setDisplayValue(value);
+      if (lastRenderedValueRef.current !== value) {
+        lastRenderedValueRef.current = value;
+        setDisplayValue(value);
+      }
       hasAnimatedRef.current = true;
       return;
     }
@@ -419,7 +423,11 @@ function StatCard({ value, label, showLogoHover = false }: { value: string; labe
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = startValue + (parsed.target - startValue) * eased;
 
-      setDisplayValue(`${parsed.prefix}${formatCountValue(current, parsed.decimals)}${parsed.suffix}`);
+      const nextDisplay = `${parsed.prefix}${formatCountValue(current, parsed.decimals)}${parsed.suffix}`;
+      if (lastRenderedValueRef.current !== nextDisplay) {
+        lastRenderedValueRef.current = nextDisplay;
+        setDisplayValue(nextDisplay);
+      }
 
       if (progress < 1) {
         rafId = requestAnimationFrame(tick);
@@ -575,12 +583,16 @@ function StatCardEvents({ value, label }: { value: string; label: string }) {
   const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const hasAnimatedRef = useRef(false);
+  const lastRenderedValueRef = useRef(value);
 
   useEffect(() => {
     if (!hasEnteredViewport || hasAnimatedRef.current) return;
     const parsed = parseDisplayValue(value);
     if (!parsed.hasNumericValue) {
-      setDisplayValue(value);
+      if (lastRenderedValueRef.current !== value) {
+        lastRenderedValueRef.current = value;
+        setDisplayValue(value);
+      }
       hasAnimatedRef.current = true;
       return;
     }
@@ -594,7 +606,11 @@ function StatCardEvents({ value, label }: { value: string; label: string }) {
       const progress = Math.min(elapsed / durationMs, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = startValue + (parsed.target - startValue) * eased;
-      setDisplayValue(`${parsed.prefix}${formatCountValue(current, parsed.decimals)}${parsed.suffix}`);
+      const nextDisplay = `${parsed.prefix}${formatCountValue(current, parsed.decimals)}${parsed.suffix}`;
+      if (lastRenderedValueRef.current !== nextDisplay) {
+        lastRenderedValueRef.current = nextDisplay;
+        setDisplayValue(nextDisplay);
+      }
       if (progress < 1) rafId = requestAnimationFrame(tick);
     };
     rafId = requestAnimationFrame(tick);
@@ -790,12 +806,16 @@ function StatCardBubbles({ value, label }: { value: string; label: string }) {
   const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const hasAnimatedRef = useRef(false);
+  const lastRenderedValueRef = useRef(value);
 
   useEffect(() => {
     if (!hasEnteredViewport || hasAnimatedRef.current) return;
     const parsed = parseDisplayValue(value);
     if (!parsed.hasNumericValue) {
-      setDisplayValue(value);
+      if (lastRenderedValueRef.current !== value) {
+        lastRenderedValueRef.current = value;
+        setDisplayValue(value);
+      }
       hasAnimatedRef.current = true;
       return;
     }
@@ -809,7 +829,11 @@ function StatCardBubbles({ value, label }: { value: string; label: string }) {
       const progress = Math.min(elapsed / durationMs, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = startValue + (parsed.target - startValue) * eased;
-      setDisplayValue(`${parsed.prefix}${formatCountValue(current, parsed.decimals)}${parsed.suffix}`);
+      const nextDisplay = `${parsed.prefix}${formatCountValue(current, parsed.decimals)}${parsed.suffix}`;
+      if (lastRenderedValueRef.current !== nextDisplay) {
+        lastRenderedValueRef.current = nextDisplay;
+        setDisplayValue(nextDisplay);
+      }
       if (progress < 1) rafId = requestAnimationFrame(tick);
     };
     rafId = requestAnimationFrame(tick);

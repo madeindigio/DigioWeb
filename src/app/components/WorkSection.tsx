@@ -17,9 +17,9 @@ import { LangText } from "./LangText";
 import { useProjectTransition } from "./ProjectTransitionContext";
 
 const EASE_SMOOTH: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const PRE_TRANSITION_CLEANUP_MS = 170;
-const PRELOAD_IMAGE_MAX_WAIT_MS = 260;
-const PRELOAD_VIDEO_MAX_WAIT_MS = 320;
+const PRE_TRANSITION_CLEANUP_MS = 110;
+const PRELOAD_IMAGE_MAX_WAIT_MS = 180;
+const PRELOAD_VIDEO_MAX_WAIT_MS = 220;
 
 function wait(ms: number) {
   return new Promise<void>((resolve) => {
@@ -210,10 +210,27 @@ export function CardHoverOverlay({
     const container = containerRef.current;
     if (!container) return;
 
-    const updatePos = (e: PointerEvent, jump: boolean) => {
-      const rect = container.getBoundingClientRect();
-      const nx = Math.max(0.12, Math.min(0.88, (e.clientX - rect.left) / rect.width));
-      const ny = Math.max(0.12, Math.min(0.88, (e.clientY - rect.top) / rect.height));
+    let rect = container.getBoundingClientRect();
+    let measureRaf: number | null = null;
+    let moveRaf: number | null = null;
+    let pendingX = 0;
+    let pendingY = 0;
+
+    const measureRect = () => {
+      rect = container.getBoundingClientRect();
+      measureRaf = null;
+    };
+
+    const scheduleMeasure = () => {
+      if (measureRaf !== null) return;
+      measureRaf = requestAnimationFrame(measureRect);
+    };
+
+    const applyPos = (clientX: number, clientY: number, jump: boolean) => {
+      const width = rect.width || 1;
+      const height = rect.height || 1;
+      const nx = Math.max(0.12, Math.min(0.88, (clientX - rect.left) / width));
+      const ny = Math.max(0.12, Math.min(0.88, (clientY - rect.top) / height));
       if (jump) {
         mouseX.jump(nx);
         mouseY.jump(ny);
@@ -221,6 +238,16 @@ export function CardHoverOverlay({
         mouseX.set(nx);
         mouseY.set(ny);
       }
+    };
+
+    const scheduleMove = (clientX: number, clientY: number) => {
+      pendingX = clientX;
+      pendingY = clientY;
+      if (moveRaf !== null) return;
+      moveRaf = requestAnimationFrame(() => {
+        moveRaf = null;
+        applyPos(pendingX, pendingY, false);
+      });
     };
 
     const applyImgScale = (scale: string, dur: string) => {
@@ -234,7 +261,8 @@ export function CardHoverOverlay({
     };
 
     const onEnter = (e: PointerEvent) => {
-      updatePos(e, true);
+      scheduleMeasure();
+      applyPos(e.clientX, e.clientY, true);
       if (!hoveredRef.current) {
         hoveredRef.current = true;
         setHovered(true);
@@ -243,7 +271,7 @@ export function CardHoverOverlay({
     };
 
     const onMove = (e: PointerEvent) => {
-      updatePos(e, false);
+      scheduleMove(e.clientX, e.clientY);
       // Safety net: re-activate if state was lost
       if (!hoveredRef.current) {
         hoveredRef.current = true;
@@ -258,14 +286,28 @@ export function CardHoverOverlay({
       applyImgScale("scale(1)", "0.5s");
     };
 
+    const ro = new ResizeObserver(scheduleMeasure);
+    ro.observe(container);
+    window.addEventListener("resize", scheduleMeasure);
+    window.addEventListener("scroll", scheduleMeasure, { passive: true });
+
     container.addEventListener("pointerenter", onEnter);
     container.addEventListener("pointermove", onMove);
     container.addEventListener("pointerleave", onLeave);
 
     return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", scheduleMeasure);
+      window.removeEventListener("scroll", scheduleMeasure);
       container.removeEventListener("pointerenter", onEnter);
       container.removeEventListener("pointermove", onMove);
       container.removeEventListener("pointerleave", onLeave);
+      if (measureRaf !== null) {
+        cancelAnimationFrame(measureRaf);
+      }
+      if (moveRaf !== null) {
+        cancelAnimationFrame(moveRaf);
+      }
     };
   }, [containerRef, mouseX, mouseY, isHoverable]);
 

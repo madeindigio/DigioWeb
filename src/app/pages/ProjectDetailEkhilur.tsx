@@ -265,13 +265,15 @@ function DataSection() {
 
 function HousesSection() {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const groupRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const track = trackRef.current;
     const group = groupRef.current;
-    if (!track || !group) return;
+    const section = sectionRef.current;
+    if (!track || !group || !section) return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
@@ -281,6 +283,8 @@ function HousesSection() {
     let offset = 0;
     let groupWidth = group.getBoundingClientRect().width;
     const speed = 38;
+    let isVisible = true;
+    let isDocumentVisible = document.visibilityState !== "hidden";
 
     const resizeObserver = new ResizeObserver(() => {
       groupWidth = group.getBoundingClientRect().width;
@@ -292,7 +296,18 @@ function HousesSection() {
 
     resizeObserver.observe(group);
 
+    const stopLoop = () => {
+      if (!animationFrameId) return;
+      window.cancelAnimationFrame(animationFrameId);
+      animationFrameId = 0;
+    };
+
     const step = (now: number) => {
+      if (!isVisible || !isDocumentVisible) {
+        animationFrameId = 0;
+        return;
+      }
+
       if (groupWidth > 0) {
         const deltaSeconds = (now - lastTime) / 1000;
         offset = (offset + speed * deltaSeconds) % groupWidth;
@@ -303,16 +318,47 @@ function HousesSection() {
       animationFrameId = window.requestAnimationFrame(step);
     };
 
-    animationFrameId = window.requestAnimationFrame(step);
+    const startLoop = () => {
+      if (animationFrameId || !isVisible || !isDocumentVisible) return;
+      lastTime = performance.now();
+      animationFrameId = window.requestAnimationFrame(step);
+    };
+
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries.some((entry) => entry.isIntersecting);
+        if (isVisible) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    const handleVisibilityChange = () => {
+      isDocumentVisible = document.visibilityState !== "hidden";
+      if (isDocumentVisible) {
+        startLoop();
+      } else {
+        stopLoop();
+      }
+    };
+
+    visibilityObserver.observe(section);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    startLoop();
 
     return () => {
-      window.cancelAnimationFrame(animationFrameId);
+      stopLoop();
+      visibilityObserver.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       resizeObserver.disconnect();
     };
   }, []);
 
   return (
-    <section className="bg-white w-full">
+    <section ref={sectionRef} className="bg-white w-full">
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           <div className="relative w-full h-[570px] max-lg:h-[320px] max-md:h-[240px] overflow-hidden bg-[#FFFBF0] rounded-[8px]">

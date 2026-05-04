@@ -34,7 +34,6 @@ export function ProjectTransitionOverlay() {
   const { t } = useTranslation();
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
   const hasLandedRef = useRef(false);
-  const topForcedRef = useRef(false);
 
   /* Lock scroll while transition is active */
   useEffect(() => {
@@ -43,19 +42,10 @@ export function ProjectTransitionOverlay() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-      topForcedRef.current = false;
     }
     return () => {
       document.body.style.overflow = "";
     };
-  }, [phase]);
-
-  /* Force top only when the main movement starts, not during preparing fade */
-  useEffect(() => {
-    if (phase === "animating" && !topForcedRef.current) {
-      topForcedRef.current = true;
-      window.scrollTo(0, 0);
-    }
   }, [phase]);
 
   /* Reset landed guard when a new transition starts */

@@ -132,12 +132,27 @@ export function AboutSectors() {
     const current = { x: 0, y: 0 };
     const target = { x: 0, y: 0 };
     let frameId = 0;
+    const epsilon = 0.05;
 
     const applyShift = () => {
       current.x += (target.x - current.x) * 0.12;
       current.y += (target.y - current.y) * 0.12;
       illustrationLayer.style.setProperty("--illustration-shift-x", `${current.x.toFixed(2)}px`);
       illustrationLayer.style.setProperty("--illustration-shift-y", `${current.y.toFixed(2)}px`);
+
+      const dx = Math.abs(target.x - current.x);
+      const dy = Math.abs(target.y - current.y);
+
+      if (dx > epsilon || dy > epsilon) {
+        frameId = window.requestAnimationFrame(applyShift);
+        return;
+      }
+
+      frameId = 0;
+    };
+
+    const requestShift = () => {
+      if (frameId) return;
       frameId = window.requestAnimationFrame(applyShift);
     };
 
@@ -152,14 +167,17 @@ export function AboutSectors() {
 
       target.x = normalizedX * maxShift;
       target.y = normalizedY * maxShift;
+      requestShift();
     };
 
     const onPointerLeave = () => {
       target.x = 0;
       target.y = 0;
+      requestShift();
     };
 
-    frameId = window.requestAnimationFrame(applyShift);
+    illustrationLayer.style.setProperty("--illustration-shift-x", "0px");
+    illustrationLayer.style.setProperty("--illustration-shift-y", "0px");
     section.addEventListener("pointermove", onPointerMove);
     section.addEventListener("pointerleave", onPointerLeave);
 

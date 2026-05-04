@@ -147,6 +147,52 @@ function getVisibleHeaderHeight() {
   return header.getBoundingClientRect().height;
 }
 
+type ScrollSubscriber = (scrollTop: number) => void;
+
+const scrollSubscribers = new Set<ScrollSubscriber>();
+let scrollListenerAttached = false;
+let scrollNotifyRaf: number | null = null;
+
+function notifyScrollSubscribers(scrollTop: number) {
+  scrollSubscribers.forEach((subscriber) => {
+    subscriber(scrollTop);
+  });
+}
+
+function onSharedScroll() {
+  if (scrollNotifyRaf !== null) return;
+  scrollNotifyRaf = requestAnimationFrame(() => {
+    scrollNotifyRaf = null;
+    const y = window.scrollY || document.documentElement.scrollTop;
+    notifyScrollSubscribers(y);
+  });
+}
+
+function ensureSharedScrollListener() {
+  if (scrollListenerAttached || typeof window === "undefined") return;
+  scrollListenerAttached = true;
+  window.addEventListener("scroll", onSharedScroll, { passive: true });
+}
+
+function teardownSharedScrollListenerIfIdle() {
+  if (!scrollListenerAttached || scrollSubscribers.size > 0 || typeof window === "undefined") return;
+  window.removeEventListener("scroll", onSharedScroll);
+  scrollListenerAttached = false;
+  if (scrollNotifyRaf !== null) {
+    cancelAnimationFrame(scrollNotifyRaf);
+    scrollNotifyRaf = null;
+  }
+}
+
+function subscribeToSharedScroll(subscriber: ScrollSubscriber): () => void {
+  scrollSubscribers.add(subscriber);
+  ensureSharedScrollListener();
+  return () => {
+    scrollSubscribers.delete(subscriber);
+    teardownSharedScrollListenerIfIdle();
+  };
+}
+
 /* ─── Smooth-scroll to a hash id, accounting for fixed header ─── */
 export function scrollToId(id: string, immediate: boolean = false) {
   const el = document.getElementById(id);
@@ -226,7 +272,7 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
   const targetFrameRef = useRef(0);
   const currentFrameRef = useRef(0);
   const rafRef = useRef<number | null>(null);
-  const scrollRafRef = useRef<number | null>(null);
+  const measureRafRef = useRef<number | null>(null);
   const maxScrollableRef = useRef(1);
   const totalFrames = 200;
 
@@ -288,40 +334,43 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
     maxScrollableRef.current = Math.max(max, 1);
   }, []);
 
-  const handleScroll = useCallback(() => {
-    if (scrollRafRef.current !== null) return;
-    scrollRafRef.current = requestAnimationFrame(() => {
-      scrollRafRef.current = null;
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const pct = Math.min(Math.max(scrollTop / (maxScrollableRef.current * 0.6), 0), 1);
-      const newTarget = pct * (totalFrames - 1);
-
-      if (Math.abs(targetFrameRef.current - newTarget) > 0.1) {
-        targetFrameRef.current = newTarget;
-        if (rafRef.current === null && tickRef.current) {
-          rafRef.current = requestAnimationFrame(tickRef.current);
-        }
-      }
+  const scheduleMeasure = useCallback(() => {
+    if (measureRafRef.current !== null) return;
+    measureRafRef.current = requestAnimationFrame(() => {
+      measureRafRef.current = null;
+      updateMaxScrollable();
     });
-  }, []);
+  }, [updateMaxScrollable]);
+
+  const updateTargetFrame = useCallback((scrollTop: number) => {
+    const pct = Math.min(Math.max(scrollTop / (maxScrollableRef.current * 0.6), 0), 1);
+    const newTarget = pct * (totalFrames - 1);
+
+    if (Math.abs(targetFrameRef.current - newTarget) > 0.1) {
+      targetFrameRef.current = newTarget;
+      if (rafRef.current === null && tickRef.current) {
+        rafRef.current = requestAnimationFrame(tickRef.current);
+      }
+    }
+  }, [totalFrames]);
 
   useEffect(() => {
-    updateMaxScrollable();
-    const ro = new ResizeObserver(() => updateMaxScrollable());
+    scheduleMeasure();
+    const ro = new ResizeObserver(() => scheduleMeasure());
     ro.observe(document.documentElement);
-    window.addEventListener("resize", updateMaxScrollable);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener("resize", scheduleMeasure);
+    const unsubscribe = subscribeToSharedScroll(updateTargetFrame);
+    updateTargetFrame(window.scrollY || document.documentElement.scrollTop);
     return () => {
       ro.disconnect();
-      window.removeEventListener("resize", updateMaxScrollable);
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollRafRef.current !== null) {
-        cancelAnimationFrame(scrollRafRef.current);
-        scrollRafRef.current = null;
+      window.removeEventListener("resize", scheduleMeasure);
+      unsubscribe();
+      if (measureRafRef.current !== null) {
+        cancelAnimationFrame(measureRafRef.current);
+        measureRafRef.current = null;
       }
     };
-  }, [handleScroll, updateMaxScrollable]);
+  }, [scheduleMeasure, updateTargetFrame]);
 
   return (
     <motion.div
@@ -695,15 +744,7 @@ export function Header() {
   );
 
   useEffect(() => {
-    const initialScrolled = window.scrollY > 80;
-    scrolledRef.current = initialScrolled;
-    setScrolled(initialScrolled);
-
-    let rafId = 0;
-    let ticking = false;
-
-    const updateScrollState = () => {
-      const y = window.scrollY;
+    const updateScrollState = (y: number) => {
       // Hysteresis
       if (!scrolledRef.current && y > 80) {
         scrolledRef.current = true;
@@ -716,22 +757,12 @@ export function Header() {
       rawShadowOpacity.set(Math.min(y / 200, 1));
     };
 
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      rafId = requestAnimationFrame(() => {
-        ticking = false;
-        updateScrollState();
-      });
-    };
-
-    // Prime state on mount.
-    updateScrollState();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    const initialScrollTop = window.scrollY || document.documentElement.scrollTop;
+    updateScrollState(initialScrollTop);
+    const unsubscribe = subscribeToSharedScroll(updateScrollState);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(rafId);
+      unsubscribe();
     };
   }, [rawShadowOpacity]);
 

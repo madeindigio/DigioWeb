@@ -20,6 +20,23 @@ import { useProjectTransition } from "./ProjectTransitionContext";
 /* ── Singleton reference so exported helpers can reach it ── */
 let _lenis: Lenis | null = null;
 let _resizeRafId: number | null = null;
+let _resizeIdleId: number | null = null;
+let _resizeTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
+function clearPendingLenisResize() {
+  if (_resizeRafId !== null) {
+    cancelAnimationFrame(_resizeRafId);
+    _resizeRafId = null;
+  }
+  if (_resizeIdleId !== null && typeof window !== "undefined" && "cancelIdleCallback" in window) {
+    window.cancelIdleCallback(_resizeIdleId);
+    _resizeIdleId = null;
+  }
+  if (_resizeTimeoutId !== null) {
+    clearTimeout(_resizeTimeoutId);
+    _resizeTimeoutId = null;
+  }
+}
 
 function getVisibleHeaderHeight() {
   const header = document.querySelector("header");
@@ -33,11 +50,28 @@ function getVisibleHeaderHeight() {
 }
 
 function scheduleLenisResize() {
-  if (!_lenis || _resizeRafId !== null) return;
-  _resizeRafId = requestAnimationFrame(() => {
-    _resizeRafId = null;
-    _lenis?.resize();
-  });
+  if (!_lenis) return;
+  if (_resizeRafId !== null || _resizeIdleId !== null || _resizeTimeoutId !== null) return;
+
+  const runResize = () => {
+    _resizeRafId = requestAnimationFrame(() => {
+      _resizeRafId = null;
+      _lenis?.resize();
+    });
+  };
+
+  if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+    _resizeIdleId = window.requestIdleCallback(() => {
+      _resizeIdleId = null;
+      runResize();
+    }, { timeout: 180 });
+    return;
+  }
+
+  _resizeTimeoutId = setTimeout(() => {
+    _resizeTimeoutId = null;
+    runResize();
+  }, 120);
 }
 
 /**
@@ -158,10 +192,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     return () => {
       clearResizeTimers();
       ro.disconnect();
-      if (_resizeRafId !== null) {
-        cancelAnimationFrame(_resizeRafId);
-        _resizeRafId = null;
-      }
+      clearPendingLenisResize();
       cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
