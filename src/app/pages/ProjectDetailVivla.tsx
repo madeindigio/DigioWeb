@@ -249,7 +249,9 @@ function LogoSection() {
     const panel = panelRef.current;
     if (!panel) return;
 
-    const rect = panelRectRef.current ?? panel.getBoundingClientRect();
+    // Always get a fresh rect on mousemove: the panel's position changes
+    // during smooth scroll (Lenis), so a cached rect produces wrong offsets.
+    const rect = panel.getBoundingClientRect();
     panelRectRef.current = rect;
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;

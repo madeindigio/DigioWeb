@@ -14,13 +14,14 @@ import {
 const imgHero = "/images/projects/roomonitor/Roomheadersection.jpg";
 // Image placeholders - replace with actual assets in /public/images/
 const imgRoom = "/images/projects/roomonitor/Roomonitor%20section%20BG%20IMG.jpg";
-const imgChip = "/images/placeholder-gray.svg";
-const imgDevice = "/images/projects/roomonitor/sec%20section.webp";
+const videoInstalacion = "/images/projects/roomonitor/instalacion-roomonitor.mp4";
+const imgDevice = "/images/projects/roomonitor/home-section.jpeg";
 const imgMacBook = "/images/projects/roomonitor/big%20panel%20room.jpg";
 const imgMobileSection = "/images/projects/roomonitor/Mobile%20section.jpg";
 const imgMobileAppSelection = "/images/projects/roomonitor/Mobile%20APP%20Selection.webp";
 const imgDesktop = "/images/projects/roomonitor/apart-detail.jpg";
 const imgIPhoneBezel = "/images/placeholder-gray.svg";
+const lottieRoomButton = "/images/projects/roomonitor/APP%20Room%20button.json";
 const imgRelated1 = "/images/projects/vivla/vivla-hero-section.jpg";
 const imgRelated1b = "/images/projects/vivla/vivla-hero-section.jpg";
 const imgRelated2 = "/images/placeholder-gray.svg";
@@ -139,14 +140,25 @@ function HardwareSection() {
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] pb-[120px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
-        <div className="max-w-[1400px] mx-auto flex flex-col gap-[120px] max-lg:gap-[80px] max-md:gap-[48px]">
+        <div className="max-w-[1400px] mx-auto flex flex-col gap-[88px] max-lg:gap-[64px] max-md:gap-[36px]">
           {/* Two cards: chip + device */}
           <div className="flex gap-[40px] items-start max-md:flex-col max-md:gap-[24px]">
             {/* Chip photo */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] max-md:w-full bg-[#e8dfdf] relative overflow-hidden">
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[300px] max-md:w-[240px] max-md:h-[225px]">
-                <img alt="Roomonitor chip" className="w-full h-full object-cover" src={imgChip} />
-              </div>
+              <video
+                autoPlay
+                muted
+                playsInline
+                onEnded={(event) => {
+                  const video = event.currentTarget;
+                  video.pause();
+                  if (Number.isFinite(video.duration)) {
+                    video.currentTime = video.duration;
+                  }
+                }}
+                className="absolute inset-0 w-full h-full object-cover"
+                src={videoInstalacion}
+              />
             </div>
             {/* Device video */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] max-md:w-full bg-white relative overflow-hidden border border-[#e9e9e9]">
@@ -186,12 +198,10 @@ function MacBookSection() {
 /* ============================================================
    7. APP SECTION — Property management + mobile + desktop
    ============================================================ */
-// TODO: Replace with local TS module once Lottie JSON is provided
-const LOTTIE_URL = "https://digio.es/sites/default/files/lottiefile_field/APP%20Room%20button_0.json";
-
 function LottieRoomonitorButton() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [error, setError] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [hasFailed, setHasFailed] = useState(false);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -199,46 +209,58 @@ function LottieRoomonitorButton() {
 
     let cancelled = false;
     let anim: AnimationItem | null = null;
+    const failSafeId = window.setTimeout(() => {
+      if (!cancelled) setHasFailed(true);
+    }, 2500);
 
-    Promise.all([fetch(LOTTIE_URL), import("lottie-web")])
+    Promise.all([fetch(lottieRoomButton), import("lottie-web")])
       .then(async ([res, lottieModule]) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         if (cancelled) return;
+
+        window.clearTimeout(failSafeId);
+        setHasFailed(false);
+        setIsReady(true);
 
         anim = lottieModule.default.loadAnimation({
           container: el,
           renderer: "svg",
           loop: true,
           autoplay: true,
+          rendererSettings: {
+            preserveAspectRatio: "xMidYMax slice",
+          },
           animationData: data,
         });
       })
       .catch(() => {
-        if (!cancelled) setError(true);
+        if (!cancelled) setHasFailed(true);
       });
 
     return () => {
       cancelled = true;
+      window.clearTimeout(failSafeId);
       anim?.destroy();
     };
   }, []);
 
-  if (error) {
-    return (
-      <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-        <p className="font-['Manrope',sans-serif] text-[#191e25]/40 text-[14px] text-center px-[24px]">
-          Lottie animation — pending local import
-        </p>
-      </div>
-    );
-  }
-
   return (
-    <div
-      ref={containerRef}
-      className="absolute inset-0 w-full h-full flex items-center justify-center"
-    />
+    <>
+      <img
+        alt="Roomonitor mobile section"
+        className="absolute inset-0 w-full h-full object-cover"
+        src={imgMobileSection}
+      />
+      {!hasFailed && (
+        <div
+          ref={containerRef}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${
+            isReady ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      )}
+    </>
   );
 }
 
@@ -297,7 +319,7 @@ function AppSection() {
           <div className="flex gap-[40px] items-start max-md:flex-col max-md:gap-[24px]">
             {/* Mobile app with iPhone bezel */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] max-md:w-full bg-[#e8dfdf] relative overflow-hidden">
-              <img alt="Roomonitor mobile section" className="absolute inset-0 w-full h-full object-cover" src={imgMobileSection} />
+              <LottieRoomonitorButton />
             </div>
             {/* App icons section */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] max-md:w-full relative overflow-hidden">
@@ -309,7 +331,7 @@ function AppSection() {
           <div className="relative w-full h-[800px] max-lg:h-[600px] max-md:h-[400px] overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-[#e8dfdf] to-[#f6e6cd]" />
             <div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[724px] max-lg:w-[560px] max-md:w-[340px] aspect-[1448/1040]"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[780px] max-lg:w-[610px] max-md:w-[360px] aspect-[1448/1040]"
               onMouseMove={handleDesktopMouseMove}
               onMouseLeave={handleDesktopMouseLeave}
             >

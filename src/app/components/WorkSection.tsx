@@ -562,20 +562,20 @@ export function WorkSection() {
           {/* Two cards row */}
           <ScrollReveal>
             <div className="flex gap-[48px] max-md:flex-col max-md:gap-[32px]">
-              <HalfCard
-                slug="roomonitor"
-                image={imgRectangle3}
-                tag={t("work.projects.roomonitor.tag")}
-                projectName={t("work.projects.roomonitor.name")}
-                description={t("work.projects.roomonitor.description")}
-              />
-              <HalfCard
-                slug="finsa"
-                image={imgRectangle4}
-                tag={t("work.projects.finsa.tag")}
-                projectName={t("work.projects.finsa.name")}
-                description={t("work.projects.finsa.description")}
-              />
+                <HalfCard
+                  slug="navilens"
+                  image={imgRectangle8}
+                  tag={t("work.projects.navilens.tag")}
+                  projectName={t("work.projects.navilens.name")}
+                  description={t("work.projects.navilens.description")}
+                />
+                <HalfCard
+                  slug="vivla"
+                  image={imgVivla}
+                  tag={t("work.projects.vivla.tag")}
+                  projectName={t("work.projects.vivla.name")}
+                  description={t("work.projects.vivla.description")}
+                />
             </div>
           </ScrollReveal>
 
@@ -589,6 +589,38 @@ export function WorkSection() {
               description={t("work.projects.symposium.description")}
               tagBg="bg-[rgba(163,163,163,0.24)]"
               videoSrc="https://digio.es/sites/default/files/2024-04/Symposium-header-2.mp4"
+            />
+          </ScrollReveal>
+
+          {/* Two cards row */}
+          <ScrollReveal>
+            <div className="flex gap-[48px] max-md:flex-col max-md:gap-[32px]">
+                <HalfCard
+                  slug="roomonitor"
+                  image={imgRectangle3}
+                  tag={t("work.projects.roomonitor.tag")}
+                  projectName={t("work.projects.roomonitor.name")}
+                  description={t("work.projects.roomonitor.description")}
+                />
+                <HalfCard
+                  slug="finsa"
+                  image={imgRectangle4}
+                  tag={t("work.projects.finsa.tag")}
+                  projectName={t("work.projects.finsa.name")}
+                  description={t("work.projects.finsa.description")}
+                />
+            </div>
+          </ScrollReveal>
+
+          {/* Full width - iVoox */}
+          <ScrollReveal>
+            <FullWidthCard
+              slug="ivoox"
+              image={imgBgImg2}
+              tag={t("work.projects.ivoox.tag")}
+              projectName={t("work.projects.ivoox.name")}
+              description={t("work.projects.ivoox.description")}
+              imgClassName="object-cover"
             />
           </ScrollReveal>
 
@@ -609,38 +641,6 @@ export function WorkSection() {
                 tag={t("work.projects.idermapp.tag")}
                 projectName={t("work.projects.idermapp.name")}
                 description={t("work.projects.idermapp.description")}
-              />
-            </div>
-          </ScrollReveal>
-
-          {/* Full width - iVoox */}
-          <ScrollReveal>
-            <FullWidthCard
-              slug="ivoox"
-              image={imgBgImg2}
-              tag={t("work.projects.ivoox.tag")}
-              projectName={t("work.projects.ivoox.name")}
-              description={t("work.projects.ivoox.description")}
-              imgClassName="object-cover"
-            />
-          </ScrollReveal>
-
-          {/* Two cards row */}
-          <ScrollReveal>
-            <div className="flex gap-[48px] max-md:flex-col max-md:gap-[32px]">
-              <HalfCard
-                slug="navilens"
-                image={imgRectangle8}
-                tag={t("work.projects.navilens.tag")}
-                projectName={t("work.projects.navilens.name")}
-                description={t("work.projects.navilens.description")}
-              />
-              <HalfCard
-                slug="vivla"
-                image={imgVivla}
-                tag={t("work.projects.vivla.tag")}
-                projectName={t("work.projects.vivla.name")}
-                description={t("work.projects.vivla.description")}
               />
             </div>
           </ScrollReveal>
