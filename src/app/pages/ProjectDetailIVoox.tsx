@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import type { AnimationItem } from "lottie-web";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { ContactSection } from "../components/ContactSection";
@@ -11,27 +12,15 @@ import {
 
 /* ─── Assets ─── */
 const imgHero = "/images/projects/ivoox/ivoox-hero-section.jpg";
-// Image placeholders - replace with actual assets in /public/images/
-const imgMobileSection = "/images/placeholder-gray.svg";
-const imgScreen = "/images/placeholder-gray.svg";
-const imgIPhone15Pro = "/images/placeholder-gray.svg";
-const imgPodcast1 = "/images/placeholder-gray.svg";
-const imgPodcast2 = "/images/placeholder-gray.svg";
-const imgPodcast3 = "/images/placeholder-gray.svg";
-const imgPodcast4 = "/images/placeholder-gray.svg";
-const imgPodcast5 = "/images/placeholder-gray.svg";
-const imgPodcast6 = "/images/placeholder-gray.svg";
-const imgPodcast7 = "/images/placeholder-gray.svg";
-const imgPodcast8 = "/images/placeholder-gray.svg";
-const imgPodcast9 = "/images/placeholder-gray.svg";
-const imgMetro = "/images/placeholder-gray.svg";
-const imgSpockCircles = "/images/placeholder-gray.svg";
-const imgDownloadMockup = "/images/placeholder-gray.svg";
-const imgScreen1 = "/images/placeholder-gray.svg";
-const imgWatchGroup = "/images/placeholder-gray.svg";
-const imgWatchRight = "/images/placeholder-gray.svg";
-const imgCarBg = "/images/placeholder-gray.svg";
-const imgCarOverlay = "/images/placeholder-gray.svg";
+const imgPhonePanel = "/images/projects/ivoox/iVoox Section small mobile.jpg";
+const imgPodcastSlider = "/images/projects/ivoox/iVoox Section podcasts slider.jpg";
+const imgMetro = "/images/projects/ivoox/iVooxmetro.jpg";
+const imgScreens = "/images/projects/ivoox/iVoox-screens3.jpg";
+const imgWatchGroup = "/images/projects/ivoox/iVoox_Watch_left.jpg";
+const imgWatchRight = "/images/projects/ivoox/iVoox_Watch_right.jpg";
+const imgCarBg = "/images/projects/ivoox/iVoox Auto.jpg";
+const IVOOX_PODCAST_LOTTIE_URL = "/images/projects/ivoox/iVoox Podcast Slider_0.json";
+const IVOOX_MOBILE_SCREENS_LOTTIE_URL = "/images/projects/ivoox/Showreel_-Mobile-screens_0.json";
 const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
 import { imgEkhilurPlaceholder } from "../components/projectData";
 
@@ -173,55 +162,74 @@ function VisionSection() {
    5. TWO PANELS — Phone mockup + Podcast grid
    ============================================================ */
 function PhonePodcastPanels() {
+  function LottiePodcastSlider() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isReady, setIsReady] = useState(false);
+
+    useEffect(() => {
+      const el = containerRef.current;
+      if (!el) return;
+
+      let cancelled = false;
+      let anim: AnimationItem | null = null;
+
+      Promise.all([fetch(IVOOX_PODCAST_LOTTIE_URL), import("lottie-web")])
+        .then(async ([res, lottieModule]) => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          if (cancelled) return;
+
+          anim = lottieModule.default.loadAnimation({
+            container: el,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            animationData: data,
+            rendererSettings: {
+              preserveAspectRatio: "xMidYMid slice",
+            },
+          });
+
+          setIsReady(true);
+        })
+        .catch(() => {
+          if (!cancelled) setIsReady(false);
+        });
+
+      return () => {
+        cancelled = true;
+        anim?.destroy();
+      };
+    }, []);
+
+    return (
+      <>
+        <img
+          alt="iVoox podcasts slider"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isReady ? "opacity-0" : "opacity-100"}`}
+          src={imgPodcastSlider}
+        />
+        <div
+          ref={containerRef}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-300 [&>svg]:w-full [&>svg]:h-full ${isReady ? "opacity-100" : "opacity-0"}`}
+        />
+      </>
+    );
+  }
+
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
-          {/* Phone mockup panel */}
-          <div className="flex-1 bg-gradient-to-b from-[#ffeedc] to-[#fcdebf] h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden">
-            {/* Phone screen */}
-            <div className="absolute left-[142px] top-[60px] max-lg:left-[100px] max-lg:top-[40px] max-md:left-1/2 max-md:-translate-x-1/2 max-md:top-[30px]">
-              <div className="relative w-[296px] h-[642px] max-lg:w-[220px] max-lg:h-[477px] max-md:w-[200px] max-md:h-[434px]">
-                <img
-                  alt="iVoox app screen"
-                  className="absolute inset-0 w-full h-full object-cover rounded-[40px] max-lg:rounded-[30px] max-md:rounded-[28px]"
-                  src={imgScreen}
-                />
-                <div className="absolute -inset-[30px] max-lg:-inset-[22px] max-md:-inset-[20px]">
-                  <img
-                    alt=""
-                    className="w-full h-full object-cover"
-                    src={imgIPhone15Pro}
-                  />
-                </div>
-              </div>
-            </div>
+          <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden">
+            <img
+              alt="iVoox app mobile section"
+              className="absolute inset-0 w-full h-full object-cover object-top"
+              src={imgPhonePanel}
+            />
           </div>
-          {/* Podcast grid panel */}
-          <div className="flex-1 bg-gradient-to-b from-[#ffeedc] to-[#fcdebf] h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden">
-            {/* 3x3-ish grid of podcast covers */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-[420px] h-[420px] max-lg:w-[320px] max-lg:h-[320px] max-md:w-[280px] max-md:h-[280px]">
-                {/* Center */}
-                <img alt="" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[132px] h-[132px] max-lg:w-[100px] max-lg:h-[100px] max-md:w-[88px] max-md:h-[88px] rounded-[12px] object-cover" src={imgPodcast1} />
-                {/* Left center */}
-                <img alt="" className="absolute left-0 top-1/2 -translate-y-1/2 w-[132px] h-[132px] max-lg:w-[100px] max-lg:h-[100px] max-md:w-[88px] max-md:h-[88px] rounded-[12px] object-cover" src={imgPodcast2} />
-                {/* Left top */}
-                <img alt="" className="absolute left-0 top-0 w-[132px] h-[132px] max-lg:w-[100px] max-lg:h-[100px] max-md:w-[88px] max-md:h-[88px] rounded-[12px] object-cover" src={imgPodcast4} />
-                {/* Left bottom */}
-                <img alt="" className="absolute left-0 bottom-0 w-[132px] h-[132px] max-lg:w-[100px] max-lg:h-[100px] max-md:w-[88px] max-md:h-[88px] rounded-[12px] object-cover" src={imgPodcast3} />
-                {/* Center top */}
-                <img alt="" className="absolute left-1/2 -translate-x-1/2 top-0 w-[132px] h-[132px] max-lg:w-[100px] max-lg:h-[100px] max-md:w-[88px] max-md:h-[88px] rounded-[12px] object-cover" src={imgPodcast5} />
-                {/* Right center */}
-                <img alt="" className="absolute right-0 top-1/2 -translate-y-1/2 w-[132px] h-[132px] max-lg:w-[100px] max-lg:h-[100px] max-md:w-[88px] max-md:h-[88px] rounded-[12px] object-cover" src={imgPodcast6} />
-                {/* Center bottom */}
-                <img alt="" className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[132px] h-[132px] max-lg:w-[100px] max-lg:h-[100px] max-md:w-[88px] max-md:h-[88px] rounded-[12px] object-cover" src={imgPodcast7} />
-                {/* Right bottom */}
-                <img alt="" className="absolute right-0 bottom-0 w-[132px] h-[132px] max-lg:w-[100px] max-lg:h-[100px] max-md:w-[88px] max-md:h-[88px] rounded-[12px] object-cover" src={imgPodcast8} />
-                {/* Right top */}
-                <img alt="" className="absolute right-0 top-0 w-[132px] h-[132px] max-lg:w-[100px] max-lg:h-[100px] max-md:w-[88px] max-md:h-[88px] rounded-[12px] object-cover" src={imgPodcast9} />
-              </div>
-            </div>
+          <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden">
+            <LottiePodcastSlider />
           </div>
         </div>
       </div>
@@ -256,15 +264,86 @@ function ValueSection() {
    7. METRO / UNDERGROUND IMAGE — Full-width
    ============================================================ */
 function MetroImageSection() {
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<AnimationItem | null>(null);
+  const hasStartedRef = useRef(false);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const target = triggerRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry?.isIntersecting || hasStartedRef.current) return;
+
+        hasStartedRef.current = true;
+        animationRef.current?.goToAndPlay(0, true);
+        observer.disconnect();
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    let cancelled = false;
+
+    Promise.all([fetch(IVOOX_MOBILE_SCREENS_LOTTIE_URL), import("lottie-web")])
+      .then(async ([res, lottieModule]) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (cancelled) return;
+
+        animationRef.current = lottieModule.default.loadAnimation({
+          container: el,
+          renderer: "svg",
+          loop: false,
+          autoplay: false,
+          animationData: data,
+          rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice",
+          },
+        });
+
+        setIsReady(true);
+
+        if (hasStartedRef.current) {
+          animationRef.current.goToAndPlay(0, true);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setIsReady(false);
+      });
+
+    return () => {
+      cancelled = true;
+      animationRef.current?.destroy();
+      animationRef.current = null;
+    };
+  }, []);
+
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto">
-          <div className="w-full h-[800px] max-lg:h-[550px] max-md:h-[350px] relative overflow-hidden">
+          <div ref={triggerRef} className="w-full h-[800px] max-lg:h-[550px] max-md:h-[350px] relative overflow-hidden">
             <img
               alt="iVoox in the metro"
-              className="absolute inset-0 w-full h-full object-cover"
-              src={imgMetro}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isReady ? "opacity-0" : "opacity-100"}`}
+              src={imgScreens}
+            />
+            <div
+              ref={containerRef}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-300 [&>svg]:w-full [&>svg]:h-full ${isReady ? "opacity-100" : "opacity-0"}`}
             />
           </div>
         </div>
@@ -305,17 +384,11 @@ function SmartphonesSection() {
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto">
           <div className="w-full h-[740px] max-lg:h-[520px] max-md:h-[380px] relative overflow-hidden">
-            {/* Gradient + pattern bg */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#ffeedc] to-[#fcdebf]" />
-            <img alt="" className="absolute inset-0 w-full h-full object-cover opacity-80" src={imgSpockCircles} />
-            {/* Phone 1 (left) */}
-            <div className="absolute left-[calc(50%-120px)] top-[89px] max-lg:left-[calc(50%-90px)] max-lg:top-[60px] max-md:left-[calc(50%-70px)] max-md:top-[40px]">
-              
-            </div>
-            {/* Phone 2 (right, overlapping) */}
-            <div className="absolute left-[calc(50%+100px)] top-[89px] max-lg:left-[calc(50%+70px)] max-lg:top-[60px] max-md:left-[calc(50%+50px)] max-md:top-[40px]">
-              
-            </div>
+            <img
+              alt="iVoox app screens"
+              className="absolute inset-0 w-full h-full object-cover"
+              src={imgMetro}
+            />
           </div>
         </div>
       </div>
@@ -332,16 +405,26 @@ function WatchSection() {
       <div className="px-[56px] pt-[40px] max-md:px-[24px] max-md:pt-[24px]">
         <div className="max-w-[1400px] mx-auto flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
           {/* Watch left - group image */}
-          <div className="flex-1 bg-[#fcdebf] h-[545px] max-lg:h-[400px] max-md:h-[300px] relative overflow-hidden">
-            <div className="absolute left-[79px] top-[57px] w-[421px] h-[432px] max-lg:left-[40px] max-lg:top-[30px] max-lg:w-[320px] max-lg:h-[328px] max-md:left-[24px] max-md:top-[20px] max-md:w-[260px] max-md:h-[267px]">
-              <img alt="Apple Watch iVoox" className="w-full h-full object-cover" src={imgWatchGroup} />
-            </div>
+          <div
+            className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] relative overflow-hidden"
+            style={{
+              backgroundImage: `url(${imgWatchGroup})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
           </div>
           {/* Watch right - large image */}
-          <div className="flex-1 bg-[#fcdebf] h-[545px] max-lg:h-[400px] max-md:h-[300px] relative overflow-hidden">
-            <div className="absolute -left-[197px] -top-[101px] w-[864px] h-[999px] max-lg:-left-[120px] max-lg:-top-[60px] max-lg:w-[650px] max-lg:h-[750px] max-md:-left-[80px] max-md:-top-[40px] max-md:w-[500px] max-md:h-[577px]">
-              <img alt="Apple Watch iVoox detail" className="w-full h-full object-cover" src={imgWatchRight} />
-            </div>
+          <div
+            className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] relative overflow-hidden"
+            style={{
+              backgroundImage: `url(${imgWatchRight})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
           </div>
         </div>
       </div>
