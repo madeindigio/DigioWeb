@@ -12,6 +12,7 @@ const imgEkhilurLogo = "/images/projects/ekhilur/logo%20ekhilur.svg";
 const imgEkhilurIsotipo = "/images/projects/ekhilur/isotipo.svg";
 const imgEkhilurTipografia = "/images/projects/ekhilur/tipografia.svg";
 const imgEkhilurScreens = "/images/projects/ekhilur/ekhiscreens.jpg";
+const imgEkhilurBig = "/images/projects/ekhilur/ekhibigimg.jpg";
 const imgEkhilurMobile01 = "/images/projects/ekhilur/Ekhi_mobile_01.jpg";
 const imgEkhilurMobile02 = "/images/projects/ekhilur/Ekhi_mobile_02.jpg";
 const ekhilurBusinessImages = [
@@ -29,26 +30,6 @@ const ekhilurIllustrations = [
 
 const imgRelatedVivla = "/images/placeholder-gray.svg";
 const imgRelatedNavilens = "/images/placeholder-gray.svg";
-
-function MockPanel({
-  label,
-  className = "",
-}: {
-  label: string;
-  className?: string;
-}) {
-  return (
-    <div className={`relative overflow-hidden bg-[#ececec] ${className}`}>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.45),rgba(255,255,255,0))]" />
-      <div className="absolute inset-[24px] rounded-[16px] border border-[#d6d6d6] border-dashed max-md:inset-[12px]" />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <p className="font-['GT_Ultra_Median',sans-serif] text-[#9b9b9b] text-[24px] tracking-[-0.96px] max-md:text-[16px]">
-          {label}
-        </p>
-      </div>
-    </div>
-  );
-}
 
 function HeroSection() {
   return (
@@ -378,7 +359,13 @@ function InnovationSection() {
     <section className="bg-white w-full">
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[32px]">
-          <MockPanel label="Mock bloque final" className="w-full h-[420px] max-lg:h-[320px] max-md:h-[220px]" />
+          <div className="relative w-full h-[740px] max-lg:h-[320px] max-md:h-[220px] overflow-hidden">
+            <img
+              src={imgEkhilurBig}
+              alt="Imagen principal del proyecto Ekhilur"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
           <div className="flex justify-between gap-[48px] items-start max-lg:flex-col">
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[420px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.ekhilur.accessibilityTitle")}

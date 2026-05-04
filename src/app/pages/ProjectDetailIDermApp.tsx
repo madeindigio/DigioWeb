@@ -11,10 +11,11 @@ import {
 
 /* ─── Assets ─── */
 import imgIdermappHero from "/images/projects/idermapp/iDermApp hero section IMG.jpg";
-import imgIdLogo from "/images/projects/idermapp/iD Logo.jpg";
-import imgIdermBg from "/images/projects/idermapp/iDerm Section small mobile.svg";
+import imgIdermBg from "/images/projects/idermapp/iDerm Section small mobile.jpg";
 import imgIdermCreme from "/images/projects/idermapp/iDerm Section creme.jpeg";
 import imgDermAppScreens from "/images/projects/idermapp/iDermApp Screens.jpg";
+import imgBgSpecialists from "/images/projects/idermapp/bg specialists.jpg";
+import imgCardCentered from "/images/projects/idermapp/Card centered.svg";
 import imgIdermMobileSection from "/images/projects/idermapp/iDerm APP mobile section.jpg";
 import imgIdermResume from "/images/projects/idermapp/iDermApp Resume IMG.jpg";
 import imgIdermUser from "/images/projects/idermapp/iDermApp User IMG.jpg";
@@ -27,27 +28,8 @@ const imgShadow1 = "/images/placeholder-gray.svg";
 const imgChangeThis3 = "/images/placeholder-gray.svg";
 const imgShadow2 = "/images/placeholder-gray.svg";
 const imgReflection1 = "/images/placeholder-gray.svg";
-const imgRectangle = "/images/placeholder-gray.svg";
-const imgIDermSlider = "/images/placeholder-gray.svg";
-const imgBgImg = "/images/placeholder-gray.svg";
-const imgSpecialist1 = "/images/placeholder-gray.svg";
-const imgSpecialist2 = "/images/placeholder-gray.svg";
-const imgSpecialist3 = "/images/placeholder-gray.svg";
-const imgSpecialist4 = "/images/placeholder-gray.svg";
-const imgSpecialist5 = "/images/placeholder-gray.svg";
-const imgDoctorBg = "/images/placeholder-gray.svg";
-const imgSpecialist6 = "/images/placeholder-gray.svg";
-const imgSpecialist7 = "/images/placeholder-gray.svg";
-const imgSpecialist8 = "/images/placeholder-gray.svg";
-const imgSpecialist9 = "/images/placeholder-gray.svg";
-const imgSpecialist10 = "/images/placeholder-gray.svg";
-const imgSpecialist11 = "/images/placeholder-gray.svg";
-const imgSpecialist12 = "/images/placeholder-gray.svg";
-const imgSpecialist13 = "/images/placeholder-gray.svg";
 const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
 const imgRelatedNavilens = "/images/placeholder-gray.svg";
-const imgIPhone15Pro = "/images/placeholder-gray.svg";
-const imgMore = "/images/placeholder-gray.svg";
 import { imgChangeThis, imgChangeThis2 } from "../../imports/svg-f2917";
 import svgPaths from "../../imports/svg-aeu4f9zq8x";
 
@@ -123,20 +105,14 @@ function LogoSection() {
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto">
           <div 
-            className="w-full h-[600px] max-lg:h-[420px] max-md:h-[300px] relative overflow-hidden flex items-center justify-center"
+            className="w-full h-[600px] max-lg:h-[420px] max-md:h-[300px] relative overflow-hidden"
             style={{
-              backgroundImage: `url(${imgIdLogo})`,
+              backgroundImage: 'url("/images/projects/idermapp/iDLogo.jpg")',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
-          >
-            <img
-              alt="iDermApp logo"
-              className="w-[444px] h-[444px] max-lg:w-[320px] max-lg:h-[320px] max-md:w-[220px] max-md:h-[220px] object-cover"
-              src={imgRectangle}
-            />
-          </div>
+          />
         </div>
       </div>
     </section>
@@ -195,34 +171,11 @@ function PhoneSpecialistPanels() {
             style={{ backgroundImage: `url(${imgIdermBg})`, backgroundSize: 'cover', backgroundPosition: '50% 50%', backgroundRepeat: 'no-repeat' }}
             animate={{ backgroundPosition: ["50% 50%", "54% 50%", "50% 50%"] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <div className="absolute left-1/2 -translate-x-1/2 top-[100px] max-lg:top-[60px] max-md:top-[40px]">
-              <div className="relative w-[296px] h-[642px] max-lg:w-[220px] max-lg:h-[477px] max-md:w-[200px] max-md:h-[434px]">
-                {/* Consultation screen content */}
-                <div className="absolute inset-0 bg-[#f9fafc] rounded-[36px] max-lg:rounded-[27px] max-md:rounded-[24px] overflow-hidden">
-                  <div className="p-[12px] pt-[80px] max-lg:p-[9px] max-lg:pt-[60px]">
-                    <div className="flex gap-[6px] items-start">
-                      <img alt="" className="w-[24px] h-[24px] max-lg:w-[18px] max-lg:h-[18px] rounded-full border border-[#c6cfdf] object-cover shrink-0" src={imgMore} />
-                      <div className="bg-white rounded-t-[12px] rounded-b-[3px] border border-[#e1e3e8] p-[12px] max-lg:p-[8px] flex-1">
-                        <p className="text-[12px] max-lg:text-[10px] text-black leading-[18px] max-lg:leading-[15px]">
-                          ¡Hola María! Parece que estás experimentando sarpullidos en tus brazos y manos. Te recomendaría utilizar una crema de hidrocortisona al 1%.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Phone bezel */}
-                <div className="absolute -inset-[30px] max-lg:-inset-[22px] max-md:-inset-[20px] pointer-events-none">
-                  <img alt="" className="w-full h-full object-cover" src={imgIPhone15Pro} />
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          />
           {/* Specialist grid */}
           <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden"
-            style={{ backgroundImage: `url(${imgIdermCreme})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-            <img alt="iDermApp specialists" className="absolute inset-0 w-full h-full object-cover" src={imgIDermSlider} />
-          </div>
+            style={{ backgroundImage: `url(${imgIdermCreme})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+          />
         </div>
       </div>
     </section>
@@ -263,12 +216,8 @@ function ScreensSection() {
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           {/* Gradient screen area */}
           <div className="w-full h-[800px] max-lg:h-[560px] max-md:h-[380px] relative overflow-hidden"
-            style={{ backgroundImage: `url(${imgDermAppScreens})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-            {/* Display app screens as images from Figma */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <img alt="iDermApp screens" className="h-full object-contain" src={imgBgImg} />
-            </div>
-          </div>
+            style={{ backgroundImage: `url(${imgDermAppScreens})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+          />
           {/* Text: Sistema de valoraciones */}
           <div className="w-[580px] max-lg:w-full flex flex-col gap-[24px]">
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
@@ -288,53 +237,25 @@ function ScreensSection() {
    8. PROFESSIONALS — Specialist photos grid + User/Resume panels
    ============================================================ */
 function ProfessionalsSection() {
-  const specialists = [
-    imgSpecialist1, imgSpecialist2, imgSpecialist3, imgSpecialist4,
-    imgSpecialist5, imgSpecialist6, imgSpecialist7, imgSpecialist8,
-    imgSpecialist9, imgSpecialist10, imgSpecialist11, imgSpecialist12,
-    imgSpecialist13,
-  ];
-
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] pt-[40px] max-md:px-[24px] max-md:pt-[24px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
-          {/* Specialist grid panel */}
-          <div className="w-full h-[740px] max-lg:h-[520px] max-md:h-[400px] bg-[#f8f9fa] relative overflow-hidden">
-            {/* Decorative circles */}
+          <div
+            className="w-full h-[740px] max-lg:h-[520px] max-md:h-[400px] relative overflow-hidden"
+            style={{
+              backgroundImage: `url(${imgBgSpecialists})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <svg className="w-[636px] h-[636px] max-lg:w-[450px] max-lg:h-[450px] max-md:w-[300px] max-md:h-[300px]" fill="none" viewBox="0 0 636 636">
-                <circle cx="318" cy="318" r="317" stroke="#EBF3F5" strokeOpacity="0.72" />
-                <circle cx="318" cy="318" r="254" stroke="#EBF3F5" strokeOpacity="0.8" />
-                <circle cx="318" cy="318" r="187" stroke="#EBF3F5" strokeOpacity="0.72" />
-              </svg>
-            </div>
-            {/* Specialist photos scattered */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-[580px] h-[580px] max-lg:w-[420px] max-lg:h-[420px] max-md:w-[300px] max-md:h-[300px]">
-                {specialists.map((img, i) => {
-                  const angle = (i / specialists.length) * 2 * Math.PI - Math.PI / 2;
-                  const radiusPercent = i % 3 === 0 ? 38 : i % 3 === 1 ? 28 : 18;
-                  const left = 50 + radiusPercent * Math.cos(angle);
-                  const top = 50 + radiusPercent * Math.sin(angle);
-                  const size = i === 0 ? "w-[64px] h-[64px] max-lg:w-[48px] max-lg:h-[48px] max-md:w-[36px] max-md:h-[36px]"
-                    : i < 5 ? "w-[56px] h-[56px] max-lg:w-[42px] max-lg:h-[42px] max-md:w-[32px] max-md:h-[32px]"
-                    : "w-[48px] h-[48px] max-lg:w-[36px] max-lg:h-[36px] max-md:w-[28px] max-md:h-[28px]";
-                  return (
-                    <img
-                      key={i}
-                      alt=""
-                      className={`absolute rounded-full object-cover border-2 border-white shadow-sm ${size}`}
-                      style={{ left: `${left}%`, top: `${top}%`, transform: "translate(-50%, -50%)" }}
-                      src={img}
-                    />
-                  );
-                })}
-                {/* Central doctor image */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100px] h-[100px] max-lg:w-[72px] max-lg:h-[72px] max-md:w-[56px] max-md:h-[56px] rounded-full overflow-hidden border-3 border-white shadow-lg">
-                  <img alt="Doctor" className="w-full h-full object-cover" src={imgDoctorBg} />
-                </div>
-              </div>
+              <img
+                alt="Tarjeta central iDermApp"
+                className="w-[560px] max-lg:w-[420px] max-md:w-[260px] h-auto drop-shadow-[0_24px_60px_rgba(25,30,37,0.16)]"
+                src={imgCardCentered}
+              />
             </div>
           </div>
         </div>
