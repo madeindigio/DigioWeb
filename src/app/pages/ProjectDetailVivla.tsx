@@ -21,6 +21,8 @@ const imgPanelNpsMobile = "/images/projects/vivla/Panel%20NPS%20-%20SM.jpg";
 const imgVivlaScrollBg = "/images/projects/vivla/bg-section-scroll.jpg";
 const imgNpsComments = "/images/projects/vivla/NPS-comments.svg";
 const imgVivlaLogo = "/images/projects/vivla/logo%20vivla.svg";
+const imgCalendarBg = "/images/projects/vivla/bg-calendar.webp";
+const imgCalendarCenter = "/images/projects/vivla/calendar-center.png";
 const imgVivlaHomePoster = "/images/projects/vivla/vivla-home.jpg";
 const videoVivlaHome = "/images/projects/vivla/vivla-home.mp4";
 const VIVLA_LUGARES_IMAGES = [
@@ -530,7 +532,20 @@ function InnovationSection() {
     <section className="bg-white w-full">
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
-          <div className="w-full h-[670px] max-lg:h-[470px] max-md:h-[320px] bg-[#f5f5f7] relative overflow-hidden" />
+          <div className="w-full h-[670px] max-lg:h-[470px] max-md:h-[320px] bg-[#f5f5f7] relative overflow-hidden">
+            <ImageWithFallback
+              alt="VIVLA innovation background"
+              className="absolute inset-0 w-full h-full object-cover"
+              src={imgCalendarBg}
+            />
+            <div className="absolute inset-0 flex items-center justify-center p-[20px] max-md:p-[12px]">
+              <ImageWithFallback
+                alt="VIVLA calendar"
+                className="w-[min(62%,620px)] max-lg:w-[min(66%,520px)] max-md:w-[min(74%,360px)] max-h-[72%] max-lg:max-h-[70%] max-md:max-h-[68%] h-auto object-contain"
+                src={imgCalendarCenter}
+              />
+            </div>
+          </div>
           <div className="flex items-start justify-between gap-[40px] max-lg:flex-col max-lg:gap-[24px]">
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full max-md:text-[28px] max-md:leading-[36px] shrink-0">
               {t("pages.vivla.innovationTitle")}
