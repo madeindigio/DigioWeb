@@ -14,6 +14,7 @@ import {
 const imgHero = "/images/projects/roomonitor/Roomheadersection.jpg";
 // Image placeholders - replace with actual assets in /public/images/
 const imgRoom = "/images/projects/roomonitor/Roomonitor%20section%20BG%20IMG.jpg";
+const imgRoomDevice = "/images/projects/roomonitor/roomdevice-sm.png";
 const videoInstalacion = "/images/projects/roomonitor/instalacion-roomonitor.mp4";
 const imgDevice = "/images/projects/roomonitor/home-section.jpeg";
 const imgMacBook = "/images/projects/roomonitor/big%20panel%20room.jpg";
@@ -92,6 +93,52 @@ function RoomImageSection() {
       <div className="max-w-[1400px] mx-auto">
         <div className="relative w-full h-[744px] max-lg:h-[500px] max-md:h-[300px] overflow-hidden">
           <img alt="Roomonitor en habitación" className="absolute inset-0 w-full h-full object-cover" src={imgRoom} />
+
+          {/* Roomonitor device overlay — on the dark wooden wall, above the side window */}
+          <div
+            className="absolute z-10 left-[47.8%] top-[19.6%] -translate-x-1/2 w-[clamp(28px,2.4%,36px)] max-lg:left-[47.4%] max-lg:top-[20.8%] max-lg:w-[clamp(24px,2.9%,32px)] max-md:left-[47.9%] max-md:top-[22.6%] max-md:w-[clamp(20px,5vw,26px)]"
+          >
+            {/* Orange sonar / ripple waves — perfectly circular, centered on device */}
+            <div
+              className="absolute"
+              style={{
+                /* Square anchor equal to device width, centered */
+                width: "100%",
+                paddingBottom: "100%",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                zIndex: 0,
+              }}
+            >
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  className="absolute inset-0 rounded-full border-2 border-[#FF6B1A] opacity-0"
+                  style={{
+                    animation: `roomwave 2.4s ease-out infinite`,
+                    animationDelay: `${i * 0.8}s`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Device image */}
+            <img
+              alt="Roomonitor device"
+              src={imgRoomDevice}
+              className="relative w-full h-auto drop-shadow-2xl"
+              style={{ zIndex: 1 }}
+            />
+          </div>
+
+          {/* Keyframes injected once */}
+          <style>{`
+            @keyframes roomwave {
+              0%   { transform: scale(1);   opacity: 0.7; }
+              100% { transform: scale(4.5); opacity: 0; }
+            }
+          `}</style>
         </div>
       </div>
     </section>
