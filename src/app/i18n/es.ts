@@ -913,8 +913,11 @@ const es = {
         messagePlaceholder: "Escribe tu mensaje",
         dataProtection: "Información sobre protección de datos personales",
         dataProtectionBody: "Responsable: Digio Soluciones Digitales, S.L. Finalidad: Gestionar tu consulta y mantenerte informado sobre nuestros servicios. Legitimación: Consentimiento del interesado. Destinatarios: No se cederán datos a terceros salvo obligación legal. Derechos: Acceder, rectificar y suprimir los datos, así como otros derechos recogidos en la información adicional.",
+        reasonRequired: "Selecciona un motivo de contacto.",
+        submitting: "Enviando...",
         submit: "Enviar",
         successMessage: "¡Mensaje enviado! Nos pondremos en contacto contigo pronto.",
+        submitError: "No se pudo enviar el mensaje. Inténtalo de nuevo en unos minutos.",
       },
       offices: {
         title: "Nuestras oficinas",

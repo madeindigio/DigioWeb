@@ -3,10 +3,12 @@ import { useRef, useState, useEffect } from "react";
 import svgPaths from "../../imports/svg-ro6oo4s0ax";
 
 /* ─── Location images ─── */
-const imgEspacio1 = "/images/projects/vivla/espacios/67d89765589396077b5a070e_X767evZ_AT1DFgsdY26gzePnrVNwSfJPst1OzTprPbA.jpeg";
-const imgEspacio2 = "/images/projects/vivla/espacios/67d89765589396077b5a0724_orO5UWvsR4XKQM111j-3sSQAO2wp3NFk0QW579YzqJ8.jpeg";
-const imgEspacio3 = "/images/projects/vivla/espacios/67d89765589396077b5a0727_84PQclGZQgm1yQUW2kMZVpcsZ3rjVvqfl3ZjyvmmWO0.jpeg";
-const imgEspacio4 = "/images/projects/vivla/espacios/67d89765589396077b5a072d_gM8Oc4eG__QbNrg6bpu_xpYX5DYrcB2fTbWX0cJJZ0g.jpeg";
+const imgEspacio1 = "/images/projects/vivla/espacios/01.jpeg";
+const imgEspacio2 = "/images/projects/vivla/espacios/02.jpeg";
+const imgEspacio3 = "/images/projects/vivla/espacios/03.jpeg";
+const imgEspacio4 = "/images/projects/vivla/espacios/04.jpeg";
+const imgEspacio5 = "/images/projects/vivla/espacios/05.jpeg";
+const imgEspacio6 = "/images/projects/vivla/espacios/06.jpeg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -41,10 +43,10 @@ interface OrbitalImage {
 const ORBITAL_IMAGES: OrbitalImage[] = [
   { src: imgEspacio1, alt: "Espacio VIVLA 1", angleDeg: 0, w: 208, h: 136 },
   { src: imgEspacio2, alt: "Espacio VIVLA 2", angleDeg: 60, w: 208, h: 136 },
-  { src: imgEspacio4, alt: "Espacio VIVLA 3", angleDeg: 120, w: 208, h: 136 },
-  { src: imgEspacio1, alt: "Espacio VIVLA 4", angleDeg: 180, w: 208, h: 136 },
-  { src: imgEspacio2, alt: "Espacio VIVLA 5", angleDeg: 240, w: 208, h: 136 },
-  { src: imgEspacio4, alt: "Espacio VIVLA 6", angleDeg: 300, w: 208, h: 136 },
+  { src: imgEspacio3, alt: "Espacio VIVLA 3", angleDeg: 120, w: 208, h: 136 },
+  { src: imgEspacio4, alt: "Espacio VIVLA 4", angleDeg: 180, w: 208, h: 136 },
+  { src: imgEspacio5, alt: "Espacio VIVLA 5", angleDeg: 240, w: 208, h: 136 },
+  { src: imgEspacio6, alt: "Espacio VIVLA 6", angleDeg: 300, w: 208, h: 136 },
 ];
 
 function getOrbitFrames(angleDeg: number, radius: number, steps: number) {

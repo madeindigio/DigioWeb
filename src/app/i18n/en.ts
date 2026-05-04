@@ -913,8 +913,11 @@ const en = {
         messagePlaceholder: "Write your message",
         dataProtection: "Information about personal data protection",
         dataProtectionBody: "Controller: Digio Soluciones Digitales, S.L. Purpose: To manage your enquiry and keep you informed about our services. Legal basis: Consent of the data subject. Recipients: Data will not be shared with third parties except where legally required. Rights: Access, rectify and delete data, as well as other rights detailed in the additional information.",
+        reasonRequired: "Please select a contact reason.",
+        submitting: "Sending...",
         submit: "Send",
         successMessage: "Message sent! We will get back to you soon.",
+        submitError: "We could not send your message. Please try again in a few minutes.",
       },
       offices: {
         title: "Our offices",

@@ -385,6 +385,63 @@ pnpm build    # Production build via Vite
 
 ---
 
+## Environment Variables
+
+The contact form at `/contacto` is prepared for **Netlify Functions** by default:
+
+1. Frontend sends `POST` to `/.netlify/functions/contact`.
+2. The Netlify function sends the email using the Resend API.
+
+Use `.env.example` as a reference and create your own local `.env` file.
+
+```bash
+cp .env.example .env
+```
+
+For Netlify production, set these variables in **Site settings -> Environment variables**:
+
+- `RESEND_API_KEY`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_FROM_EMAIL` (must be a verified sender in Resend)
+- `VITE_CONTACT_FORM_ENDPOINT` (optional override)
+- `CONTACT_RATE_LIMIT_MAX` (optional, default: `6`)
+- `CONTACT_RATE_LIMIT_WINDOW_MS` (optional, default: `600000`)
+- `CONTACT_MIN_FILL_MS` (optional, default: `2000`)
+
+Expected JSON payload sent to `VITE_CONTACT_FORM_ENDPOINT`:
+
+```json
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "reason": "project",
+  "reasonLabel": "I have a project",
+  "message": "I'd like to talk about a new app.",
+  "source": "digio-contact-page",
+  "locale": "es"
+}
+```
+
+Minimum backend response contract:
+
+- Return `2xx` on success.
+- Return non-`2xx` on error so UI can display an error message.
+
+### Netlify Files Added
+
+- `netlify.toml`: build, functions directory and SPA redirect config.
+- `netlify/functions/contact.mjs`: serverless handler for contact submissions.
+
+### Anti-spam Protections
+
+- Honeypot field (`hpField`) sent by frontend; if filled, request is silently accepted and ignored.
+- Minimum fill time (`CONTACT_MIN_FILL_MS`) to reject bot-like instant submissions.
+- In-memory per-IP rate limit (`CONTACT_RATE_LIMIT_MAX` within `CONTACT_RATE_LIMIT_WINDOW_MS`).
+
+Note: Netlify Functions run in ephemeral instances, so rate limit is best-effort across instances.
+
+---
+
 ## Dependencies
 
 ### Core

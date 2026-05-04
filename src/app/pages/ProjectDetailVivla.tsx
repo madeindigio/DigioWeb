@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { ContactSection } from "../components/ContactSection";
 import { useProjectTransition } from "../components/ProjectTransitionContext";
@@ -18,15 +18,34 @@ const imgRelatedNavilens = "/images/placeholder-gray.svg";
 const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 const imgVivlaHero = "/images/projects/vivla/vivla-hero-section.jpg";
 const imgPanelNpsMobile = "/images/projects/vivla/Panel%20NPS%20-%20SM.jpg";
+const imgVivlaScrollBg = "/images/projects/vivla/bg-section-scroll.jpg";
+const imgNpsComments = "/images/projects/vivla/NPS-comments.svg";
+const imgVivlaLogo = "/images/projects/vivla/logo%20vivla.svg";
+const VIVLA_LUGARES_IMAGES = [
+  "/images/projects/vivla/lugares/place_01.jpeg",
+  "/images/projects/vivla/lugares/place_02.jpeg",
+  "/images/projects/vivla/lugares/place_03.jpeg",
+  "/images/projects/vivla/lugares/place_04.jpeg",
+  "/images/projects/vivla/lugares/place_05.jpeg",
+  "/images/projects/vivla/lugares/place_06.jpeg",
+];
 
 const EASE = [0.22, 1, 0.36, 1];
+
+type FloatingPlace = {
+  id: number;
+  src: string;
+  x: number;
+  y: number;
+  rotation: number;
+  scale: number;
+};
 
 const IMG_PANEL_1 = "https://images.unsplash.com/photo-1657727534685-36b09f84e193?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWFsJTIwZXN0YXRlJTIwZGFzaGJvYXJkJTIwYW5hbHl0aWNzJTIwbGFwdG9wfGVufDF8fHx8MTc3MzMxMTYyMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 const IMG_PANEL_2 = "https://images.unsplash.com/photo-1759256243437-9c8f7238c42b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBwcm9wZXJ0eSUyMHBvb2wlMjB0ZXJyYWNlJTIwc3Vuc2V0fGVufDF8fHx8MTc3MzMxMTYyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 const IMG_DATA = "https://images.unsplash.com/photo-1723987251277-18fc0a1effd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwY2hhcnRzJTIwZ3JhcGhzJTIwc2NyZWVufGVufDF8fHx8MTc3MzMxMTYzN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 const IMG_HOUSES_1 = "https://images.unsplash.com/photo-1564933170157-3af8ec882299?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjby1vd25lcnNoaXAlMjB2YWNhdGlvbiUyMGhvbWUlMjBjb3N0YSUyMGJyYXZhfGVufDF8fHx8MTc3MzMxMTY0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 const IMG_HOUSES_2 = "https://images.unsplash.com/photo-1550079169-1e23cea6c329?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9wZXJ0eSUyMG1hbmFnZW1lbnQlMjBtb2JpbGUlMjBhcHAlMjBtb2NrdXB8ZW58MXx8fHwxNzczMzExNjQ3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
-const IMG_INTERIOR = "https://images.unsplash.com/photo-1648147870253-c45f6f430528?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3VzZSUyMGludGVyaW9yJTIwZGVzaWduJTIwbGl2aW5nJTIwcm9vbXxlbnwxfHx8fDE3NzMzMTE2Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
 /* ============================================================
    1. HERO
@@ -97,14 +116,154 @@ function IntroSection() {
    3. LOGO SECTION — Placeholder panel
    ============================================================ */
 function LogoSection() {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const [floatingPlaces, setFloatingPlaces] = useState<FloatingPlace[]>([]);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const timeoutIdsRef = useRef<number[]>([]);
+  const spawnStateRef = useRef({
+    lastX: 0,
+    lastY: 0,
+    lastAt: 0,
+    imageIndex: 0,
+    nextId: 1,
+  });
+
+  useEffect(() => {
+    return () => {
+      timeoutIdsRef.current.forEach((id) => window.clearTimeout(id));
+      timeoutIdsRef.current = [];
+    };
+  }, []);
+
+  const spawnFloatingPlace = (x: number, y: number, dx: number, dy: number) => {
+    const length = Math.hypot(dx, dy) || 1;
+    const normX = dx / length;
+    const normY = dy / length;
+    const drift = 88;
+    const jitterX = (Math.random() - 0.5) * 44;
+    const jitterY = (Math.random() - 0.5) * 56;
+    const id = spawnStateRef.current.nextId;
+    const src =
+      VIVLA_LUGARES_IMAGES[
+        spawnStateRef.current.imageIndex % VIVLA_LUGARES_IMAGES.length
+      ];
+
+    spawnStateRef.current.nextId += 1;
+    spawnStateRef.current.imageIndex += 1;
+
+    const floater: FloatingPlace = {
+      id,
+      src,
+      x: x - normX * drift + jitterX,
+      y: y - normY * drift + jitterY,
+      rotation: (Math.random() - 0.5) * 14,
+      scale: 0.9 + Math.random() * 0.16,
+    };
+
+    setFloatingPlaces((prev) => [...prev.slice(-5), floater]);
+
+    const timeoutId = window.setTimeout(() => {
+      setFloatingPlaces((prev) => prev.filter((item) => item.id !== id));
+    }, 950);
+
+    timeoutIdsRef.current.push(timeoutId);
+  };
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const rect = panel.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    setCursorPosition({ x, y });
+
+    const now = performance.now();
+    const { lastX, lastY, lastAt } = spawnStateRef.current;
+    const dx = x - lastX;
+    const dy = y - lastY;
+    const distance = Math.hypot(dx, dy);
+    const elapsed = now - lastAt;
+
+    if (distance > 28 && elapsed > 70) {
+      spawnFloatingPlace(x, y, dx, dy);
+      spawnStateRef.current.lastX = x;
+      spawnStateRef.current.lastY = y;
+      spawnStateRef.current.lastAt = now;
+    }
+  };
+
+  const handleMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const rect = panel.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const now = performance.now();
+
+    setIsHovering(true);
+    setCursorPosition({ x, y });
+    spawnStateRef.current.lastX = x;
+    spawnStateRef.current.lastY = y;
+    spawnStateRef.current.lastAt = now;
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    setFloatingPlaces([]);
+  };
+
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto">
-          <div className="w-full h-[600px] max-lg:h-[420px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden flex items-center justify-center">
-            <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[72px] max-lg:text-[56px] max-md:text-[40px] tracking-[-2.88px] leading-[normal] opacity-20">
-              VIVLA
-            </p>
+          <div
+            ref={panelRef}
+            className="w-full h-[600px] max-lg:h-[420px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden flex items-center justify-center"
+            onMouseEnter={handleMouseEnter}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="absolute inset-0 z-0 pointer-events-none">
+              <AnimatePresence>
+                {floatingPlaces.map((place) => (
+                  <motion.div
+                    key={place.id}
+                    className="absolute w-[180px] h-[124px] max-lg:w-[144px] max-lg:h-[102px] max-md:w-[108px] max-md:h-[76px] rounded-[12px] overflow-hidden shadow-[0_18px_46px_rgba(10,20,40,0.24)]"
+                    style={{ left: place.x, top: place.y }}
+                    initial={{ opacity: 0, scale: 0.76, y: 20, rotate: place.rotation }}
+                    animate={{ opacity: 1, scale: place.scale, y: 0, rotate: place.rotation }}
+                    exit={{ opacity: 0, scale: 0.9, y: -12, transition: { duration: 0.24 } }}
+                    transition={{ duration: 0.36, ease: EASE }}
+                  >
+                    <ImageWithFallback
+                      alt="VIVLA place"
+                      className="w-full h-full object-cover"
+                      src={place.src}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+
+            <motion.div
+              className="absolute w-[220px] h-[220px] max-md:w-[150px] max-md:h-[150px] rounded-full pointer-events-none z-10 bg-[radial-gradient(circle,rgba(25,30,37,0.12)_0%,rgba(25,30,37,0)_72%)]"
+              style={{ left: cursorPosition.x - 110, top: cursorPosition.y - 110 }}
+              initial={false}
+              animate={{ opacity: isHovering ? 1 : 0 }}
+              transition={{ duration: 0.2, ease: EASE }}
+            />
+
+            <div className="relative z-20">
+              <ImageWithFallback
+                alt="VIVLA logo"
+                className="w-auto h-auto max-h-[110px] max-w-[72%]"
+                src={imgVivlaLogo}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -245,6 +404,33 @@ function DataSection() {
    ============================================================ */
 function HousesSection() {
   const { t } = useTranslation();
+  const scrollPanelRef = useRef<HTMLDivElement>(null);
+  const [commentsParallaxY, setCommentsParallaxY] = useState(0);
+
+  useEffect(() => {
+    const updateParallax = () => {
+      const el = scrollPanelRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const viewportH = window.innerHeight || 1;
+      const progress = (viewportH - rect.top) / (viewportH + rect.height);
+      const clampedProgress = Math.max(0, Math.min(1, progress));
+
+      // Extra pronounced upward parallax while preserving the section framing.
+      setCommentsParallaxY(-clampedProgress * 185);
+    };
+
+    updateParallax();
+    window.addEventListener("scroll", updateParallax, { passive: true });
+    window.addEventListener("resize", updateParallax);
+
+    return () => {
+      window.removeEventListener("scroll", updateParallax);
+      window.removeEventListener("resize", updateParallax);
+    };
+  }, []);
+
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
@@ -260,7 +446,19 @@ function HousesSection() {
           </div>
           {/* Full-width panel */}
           <div className="w-full h-[740px] max-lg:h-[520px] max-md:h-[400px] bg-[#f5f5f7] relative overflow-hidden">
-            <ImageWithFallback alt="VIVLA interior" className="absolute inset-0 w-full h-full object-cover" src={IMG_INTERIOR} />
+            <div ref={scrollPanelRef} className="absolute inset-0">
+              <ImageWithFallback alt="VIVLA section background" className="absolute inset-0 block w-full h-full object-cover object-center" src={imgVivlaScrollBg} />
+              <motion.div
+                className="absolute left-1/2 top-[44px] -translate-x-1/2 w-[min(88%,1020px)] max-lg:w-[min(90%,860px)] max-md:w-[min(92%,620px)]"
+                style={{ y: commentsParallaxY }}
+              >
+                <img
+                  alt="VIVLA NPS comments"
+                  className="w-full h-auto pointer-events-none"
+                  src={imgNpsComments}
+                />
+              </motion.div>
+            </div>
           </div>
           {/* Text content */}
           <div className="flex items-start justify-between gap-[40px] max-lg:flex-col max-lg:gap-[24px]">
