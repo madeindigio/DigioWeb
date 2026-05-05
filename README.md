@@ -482,6 +482,22 @@ Note: Netlify Functions run in ephemeral instances, so rate limit is best-effort
 
 ## Recent Updates
 
+### 🚀 May 2026 - i18n Visual Consistency + App Polish
+
+#### **Language-change Reveal Coverage on Project Details** ✅
+- Completed `LangText` wrapping across all 9 project detail pages so language switches are visually consistent.
+- Applied animated reveal (`fade + blur clear + subtle translateY`) to core translated blocks in intro sections:
+  - subtitle
+  - body copy
+  - performance labels/values
+  - platform labels/values
+- Added/standardized stagger sequencing to improve readability during ES/EN toggles.
+- Result: all case-study detail pages now provide an explicit and coherent visual response when changing language.
+
+#### **Favicon Configuration Fix** ✅
+- Updated app favicon setup in `App.tsx` to use the real site icon instead of a placeholder asset.
+- Result: consistent brand icon in browser tab across routes.
+
 ### 🚀 March 2026 - Performance & UX Enhancements
 
 #### **Smooth Scroll Optimization** ✅
