@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import type { AnimationItem } from "lottie-web";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
+import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
 import {
   RevealAfterTransition,
@@ -56,26 +57,26 @@ function IntroSection() {
           </p>
           {/* Description */}
           <div className="flex flex-col gap-[16px] w-[550px] max-lg:w-full shrink-0 max-lg:shrink">
-            <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
+            <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.roomonitor.introSubtitle")}
-            </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            </LangText>
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.roomonitor.introBody")}
-            </p>
+            </LangText>
           </div>
           {/* Performance + Platforms */}
           <div className="flex flex-col gap-[24px] w-[264px] max-lg:w-full shrink-0 max-lg:shrink">
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">{t("pages.roomonitor.performanceLabel")}</p>
+              <LangText as="p" stagger={2} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">{t("pages.roomonitor.performanceLabel")}</LangText>
               <div className="flex flex-col gap-[8px] font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
-                {(t("pages.roomonitor.performanceItems", { returnObjects: true }) as string[]).map((item) => (
-                  <p key={item}>{item}</p>
+                {(t("pages.roomonitor.performanceItems", { returnObjects: true }) as string[]).map((item, idx) => (
+                  <LangText as="p" key={item} stagger={3 + idx}>{item}</LangText>
                 ))}
               </div>
             </div>
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">{t("pages.roomonitor.platformLabel")}</p>
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">{t("pages.roomonitor.platformValue")}</p>
+              <LangText as="p" stagger={6} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">{t("pages.roomonitor.platformLabel")}</LangText>
+              <LangText as="p" stagger={7} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">{t("pages.roomonitor.platformValue")}</LangText>
             </div>
           </div>
         </div>

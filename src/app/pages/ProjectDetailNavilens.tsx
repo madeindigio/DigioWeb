@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
+import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
 import {
   RevealAfterTransition,
@@ -103,30 +104,30 @@ function IntroSection() {
             NaviLens
           </p>
           <div className="flex flex-col gap-[16px] w-[550px] max-lg:w-full shrink-0 max-lg:shrink">
-            <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
+            <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.navilens.introSubtitle")}
-            </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            </LangText>
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.navilens.introBody")}
-            </p>
+            </LangText>
           </div>
           <div className="flex flex-col gap-[24px] w-[264px] max-lg:w-full shrink-0 max-lg:shrink">
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
+              <LangText as="p" stagger={2} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
                 {t("pages.navilens.performanceLabel")}
-              </p>
+              </LangText>
               <div className="flex flex-col gap-[8px]">
-                <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">{t("pages.navilens.performanceValue1")}</p>
-                <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">{t("pages.navilens.performanceValue2")}</p>
+                <LangText as="p" stagger={3} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">{t("pages.navilens.performanceValue1")}</LangText>
+                <LangText as="p" stagger={4} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">{t("pages.navilens.performanceValue2")}</LangText>
               </div>
             </div>
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
+              <LangText as="p" stagger={5} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
                 {t("pages.navilens.platformLabel")}
-              </p>
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
+              </LangText>
+              <LangText as="p" stagger={6} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
                 {t("pages.navilens.platformValue")}
-              </p>
+              </LangText>
             </div>
           </div>
         </div>
@@ -178,26 +179,26 @@ function VisionSection() {
       <div className="px-[56px] py-[100px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[80px] max-md:gap-[48px]">
           <div className="max-w-[1200px]">
-            <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
+            <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
               {t("pages.navilens.visionText")}
-            </p>
+            </LangText>
           </div>
           <div className="flex gap-[56px] items-start max-md:flex-col max-md:gap-[40px]">
             <div className="flex-1 flex flex-col gap-[24px] min-w-0">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
+              <LangText as="p" stagger={1} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.navilens.challengeTitle")}
-              </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              </LangText>
+              <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.navilens.challengeBody")}
-              </p>
+              </LangText>
             </div>
             <div className="flex-1 flex flex-col gap-[24px] min-w-0">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
+              <LangText as="p" stagger={3} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.navilens.workTitle")}
-              </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              </LangText>
+              <LangText as="p" stagger={4} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.navilens.workBody")}
-              </p>
+              </LangText>
             </div>
           </div>
         </div>

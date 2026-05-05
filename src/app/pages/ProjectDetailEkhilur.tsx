@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
 import {
   RelatedProjectCard,
@@ -50,28 +51,28 @@ function IntroSection() {
             ekhilur
           </p>
           <div className="flex flex-col gap-[16px] w-[550px] max-lg:w-full shrink-0 max-lg:shrink">
-            <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[520px] max-md:text-[24px] max-md:leading-[32px]">
+            <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[520px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.ekhilur.introSubtitle")}
-            </p>
+            </LangText>
           </div>
           <div className="flex flex-col gap-[24px] w-[264px] max-lg:w-full shrink-0 max-lg:shrink">
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
+              <LangText as="p" stagger={1} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
                 {t("pages.ekhilur.performanceLabel")}
-              </p>
+              </LangText>
               <div className="flex flex-col gap-[8px] font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
-                {(t("pages.ekhilur.performanceItems", { returnObjects: true }) as string[]).map((item) => (
-                  <p key={item}>{item}</p>
+                {(t("pages.ekhilur.performanceItems", { returnObjects: true }) as string[]).map((item, idx) => (
+                  <LangText as="p" key={item} stagger={2 + idx}>{item}</LangText>
                 ))}
               </div>
             </div>
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
+              <LangText as="p" stagger={5} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
                 {t("pages.ekhilur.platformLabel")}
-              </p>
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
+              </LangText>
+              <LangText as="p" stagger={6} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
                 {t("pages.ekhilur.platformValue")}
-              </p>
+              </LangText>
             </div>
           </div>
         </div>

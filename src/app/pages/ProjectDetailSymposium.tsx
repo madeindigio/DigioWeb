@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
+import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
 import {
   RevealAfterTransition,
@@ -175,32 +176,32 @@ function IntroSection() {
           </p>
           {/* Col 2: Subtitle + body */}
           <div className="flex flex-col gap-[16px] w-[550px] max-lg:w-full shrink-0 max-lg:shrink">
-            <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
+            <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.symposium.introSubtitle")}
-            </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            </LangText>
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.symposium.introBody")}
-            </p>
+            </LangText>
           </div>
           {/* Col 3: Performance + Platform */}
           <div className="flex flex-col gap-[24px] w-[264px] max-lg:w-full shrink-0 max-lg:shrink">
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
+              <LangText as="p" stagger={2} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
                 {t("pages.symposium.performanceLabel")}
-              </p>
+              </LangText>
               <div className="flex flex-col gap-[8px] font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
-                {(t("pages.symposium.performanceItems", { returnObjects: true }) as string[]).map((item: string) => (
-                  <p key={item}>{item}</p>
+                {(t("pages.symposium.performanceItems", { returnObjects: true }) as string[]).map((item: string, idx: number) => (
+                  <LangText as="p" key={item} stagger={3 + idx}>{item}</LangText>
                 ))}
               </div>
             </div>
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
+              <LangText as="p" stagger={6} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
                 {t("pages.symposium.platformLabel")}
-              </p>
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
+              </LangText>
+              <LangText as="p" stagger={7} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
                 {t("pages.symposium.platformValue")}
-              </p>
+              </LangText>
             </div>
           </div>
         </div>

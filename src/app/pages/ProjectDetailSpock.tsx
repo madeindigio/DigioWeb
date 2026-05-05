@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { useTranslation } from "react-i18next";
+import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
 import {
   RevealAfterTransition,
@@ -55,30 +56,30 @@ function IntroSection() {
           </p>
           {/* Col 2: Subtitle + body */}
           <div className="flex flex-col gap-[16px] w-[550px] max-lg:w-full shrink-0 max-lg:shrink">
-            <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
+            <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.spock.introSubtitle")}
-            </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            </LangText>
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.spock.introBody")}
-            </p>
+            </LangText>
           </div>
           {/* Col 3: Performance + Platform */}
           <div className="flex flex-col gap-[24px] w-[264px] max-lg:w-full shrink-0 max-lg:shrink">
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
+              <LangText as="p" stagger={2} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
                 {t("pages.spock.performanceLabel")}
-              </p>
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
+              </LangText>
+              <LangText as="p" stagger={3} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
                 {t("pages.spock.performanceValue")}
-              </p>
+              </LangText>
             </div>
             <div className="flex flex-col gap-[16px]">
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
+              <LangText as="p" stagger={4} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
                 {t("pages.spock.platformLabel")}
-              </p>
-              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
+              </LangText>
+              <LangText as="p" stagger={5} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[14px] leading-[20px]">
                 {t("pages.spock.platformValue")}
-              </p>
+              </LangText>
             </div>
           </div>
         </div>
