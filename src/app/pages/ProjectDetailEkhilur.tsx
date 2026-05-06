@@ -132,7 +132,7 @@ function LogoSection() {
       </style>
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto">
-          <div className="w-full h-[600px] max-xl:h-[520px] max-lg:h-[440px] max-md:h-[320px] rounded-[4px] bg-[#F8F9FA] flex items-center justify-center px-[24px] overflow-hidden">
+          <div className="w-full h-[600px] max-xl:h-[520px] max-lg:h-[440px] max-md:h-[320px] bg-[#F8F9FA] flex items-center justify-center px-[24px] overflow-hidden">
             <div className="flex items-center gap-[12px] max-lg:gap-[8px] max-md:gap-[6px]" aria-label="Animacion logo Ekhilur">
 
               {/* Isotipo naranja — se mueve a la izquierda */}
@@ -146,7 +146,7 @@ function LogoSection() {
 
               {/* Ventana central cuadrada con imágenes de negocios */}
               <div
-                className="shrink-0 overflow-hidden relative z-10 rounded-[10px] shadow-[0_6px_24px_rgba(25,30,37,0.16)]"
+                className="shrink-0 overflow-hidden relative z-10 shadow-[0_6px_24px_rgba(25,30,37,0.16)]"
                 style={{
                   height: "220px",
                   animation: "ekhiWindowReveal 6s ease-in-out infinite",
@@ -232,10 +232,10 @@ function TwinPanelsSection() {
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
-            <div className="flex-1 h-[460px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden rounded-[8px]">
+            <div className="flex-1 h-[460px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden">
               <img src={imgEkhilurMobile01} alt="Ekhilur mobile screen 1" className="w-full h-full object-cover" />
             </div>
-            <div className="flex-1 h-[460px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden rounded-[8px]">
+            <div className="flex-1 h-[460px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden">
               <img src={imgEkhilurMobile02} alt="Ekhilur mobile screen 2" className="w-full h-full object-cover" />
             </div>
           </div>
@@ -377,7 +377,7 @@ function HousesSection() {
     <section ref={sectionRef} className="bg-white w-full">
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
-          <div className="relative w-full h-[570px] max-lg:h-[320px] max-md:h-[400px] overflow-hidden bg-[#FFFBF0] rounded-[8px]">
+          <div className="relative w-full h-[570px] max-lg:h-[320px] max-md:h-[400px] overflow-hidden bg-[#FFFBF0]">
             <div className="absolute inset-0 flex items-center">
               <div ref={trackRef} className="flex w-max items-center will-change-transform">
                 {[0, 1].map((groupIndex) => (
@@ -512,7 +512,7 @@ function InnovationSection() {
     <section ref={sectionRef} className="bg-white w-full">
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[32px]">
-          <div className="relative w-full h-[740px] max-lg:h-[320px] max-md:h-[400px] overflow-hidden bg-[#F8EFC8] rounded-[8px]">
+          <div className="relative w-full h-[740px] max-lg:h-[320px] max-md:h-[400px] overflow-hidden bg-[#F8EFC8]">
             <div className="absolute inset-0 flex items-center pointer-events-none select-none z-0 opacity-45">
               <div ref={trackRef} className="flex w-max items-center will-change-transform">
                 {[0, 1].map((groupIndex) => (
@@ -565,10 +565,10 @@ function DashboardSection() {
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
-            <div className="flex-1 h-[545px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden rounded-[8px]">
+            <div className="flex-1 h-[545px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden">
               <img src={imgEkhilurDashLeft} alt="Panel de usuarios Ekhilur" className="w-full h-full object-cover" />
             </div>
-            <div className="flex-1 h-[545px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden rounded-[8px]">
+            <div className="flex-1 h-[545px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden">
               <img src={imgEkhilurDashRight} alt="Panel de saldo Ekhilur" className="w-full h-full object-cover" />
             </div>
           </div>

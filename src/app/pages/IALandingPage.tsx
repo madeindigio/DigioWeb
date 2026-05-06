@@ -575,8 +575,6 @@ function UseCasesSection() {
       const isNearViewport = rect.bottom > -vh * 0.2 && rect.top < vh * 1.2;
       if (!isNearViewport) return;
 
-      const { scrollableDistance } = metricsRef.current;
-
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
 
