@@ -16,6 +16,8 @@ const imgEkhilurScreens = "/images/projects/ekhilur/ekhiscreens.jpg";
 const imgEkhilurBig = "/images/projects/ekhilur/ekhibigimg.jpg";
 const imgEkhilurMobile01 = "/images/projects/ekhilur/Ekhi_mobile_01.jpg";
 const imgEkhilurMobile02 = "/images/projects/ekhilur/Ekhi_mobile_02.jpg";
+const imgEkhilurDashLeft = "/images/projects/ekhilur/Ekhi_dash_left.jpg";
+const imgEkhilurDashRight = "/images/projects/ekhilur/Ekhi_dash_right.jpg";
 const ekhilurBusinessImages = [
   { src: "/images/projects/ekhilur/ekhi-sites/site_1.jpeg", alt: "Negocio 1" },
   { src: "/images/projects/ekhilur/ekhi-sites/site_2.jpeg", alt: "Negocio 2" },
@@ -427,6 +429,37 @@ function InnovationSection() {
   );
 }
 
+function DashboardSection() {
+  const { t } = useTranslation();
+
+  return (
+    <section className="bg-white w-full">
+      <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
+        <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
+          <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
+            <div className="flex-1 h-[545px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden rounded-[8px]">
+              <img src={imgEkhilurDashLeft} alt="Panel de usuarios Ekhilur" className="w-full h-full object-cover" />
+            </div>
+            <div className="flex-1 h-[545px] max-lg:h-[340px] max-md:h-[240px] overflow-hidden rounded-[8px]">
+              <img src={imgEkhilurDashRight} alt="Panel de saldo Ekhilur" className="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div className="flex justify-end">
+            <div className="w-[580px] max-lg:w-full flex flex-col gap-[24px]">
+              <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
+                {t("pages.ekhilur.dashboardTitle")}
+              </p>
+              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+                {t("pages.ekhilur.dashboardBody")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function RelatedProjects() {
   const { t } = useTranslation();
 
@@ -460,6 +493,7 @@ export function ProjectDetailEkhilur() {
       <ScrollRevealSection><TwinPanelsSection /></ScrollRevealSection>
       <ScrollRevealSection><DataSection /></ScrollRevealSection>
       <ScrollRevealSection><HousesSection /></ScrollRevealSection>
+      <ScrollRevealSection><DashboardSection /></ScrollRevealSection>
       <ScrollRevealSection><InnovationSection /></ScrollRevealSection>
       <ScrollRevealSection><RelatedProjects /></ScrollRevealSection>
       <ScrollRevealSection><ContactSection /></ScrollRevealSection>
