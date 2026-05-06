@@ -14,6 +14,7 @@ const imgEkhilurIsotipo = "/images/projects/ekhilur/isotipo.svg";
 const imgEkhilurTipografia = "/images/projects/ekhilur/tipografia.svg";
 const imgEkhilurScreens = "/images/projects/ekhilur/ekhiscreens.jpg";
 const imgEkhilurBig = "/images/projects/ekhilur/ekhibigimg.jpg";
+const imgEkhilurPhoneHand = "/images/projects/ekhilur/ekhi-phone-hand.png";
 const imgEkhilurMobile01 = "/images/projects/ekhilur/Ekhi_mobile_01.jpg";
 const imgEkhilurMobile02 = "/images/projects/ekhilur/Ekhi_mobile_02.jpg";
 const imgEkhilurDashLeft = "/images/projects/ekhilur/Ekhi_dash_left.jpg";
@@ -29,6 +30,18 @@ const ekhilurIllustrations = [
   "/images/projects/ekhilur/ekhillustrations/ekhi_02.svg",
   "/images/projects/ekhilur/ekhillustrations/ekhi_03.svg",
   "/images/projects/ekhilur/ekhillustrations/ekhi_04.svg",
+  "/images/projects/ekhilur/ekhillustrations/ekhi_05.svg",
+];
+const ekhilurPicks = [
+  "/images/projects/ekhilur/picks/pick01.svg",
+  "/images/projects/ekhilur/picks/pick02.svg",
+  "/images/projects/ekhilur/picks/pick03.svg",
+  "/images/projects/ekhilur/picks/pick04.svg",
+  "/images/projects/ekhilur/picks/pick05.svg",
+  "/images/projects/ekhilur/picks/pick06.svg",
+  "/images/projects/ekhilur/picks/pick07.svg",
+  "/images/projects/ekhilur/picks/pick08.svg",
+  "/images/projects/ekhilur/picks/pick09.svg",
 ];
 
 const imgRelatedVivla = "/images/placeholder-gray.svg";
@@ -364,7 +377,7 @@ function HousesSection() {
     <section ref={sectionRef} className="bg-white w-full">
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
-          <div className="relative w-full h-[570px] max-lg:h-[320px] max-md:h-[240px] overflow-hidden bg-[#FFFBF0] rounded-[8px]">
+          <div className="relative w-full h-[570px] max-lg:h-[320px] max-md:h-[400px] overflow-hidden bg-[#FFFBF0] rounded-[8px]">
             <div className="absolute inset-0 flex items-center">
               <div ref={trackRef} className="flex w-max items-center will-change-transform">
                 {[0, 1].map((groupIndex) => (
@@ -378,7 +391,7 @@ function HousesSection() {
                         key={`${groupIndex}-${src}`}
                         src={src}
                         alt="Ilustracion Ekhilur"
-                        className="h-[240px] max-lg:h-[180px] max-md:h-[130px] w-auto shrink-0 object-contain pointer-events-none select-none"
+                        className="h-[240px] max-lg:h-[180px] max-md:h-[200px] w-auto shrink-0 object-contain pointer-events-none select-none"
                         draggable={false}
                       />
                     ))}
@@ -403,17 +416,132 @@ function HousesSection() {
 
 function InnovationSection() {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const groupRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    const group = groupRef.current;
+    const section = sectionRef.current;
+    if (!track || !group || !section) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    let animationFrameId = 0;
+    let lastTime = performance.now();
+    let offset = 0;
+    let groupWidth = group.getBoundingClientRect().width;
+    const speed = 18;
+    let isVisible = true;
+    let isDocumentVisible = document.visibilityState !== "hidden";
+
+    const resizeObserver = new ResizeObserver(() => {
+      groupWidth = group.getBoundingClientRect().width;
+      if (groupWidth > 0) {
+        offset = offset % groupWidth;
+        track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+      }
+    });
+
+    resizeObserver.observe(group);
+
+    const stopLoop = () => {
+      if (!animationFrameId) return;
+      window.cancelAnimationFrame(animationFrameId);
+      animationFrameId = 0;
+    };
+
+    const step = (now: number) => {
+      if (!isVisible || !isDocumentVisible) {
+        animationFrameId = 0;
+        return;
+      }
+
+      if (groupWidth > 0) {
+        const deltaSeconds = (now - lastTime) / 1000;
+        offset = (offset + speed * deltaSeconds) % groupWidth;
+        track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+      }
+
+      lastTime = now;
+      animationFrameId = window.requestAnimationFrame(step);
+    };
+
+    const startLoop = () => {
+      if (animationFrameId || !isVisible || !isDocumentVisible) return;
+      lastTime = performance.now();
+      animationFrameId = window.requestAnimationFrame(step);
+    };
+
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries.some((entry) => entry.isIntersecting);
+        if (isVisible) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    const handleVisibilityChange = () => {
+      isDocumentVisible = document.visibilityState !== "hidden";
+      if (isDocumentVisible) {
+        startLoop();
+      } else {
+        stopLoop();
+      }
+    };
+
+    visibilityObserver.observe(section);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    startLoop();
+
+    return () => {
+      stopLoop();
+      visibilityObserver.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   return (
-    <section className="bg-white w-full">
+    <section ref={sectionRef} className="bg-white w-full">
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[32px]">
-          <div className="relative w-full h-[740px] max-lg:h-[320px] max-md:h-[220px] overflow-hidden">
-            <img
-              src={imgEkhilurBig}
-              alt="Imagen principal del proyecto Ekhilur"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+          <div className="relative w-full h-[740px] max-lg:h-[320px] max-md:h-[400px] overflow-hidden bg-[#F8EFC8] rounded-[8px]">
+            <div className="absolute inset-0 flex items-center pointer-events-none select-none z-0 opacity-45">
+              <div ref={trackRef} className="flex w-max items-center will-change-transform">
+                {[0, 1].map((groupIndex) => (
+                  <div
+                    key={groupIndex}
+                    ref={groupIndex === 0 ? groupRef : undefined}
+                    className="flex shrink-0 items-center gap-[72px] pr-[72px] max-lg:gap-[48px] max-lg:pr-[48px] max-md:gap-[28px] max-md:pr-[28px]"
+                  >
+                    {ekhilurPicks.map((src) => (
+                      <img
+                        key={`${groupIndex}-${src}`}
+                        src={src}
+                        alt="Icono Ekhilur"
+                        className="h-[180px] max-lg:h-[110px] max-md:h-[78px] w-auto shrink-0 object-contain"
+                        draggable={false}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none select-none">
+              <img
+                src={imgEkhilurPhoneHand}
+                alt="Vista de la app Ekhilur"
+                className="h-full w-auto object-contain"
+                draggable={false}
+              />
+            </div>
           </div>
           <div className="flex justify-between gap-[48px] items-start max-lg:flex-col">
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[420px] max-md:text-[24px] max-md:leading-[32px]">
