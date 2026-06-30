@@ -6,7 +6,7 @@ Pixel-perfect replica of the Digio corporate website, built from Figma designs a
 
 ---
 
-## Table of Contents
+## Table of Contents.
 
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
