@@ -8,6 +8,11 @@ import { ClientsSection } from "../components/ClientsSection";
 import { ContactSection } from "../components/ContactSection";
 import { SEOHead, organizationJsonLd, breadcrumbJsonLd } from "../components/SEOHead";
 import { useTranslation } from "react-i18next";
+import {
+  ScrollRevealSectionPreset,
+  ScrollStaggerGroup,
+  ScrollStaggerItem,
+} from "../components/project-detail-shared";
 
 export function HomePage() {
   const { t } = useTranslation();
@@ -23,13 +28,29 @@ export function HomePage() {
         ]}
       />
       <HeroSection />
-      <AboutSection />
-      <CaseStudySection />
-      <WorkSection />
-      <ServicesSection />
-      <ClientsSection />
-      <BlogSection />
-      <ContactSection />
+      <ScrollRevealSectionPreset preset="chapter">
+        <AboutSection />
+      </ScrollRevealSectionPreset>
+      <ScrollRevealSectionPreset preset="chapter">
+        <CaseStudySection />
+      </ScrollRevealSectionPreset>
+      <ScrollRevealSectionPreset preset="chapter">
+        <WorkSection />
+      </ScrollRevealSectionPreset>
+      <ScrollStaggerGroup>
+        <ScrollStaggerItem>
+          <ServicesSection />
+        </ScrollStaggerItem>
+        <ScrollStaggerItem>
+          <ClientsSection />
+        </ScrollStaggerItem>
+      </ScrollStaggerGroup>
+      <ScrollRevealSectionPreset preset="feature">
+        <BlogSection />
+      </ScrollRevealSectionPreset>
+      <ScrollRevealSectionPreset preset="soft">
+        <ContactSection />
+      </ScrollRevealSectionPreset>
     </>
   );
 }

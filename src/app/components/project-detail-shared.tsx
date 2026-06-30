@@ -1,12 +1,32 @@
 import { useEffect, useState, useRef } from "react";
 import type { ReactNode } from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useProjectTransition } from "./ProjectTransitionContext";
 import { useProjectClick, CardHoverOverlay } from "./WorkSection";
 import { getProjectBySlug } from "./projectData";
 import { resizeSmoothScroll } from "./SmoothScrollProvider";
 
 const EASE = [0.25, 0.1, 0.25, 1];
+
+const REVEAL_PRESETS = {
+  soft: {
+    y: 36,
+    duration: 0.72,
+    amount: 0.08,
+  },
+  chapter: {
+    y: 56,
+    duration: 0.88,
+    amount: 0.06,
+  },
+  feature: {
+    y: 44,
+    duration: 0.8,
+    amount: 0.1,
+  },
+} as const;
+
+export type RevealPreset = keyof typeof REVEAL_PRESETS;
 
 /*
  * Header slide-in timing (mirrored from Header.tsx).
@@ -88,13 +108,122 @@ export function RevealAfterTransition({
    Animates children into view on scroll (once).
    ───────────────────────────────────────────────────────── */
 export function ScrollRevealSection({ children }: { children: ReactNode }) {
+  const shouldReduceMotion = useReducedMotion();
+  const preset = REVEAL_PRESETS.soft;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 48 }}
+      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: preset.y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.8, ease: EASE }}
+      viewport={{ once: true, amount: preset.amount }}
+      transition={{ duration: shouldReduceMotion ? 0.35 : preset.duration, ease: EASE }}
       onAnimationComplete={scheduleRevealResize}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function ScrollRevealSectionPreset({
+  children,
+  preset = "soft",
+}: {
+  children: ReactNode;
+  preset?: RevealPreset;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+  const config = REVEAL_PRESETS[preset];
+
+  return (
+    <motion.div
+      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: config.y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: config.amount }}
+      transition={{ duration: shouldReduceMotion ? 0.35 : config.duration, ease: EASE }}
+      onAnimationComplete={scheduleRevealResize}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function ScrollParallaxMedia({
+  children,
+  distance = 28,
+  className,
+}: {
+  children: ReactNode;
+  distance?: number;
+  className?: string;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+  const translateY = useTransform(scrollYProgress, [0, 1], [distance, -distance]);
+
+  return (
+    <div ref={containerRef} className={className}>
+      <motion.div style={shouldReduceMotion ? undefined : { y: translateY }}>
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+export function ScrollStaggerGroup({
+  children,
+  stagger = 0.08,
+  className,
+}: {
+  children: ReactNode;
+  stagger?: number;
+  className?: string;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.08 }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: shouldReduceMotion
+            ? { staggerChildren: 0 }
+            : { staggerChildren: stagger, delayChildren: 0.03 },
+        },
+      }}
+      onAnimationComplete={scheduleRevealResize}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function ScrollStaggerItem({
+  children,
+  y = 24,
+}: {
+  children: ReactNode;
+  y?: number;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      variants={{
+        hidden: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: shouldReduceMotion ? 0.3 : 0.58, ease: EASE },
+        },
+      }}
     >
       {children}
     </motion.div>
