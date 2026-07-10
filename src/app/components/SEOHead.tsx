@@ -53,6 +53,19 @@ function setCanonical(href: string) {
   el.href = href;
 }
 
+function setAlternate(hreflang: string, href: string) {
+  let el = document.querySelector<HTMLLinkElement>(
+    `link[rel='alternate'][hreflang='${hreflang}']`
+  );
+  if (!el) {
+    el = document.createElement("link");
+    el.rel = "alternate";
+    el.hreflang = hreflang;
+    document.head.appendChild(el);
+  }
+  el.href = href;
+}
+
 const JSONLD_ID = "seo-jsonld";
 function setJsonLd(data: Record<string, unknown> | Record<string, unknown>[]) {
   let el = document.getElementById(JSONLD_ID) as HTMLScriptElement | null;
@@ -110,11 +123,17 @@ export function SEOHead({
     const canonical = `${BASE_URL}${path === "/" ? "" : path}`;
     setCanonical(canonical);
 
+    /* Hreflang (same URL locale-adaptive site) */
+    setAlternate("es", canonical);
+    setAlternate("en", canonical);
+    setAlternate("x-default", canonical);
+
     /* Open Graph */
     setMeta("og:title", pageTitle, "property");
     setMeta("og:url", canonical, "property");
     setMeta("og:type", ogType, "property");
     setMeta("og:site_name", SITE_NAME, "property");
+    setMeta("og:locale", i18n.language === "es" ? "es_ES" : "en_US", "property");
     if (ogImage) {
       setMeta("og:image", ogImage, "property");
     } else {

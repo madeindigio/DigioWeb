@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, redirect } from "react-router";
 import { lazy } from "react";
 import { Layout } from "./components/Layout";
 
@@ -32,7 +32,10 @@ export const router = createBrowserRouter([
       { path: "unete", Component: UnetePage },
       { path: "ia", Component: IALandingPage },
       { path: "blog", Component: BlogPage },
-      { path: "blog/renovacion-marca-digio", Component: BlogPostNuevaMarca },
+      {
+        path: "blog/renovacion-marca-digio",
+        loader: () => redirect("/blog/digio-la-renovacion-de-nuestra-marca"),
+      },
       { path: "blog/digio-la-renovacion-de-nuestra-marca", Component: BlogPostNuevaMarca },
       { path: "blog/:slug", Component: BlogPostDetailPage },
       { path: "contacto", Component: ContactoPage },

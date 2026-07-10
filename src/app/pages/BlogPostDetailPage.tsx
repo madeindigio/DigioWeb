@@ -4,70 +4,17 @@ import { useTranslation } from "react-i18next";
 import { LangText } from "../components/LangText";
 import { resizeSmoothScroll } from "../components/SmoothScrollProvider";
 import {
+  SEOHead,
+  articleJsonLd,
+  breadcrumbJsonLd,
+} from "../components/SEOHead";
+import {
   getPostBySlug,
   getRelatedPosts,
   getPostDetailUrl,
   type BlogPost,
 } from "../components/blogData";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-
-/* ─── SEO ─── */
-function PostSEO({ post }: { post: BlogPost }) {
-  const { t, i18n } = useTranslation();
-  const title = t(`blog.posts.${post.i18nKey}.title`);
-  const desc = t(`blog.posts.${post.i18nKey}.metaDescription`);
-
-  useEffect(() => {
-    document.title = `${title} — Digio Blog`;
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", desc);
-
-    const ogTags: Record<string, string> = {
-      "og:title": title,
-      "og:description": desc,
-      "og:type": "article",
-      "og:locale": i18n.language === "es" ? "es_ES" : "en_US",
-      "og:site_name": "Digio",
-      "og:image": post.image,
-      "og:url": `https://digio.es/blog/${post.slug}`,
-    };
-    Object.entries(ogTags).forEach(([prop, content]) => {
-      let tag = document.querySelector(`meta[property="${prop}"]`);
-      if (!tag) {
-        tag = document.createElement("meta");
-        tag.setAttribute("property", prop);
-        document.head.appendChild(tag);
-      }
-      tag.setAttribute("content", content);
-    });
-
-    // article-specific meta
-    const articleMeta: Record<string, string> = {
-      "article:published_time": post.date,
-      "article:author": post.author,
-    };
-    Object.entries(articleMeta).forEach(([prop, content]) => {
-      let tag = document.querySelector(`meta[property="${prop}"]`);
-      if (!tag) {
-        tag = document.createElement("meta");
-        tag.setAttribute("property", prop);
-        document.head.appendChild(tag);
-      }
-      tag.setAttribute("content", content);
-    });
-
-    return () => {
-      document.title = "Digio";
-    };
-  }, [title, desc, post, i18n.language]);
-
-  return null;
-}
 
 /* ─── Article body – uses body.* keys if present, falls back to excerpt ─── */
 function ArticleBody({ post }: { post: BlogPost }) {
@@ -232,34 +179,31 @@ export function BlogPostDetailPage() {
   }
 
   const title = t(`blog.posts.${post.i18nKey}.title`);
+  const description = t(`blog.posts.${post.i18nKey}.metaDescription`);
+  const canonicalPath = `/blog/${post.slug}`;
   return (
     <>
-      <PostSEO post={post} />
-
-      {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: title,
-            description: t(`blog.posts.${post.i18nKey}.metaDescription`),
-            datePublished: post.date,
-            author: { "@type": "Organization", name: post.author },
-            publisher: {
-              "@type": "Organization",
-              name: "Digio Soluciones Digitales",
-              url: "https://digio.es",
-            },
+      <SEOHead
+        title={title}
+        description={description}
+        canonicalPath={canonicalPath}
+        ogType="article"
+        ogImage={post.image}
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: t("seo.home.title"), path: "/" },
+            { name: t("seo.blog.title"), path: "/blog" },
+            { name: title, path: canonicalPath },
+          ]),
+          articleJsonLd({
+            title,
+            description,
+            url: `https://digio.es${canonicalPath}`,
             image: post.image,
-            url: `https://digio.es/blog/${post.slug}`,
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": `https://digio.es/blog/${post.slug}`,
-            },
+            datePublished: post.date,
+            author: post.author,
           }),
-        }}
+        ]}
       />
 
       {/* ─── Body content section ─── */}

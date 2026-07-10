@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import { getProjectBySlug } from "../components/projectData";
 import { ContactSection } from "../components/ContactSection";
-import { SEOHead } from "../components/SEOHead";
+import { SEOHead, breadcrumbJsonLd, projectJsonLd } from "../components/SEOHead";
 import {
   RevealAfterTransition,
   ScrollRevealSection,
@@ -99,6 +99,27 @@ export function ProjectDetailPage() {
 
   return (
     <>
+      <SEOHead
+        title={name}
+        description={description}
+        canonicalPath={`/proyecto/${project.slug}`}
+        ogType="article"
+        ogImage={project.image}
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: t("seo.home.title"), path: "/" },
+            { name: t("seo.trabajo.title"), path: "/trabajo" },
+            { name, path: `/proyecto/${project.slug}` },
+          ]),
+          projectJsonLd({
+            name,
+            description,
+            url: `https://digio.es/proyecto/${project.slug}`,
+            image: project.image,
+          }),
+        ]}
+      />
+
       {/* ── Hero — clean image, fixed height ── */}
       <section className="relative w-full h-[70vh] max-md:h-[360px]">
         <div className="absolute inset-0 bg-[#d8d8d8]" />
