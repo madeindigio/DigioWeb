@@ -27,6 +27,8 @@ function ChevronDown({ className = "" }: { className?: string }) {
 /* ─── Contact Form ─── */
 function ContactForm() {
   const { t } = useTranslation();
+  const CONTACT_EMAIL = "info@digio.es";
+  const MESSAGE_MAX_LENGTH = 1000;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [reason, setReason] = useState("");
@@ -34,14 +36,8 @@ function ContactForm() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dataExpanded, setDataExpanded] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [botField, setBotField] = useState("");
-  const [formStartedAt] = useState(() => Date.now());
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const contactEndpoint =
-    (import.meta.env.VITE_CONTACT_FORM_ENDPOINT as string | undefined) ||
-    "/.netlify/functions/contact";
 
   const reasonOptions = [
     { key: "project", label: t("pages.contacto.form.reasonOptions.project") },
@@ -52,55 +48,68 @@ function ContactForm() {
 
   const selectedLabel = reasonOptions.find((o) => o.key === reason)?.label || "";
 
+  const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
     if (!reason) {
       setSubmitted(false);
       setErrorMessage(t("pages.contacto.form.reasonRequired"));
       return;
     }
 
+    if (!trimmedName || trimmedName.length < 2 || trimmedName.length > 120) {
+      setSubmitted(false);
+      setErrorMessage(t("pages.contacto.form.nameInvalid"));
+      return;
+    }
+
+    if (!isValidEmail(trimmedEmail) || trimmedEmail.length > 254) {
+      setSubmitted(false);
+      setErrorMessage(t("pages.contacto.form.emailInvalid"));
+      return;
+    }
+
+    if (!trimmedMessage || trimmedMessage.length < 5) {
+      setSubmitted(false);
+      setErrorMessage(t("pages.contacto.form.messageTooShort"));
+      return;
+    }
+
+    if (trimmedMessage.length > MESSAGE_MAX_LENGTH) {
+      setSubmitted(false);
+      setErrorMessage(t("pages.contacto.form.messageTooLong", { max: MESSAGE_MAX_LENGTH }));
+      return;
+    }
+
     setErrorMessage("");
-    setIsSubmitting(true);
 
     const selectedReasonLabel = selectedLabel || reason;
 
-    try {
-      const response = await fetch(contactEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          reason,
-          reasonLabel: selectedReasonLabel,
-          message,
-          source: "digio-contact-page",
-          locale: document.documentElement.lang || "es",
-          hpField: botField,
-          formStartedAt,
-        }),
-      });
+    const subject = `${selectedReasonLabel} - ${trimmedName}`;
+    const body = [
+      `${t("pages.contacto.form.name")}: ${trimmedName}`,
+      `${t("pages.contacto.form.email")}: ${trimmedEmail}`,
+      `${t("pages.contacto.form.reason")}: ${selectedReasonLabel}`,
+      "",
+      `${t("pages.contacto.form.message")}:`,
+      trimmedMessage,
+    ].join("\n");
 
-      if (!response.ok) {
-        throw new Error(`Contact endpoint error: ${response.status}`);
-      }
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-      setSubmitted(true);
-      setName("");
-      setEmail("");
-      setReason("");
-      setMessage("");
-      setBotField("");
-      setTimeout(() => setSubmitted(false), 4000);
-    } catch {
-      setSubmitted(false);
-      setErrorMessage(t("pages.contacto.form.submitError"));
-    } finally {
-      setIsSubmitting(false);
-    }
+    window.location.href = mailtoUrl;
+    setSubmitted(true);
+    setName("");
+    setEmail("");
+    setReason("");
+    setMessage("");
+    setTimeout(() => setSubmitted(false), 4000);
   };
 
   const inputClass =
@@ -206,21 +215,13 @@ function ContactForm() {
           onChange={(e) => setMessage(e.target.value)}
           placeholder={t("pages.contacto.form.messagePlaceholder")}
           className="w-full h-[140px] px-[16px] py-[16px] bg-white border border-[#c5c5c5] font-['Manrope',sans-serif] text-[16px] text-[#191e25] placeholder:text-[#c0bbb3] outline-none focus:border-[#191e25] transition-colors resize-none"
+          maxLength={MESSAGE_MAX_LENGTH}
           required
         />
+        <p className="font-['Manrope',sans-serif] text-[13px] text-[#191e25]/60">
+          {t("pages.contacto.form.messageLimit", { current: message.length, max: MESSAGE_MAX_LENGTH })}
+        </p>
       </div>
-
-      {/* Honeypot anti-spam field (must stay empty) */}
-      <input
-        type="text"
-        name="website"
-        autoComplete="off"
-        tabIndex={-1}
-        value={botField}
-        onChange={(e) => setBotField(e.target.value)}
-        className="hidden"
-        aria-hidden="true"
-      />
 
       {/* Data protection accordion */}
       <div className="w-full max-w-[732px] max-md:max-w-full">
@@ -261,14 +262,11 @@ function ContactForm() {
       <div className="relative">
         <motion.button
           type="submit"
-          disabled={isSubmitting}
-          className="relative px-[48px] py-[16px] border border-[#191e25] bg-transparent cursor-pointer hover:bg-[#191e25] group transition-colors max-md:w-full disabled:opacity-60 disabled:cursor-not-allowed"
+          className="relative px-[48px] py-[16px] border border-[#191e25] bg-transparent cursor-pointer hover:bg-[#191e25] group transition-colors max-md:w-full"
           whileTap={{ scale: 0.97 }}
         >
           <span className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[27px] whitespace-nowrap group-hover:text-white transition-colors">
-            {isSubmitting
-              ? t("pages.contacto.form.submitting")
-              : t("pages.contacto.form.submit")}
+            {t("pages.contacto.form.submit")}
           </span>
         </motion.button>
         <AnimatePresence>
@@ -293,7 +291,7 @@ function ContactForm() {
               transition={{ duration: 0.4, ease: EASE_SMOOTH }}
               className="font-['Manrope',sans-serif] text-[16px] text-[#583bff] mt-[16px]"
             >
-              {t("pages.contacto.form.successMessage")}
+              {t("pages.contacto.form.mailtoNotice", { email: CONTACT_EMAIL })}
             </motion.p>
           )}
         </AnimatePresence>
