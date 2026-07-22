@@ -4,12 +4,18 @@
 > - project-specific build/test/development commands and coding conventions;
 > - **MANDATORY operating rules** that apply to every task, regardless of size.
 
-## Build & Test Commands (pnpm)
-- `pnpm dev` — Start the Vite development server with HMR at http://localhost:5173
-- `pnpm build` — Production bundle (`dist/` output)
-- `pnpm test --testPathPattern=pattern` — Run specific tests only
-- `pnpm test --watch` — Interactive watch mode for TDD/rapid iterations
-- `pnpm lint` — Lint and format (fixes auto-fixable issues via ESLint/Prettier hooks)
+## Build & Development Commands (npm)
+- `npm run dev` — Start the Vite development server with HMR at http://localhost:5173
+- `npm run build` — Production bundle (`dist/` output)
+- `npm ci` — Clean install from lockfile (use in CI and before committing)
+
+## Deployment
+- **Platform**: GitHub Pages via GitHub Actions (`.github/workflows/deploy.yml`)
+- **Trigger**: Push to `main` or manual `workflow_dispatch`
+- **Custom domain**: `digio.es` (configured via `public/CNAME`)
+- **SPA routing**: `index.html` is copied to `404.html` post-build so GitHub Pages serves the SPA for all client-side routes
+- **DNS**: Apex `A` records pointing to GitHub Pages IPs (185.199.108–111.153)
+- Former Netlify config has been removed — do not re-add `netlify.toml`
 
 ## Code Style Guidelines
 
@@ -18,7 +24,7 @@
   Import syntax: `const { foo } = import "…` for named imports.
 
 ### Formatting
-- Prettier with base16 dark theme — auto format via git hooks (pre-commit/post-checkout).
+- Follow the existing code style in each file (no Prettier/ESLint configured yet).
 - Single quotes, single-line objects/arrays on same line as their key.
 - Wrap object/array values only at closing bracket if needed.
 - Keep imports grouped: side-effect > type = > external named > internal.
