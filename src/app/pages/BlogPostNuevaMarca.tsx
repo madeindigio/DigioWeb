@@ -23,6 +23,8 @@ import imgOficina from "/images/blog/renovacion-marca-digio/18-oficina.png";
 import imgTotebag from "/images/blog/renovacion-marca-digio/19-totebag-digio.png";
 import imgAgenda from "/images/blog/renovacion-marca-digio/20-agenda.png";
 
+const BODY_TEXT_CLASS = "font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]";
+
 /* ─── Reusable components ─── */
 
 /** Full-width image with aspect ratio */
@@ -96,7 +98,7 @@ function HeroSection() {
 
       {/* Hero image — iPad Portada */}
       <div className="max-w-[1400px] mx-auto px-[56px] max-lg:px-[32px] max-md:px-[24px]">
-        <FullWidthImage src={imgPortada} alt="iPad con la nueva marca de Digio" aspect="1485/883" />
+        <FullWidthImage src={imgPortada} alt={t("blog.posts.brandRenewal.body.heroImageAlt")} aspect="1485/883" />
       </div>
     </section>
   );
@@ -104,6 +106,9 @@ function HeroSection() {
 
 /* ─── Intro + sidebar section ─── */
 function IntroSection() {
+  const { t } = useTranslation();
+  const workItems = t("blog.posts.brandRenewal.body.workItems", { returnObjects: true }) as string[];
+
   return (
     <section className="bg-white w-full">
       <div className="max-w-[1400px] mx-auto px-[56px] py-[0px] max-lg:px-[32px] max-md:px-[24px]">
@@ -111,18 +116,18 @@ function IntroSection() {
           {/* Left: Lead text */}
           <div className="max-w-[742px] shrink-0 max-lg:max-w-full">
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#232429] text-[32px] tracking-[-1.6px] leading-[40px] max-lg:text-[28px] max-lg:leading-[36px] max-md:text-[24px] max-md:leading-[32px]">
-              Tras una trayectoria que se remonta a 2007, en Digio hemos decidido abordar el rediseño completo de nuestra marca con el objetivo de dotarnos de una narrativa y de un lenguaje visual propios y absolutamente diferenciados, en línea con nuestros valores, capacidades y relevancia en el sector.
+              {t("blog.posts.brandRenewal.body.lead")}
             </p>
           </div>
 
           {/* Right: Work areas */}
           <div className="flex flex-col gap-[16px] shrink-0 min-w-[200px] max-lg:min-w-0 max-lg:w-full">
-            <p className="font-['Manrope',sans-serif] font-[700] text-[#232429] text-[16px] leading-[20.8px]">
-              ¿En qué hemos trabajado?
+            <p className="font-['Manrope',sans-serif] font-[700] text-[#191e25] text-[16px] leading-[20.8px]">
+              {t("blog.posts.brandRenewal.body.workLabel")}
             </p>
             <div className="flex flex-col gap-[0px]">
-              {["Estrategia", "Narrativa", "Identidad de marca", "Lenguaje visual", "Digital"].map((item) => (
-                <p key={item} className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
+              {workItems.map((item) => (
+                <p key={item} className={BODY_TEXT_CLASS}>
                   {item}
                 </p>
               ))}
@@ -136,6 +141,8 @@ function IntroSection() {
 
 /* ─── Text sections: El reto, La estrategia, La solución ─── */
 function TextSections() {
+  const { t } = useTranslation();
+
   return (
     <section className="bg-white w-full">
       <div className="max-w-[1400px] mx-auto px-[56px] py-[96px] max-lg:px-[32px] max-lg:py-[64px] max-md:px-[24px] max-md:py-[48px]">
@@ -143,45 +150,47 @@ function TextSections() {
           {/* El reto */}
           <div className="flex flex-col gap-[20px]">
             <h2 className="font-['GT_Ultra_Median',sans-serif] text-[#232429] text-[32px] tracking-[-1.6px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
-              El reto
+              {t("blog.posts.brandRenewal.body.challengeTitle")}
             </h2>
-            <p className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
-              En los últimos 17 años Digio se ha caracterizado por su capacidad para crear plataformas y productos digitales en una amplia variedad de verticales y tecnologías. Hemos abordado retos singulares y complejos, siendo pioneros en la adopción de las tecnologías mas disruptivas en cada momento, desde el desarrollo sobre plataformas móviles, que abordamos en sus inicios, hasta la inteligencia artificial generativa, el IoT o el fintech, más recientemente.
+            <p className={BODY_TEXT_CLASS}>
+              {t("blog.posts.brandRenewal.body.challengeP1")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
-              Tras esta trayectoria, decidimos que era el momento de actualizar nuestra marca para recoger todos los valores distintivos acumulados durante años y estar a la altura de nuestro desempeño y capacidades, fusionando nuestra experiencia acumulada con un enfoque integral en la creación de soluciones digitales.
+            <p className={BODY_TEXT_CLASS}>
+              {t("blog.posts.brandRenewal.body.challengeP2")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
-              En un universo de marcas tan saturado, decidimos que para abordar este reto era fundamental ir de la mano de una compañía líder en el sector, por ello confiamos en MUCHO, una de las agencias de branding más reputadas del mundo, que ha creado proyectos y marcas icónicas para compañías tan relevantes como Visa, Apple, Paypal o Movistar.
+            <p className={BODY_TEXT_CLASS}>
+              {t("blog.posts.brandRenewal.body.challengeP3")}
             </p>
           </div>
 
           {/* La estrategia */}
           <div className="flex flex-col gap-[20px]">
             <h2 className="font-['GT_Ultra_Median',sans-serif] text-[#232429] text-[32px] tracking-[-1.6px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
-              La estrategia
+              {t("blog.posts.brandRenewal.body.strategyTitle")}
             </h2>
-            <p className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
-              La combinación de la experiencia de nuestro equipo y la búsqueda de soluciones impactantes y transformadoras para nuestros clientes, fijaron la Transformación como piedra angular de nuestra narrativa.
+            <p className={BODY_TEXT_CLASS}>
+              {t("blog.posts.brandRenewal.body.strategyP1")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
-              Este equilibrio cristalizó en el lema <span className="font-[700]">Transformation is our code_</span> (en inglés), lo que refleja nuestro firme compromiso como impulsores del cambio en cada desafío que abordamos. El uso de la palabra code_, en su doble referencia al desarrollo de software y al código de conducta, nos permitió establecer un mensaje abierto, distintivo y memorable.
+            <p className={BODY_TEXT_CLASS}>
+              {t("blog.posts.brandRenewal.body.strategyP2Before")}
+              <span className="font-[700]">Transformation is our code_</span>
+              {t("blog.posts.brandRenewal.body.strategyP2After")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
-              Al mismo tiempo, recuperamos el significado simbólico de los dígitos binarios que conforman nuestro nombre (Dig10), y los usamos como inspiración para crear la identidad visual y la narrativa de la marca, reflejando la contribución de Digio como un actor que opera entre el 0 y el 1, esto es, en un universo lleno de incertidumbre, pero también de posibilidades, que logramos hacer realidad gracias a nuestra experiencia, flexibilidad, ingenio y rigor.
+            <p className={BODY_TEXT_CLASS}>
+              {t("blog.posts.brandRenewal.body.strategyP3")}
             </p>
           </div>
 
           {/* La solución */}
           <div className="flex flex-col gap-[20px]">
             <h2 className="font-['GT_Ultra_Median',sans-serif] text-[#232429] text-[32px] tracking-[-1.6px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
-              La solución
+              {t("blog.posts.brandRenewal.body.solutionTitle")}
             </h2>
-            <p className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
-              El resultado es un logotipo y un lenguaje visual que juegan con el concepto de transformación y con el código binario de diversas formas.
+            <p className={BODY_TEXT_CLASS}>
+              {t("blog.posts.brandRenewal.body.solutionP1")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
-              Desde un conjunto de iconos creado únicamente a partir de ceros y unos, hasta el estiramiento del símbolo y la creación de un lenguaje visual extendido, nuestra marca respira una esencia digital a través de todos sus puntos de contacto.
+            <p className={BODY_TEXT_CLASS}>
+              {t("blog.posts.brandRenewal.body.solutionP2")}
             </p>
           </div>
         </div>
@@ -192,6 +201,8 @@ function TextSections() {
 
 /* ─── Visual gallery sections ─── */
 function VisualGallery() {
+  const { t } = useTranslation();
+
   return (
     <section className="bg-white w-full">
       <div className="max-w-[1400px] mx-auto px-[56px] max-lg:px-[32px] max-md:px-[24px]">
@@ -210,7 +221,9 @@ function VisualGallery() {
 
         {/* Quote: Transformation is our code */}
         <QuoteBlock>
-          La combinación de la experiencia de nuestro equipo y la búsqueda de soluciones impactantes para los retos de nuestros clientes establecieron la "Transformación" como la piedra angular de nuestra narrativa. <em className="font-['GT_Ultra_Median',sans-serif] italic">Transformation is our code_</em> refleja nuestro compromiso de impulsar el cambio como objetivo compartido en cada desafío digital que abordamos.
+          {t("blog.posts.brandRenewal.body.quoteTransformationBefore")}
+          <em className="font-['GT_Ultra_Median',sans-serif] italic">Transformation is our code_</em>
+          {t("blog.posts.brandRenewal.body.quoteTransformationAfter")}
         </QuoteBlock>
 
         {/* Transformation video */}
@@ -230,7 +243,7 @@ function VisualGallery() {
         <div className="pt-[48px]">
           <div className="grid grid-cols-2 gap-[40px] max-md:grid-cols-1 max-md:gap-[24px]">
             <div className="aspect-square relative overflow-hidden">
-              <img alt="Mobile home" className="absolute inset-0 w-full h-full object-cover" src={imgMobileHome} loading="lazy" />
+              <img alt={t("blog.posts.brandRenewal.body.mobileHomeAlt")} className="absolute inset-0 w-full h-full object-cover" src={imgMobileHome} loading="lazy" />
             </div>
             <div className="aspect-square relative overflow-hidden">
               <video
@@ -248,15 +261,15 @@ function VisualGallery() {
 
         {/* Quote: Color palette */}
         <QuoteBlock>
-          La paleta de colores elegida utiliza el blanco y el negro como colores principales y el gris como tono intermedio. En un segundo nivel jerárquico, se eligieron un verde suave y un violeta para abrazar la naturaleza digital de Digio.
+          {t("blog.posts.brandRenewal.body.quotePalette")}
         </QuoteBlock>
 
         {/* Color palette image */}
-        <FullWidthImage src={imgColorPalette} alt="Paleta de colores Digio" aspect="1485/835" />
+        <FullWidthImage src={imgColorPalette} alt={t("blog.posts.brandRenewal.body.colorPaletteAlt")} aspect="1485/835" />
 
         {/* Quote: Symbol / zero to one */}
         <QuoteBlock>
-          El símbolo es una síntesis del concepto de código binario. Digio vive en el espacio entre estas dos figuras, lleno de incertidumbre y posibilidades. En ese espacio intermedio entre visión y creación. Entre la no existencia y la existencia.
+          {t("blog.posts.brandRenewal.body.quoteSymbol")}
         </QuoteBlock>
 
         {/* Avatar zero to one video */}
@@ -274,19 +287,24 @@ function VisualGallery() {
 
         {/* Two-col: Avatar + iPad */}
         <div className="pt-[48px]">
-          <TwoColImages left={imgAvatar} right={imgIpadCeroUno} alt1="Avatar Digio" alt2="iPad cero a uno" />
+          <TwoColImages
+            left={imgAvatar}
+            right={imgIpadCeroUno}
+            alt1={t("blog.posts.brandRenewal.body.avatarAlt")}
+            alt2={t("blog.posts.brandRenewal.body.ipadZeroToOneAlt")}
+          />
         </div>
 
         {/* Quote: Icon system */}
         <QuoteBlock>
-          El sistema de iconos refuerza aún más esta idea llevándola un paso más allá. La creación de una biblioteca de iconos versátil basada en unos y ceros fue el primer paso en el desarrollo de un lenguaje visual completo.
+          {t("blog.posts.brandRenewal.body.quoteIconSystem")}
         </QuoteBlock>
 
         {/* Two-col: OOH + Icon Set Animation */}
         <div className="pb-[56px] max-md:pb-[24px]">
           <div className="grid grid-cols-2 gap-[40px] max-md:grid-cols-1 max-md:gap-[24px]">
             <div className="aspect-square relative overflow-hidden">
-              <img alt="Digio OOH" className="absolute inset-0 w-full h-full object-cover" src={imgDigioOoh} loading="lazy" />
+              <img alt={t("blog.posts.brandRenewal.body.digioOohAlt")} className="absolute inset-0 w-full h-full object-cover" src={imgDigioOoh} loading="lazy" />
             </div>
             <div className="aspect-square relative overflow-hidden">
               <video
@@ -303,11 +321,11 @@ function VisualGallery() {
         </div>
 
         {/* Icon Library full-width */}
-        <FullWidthImage src={imgIconLibrary} alt="Icon library" aspect="1485/990" />
+        <FullWidthImage src={imgIconLibrary} alt={t("blog.posts.brandRenewal.body.iconLibraryAlt")} aspect="1485/990" />
 
         {/* Quote: Visual language */}
         <QuoteBlock>
-          Basado en los valores de la empresa, el lenguaje visual se amplía para crear un sistema sencillo y completo que brinda una apariencia cohesiva que pasa de sólida a flexible en un abrir y cerrar de ojos.
+          {t("blog.posts.brandRenewal.body.quoteVisualLanguage")}
         </QuoteBlock>
 
         {/* Visual language behavior video */}
@@ -325,34 +343,39 @@ function VisualGallery() {
 
         {/* Website blog image */}
         <div className="pt-[48px]">
-          <FullWidthImage src={imgWebsiteBlog} alt="Website blog" aspect="1485/835" />
+          <FullWidthImage src={imgWebsiteBlog} alt={t("blog.posts.brandRenewal.body.websiteBlogAlt")} aspect="1485/835" />
         </div>
 
         {/* Posters */}
         <div className="pt-[48px] pb-[56px] max-md:pb-[24px]">
-          <FullWidthImage src={imgPosters} alt="Posters con ilustraciones de Digio" aspect="1485/834" />
+          <FullWidthImage src={imgPosters} alt={t("blog.posts.brandRenewal.body.postersAlt")} aspect="1485/834" />
         </div>
 
         {/* Two-col: Camiseta + Bolsa Agenda */}
         <div className="pb-[56px] max-md:pb-[24px]">
-          <TwoColImages left={imgCamiseta} right={imgBolsaAgenda} alt1="Camiseta Digio" alt2="Bolsa y agenda" />
+          <TwoColImages
+            left={imgCamiseta}
+            right={imgBolsaAgenda}
+            alt1={t("blog.posts.brandRenewal.body.tshirtAlt")}
+            alt2={t("blog.posts.brandRenewal.body.bagAgendaAlt")}
+          />
         </div>
 
         {/* Tarjetas personales full-width */}
-        <FullWidthImage src={imgTarjetas} alt="Tarjetas personales" aspect="1485/990" />
+        <FullWidthImage src={imgTarjetas} alt={t("blog.posts.brandRenewal.body.businessCardsAlt")} aspect="1485/990" />
 
         {/* Oficina */}
         <div className="pt-[48px] pb-[56px] max-md:pt-[24px] max-md:pb-[24px]">
-          <FullWidthImage src={imgOficina} alt="Oficina Digio" aspect="1485/835" />
+          <FullWidthImage src={imgOficina} alt={t("blog.posts.brandRenewal.body.officeAlt")} aspect="1485/835" />
         </div>
 
         {/* Two-col: Totebag (tall) + Agenda (square) */}
         <div className="grid grid-cols-2 gap-[40px] pb-[96px] max-md:grid-cols-1 max-md:gap-[24px] max-md:pb-[48px]">
           <div className="relative overflow-hidden" style={{ aspectRatio: "722/1286" }}>
-            <img alt="Totebag Digio" className="absolute inset-0 w-full h-full object-cover" src={imgTotebag} loading="lazy" />
+            <img alt={t("blog.posts.brandRenewal.body.totebagAlt")} className="absolute inset-0 w-full h-full object-cover" src={imgTotebag} loading="lazy" />
           </div>
           <div className="aspect-square relative overflow-hidden self-end">
-            <img alt="Agenda Digio" className="absolute inset-0 w-full h-full object-cover" src={imgAgenda} loading="lazy" />
+            <img alt={t("blog.posts.brandRenewal.body.agendaAlt")} className="absolute inset-0 w-full h-full object-cover" src={imgAgenda} loading="lazy" />
           </div>
         </div>
       </div>
@@ -400,7 +423,7 @@ function RelatedPosts() {
                     {t(`blog.posts.${post.i18nKey}.title`)}
                   </p>
                 </Link>
-                <p className="font-['Manrope',sans-serif] text-[#232429] text-[16px] leading-[22px]">
+                <p className={BODY_TEXT_CLASS}>
                   {t(`blog.posts.${post.i18nKey}.excerpt`)}
                 </p>
                 <Link
