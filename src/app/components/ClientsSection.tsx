@@ -271,7 +271,7 @@ export function ClientsSection() {
         <div className="flex flex-col gap-[80px] max-md:gap-[40px]">
           <div className="flex flex-col gap-[128px] opacity-75 max-md:gap-[40px]">
             {/* Row 1 */}
-            <div className="flex items-center justify-between flex-wrap gap-[40px] max-md:gap-[24px] max-md:justify-center">
+            <div className="flex items-center justify-between flex-wrap gap-[40px] max-md:grid max-md:grid-cols-3 max-md:gap-x-[24px] max-md:gap-y-[24px] max-md:place-items-center max-md:justify-items-center max-md:[&>div]:scale-[0.88] max-md:[&>div]:origin-center">
               <OrangeLogo />
               <SantanderLogo />
               <AtrapaloLogo />
@@ -279,7 +279,7 @@ export function ClientsSection() {
               <GrupoPlanetaLogo />
             </div>
             {/* Row 2 */}
-            <div className="flex items-center justify-between flex-wrap gap-[40px] max-md:gap-[24px] max-md:justify-center">
+            <div className="flex items-center justify-between flex-wrap gap-[40px] max-md:grid max-md:grid-cols-3 max-md:gap-x-[24px] max-md:gap-y-[24px] max-md:place-items-center max-md:justify-items-center max-md:[&>div]:scale-[0.88] max-md:[&>div]:origin-center">
               <ElecnorLogo />
               <TefalLogo />
               <PCcomLogo />
@@ -287,7 +287,7 @@ export function ClientsSection() {
               <EmagisterLogo />
             </div>
             {/* Row 3 */}
-            <div className="flex items-center justify-between flex-wrap gap-[40px] max-md:gap-[24px] max-md:justify-center">
+            <div className="flex items-center justify-between flex-wrap gap-[40px] max-md:grid max-md:grid-cols-3 max-md:gap-x-[24px] max-md:gap-y-[24px] max-md:place-items-center max-md:justify-items-center max-md:[&>div]:scale-[0.88] max-md:[&>div]:origin-center">
               <SoderbergLogo />
               <MeridaLogo />
               <BBVALogo />

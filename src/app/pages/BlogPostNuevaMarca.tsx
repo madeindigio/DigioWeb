@@ -425,14 +425,23 @@ export function BlogPostNuevaMarca() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    // Trigger Lenis resize after all content has mounted to ensure
-    // the full page height is scrollable (covers lazy images, fonts, etc.)
-    const timers = [
-      setTimeout(() => resizeSmoothScroll(), 100),
-      setTimeout(() => resizeSmoothScroll(), 500),
-      setTimeout(() => resizeSmoothScroll(), 1200),
-    ];
-    return () => timers.forEach(clearTimeout);
+    // Trigger one immediate recalculation after paint and one delayed
+    // recalculation for late image/font layout changes.
+    let raf1 = 0;
+    let raf2 = 0;
+    const delayed = window.setTimeout(() => resizeSmoothScroll(), 900);
+
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        resizeSmoothScroll();
+      });
+    });
+
+    return () => {
+      if (raf1) cancelAnimationFrame(raf1);
+      if (raf2) cancelAnimationFrame(raf2);
+      window.clearTimeout(delayed);
+    };
   }, []);
 
   useEffect(() => {

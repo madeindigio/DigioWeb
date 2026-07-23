@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
@@ -82,15 +83,59 @@ function IntroSection() {
    3. VIDEO — full-width autoplay loop
    ============================================================ */
 function VideoSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(Boolean(entries[0]?.isIntersecting));
+      },
+      { root: null, rootMargin: "20% 0px 20% 0px", threshold: 0 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const syncPlayback = () => {
+      if (isVisible && document.visibilityState === "visible") {
+        video.play().catch(() => undefined);
+        return;
+      }
+      video.pause();
+    };
+
+    const onVisibilityChange = () => {
+      syncPlayback();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    syncPlayback();
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [isVisible]);
+
   return (
-    <section className="w-full px-[56px] max-md:px-[24px]">
+    <section ref={sectionRef} className="w-full px-[56px] max-md:px-[24px]">
       <div className="max-w-[1400px] mx-auto">
         <div className="relative w-full h-[600px] max-lg:h-[450px] max-md:h-[300px] overflow-hidden">
           <video
-            autoPlay
+            ref={videoRef}
             loop
             muted
             playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source src="https://digio.es/sites/default/files/2024-05/Finsa_tech_cabecera_web_compressed.mp4" />

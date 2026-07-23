@@ -561,6 +561,12 @@ function UseCasesSection() {
     const section = sectionRef.current;
     if (!section) return;
     let rafId = 0;
+    let sectionActive = false;
+
+    const removeRuntimeListeners = () => {
+      window.removeEventListener("resize", updateMetrics);
+      window.removeEventListener("scroll", onScroll);
+    };
 
     const updateMetrics = () => {
       const vh = window.innerHeight;
@@ -625,19 +631,45 @@ function UseCasesSection() {
       });
     };
 
+    const setSectionActive = (active: boolean) => {
+      if (sectionActive === active) return;
+      sectionActive = active;
+
+      if (active) {
+        updateMetrics();
+        window.addEventListener("resize", updateMetrics);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      } else {
+        removeRuntimeListeners();
+      }
+    };
+
     updateMetrics();
     const ro = new ResizeObserver(() => {
       updateMetrics();
       onScroll();
     });
     ro.observe(section);
-    window.addEventListener("resize", updateMetrics);
-    window.addEventListener("scroll", onScroll, { passive: true });
+
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        setSectionActive(Boolean(entry?.isIntersecting));
+      },
+      {
+        root: null,
+        rootMargin: "20% 0px 20% 0px",
+        threshold: 0,
+      }
+    );
+    visibilityObserver.observe(section);
+
     update();
     return () => {
+      visibilityObserver.disconnect();
+      setSectionActive(false);
       ro.disconnect();
-      window.removeEventListener("resize", updateMetrics);
-      window.removeEventListener("scroll", onScroll);
       if (rafId !== 0) cancelAnimationFrame(rafId);
     };
   }, [COUNT]);

@@ -40,15 +40,24 @@ const HEADER_TOTAL = HEADER_SLIDE_DELAY + HEADER_SLIDE_DURATION; // ~0.61s
 const CONTENT_STAGGER_OFFSET = 0.1;
 
 let revealResizeTimeoutId: ReturnType<typeof setTimeout> | null = null;
+let lastRevealResizeAt = 0;
 
 function scheduleRevealResize() {
+  if (document.visibilityState !== "visible") return;
+
   if (revealResizeTimeoutId !== null) {
     clearTimeout(revealResizeTimeoutId);
   }
+
+  const now = Date.now();
+  const elapsed = now - lastRevealResizeAt;
+  const waitMs = elapsed >= 320 ? 120 : 320 - elapsed;
+
   revealResizeTimeoutId = setTimeout(() => {
     revealResizeTimeoutId = null;
+    lastRevealResizeAt = Date.now();
     resizeSmoothScroll();
-  }, 90);
+  }, waitMs);
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -88,7 +97,7 @@ export function RevealAfterTransition({
   useEffect(() => {
     if (!show) return;
     const totalMs = (effectiveDelay + 0.65) * 1000 + 100; // animation end + small buffer
-    const t = setTimeout(() => resizeSmoothScroll(), totalMs);
+    const t = setTimeout(() => scheduleRevealResize(), totalMs);
     return () => clearTimeout(t);
   }, [show, effectiveDelay]);
 

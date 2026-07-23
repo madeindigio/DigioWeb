@@ -55,11 +55,61 @@ function VideoWithFallback({
   poster: string;
   alt: string;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(Boolean(entries[0]?.isIntersecting));
+      },
+      { rootMargin: "20% 0px 20% 0px", threshold: 0.01 },
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onCanPlay = () => setVideoReady(true);
+    const onError = () => setVideoFailed(true);
+
+    const syncPlayback = () => {
+      if (videoFailed) return;
+      if (isVisible && document.visibilityState === "visible") {
+        video.play().catch(() => undefined);
+        return;
+      }
+      video.pause();
+    };
+
+    const onVisibilityChange = () => {
+      syncPlayback();
+    };
+
+    video.addEventListener("canplaythrough", onCanPlay);
+    video.addEventListener("error", onError);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    syncPlayback();
+
+    return () => {
+      video.removeEventListener("canplaythrough", onCanPlay);
+      video.removeEventListener("error", onError);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [isVisible, videoFailed]);
 
   return (
-    <>
+    <div ref={containerRef} className="absolute inset-0">
       <img
         alt={alt}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
@@ -69,20 +119,18 @@ function VideoWithFallback({
       />
       {!videoFailed && (
         <video
+          ref={videoRef}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
             videoReady ? "opacity-100" : "opacity-0"
           }`}
           src={src}
-          autoPlay
           muted
           loop
           playsInline
-          preload="auto"
-          onCanPlay={() => setVideoReady(true)}
-          onError={() => setVideoFailed(true)}
+          preload="metadata"
         />
       )}
-    </>
+    </div>
   );
 }
 
@@ -164,6 +212,7 @@ function LogoSection() {
   const panelRef = useRef<HTMLDivElement>(null);
   const panelRectRef = useRef<DOMRect | null>(null);
   const cursorRafRef = useRef<number>(0);
+  const rectRafRef = useRef<number>(0);
   const pendingCursorRef = useRef({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [floatingPlaces, setFloatingPlaces] = useState<FloatingPlace[]>([]);
@@ -185,6 +234,10 @@ function LogoSection() {
         cancelAnimationFrame(cursorRafRef.current);
         cursorRafRef.current = 0;
       }
+      if (rectRafRef.current) {
+        cancelAnimationFrame(rectRafRef.current);
+        rectRafRef.current = 0;
+      }
     };
   }, []);
 
@@ -197,9 +250,25 @@ function LogoSection() {
       panelRectRef.current = panel.getBoundingClientRect();
     };
 
+    const requestRefreshPanelRect = () => {
+      if (rectRafRef.current) return;
+      rectRafRef.current = requestAnimationFrame(() => {
+        rectRafRef.current = 0;
+        refreshPanelRect();
+      });
+    };
+
     refreshPanelRect();
     window.addEventListener("resize", refreshPanelRect);
-    return () => window.removeEventListener("resize", refreshPanelRect);
+    window.addEventListener("scroll", requestRefreshPanelRect, { passive: true });
+    return () => {
+      window.removeEventListener("resize", refreshPanelRect);
+      window.removeEventListener("scroll", requestRefreshPanelRect);
+      if (rectRafRef.current) {
+        cancelAnimationFrame(rectRafRef.current);
+        rectRafRef.current = 0;
+      }
+    };
   }, [isHovering]);
 
   const scheduleCursorUpdate = (x: number, y: number) => {
@@ -250,9 +319,7 @@ function LogoSection() {
     const panel = panelRef.current;
     if (!panel) return;
 
-    // Always get a fresh rect on mousemove: the panel's position changes
-    // during smooth scroll (Lenis), so a cached rect produces wrong offsets.
-    const rect = panel.getBoundingClientRect();
+    const rect = panelRectRef.current ?? panel.getBoundingClientRect();
     panelRectRef.current = rect;
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
@@ -338,10 +405,10 @@ function LogoSection() {
               transition={{ duration: 0.2, ease: EASE }}
             />
 
-            <div className="relative z-20">
+            <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
               <ImageWithFallback
                 alt="VIVLA logo"
-                className="w-auto h-auto max-h-[110px] max-w-[72%]"
+                className="block w-auto h-auto max-h-[110px] max-w-[72%] max-md:max-h-[78px] max-md:max-w-[62%]"
                 src={imgVivlaLogo}
               />
             </div>
@@ -490,10 +557,19 @@ function DataSection() {
 function HousesSection() {
   const { t } = useTranslation();
   const scrollPanelRef = useRef<HTMLDivElement>(null);
+  const renderedParallaxRef = useRef(0);
   const [commentsParallaxY, setCommentsParallaxY] = useState(0);
 
   useEffect(() => {
     let rafId = 0;
+    let listenersActive = false;
+
+    const removeRuntimeListeners = () => {
+      if (!listenersActive) return;
+      listenersActive = false;
+      window.removeEventListener("scroll", requestParallaxUpdate);
+      window.removeEventListener("resize", requestParallaxUpdate);
+    };
 
     const updateParallax = () => {
       const el = scrollPanelRef.current;
@@ -501,11 +577,17 @@ function HousesSection() {
 
       const rect = el.getBoundingClientRect();
       const viewportH = window.innerHeight || 1;
+      const isNearViewport = rect.bottom > -viewportH * 0.25 && rect.top < viewportH * 1.25;
+      if (!isNearViewport) return;
       const progress = (viewportH - rect.top) / (viewportH + rect.height);
       const clampedProgress = Math.max(0, Math.min(1, progress));
 
       // Extra pronounced upward parallax while preserving the section framing.
-      setCommentsParallaxY(-clampedProgress * 185);
+      const nextY = -clampedProgress * 185;
+      if (Math.abs(nextY - renderedParallaxRef.current) > 0.4) {
+        renderedParallaxRef.current = nextY;
+        setCommentsParallaxY(nextY);
+      }
     };
 
     const requestParallaxUpdate = () => {
@@ -516,13 +598,37 @@ function HousesSection() {
       });
     };
 
+    const setSectionActive = (active: boolean) => {
+      if (active && !listenersActive) {
+        listenersActive = true;
+        window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
+        window.addEventListener("resize", requestParallaxUpdate);
+        requestParallaxUpdate();
+        return;
+      }
+
+      if (!active) {
+        removeRuntimeListeners();
+      }
+    };
+
+    const section = scrollPanelRef.current;
+    let visibilityObserver: IntersectionObserver | null = null;
+    if (section) {
+      visibilityObserver = new IntersectionObserver(
+        (entries) => {
+          setSectionActive(Boolean(entries[0]?.isIntersecting));
+        },
+        { root: null, rootMargin: "20% 0px 20% 0px", threshold: 0 },
+      );
+      visibilityObserver.observe(section);
+    }
+
     updateParallax();
-    window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
-    window.addEventListener("resize", requestParallaxUpdate);
 
     return () => {
-      window.removeEventListener("scroll", requestParallaxUpdate);
-      window.removeEventListener("resize", requestParallaxUpdate);
+      visibilityObserver?.disconnect();
+      removeRuntimeListeners();
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);

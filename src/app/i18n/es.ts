@@ -695,8 +695,8 @@ const es = {
         members: {
           juan: { name: "Juan Egea", role: "Fundador & CEO", desc: "Licenciado en Física y Doctor en matemáticas. Fundador de Symposium. Advisor y socio en Roomonitor. Socio e inversor en varias startups (iVoox, eMagister)." },
           javier: { name: "Javier Juncadella", role: "Socio. VP", desc: "MBA IESE, Ingeniero Industrial. Ejecutivo en multinacionales como IBM, everis, Amgen, Maersk. CEO y COO en startups en Barcelona y San Francisco, USA. Business Angel." },
-          jose: { name: "Jose F. Rives", role: "Socio. CTO", desc: "Ingeniero de software. 16 años de experiencia, 14 en Digio liderando I+D y proyectos de alta complejidad tecnológica y uso masivo." },
-          pablo: { name: "Pablo Gómez", role: "Socio. COO", desc: "Ingeniero Informático y Scrum Master. Ingeniero en Microsoft. 14 años en Digio liderando proyectos, organización de equipos e implantación de metodologías ágiles." },
+          jose: { name: "Jose F. Rives", role: "Socio. CTO", desc: "Ingeniero de software. Desde 2007 en Digio liderando I+D y proyectos de alta complejidad tecnológica y uso masivo." },
+          pablo: { name: "Pablo Gómez", role: "Socio. COO", desc: "Ingeniero Informático en Microsoft. Scrum Master. Desde 2007 liderando proyectos, organización de equipos e implantación de metodologías ágiles." },
         },
         advisors: {
           aguirre: { name: "José María Aguirre", desc: "Economista. Más de 20 años trabajando con startups. Socio de In & Out Ventures. CEO y fundador de incubadora tecnológica (Atina) y mentor en Stanford." },

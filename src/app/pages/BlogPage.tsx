@@ -5,6 +5,7 @@ import svgPaths from "../../imports/svg-hrq2igur1m";
 import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
 import { SEOHead, breadcrumbJsonLd } from "../components/SEOHead";
+import { smoothScrollTo } from "../components/SmoothScrollProvider";
 import {
   getPaginatedPosts,
   sortedBlogPosts,
@@ -205,7 +206,7 @@ export function BlogPage() {
     const safePage = Math.max(1, Math.min(p, totalPages));
     setPage(safePage);
     setSearchParams(safePage === 1 ? {} : { page: String(safePage) });
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    smoothScrollTo(0, 700);
   };
 
   // Sync URL param changes

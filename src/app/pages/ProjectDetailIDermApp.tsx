@@ -18,10 +18,12 @@ import imgIdermBg from "/images/projects/idermapp/iDerm Section small mobile.jpg
 import imgIdermCreme from "/images/projects/idermapp/iDerm Section creme.jpeg";
 import imgDermAppScreens from "/images/projects/idermapp/iDermApp Screens.jpg";
 import imgBgSpecialists from "/images/projects/idermapp/bg specialists.jpg";
+import imgDoctorMariaRuiz from "/images/projects/idermapp/doctor-maria-ruiz.png";
+import imgDoctorElenaOrtiz from "/images/projects/idermapp/doctor-elena-ortiz.png";
+import imgDoctorCarlosVega from "/images/projects/idermapp/doctor-carlos-vega.png";
 import imgCardCentered from "/images/projects/idermapp/Card centered.svg";
 import imgIdermMobileSection from "/images/projects/idermapp/iDerm APP mobile section.jpg";
 import imgIdermResume from "/images/projects/idermapp/iDermApp Resume IMG.jpg";
-import imgIdermUser from "/images/projects/idermapp/iDermApp User IMG.jpg";
 import imgAvatarPatient from "/images/projects/idermapp/usuario-idermapp.jpg";
 // Image placeholders - replace with actual assets in /public/images/
 const imgChangeThis1 = "/images/placeholder-gray.svg";
@@ -43,6 +45,7 @@ type HangingSpecialistCardData = {
   name: string;
   role: string;
   image: string;
+  backgroundColor: string;
   baseAngle: number;
   tapeColor: string;
   positionClass: string;
@@ -54,7 +57,8 @@ const hangingSpecialists: HangingSpecialistCardData[] = [
     id: "specialist-left",
     name: "Dra. Maria Ruiz",
     role: "Dermatologia clinica",
-    image: imgAvatarPatient,
+    image: imgDoctorMariaRuiz,
+    backgroundColor: "#cfe8ff",
     baseAngle: -9,
     tapeColor: "#e3653e",
     positionClass:
@@ -65,7 +69,8 @@ const hangingSpecialists: HangingSpecialistCardData[] = [
     id: "specialist-center",
     name: "Dra. Elena Ortiz",
     role: "Teledermatologia",
-    image: imgIdermUser,
+    image: imgDoctorElenaOrtiz,
+    backgroundColor: "#d8f1ea",
     baseAngle: 0,
     tapeColor: "#ec6b3d",
     positionClass:
@@ -76,7 +81,8 @@ const hangingSpecialists: HangingSpecialistCardData[] = [
     id: "specialist-right",
     name: "Dr. Carlos Vega",
     role: "Diagnostico preventivo",
-    image: imgIdermCreme,
+    image: imgDoctorCarlosVega,
+    backgroundColor: "#e6defa",
     baseAngle: 10,
     tapeColor: "#e3653e",
     positionClass:
@@ -233,7 +239,8 @@ function PhoneSpecialistPanels() {
           <motion.div
             className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[350px] relative overflow-hidden"
             style={{ backgroundImage: `url(${imgIdermBg})`, backgroundSize: 'cover', backgroundPosition: '50% 50%', backgroundRepeat: 'no-repeat' }}
-            animate={{ backgroundPosition: ["50% 50%", "54% 50%", "50% 50%"] }}
+            whileInView={{ backgroundPosition: ["50% 50%", "54% 50%", "50% 50%"] }}
+            viewport={{ once: false, amount: 0.35 }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
           {/* Specialist grid */}
@@ -588,7 +595,11 @@ function HangingSpecialistCard({
           type="button"
           aria-label={`${specialist.name}, ${specialist.role}`}
           className={`relative mt-[72px] h-[332px] w-[252px] max-md:h-[304px] max-md:w-[232px] overflow-hidden rounded-[28px] border-[6px] border-white bg-[#191e25] text-left shadow-[0_28px_44px_rgba(25,30,37,0.26)] outline-none ${tilt.grabbing ? "cursor-grabbing" : "cursor-grab"}`}
-          style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+          style={{
+            transformStyle: "preserve-3d",
+            willChange: "transform",
+            backgroundColor: specialist.backgroundColor,
+          }}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={releaseDrag}
@@ -732,7 +743,8 @@ function NotificationStackCard() {
 
           <motion.span
             className="absolute -top-[16px] -right-[16px] w-[54px] h-[54px] max-md:-top-[10px] max-md:-right-[10px] max-md:w-[34px] max-md:h-[34px] rounded-full bg-[#ff4d57] text-white flex items-center justify-center font-[800] text-[24px] max-md:text-[16px] shadow-[0px_10px_18px_rgba(255,77,87,0.35)]"
-            animate={{ scale: [1, 1.08, 1] }}
+            whileInView={{ scale: [1, 1.08, 1] }}
+            viewport={{ once: false, amount: 0.7 }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           >
             1

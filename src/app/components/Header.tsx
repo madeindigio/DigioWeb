@@ -797,7 +797,7 @@ export function Header() {
       const id = href.slice(2);
       if (location.pathname === "/") {
         /* Already on home — just need to scroll after menu closes */
-        window.scrollTo({ top: 0 });
+        smoothScrollTo(0, 0, true);
         requestAnimationFrame(() => {
           setMenuOpen(false);
           animatedNavRef.current = false;
@@ -814,7 +814,7 @@ export function Header() {
     }
 
     /* Scroll to top so the new page starts from the beginning */
-    window.scrollTo({ top: 0 });
+    smoothScrollTo(0, 0, true);
 
     /* Wait for React to render the new page, then close the menu */
     requestAnimationFrame(() => {

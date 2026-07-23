@@ -384,11 +384,11 @@ export function ContactoPage() {
       <section className="bg-[#f6f5f3] w-full px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[64px]">
           {/* Title row */}
-          <div className="flex items-end gap-[32px] max-lg:flex-col max-lg:items-start">
-            <h1 className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[100px] tracking-[-3px] leading-[0.9] flex-1 whitespace-pre-line max-lg:text-[72px] max-md:text-[48px] max-md:leading-[0.95]">
+          <div className="flex items-end gap-[32px] max-[1180px]:flex-col max-[1180px]:items-start max-lg:flex-col max-lg:items-start">
+            <h1 className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[100px] tracking-[-3px] leading-[0.9] flex-1 whitespace-pre-line max-[1180px]:text-[84px] max-[1180px]:tracking-[-2.6px] max-lg:text-[72px] max-md:text-[48px] max-md:leading-[0.95]">
               {t("pages.contacto.title")}
             </h1>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[24px] tracking-[0.48px] leading-[1.35] w-[370px] shrink-0 max-lg:w-full max-lg:max-w-[480px] max-md:text-[18px]">
+            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[24px] tracking-[0.48px] leading-[1.35] w-[370px] shrink-0 max-[1180px]:w-full max-[1180px]:max-w-[480px] max-[1180px]:text-[20px] max-lg:w-full max-lg:max-w-[480px] max-md:text-[18px]">
               {t("pages.contacto.subtitle")}
             </p>
           </div>

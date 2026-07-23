@@ -51,6 +51,7 @@ function getVisibleHeaderHeight() {
 
 function scheduleLenisResize() {
   if (!_lenis) return;
+  if (typeof document !== "undefined" && document.visibilityState !== "visible") return;
   if (_resizeRafId !== null || _resizeIdleId !== null || _resizeTimeoutId !== null) return;
 
   const runResize = () => {
@@ -230,7 +231,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       topForcedRef.current = false;
       requestAnimationFrame(() => {
         resizeSmoothScroll();
-        scheduleResizeSeries([220, 700, 1300]);
+        scheduleResizeSeries([320, 980]);
       });
     }
   }, [isOverlayActive, phase]);
@@ -256,7 +257,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           resizeSmoothScroll();
-          scheduleResizeSeries([140, 420, 900, 1600]);
+          scheduleResizeSeries([280, 820]);
         });
       });
 

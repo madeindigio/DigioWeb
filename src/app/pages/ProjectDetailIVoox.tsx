@@ -99,16 +99,60 @@ function IntroSection() {
    3. MOBILE SECTION — Full-width image
    ============================================================ */
 function MobileBannerSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isVisibleRef = useRef(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const syncPlayback = () => {
+      const video = videoRef.current;
+      if (!video) return;
+
+      if (isVisibleRef.current && document.visibilityState === "visible") {
+        void video.play().catch(() => {
+          // Autoplay can be blocked in some browsers; fallback image/state remains valid.
+        });
+        return;
+      }
+
+      video.pause();
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisibleRef.current = Boolean(entries[0]?.isIntersecting);
+        syncPlayback();
+      },
+      { root: null, rootMargin: "20% 0px 20% 0px", threshold: 0 },
+    );
+
+    const onVisibilityChange = () => {
+      syncPlayback();
+    };
+
+    observer.observe(section);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, []);
+
   return (
-    <section className="bg-white w-full">
+    <section ref={sectionRef} className="bg-white w-full">
       <div className="px-[56px] max-md:px-[24px]">
         <div className="max-w-[1400px] mx-auto">
           <div className="w-full h-[600px] max-lg:h-[420px] max-md:h-[280px] relative overflow-hidden">
             <video
-              autoPlay
+              ref={videoRef}
               loop
               muted
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover"
               src="https://digio.es/sites/default/files/2024-06/iVoox%20Digio%20Video.mp4"
             />
@@ -166,7 +210,9 @@ function PhonePodcastPanels() {
   function LottiePodcastSlider() {
     const containerRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
+    const animationRef = useRef<AnimationItem | null>(null);
     const [shouldLoad, setShouldLoad] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
@@ -187,21 +233,34 @@ function PhonePodcastPanels() {
     }, []);
 
     useEffect(() => {
+      const trigger = triggerRef.current;
+      if (!trigger) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          setIsVisible(Boolean(entries[0]?.isIntersecting));
+        },
+        { rootMargin: "25% 0px 25% 0px", threshold: 0 },
+      );
+
+      observer.observe(trigger);
+      return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
       if (!shouldLoad) return;
 
       const el = containerRef.current;
       if (!el) return;
 
       let cancelled = false;
-      let anim: AnimationItem | null = null;
-
       Promise.all([fetch(IVOOX_PODCAST_LOTTIE_URL), import("lottie-web")])
         .then(async ([res, lottieModule]) => {
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
           if (cancelled) return;
 
-          anim = lottieModule.default.loadAnimation({
+          animationRef.current = lottieModule.default.loadAnimation({
             container: el,
             renderer: "svg",
             loop: true,
@@ -220,9 +279,33 @@ function PhonePodcastPanels() {
 
       return () => {
         cancelled = true;
-        anim?.destroy();
+        animationRef.current?.destroy();
+        animationRef.current = null;
       };
     }, [shouldLoad]);
+
+    useEffect(() => {
+      const syncPlayback = () => {
+        const anim = animationRef.current;
+        if (!anim) return;
+        if (isVisible && document.visibilityState === "visible") {
+          anim.play();
+          return;
+        }
+        anim.pause();
+      };
+
+      const onVisibilityChange = () => {
+        syncPlayback();
+      };
+
+      document.addEventListener("visibilitychange", onVisibilityChange);
+      syncPlayback();
+
+      return () => {
+        document.removeEventListener("visibilitychange", onVisibilityChange);
+      };
+    }, [isVisible, isReady]);
 
     return (
       <div ref={triggerRef} className="absolute inset-0">
@@ -291,6 +374,7 @@ function MetroImageSection() {
   const animationRef = useRef<AnimationItem | null>(null);
   const hasStartedRef = useRef(false);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -304,6 +388,21 @@ function MetroImageSection() {
         observer.disconnect();
       },
       { rootMargin: "320px 0px", threshold: 0.01 },
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const target = triggerRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(Boolean(entries[0]?.isIntersecting));
+      },
+      { rootMargin: "20% 0px 20% 0px", threshold: 0 },
     );
 
     observer.observe(target);
@@ -372,6 +471,33 @@ function MetroImageSection() {
       animationRef.current = null;
     };
   }, [shouldLoad]);
+
+  useEffect(() => {
+    const syncPlayback = () => {
+      const anim = animationRef.current;
+      if (!anim) return;
+
+      if (isVisible && document.visibilityState === "visible") {
+        if (hasStartedRef.current) {
+          anim.play();
+        }
+        return;
+      }
+
+      anim.pause();
+    };
+
+    const onVisibilityChange = () => {
+      syncPlayback();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    syncPlayback();
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [isVisible, isReady]);
 
   return (
     <section className="bg-white w-full">

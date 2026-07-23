@@ -40,7 +40,7 @@ function MemberCard({
       </div>
 
       {/* Description */}
-      <LangText as="p" stagger={stagger + 2} className="font-['Manrope',sans-serif] font-[600] text-[#e2dfda] text-[16px] leading-[normal] max-md:text-[14px]">
+      <LangText as="p" stagger={stagger + 2} className="font-['Manrope',sans-serif] font-[500] text-[#e2dfda] text-[16px] leading-[normal] max-md:text-[14px]">
         {t(`pages.sobreDigio.team.members.${memberKey}.desc`)}
       </LangText>
     </div>
@@ -66,7 +66,7 @@ function AdvisorCard({
         {t(`pages.sobreDigio.team.advisors.${advisorKey}.name`)}
       </LangText>
 
-      <LangText as="p" stagger={stagger + 1} className="font-['Manrope',sans-serif] font-[600] text-[#e2dfda] text-[16px] leading-[normal] max-md:text-[14px]">
+      <LangText as="p" stagger={stagger + 1} className="font-['Manrope',sans-serif] font-[500] text-[#e2dfda] text-[16px] leading-[normal] max-md:text-[14px]">
         {t(`pages.sobreDigio.team.advisors.${advisorKey}.desc`)}
       </LangText>
     </div>

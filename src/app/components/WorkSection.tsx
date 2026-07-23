@@ -289,7 +289,6 @@ export function CardHoverOverlay({
     const ro = new ResizeObserver(scheduleMeasure);
     ro.observe(container);
     window.addEventListener("resize", scheduleMeasure);
-    window.addEventListener("scroll", scheduleMeasure, { passive: true });
 
     container.addEventListener("pointerenter", onEnter);
     container.addEventListener("pointermove", onMove);
@@ -298,7 +297,6 @@ export function CardHoverOverlay({
     return () => {
       ro.disconnect();
       window.removeEventListener("resize", scheduleMeasure);
-      window.removeEventListener("scroll", scheduleMeasure);
       container.removeEventListener("pointerenter", onEnter);
       container.removeEventListener("pointermove", onMove);
       container.removeEventListener("pointerleave", onLeave);
@@ -475,7 +473,6 @@ function FullWidthCard({
             className={`absolute inset-0 w-full h-full ${imgClassName}`}
             src={image}
             loading={eager ? "eager" : "lazy"}
-            fetchPriority={eager ? "high" : "auto"}
             decoding="async"
           />
         )}

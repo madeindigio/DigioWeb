@@ -22,29 +22,61 @@ function VideoWithFallback({
   poster: string;
   alt: string;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(Boolean(entries[0]?.isIntersecting));
+      },
+      { rootMargin: "20% 0px 20% 0px", threshold: 0.01 },
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const onCanPlay = () => {
-      video.play().then(() => setVideoReady(true)).catch(() => setVideoFailed(true));
-    };
+    const onCanPlay = () => setVideoReady(true);
     const onError = () => setVideoFailed(true);
+
+    const syncPlayback = () => {
+      if (videoFailed) return;
+      if (isVisible && document.visibilityState === "visible") {
+        video.play().catch(() => undefined);
+        return;
+      }
+      video.pause();
+    };
+
+    const onVisibilityChange = () => {
+      syncPlayback();
+    };
 
     video.addEventListener("canplaythrough", onCanPlay);
     video.addEventListener("error", onError);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    syncPlayback();
+
     return () => {
       video.removeEventListener("canplaythrough", onCanPlay);
       video.removeEventListener("error", onError);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
-  }, []);
+  }, [isVisible, videoFailed]);
 
   return (
-    <>
+    <div ref={containerRef} className="absolute inset-0">
       {/* Fallback image — always rendered, hidden once video plays */}
       <img
         alt={alt}
@@ -61,14 +93,13 @@ function VideoWithFallback({
             videoReady ? "opacity-100" : "opacity-0"
           }`}
           src={src}
-          autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
         />
       )}
-    </>
+    </div>
   );
 }
 
@@ -870,8 +901,11 @@ function StatCardBubbles({ value, label }: { value: string; label: string }) {
               border: `1px solid ${BUBBLE_BORDER}`,
               transform: "translateX(-50%)",
             }}
-            animate={{ y: [0, -(420 + b.size)] }}
-            transition={{ duration: b.duration, delay: b.delay, repeat: Infinity, ease: "linear" }}
+            animate={isHovered ? { y: [0, -(420 + b.size)] } : { y: 0 }}
+            transition={isHovered
+              ? { duration: b.duration, delay: b.delay, repeat: Infinity, ease: "linear" }
+              : { duration: 0.25, ease: "easeOut" }
+            }
           >
             {b.size >= 28 && <UserSilhouette size={b.size} />}
           </motion.div>
@@ -970,7 +1004,7 @@ function StatsSection() {
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] pb-[100px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
-        <div className="max-w-[1400px] mx-auto flex gap-[40px] items-start max-lg:flex-col max-lg:gap-[48px]">
+        <div className="max-w-[1400px] mx-auto flex gap-[40px] items-start max-lg:flex-col max-lg:items-stretch max-lg:gap-[48px]">
           {/* Text column */}
           <div className="flex-1 flex flex-col gap-[24px] min-w-0">
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[normal] font-[700]">
@@ -985,7 +1019,7 @@ function StatsSection() {
             </div>
           </div>
           {/* Stats column */}
-          <div className="flex-1 flex flex-col gap-[32px] min-w-0">
+          <div className="flex-1 flex flex-col gap-[32px] min-w-0 max-lg:w-full max-md:mx-[-24px] max-md:w-[calc(100%+48px)]">
             <StatCard value={t("pages.symposium.stat1Value")} label={t("pages.symposium.stat1Label")} showLogoHover />
             <StatCardEvents value={t("pages.symposium.stat2Value")} label={t("pages.symposium.stat2Label")} />
             <StatCardBubbles value={t("pages.symposium.stat3Value")} label={t("pages.symposium.stat3Label")} />
@@ -1077,6 +1111,14 @@ function UniversitySliderSection() {
   const lastPointerX = useRef(0);
   const lastPointerTime = useRef(0);
   const inertiaRaf = useRef(0);
+
+  useEffect(() => {
+    return () => {
+      if (inertiaRaf.current) {
+        cancelAnimationFrame(inertiaRaf.current);
+      }
+    };
+  }, []);
 
   const onPointerDown = useCallback((e: React.PointerEvent) => {
     const track = trackRef.current;

@@ -89,10 +89,31 @@ function IntroSection() {
    3. ROOM IMAGE — Interior with devices
    ============================================================ */
 function RoomImageSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(Boolean(entries[0]?.isIntersecting));
+      },
+      { rootMargin: "20% 0px 20% 0px", threshold: 0.01 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="w-full px-[56px] max-md:px-[24px]">
       <div className="max-w-[1400px] mx-auto">
-        <div className="relative w-full h-[744px] max-lg:h-[500px] max-md:h-[300px] overflow-hidden">
+        <div
+          ref={sectionRef}
+          className="relative w-full h-[744px] max-lg:h-[500px] max-md:h-[300px] overflow-hidden"
+        >
           <img alt="Roomonitor en habitación" className="absolute inset-0 w-full h-full object-cover" src={imgRoom} />
 
           {/* Roomonitor device overlay — on the dark wooden wall, above the side window */}
@@ -119,6 +140,7 @@ function RoomImageSection() {
                   style={{
                     animation: `roomwave 2.4s ease-out infinite`,
                     animationDelay: `${i * 0.8}s`,
+                    animationPlayState: isVisible ? "running" : "paused",
                   }}
                 />
               ))}
@@ -185,6 +207,49 @@ function TransformationSection() {
    ============================================================ */
 function HardwareSection() {
   const { t } = useTranslation();
+  const videoWrapRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+
+  useEffect(() => {
+    const wrap = videoWrapRef.current;
+    if (!wrap) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVideoVisible(Boolean(entries[0]?.isIntersecting));
+      },
+      { rootMargin: "20% 0px 20% 0px", threshold: 0.01 },
+    );
+
+    observer.observe(wrap);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const syncPlayback = () => {
+      if (isVideoVisible && document.visibilityState === "visible") {
+        video.play().catch(() => undefined);
+        return;
+      }
+      video.pause();
+    };
+
+    const onVisibilityChange = () => {
+      syncPlayback();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    syncPlayback();
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [isVideoVisible]);
+
   return (
     <section className="bg-white w-full">
       <div className="px-[56px] pb-[120px] max-lg:pb-[80px] max-md:px-[24px] max-md:pb-[48px]">
@@ -192,11 +257,15 @@ function HardwareSection() {
           {/* Two cards: chip + device */}
           <div className="flex gap-[40px] items-start max-md:flex-col max-md:gap-[24px]">
             {/* Chip photo */}
-            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] max-md:w-full bg-[#e8dfdf] relative overflow-hidden">
+            <div
+              ref={videoWrapRef}
+              className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] max-md:w-full bg-[#e8dfdf] relative overflow-hidden"
+            >
               <video
-                autoPlay
+                ref={videoRef}
                 muted
                 playsInline
+                preload="metadata"
                 onEnded={(event) => {
                   const video = event.currentTarget;
                   video.pause();
@@ -247,16 +316,53 @@ function MacBookSection() {
    7. APP SECTION — Property management + mobile + desktop
    ============================================================ */
 function LottieRoomonitorButton() {
+  const triggerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<AnimationItem | null>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [hasFailed, setHasFailed] = useState(false);
 
   useEffect(() => {
+    const trigger = triggerRef.current;
+    if (!trigger) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        setShouldLoad(true);
+        observer.disconnect();
+      },
+      { rootMargin: "280px 0px", threshold: 0.01 },
+    );
+
+    observer.observe(trigger);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const trigger = triggerRef.current;
+    if (!trigger) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(Boolean(entries[0]?.isIntersecting));
+      },
+      { rootMargin: "20% 0px 20% 0px", threshold: 0 },
+    );
+
+    observer.observe(trigger);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
+
     const el = containerRef.current;
     if (!el) return;
 
     let cancelled = false;
-    let anim: AnimationItem | null = null;
     const failSafeId = window.setTimeout(() => {
       if (!cancelled) setHasFailed(true);
     }, 2500);
@@ -271,7 +377,7 @@ function LottieRoomonitorButton() {
         setHasFailed(false);
         setIsReady(true);
 
-        anim = lottieModule.default.loadAnimation({
+        animationRef.current = lottieModule.default.loadAnimation({
           container: el,
           renderer: "svg",
           loop: true,
@@ -289,12 +395,36 @@ function LottieRoomonitorButton() {
     return () => {
       cancelled = true;
       window.clearTimeout(failSafeId);
-      anim?.destroy();
+      animationRef.current?.destroy();
+      animationRef.current = null;
     };
-  }, []);
+  }, [shouldLoad]);
+
+  useEffect(() => {
+    const syncPlayback = () => {
+      const anim = animationRef.current;
+      if (!anim) return;
+      if (isVisible && document.visibilityState === "visible") {
+        anim.play();
+        return;
+      }
+      anim.pause();
+    };
+
+    const onVisibilityChange = () => {
+      syncPlayback();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    syncPlayback();
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [isVisible, isReady]);
 
   return (
-    <>
+    <div ref={triggerRef} className="absolute inset-0">
       <img
         alt="Roomonitor mobile section"
         className="absolute inset-0 w-full h-full object-cover"
@@ -308,12 +438,28 @@ function LottieRoomonitorButton() {
           }`}
         />
       )}
-    </>
+    </div>
   );
 }
 
 function AppSection() {
   const { t } = useTranslation();
+  const desktopRectRef = useRef<DOMRect | null>(null);
+  const tiltRafRef = useRef(0);
+  const renderedTiltRef = useRef({
+    rotateX: 0,
+    rotateY: 0,
+    glowX: 50,
+    glowY: 50,
+    glowOpacity: 0,
+  });
+  const pendingTiltRef = useRef({
+    rotateX: 0,
+    rotateY: 0,
+    glowX: 50,
+    glowY: 50,
+    glowOpacity: 0,
+  });
   const [desktopTilt, setDesktopTilt] = useState({
     rotateX: 0,
     rotateY: 0,
@@ -322,31 +468,68 @@ function AppSection() {
     glowOpacity: 0,
   });
 
+  useEffect(() => {
+    return () => {
+      if (tiltRafRef.current) {
+        cancelAnimationFrame(tiltRafRef.current);
+      }
+    };
+  }, []);
+
+  const scheduleTiltUpdate = () => {
+    if (tiltRafRef.current) return;
+    tiltRafRef.current = requestAnimationFrame(() => {
+      tiltRafRef.current = 0;
+      const next = pendingTiltRef.current;
+      const prev = renderedTiltRef.current;
+      if (
+        Math.abs(next.rotateX - prev.rotateX) < 0.08 &&
+        Math.abs(next.rotateY - prev.rotateY) < 0.08 &&
+        Math.abs(next.glowX - prev.glowX) < 0.2 &&
+        Math.abs(next.glowY - prev.glowY) < 0.2 &&
+        Math.abs(next.glowOpacity - prev.glowOpacity) < 0.02
+      ) {
+        return;
+      }
+
+      renderedTiltRef.current = next;
+      setDesktopTilt(next);
+    });
+  };
+
   const handleDesktopMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
+    const rect = desktopRectRef.current ?? e.currentTarget.getBoundingClientRect();
+    desktopRectRef.current = rect;
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
 
     const rotateY = (x - 0.5) * 12;
     const rotateX = (0.5 - y) * 10;
 
-    setDesktopTilt({
+    pendingTiltRef.current = {
       rotateX,
       rotateY,
       glowX: x * 100,
       glowY: y * 100,
       glowOpacity: 0.32,
-    });
+    };
+    scheduleTiltUpdate();
+  };
+
+  const handleDesktopMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    desktopRectRef.current = e.currentTarget.getBoundingClientRect();
   };
 
   const handleDesktopMouseLeave = () => {
-    setDesktopTilt({
+    desktopRectRef.current = null;
+    pendingTiltRef.current = {
       rotateX: 0,
       rotateY: 0,
       glowX: 50,
       glowY: 50,
       glowOpacity: 0,
-    });
+    };
+    scheduleTiltUpdate();
   };
 
   return (
@@ -380,6 +563,7 @@ function AppSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#e8dfdf] to-[#f6e6cd]" />
             <div
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[780px] max-lg:w-[610px] max-md:w-[360px] aspect-[1448/1040]"
+              onMouseEnter={handleDesktopMouseEnter}
               onMouseMove={handleDesktopMouseMove}
               onMouseLeave={handleDesktopMouseLeave}
             >

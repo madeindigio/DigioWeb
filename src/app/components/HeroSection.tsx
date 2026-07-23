@@ -48,13 +48,13 @@ export function HeroSection() {
             <SvgBgHeroImg />
           </div>
         </div>
-        <div className="relative z-10 flex items-end justify-between gap-[40px] max-w-[1400px] w-full mx-auto max-lg:flex-col max-lg:items-start max-lg:gap-[24px] max-lg:pt-[40px]">
-          <h1 className="flex flex-col font-['GT_Ultra_Median',sans-serif] text-[#e2dfda] text-[140px] tracking-[-5.6px] leading-[0.9] max-w-[952px] max-lg:text-[80px] max-lg:tracking-[-3px] max-md:text-[48px] max-md:tracking-[-1.92px] m-0">
+        <div className="relative z-10 flex items-end justify-between gap-[40px] max-w-[1400px] w-full mx-auto max-[1180px]:flex-col max-[1180px]:items-start max-[1180px]:gap-[24px] max-[1180px]:pt-[40px] max-lg:flex-col max-lg:items-start max-lg:gap-[24px] max-lg:pt-[40px]">
+          <h1 className="flex flex-col font-['GT_Ultra_Median',sans-serif] text-[#e2dfda] text-[140px] tracking-[-5.6px] leading-[0.9] max-w-[952px] max-[1180px]:text-[120px] max-[1180px]:tracking-[-4.2px] max-lg:text-[80px] max-lg:tracking-[-3px] max-md:text-[48px] max-md:tracking-[-1.92px] m-0">
             <LangText as="span" stagger={0} className="mb-0 block">{t("hero.line1")}</LangText>
             <LangText as="span" stagger={1} className="block">is our code_</LangText>
           </h1>
           <div className="relative flex flex-col items-start gap-[24px]">
-            <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] font-[600] leading-[1.35] text-[#e2dfda] text-[24px] tracking-[0.48px] max-w-[242px] max-lg:text-[18px] max-md:text-[16px] max-lg:max-w-[400px]">
+            <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] font-[500] leading-[1.35] text-[#e2dfda] text-[24px] tracking-[0.48px] max-w-[242px] max-[1180px]:max-w-[400px] max-[1180px]:text-[20px] max-lg:text-[18px] max-md:text-[16px] max-lg:max-w-[400px]">
               {t("hero.subtitle")}
             </LangText>
           </div>

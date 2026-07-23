@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirigiendo...</title>
+    <script>
+      (function () {
+        var path = window.location.pathname || "/";
+        var search = window.location.search || "";
+        var hash = window.location.hash || "";
+
+        var isLegacyLangRoot = path === "/es" || path === "/es/" || path === "/en" || path === "/en/";
+        var hasLegacyLangPrefix = path.indexOf("/es/") === 0 || path.indexOf("/en/") === 0;
+
+        if (isLegacyLangRoot) {
+          window.location.replace("/" + search + hash);
+          return;
+        }
+
+        if (hasLegacyLangPrefix) {
+          var withoutLang = path.replace(/^\/(es|en)\//, "/");
+          window.location.replace(withoutLang + search + hash);
+          return;
+        }
+
+        window.location.replace("/");
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirigiendo...</p>
+  </body>
+</html>

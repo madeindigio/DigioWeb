@@ -43,6 +43,7 @@ export function AboutSectors() {
   const stepRefs = useRef<Array<HTMLElement | null>>([]);
   const sectionRef = useRef<HTMLElement | null>(null);
   const illustrationLayerRef = useRef<HTMLDivElement | null>(null);
+  const activeVerticalRef = useRef<VerticalKey>(sectorOrder[0]);
 
   const sectors = useMemo(
     () =>
@@ -66,8 +67,25 @@ export function AboutSectors() {
   useEffect(() => {
     const cards = stepRefs.current.filter(Boolean) as HTMLElement[];
     if (cards.length === 0) return;
+    let scrollRafId = 0;
+
+    const setActiveIfChanged = (key: VerticalKey) => {
+      if (activeVerticalRef.current === key) return;
+      activeVerticalRef.current = key;
+      setActiveVertical(key);
+    };
 
     const syncActiveFromViewport = () => {
+      const section = sectionRef.current;
+      if (section) {
+        const sectionRect = section.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const isNearViewport =
+          sectionRect.bottom > -viewportHeight * 0.25 &&
+          sectionRect.top < viewportHeight * 1.25;
+        if (!isNearViewport) return;
+      }
+
       const centerY = window.innerHeight / 2;
       let closest: { key: VerticalKey; distance: number } | null = null;
 
@@ -83,8 +101,16 @@ export function AboutSectors() {
       });
 
       if (closest) {
-        setActiveVertical(closest.key);
+        setActiveIfChanged(closest.key);
       }
+    };
+
+    const scheduleSyncActiveFromViewport = () => {
+      if (scrollRafId) return;
+      scrollRafId = window.requestAnimationFrame(() => {
+        scrollRafId = 0;
+        syncActiveFromViewport();
+      });
     };
 
     const observer = new IntersectionObserver(
@@ -97,7 +123,7 @@ export function AboutSectors() {
             setVisibleMobileCards((prev) =>
               prev[key] ? prev : { ...prev, [key]: true },
             );
-            setActiveVertical(key);
+            setActiveIfChanged(key);
           }
         });
       },
@@ -112,13 +138,16 @@ export function AboutSectors() {
     });
 
     syncActiveFromViewport();
-    window.addEventListener("scroll", syncActiveFromViewport, { passive: true });
-    window.addEventListener("resize", syncActiveFromViewport);
+    window.addEventListener("scroll", scheduleSyncActiveFromViewport, { passive: true });
+    window.addEventListener("resize", scheduleSyncActiveFromViewport);
 
     return () => {
-      window.removeEventListener("scroll", syncActiveFromViewport);
-      window.removeEventListener("resize", syncActiveFromViewport);
+      window.removeEventListener("scroll", scheduleSyncActiveFromViewport);
+      window.removeEventListener("resize", scheduleSyncActiveFromViewport);
       observer.disconnect();
+      if (scrollRafId) {
+        window.cancelAnimationFrame(scrollRafId);
+      }
     };
   }, [isLargeScreen, sectors.length]);
 

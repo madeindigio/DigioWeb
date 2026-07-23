@@ -407,17 +407,66 @@ function QrPlatformSection() {
    ============================================================ */
 function QrPanelsSection() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % qrMaskedSlides.length);
-    }, 2600);
+    let intervalId: number | null = null;
+    let isVisible = false;
 
-    return () => window.clearInterval(intervalId);
+    const stopInterval = () => {
+      if (intervalId === null) return;
+      window.clearInterval(intervalId);
+      intervalId = null;
+    };
+
+    const startInterval = () => {
+      if (intervalId !== null) return;
+      intervalId = window.setInterval(() => {
+        setActiveSlide((current) => (current + 1) % qrMaskedSlides.length);
+      }, 2600);
+    };
+
+    const syncInterval = () => {
+      if (isVisible && document.visibilityState === "visible") {
+        startInterval();
+        return;
+      }
+      stopInterval();
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisible = Boolean(entries[0]?.isIntersecting);
+        syncInterval();
+      },
+      {
+        root: null,
+        rootMargin: "35% 0px 35% 0px",
+        threshold: 0,
+      }
+    );
+
+    const section = sectionRef.current;
+    if (section) {
+      observer.observe(section);
+    }
+
+    const onVisibilityChange = () => {
+      syncInterval();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    syncInterval();
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      stopInterval();
+    };
   }, []);
 
   return (
-    <section className="bg-white w-full">
+    <section className="bg-white w-full" ref={sectionRef}>
       <div className="px-[56px] pt-[56px] pb-[56px] max-md:px-[24px] max-md:pt-[56px] max-md:pb-[56px]">
         <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
@@ -456,6 +505,7 @@ function HandAppSection() {
   const scannerAreaRef = useRef<HTMLDivElement>(null);
   const targetParallaxRef = useRef(0);
   const currentParallaxRef = useRef(0);
+  const renderedParallaxRef = useRef(0);
   const animRafRef = useRef(0);
   const [scannerParallaxY, setScannerParallaxY] = useState(0);
 
@@ -475,7 +525,10 @@ function HandAppSection() {
       const next = current + (target - current) * 0.28;
 
       currentParallaxRef.current = next;
-      setScannerParallaxY(next);
+      if (Math.abs(next - renderedParallaxRef.current) > 0.2) {
+        renderedParallaxRef.current = next;
+        setScannerParallaxY(next);
+      }
 
       if (Math.abs(target - next) > 0.1) {
         animRafRef.current = requestAnimationFrame(animateToTarget);

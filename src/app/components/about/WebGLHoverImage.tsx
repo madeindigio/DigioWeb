@@ -97,9 +97,21 @@ interface WebGLHoverImageProps {
 export function WebGLHoverImage({ src, fallbackText, alt, className }: WebGLHoverImageProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const requestRef = useRef<number>(undefined);
+  const requestRef = useRef<number>(0);
   const [hovered, setHovered] = useState(false);
   const hoverValRef = useRef(0);
+  const hoveredRef = useRef(false);
+  const inViewRef = useRef(false);
+  const isLoadedRef = useRef(false);
+  const hasDrawnBaseRef = useRef(false);
+  const startLoopRef = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    hoveredRef.current = hovered;
+    if (startLoopRef.current) {
+      startLoopRef.current();
+    }
+  }, [hovered]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -152,10 +164,9 @@ export function WebGLHoverImage({ src, fallbackText, alt, className }: WebGLHove
     const image = new Image();
     image.crossOrigin = "anonymous";
     
-    let isLoaded = false;
     
     image.onload = () => {
-      isLoaded = true;
+      isLoadedRef.current = true;
       gl.bindTexture(gl.TEXTURE_2D, texture);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -164,6 +175,9 @@ export function WebGLHoverImage({ src, fallbackText, alt, className }: WebGLHove
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
       
       gl.uniform2f(uImageResLoc, image.width, image.height);
+      if (startLoopRef.current) {
+        startLoopRef.current();
+      }
     };
     
     image.onerror = () => {
@@ -187,6 +201,11 @@ export function WebGLHoverImage({ src, fallbackText, alt, className }: WebGLHove
         canvas.style.height = height + "px";
         gl.viewport(0, 0, canvas.width, canvas.height);
         gl.uniform2f(uResLoc, canvas.width, canvas.height);
+        // Resizing clears the drawing buffer; request a fresh base frame.
+        hasDrawnBaseRef.current = false;
+        if (startLoopRef.current) {
+          startLoopRef.current();
+        }
       }
     };
     
@@ -195,40 +214,96 @@ export function WebGLHoverImage({ src, fallbackText, alt, className }: WebGLHove
 
     let startTime = performance.now();
 
+    const stopLoop = () => {
+      if (!requestRef.current) return;
+      cancelAnimationFrame(requestRef.current);
+      requestRef.current = 0;
+    };
+
     const render = (time: number) => {
       // Smooth lerp for hover 
-      const targetHover = hovered ? 1 : 0;
+      const targetHover = hoveredRef.current ? 1 : 0;
       hoverValRef.current += (targetHover - hoverValRef.current) * 0.1;
 
-      // Only re-draw if we either have an active visual effect or hover state is moving
-      // This saves battery/perf when completely idle
-      if (isLoaded && (hoverValRef.current > 0.001 || targetHover > 0)) {
+      const hasInteractiveAnimation =
+        inViewRef.current && (hoverValRef.current > 0.001 || targetHover > 0.001);
+
+      // Only draw when visible and animating, plus one base draw when needed.
+      if (isLoadedRef.current && hasInteractiveAnimation) {
           gl.uniform1f(uHoverLoc, hoverValRef.current);
           gl.uniform1f(uTimeLoc, (time - startTime) / 1000);
 
           gl.clearColor(0, 0, 0, 0);
           gl.clear(gl.COLOR_BUFFER_BIT);
           gl.drawArrays(gl.TRIANGLES, 0, 6);
-      } else if (isLoaded && hoverValRef.current <= 0.001) {
+          hasDrawnBaseRef.current = false;
+      } else if (isLoadedRef.current && !hasDrawnBaseRef.current) {
           // One final stationary draw for clean base state
           gl.uniform1f(uHoverLoc, 0);
           gl.uniform1f(uTimeLoc, 0);
           gl.clearColor(0, 0, 0, 0);
           gl.clear(gl.COLOR_BUFFER_BIT);
           gl.drawArrays(gl.TRIANGLES, 0, 6);
+          hasDrawnBaseRef.current = true;
       }
 
+      if (hasInteractiveAnimation) {
+        requestRef.current = requestAnimationFrame(render);
+      } else {
+        requestRef.current = 0;
+      }
+    };
+
+    const startLoop = () => {
+      if (requestRef.current) return;
       requestRef.current = requestAnimationFrame(render);
     };
+
+    startLoopRef.current = startLoop;
+
+    const handleVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        stopLoop();
+        return;
+      }
+      if (inViewRef.current) {
+        startLoop();
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const isVisible = entries[0]?.isIntersecting ?? false;
+        inViewRef.current = isVisible;
+        if (!isVisible) {
+          hoveredRef.current = false;
+          hoverValRef.current = 0;
+          stopLoop();
+          return;
+        }
+        startLoop();
+      },
+      { rootMargin: "120px 0px", threshold: 0.01 },
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    document.addEventListener("visibilitychange", handleVisibility);
     
-    requestRef.current = requestAnimationFrame(render);
+    startLoop();
 
     return () => {
       window.removeEventListener("resize", resize);
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      document.removeEventListener("visibilitychange", handleVisibility);
+      observer.disconnect();
+      stopLoop();
+      startLoopRef.current = null;
+      gl.deleteTexture(texture);
       gl.deleteProgram(program);
     };
-  }, [src, hovered, fallbackText]);
+  }, [src, fallbackText]);
 
   return (
     <div
