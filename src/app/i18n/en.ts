@@ -964,6 +964,10 @@ const en = {
       },
       offices: {
         title: "Our offices",
+        copyPhone: "Copy phone",
+        copyEmail: "Copy email",
+        copied: "Copied",
+        copyError: "Could not copy",
         murcia: {
           name: "Murcia",
           address: "Edificio Plazarte, Calle Jose Manuel Sanchez Pedreño, 1, Planta 5 puerta A, 30009 Murcia, Spain.",

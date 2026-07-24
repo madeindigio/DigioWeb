@@ -24,6 +24,26 @@ function ChevronDown({ className = "" }: { className?: string }) {
   );
 }
 
+function CopyIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="9" y="9" width="11" height="11" rx="2" ry="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
 /* ─── Contact Form ─── */
 function ContactForm() {
   const { t } = useTranslation();
@@ -303,6 +323,25 @@ function ContactForm() {
 /* ─── Offices Section ─── */
 function OfficesSection() {
   const { t } = useTranslation();
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">("idle");
+  const [lastCopiedKey, setLastCopiedKey] = useState<string>("");
+
+  const copyValue = async (value: string, valueKey: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopyStatus("copied");
+      setLastCopiedKey(valueKey);
+      window.setTimeout(() => {
+        setCopyStatus("idle");
+      }, 1800);
+    } catch {
+      setCopyStatus("error");
+      setLastCopiedKey(valueKey);
+      window.setTimeout(() => {
+        setCopyStatus("idle");
+      }, 2200);
+    }
+  };
 
   const offices = [
     {
@@ -341,19 +380,73 @@ function OfficesSection() {
                 {office.address}
               </p>
               {(office.phone || office.email) && (
-                <div className="flex flex-col gap-[0px]">
+                <div className="flex flex-col gap-[4px]">
                   {office.phone && (
-                    <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[1.5]">
-                      {office.phone}
-                    </p>
+                    <div className="flex items-center gap-[8px]">
+                      <p className="contact-copyable font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[1.5]">
+                        {office.phone}
+                      </p>
+                      <div className="relative flex items-center">
+                        <button
+                          type="button"
+                          onClick={() => copyValue(office.phone as string, `${office.key}-phone`)}
+                          aria-label={t("pages.contacto.offices.copyPhone")}
+                          className="h-[28px] w-[28px] rounded-full border border-[#191e25]/20 flex items-center justify-center text-[#191e25] hover:border-[#191e25] hover:bg-[#191e25] hover:text-white transition-colors cursor-pointer"
+                        >
+                          <CopyIcon />
+                        </button>
+                        <AnimatePresence>
+                          {copyStatus !== "idle" && lastCopiedKey === `${office.key}-phone` && (
+                            <motion.span
+                              initial={{ opacity: 0, y: 4 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 4 }}
+                              transition={{ duration: 0.2, ease: EASE_SMOOTH }}
+                              className={`absolute left-1/2 -translate-x-1/2 -top-[34px] whitespace-nowrap px-[8px] py-[4px] rounded-[6px] text-[12px] leading-[1.2] font-['Manrope',sans-serif] pointer-events-none ${copyStatus === "copied" ? "bg-[#191e25] text-white" : "bg-[#c7372f] text-white"}`}
+                            >
+                              {copyStatus === "copied"
+                                ? t("pages.contacto.offices.copied")
+                                : t("pages.contacto.offices.copyError")}
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
                   )}
                   {office.email && (
-                    <a
-                      href={`mailto:${office.email}`}
-                      className="font-['Manrope',sans-serif] text-[#583bff] text-[16px] leading-[1.5] hover:underline"
-                    >
-                      {office.email}
-                    </a>
+                    <div className="flex items-center gap-[8px]">
+                      <a
+                        href={`mailto:${office.email}`}
+                        className="contact-copyable font-['Manrope',sans-serif] text-[#583bff] text-[16px] leading-[1.5] hover:underline"
+                      >
+                        {office.email}
+                      </a>
+                      <div className="relative flex items-center">
+                        <button
+                          type="button"
+                          onClick={() => copyValue(office.email as string, `${office.key}-email`)}
+                          aria-label={t("pages.contacto.offices.copyEmail")}
+                          className="h-[28px] w-[28px] rounded-full border border-[#191e25]/20 flex items-center justify-center text-[#191e25] hover:border-[#191e25] hover:bg-[#191e25] hover:text-white transition-colors cursor-pointer"
+                        >
+                          <CopyIcon />
+                        </button>
+                        <AnimatePresence>
+                          {copyStatus !== "idle" && lastCopiedKey === `${office.key}-email` && (
+                            <motion.span
+                              initial={{ opacity: 0, y: 4 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 4 }}
+                              transition={{ duration: 0.2, ease: EASE_SMOOTH }}
+                              className={`absolute left-1/2 -translate-x-1/2 -top-[34px] whitespace-nowrap px-[8px] py-[4px] rounded-[6px] text-[12px] leading-[1.2] font-['Manrope',sans-serif] pointer-events-none ${copyStatus === "copied" ? "bg-[#191e25] text-white" : "bg-[#c7372f] text-white"}`}
+                            >
+                              {copyStatus === "copied"
+                                ? t("pages.contacto.offices.copied")
+                                : t("pages.contacto.offices.copyError")}
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
                   )}
                 </div>
               )}
