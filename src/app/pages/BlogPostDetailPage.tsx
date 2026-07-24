@@ -31,7 +31,7 @@ function ArticleBody({ post }: { post: BlogPost }) {
         <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
           {t(`blog.posts.${post.i18nKey}.excerpt`)}
         </p>
-        <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+        <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
           {t(`blog.posts.${post.i18nKey}.excerpt`)}
         </p>
       </div>
@@ -45,7 +45,7 @@ function ArticleBody({ post }: { post: BlogPost }) {
         {t(`${prefix}.lead`)}
       </p>
       {/* Intro */}
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.intro`)}
       </p>
 
@@ -53,16 +53,16 @@ function ArticleBody({ post }: { post: BlogPost }) {
       <h2 className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] mt-[16px] max-md:text-[24px] max-md:leading-[32px]">
         {t(`${prefix}.h2_1`)}
       </h2>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p1`)}
       </p>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p2`)}
       </p>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p3`)}
       </p>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p4`)}
       </p>
 
@@ -83,13 +83,13 @@ function ArticleBody({ post }: { post: BlogPost }) {
         </div>
       )}
 
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p5`)}
       </p>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p6`)}
       </p>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p7`)}
       </p>
 
@@ -97,16 +97,16 @@ function ArticleBody({ post }: { post: BlogPost }) {
       <h2 className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] mt-[16px] max-md:text-[24px] max-md:leading-[32px]">
         {t(`${prefix}.h2_3`)}
       </h2>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p8`)}
       </p>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p9`)}
       </p>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p10`)}
       </p>
-      <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]">
         {t(`${prefix}.p11`)}
       </p>
     </div>
@@ -138,7 +138,7 @@ function RelatedPostCard({ post }: { post: BlogPost }) {
               {t(`blog.posts.${post.i18nKey}.title`)}
             </p>
           </Link>
-          <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]">
+          <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]">
             {t(`blog.posts.${post.i18nKey}.excerpt`)}
           </p>
         </div>

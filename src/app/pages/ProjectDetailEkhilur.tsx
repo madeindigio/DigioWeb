@@ -205,7 +205,7 @@ function StatementSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.ekhilur.challengeTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.ekhilur.challengeBody")}
               </p>
             </div>
@@ -213,7 +213,7 @@ function StatementSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.ekhilur.workTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.ekhilur.workBody")}
               </p>
             </div>
@@ -244,7 +244,7 @@ function TwinPanelsSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.ekhilur.panelTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.ekhilur.panelBody")}
               </p>
             </div>
@@ -269,7 +269,7 @@ function DataSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.ekhilur.dataTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.ekhilur.dataBody")}
             </p>
           </div>
@@ -404,7 +404,7 @@ function HousesSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[460px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.ekhilur.housesTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] max-w-[520px]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-w-[520px]">
               {t("pages.ekhilur.housesBody")}
             </p>
           </div>
@@ -547,7 +547,7 @@ function InnovationSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[420px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.ekhilur.accessibilityTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] max-w-[520px]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-w-[520px]">
               {t("pages.ekhilur.accessibilityBody")}
             </p>
           </div>
@@ -577,7 +577,7 @@ function DashboardSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.ekhilur.dashboardTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.ekhilur.dashboardBody")}
               </p>
             </div>

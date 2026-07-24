@@ -25,7 +25,7 @@ export function AboutHero() {
           <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
             {t("pages.sobreDigio.hero.heading")}
           </LangText>
-          <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[600] text-[16px] leading-[normal] max-md:text-[14px]">
+          <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[16px] leading-[normal] max-md:text-[14px]">
             {t("pages.sobreDigio.hero.body")}
           </LangText>
         </div>

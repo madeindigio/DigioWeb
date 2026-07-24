@@ -143,7 +143,7 @@ export function ProjectDetailPage() {
               </p>
               {/* Col 2: Description */}
               <div className="flex flex-col gap-[16px] w-[550px] max-lg:w-full shrink-0 max-lg:shrink">
-                <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+                <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                   {description}
                 </p>
               </div>
@@ -179,7 +179,7 @@ export function ProjectDetailPage() {
                   <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                     {t("pages.proyecto.challengeTitle")}
                   </p>
-                  <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+                  <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                     {t("pages.proyecto.challengeBody")}
                   </p>
                 </div>
@@ -187,7 +187,7 @@ export function ProjectDetailPage() {
                   <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                     {t("pages.proyecto.solutionTitle")}
                   </p>
-                  <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+                  <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                     {t("pages.proyecto.solutionBody")}
                   </p>
                 </div>

@@ -23,7 +23,7 @@ import imgOficina from "/images/blog/renovacion-marca-digio/18-oficina.png";
 import imgTotebag from "/images/blog/renovacion-marca-digio/19-totebag-digio.png";
 import imgAgenda from "/images/blog/renovacion-marca-digio/20-agenda.png";
 
-const BODY_TEXT_CLASS = "font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]";
+const BODY_TEXT_CLASS = "font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.6] max-md:text-[15px]";
 
 /* ─── Reusable components ─── */
 

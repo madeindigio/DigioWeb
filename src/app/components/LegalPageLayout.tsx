@@ -89,7 +89,7 @@ export function LegalSection({
 
 export function LegalBody({ children }: { children: ReactNode }) {
   return (
-    <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] font-[600]">
+    <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] font-[500]">
       {children}
     </p>
   );
@@ -97,7 +97,7 @@ export function LegalBody({ children }: { children: ReactNode }) {
 
 export function LegalBulletList({ items }: { items: string[] }) {
   return (
-    <ul className="list-disc pl-[24px] flex flex-col gap-0 font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] font-[600]">
+    <ul className="list-disc pl-[24px] flex flex-col gap-0 font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] font-[500]">
       {items.map((item) => (
         <li key={item}>{item}</li>
       ))}

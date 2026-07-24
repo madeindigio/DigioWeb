@@ -49,7 +49,7 @@ function IntroSection() {
             <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.finsa.introSubtitle")}
             </LangText>
-            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.finsa.introBody")}
             </LangText>
           </div>
@@ -163,7 +163,7 @@ function SecondarySection() {
               <LangText as="p" stagger={1} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.finsa.challengeTitle")}
               </LangText>
-              <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.finsa.challengeBody")}
               </LangText>
             </div>
@@ -171,7 +171,7 @@ function SecondarySection() {
               <LangText as="p" stagger={3} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.finsa.workTitle")}
               </LangText>
-              <LangText as="p" stagger={4} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <LangText as="p" stagger={4} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.finsa.workBody")}
               </LangText>
             </div>
@@ -260,7 +260,7 @@ function AnalysisSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[380px] max-lg:w-full shrink-0 max-lg:text-[32px] max-lg:leading-[40px] max-md:text-[24px] max-md:leading-[32px] whitespace-pre-line">
               {t("pages.finsa.analysisTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[355px] max-lg:w-full shrink-0 max-lg:shrink">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[355px] max-lg:w-full shrink-0 max-lg:shrink">
               {t("pages.finsa.analysisBody")}
             </p>
           </div>
@@ -278,7 +278,7 @@ function AnalysisSection() {
 
             {/* Cloud text aligned right */}
             <div className="flex justify-end">
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full">
                 {t("pages.finsa.cloudBody")}
               </p>
             </div>
@@ -293,7 +293,7 @@ function AnalysisSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full shrink-0 max-lg:text-[32px] max-lg:leading-[40px] max-md:text-[24px] max-md:leading-[32px] whitespace-pre-line">
                 {t("pages.finsa.reportsTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
                 {t("pages.finsa.reportsBody")}
               </p>
             </div>
@@ -322,7 +322,7 @@ function ResultSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] max-lg:text-[32px] max-lg:leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.finsa.resultTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full">
               {t("pages.finsa.resultBody")}
             </p>
           </div>

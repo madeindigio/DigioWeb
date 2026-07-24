@@ -814,7 +814,7 @@ function SuccessCaseCard({
 
         {/* Green text overlay */}
         <div className="absolute right-0 top-0 w-[288px] max-md:w-[220px] h-full bg-[#bbffe8] flex items-center justify-end p-[48px] max-md:p-[24px]">
-          <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] max-md:text-[13px]">
+          <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] max-md:text-[13px]">
             {overlayDescription}
           </p>
         </div>

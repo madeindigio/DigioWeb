@@ -69,7 +69,7 @@ export function BlogSection() {
                   <LangText
                     as="p"
                     stagger={2 + idx * 3}
-                    className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]"
+                    className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]"
                   >
                     <span itemProp="description">
                       {t(`blog.posts.${post.i18nKey}.excerpt`)}

@@ -133,14 +133,14 @@ function ContactForm() {
   };
 
   const inputClass =
-    "w-full h-[56px] px-[16px] bg-white border border-[#c5c5c5] font-['Manrope',sans-serif] text-[16px] text-[#191e25] placeholder:text-[#c0bbb3] outline-none focus:border-[#191e25] transition-colors";
+    "w-full h-[56px] px-[16px] bg-white border border-[#c5c5c5] font-['Manrope',sans-serif] font-[500] text-[16px] text-[#191e25] placeholder:text-[#c0bbb3] outline-none focus:border-[#191e25] transition-colors";
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-[24px]">
       {/* Name + Email row */}
       <div className="flex gap-[24px] max-md:flex-col">
         <div className="flex flex-col gap-[8px] w-full max-w-[354px] max-md:max-w-full">
-          <label className="font-['Manrope',sans-serif] text-[16px] text-black">
+          <label className="font-['Manrope',sans-serif] font-[500] text-[16px] text-black">
             {t("pages.contacto.form.name")}
           </label>
           <input
@@ -153,7 +153,7 @@ function ContactForm() {
           />
         </div>
         <div className="flex flex-col gap-[8px] w-full max-w-[354px] max-md:max-w-full">
-          <label className="font-['Manrope',sans-serif] text-[16px] text-black">
+          <label className="font-['Manrope',sans-serif] font-[500] text-[16px] text-black">
             {t("pages.contacto.form.email")}
           </label>
           <input
@@ -169,7 +169,7 @@ function ContactForm() {
 
       {/* Reason dropdown */}
       <div className="flex flex-col gap-[8px] w-full max-w-[732px] max-md:max-w-full">
-        <label className="font-['Manrope',sans-serif] text-[16px] text-black">
+        <label className="font-['Manrope',sans-serif] font-[500] text-[16px] text-black">
           {t("pages.contacto.form.reason")}
         </label>
         <div className="relative" ref={dropdownRef}>
@@ -179,7 +179,7 @@ function ContactForm() {
             className="w-full h-[56px] px-[16px] bg-white border border-[#c5c5c5] flex items-center justify-between cursor-pointer hover:border-[#191e25] transition-colors"
           >
             <span
-              className={`font-['Manrope',sans-serif] text-[16px] ${
+              className={`font-['Manrope',sans-serif] font-[500] text-[16px] ${
                 reason ? "text-[#191e25]" : "text-[#c0bbb3]"
               }`}
             >
@@ -210,7 +210,7 @@ function ContactForm() {
                       setErrorMessage("");
                       setDropdownOpen(false);
                     }}
-                    className={`w-full px-[16px] py-[14px] text-left font-['Manrope',sans-serif] text-[16px] hover:bg-[#f6f5f3] transition-colors cursor-pointer ${
+                    className={`w-full px-[16px] py-[14px] text-left font-['Manrope',sans-serif] font-[500] text-[16px] hover:bg-[#f6f5f3] transition-colors cursor-pointer ${
                       reason === opt.key
                         ? "text-[#583bff] bg-[#f6f5f3]"
                         : "text-[#191e25]"
@@ -227,18 +227,18 @@ function ContactForm() {
 
       {/* Message textarea */}
       <div className="flex flex-col gap-[8px] w-full max-w-[732px] max-md:max-w-full">
-        <label className="font-['Manrope',sans-serif] text-[16px] text-black">
+        <label className="font-['Manrope',sans-serif] font-[500] text-[16px] text-black">
           {t("pages.contacto.form.message")}
         </label>
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder={t("pages.contacto.form.messagePlaceholder")}
-          className="w-full h-[140px] px-[16px] py-[16px] bg-white border border-[#c5c5c5] font-['Manrope',sans-serif] text-[16px] text-[#191e25] placeholder:text-[#c0bbb3] outline-none focus:border-[#191e25] transition-colors resize-none"
+          className="w-full h-[140px] px-[16px] py-[16px] bg-white border border-[#c5c5c5] font-['Manrope',sans-serif] font-[500] text-[16px] text-[#191e25] placeholder:text-[#c0bbb3] outline-none focus:border-[#191e25] transition-colors resize-none"
           maxLength={MESSAGE_MAX_LENGTH}
           required
         />
-        <p className="font-['Manrope',sans-serif] text-[13px] text-[#191e25]/60">
+        <p className="font-['Manrope',sans-serif] font-[500] text-[13px] text-[#191e25]/60">
           {t("pages.contacto.form.messageLimit", { current: message.length, max: MESSAGE_MAX_LENGTH })}
         </p>
       </div>
@@ -250,7 +250,7 @@ function ContactForm() {
           onClick={() => setDataExpanded(!dataExpanded)}
           className="flex items-center justify-between w-full pb-[8px] pr-[8px] cursor-pointer"
         >
-          <span className="font-['Manrope',sans-serif] text-[16px] text-black text-left flex-1">
+          <span className="font-['Manrope',sans-serif] font-[500] text-[16px] text-black text-left flex-1">
             {t("pages.contacto.form.dataProtection")}
           </span>
           <motion.div
@@ -270,7 +270,7 @@ function ContactForm() {
               transition={{ duration: 0.35, ease: EASE_SMOOTH }}
               className="overflow-hidden"
             >
-              <p className="font-['Manrope',sans-serif] text-[14px] text-[#191e25]/70 leading-[1.6] pt-[16px] pb-[8px]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[14px] text-[#191e25]/70 leading-[1.6] pt-[16px] pb-[8px]">
                 {t("pages.contacto.form.dataProtectionBody")}
               </p>
             </motion.div>
@@ -296,7 +296,7 @@ function ContactForm() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.3, ease: EASE_SMOOTH }}
-              className="font-['Manrope',sans-serif] text-[16px] text-[#c7372f] mt-[16px]"
+              className="font-['Manrope',sans-serif] font-[500] text-[16px] text-[#c7372f] mt-[16px]"
             >
               {errorMessage}
             </motion.p>
@@ -309,7 +309,7 @@ function ContactForm() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.4, ease: EASE_SMOOTH }}
-              className="font-['Manrope',sans-serif] text-[16px] text-[#583bff] mt-[16px]"
+              className="font-['Manrope',sans-serif] font-[500] text-[16px] text-[#583bff] mt-[16px]"
             >
               {t("pages.contacto.form.mailtoNotice", { email: CONTACT_EMAIL })}
             </motion.p>
@@ -376,14 +376,14 @@ function OfficesSection() {
               <h3 className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px]">
                 {office.name}
               </h3>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[1.5] max-w-[264px]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.5] max-w-[264px]">
                 {office.address}
               </p>
               {(office.phone || office.email) && (
                 <div className="flex flex-col gap-[4px]">
                   {office.phone && (
                     <div className="flex items-center gap-[8px]">
-                      <p className="contact-copyable font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[1.5]">
+                      <p className="contact-copyable font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[1.5]">
                         {office.phone}
                       </p>
                       <div className="relative flex items-center">
@@ -402,7 +402,7 @@ function OfficesSection() {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: 4 }}
                               transition={{ duration: 0.2, ease: EASE_SMOOTH }}
-                              className={`absolute left-1/2 -translate-x-1/2 -top-[34px] whitespace-nowrap px-[8px] py-[4px] rounded-[6px] text-[12px] leading-[1.2] font-['Manrope',sans-serif] pointer-events-none ${copyStatus === "copied" ? "bg-[#191e25] text-white" : "bg-[#c7372f] text-white"}`}
+                              className={`absolute left-1/2 -translate-x-1/2 -top-[34px] whitespace-nowrap px-[8px] py-[4px] rounded-[6px] text-[12px] leading-[1.2] font-['Manrope',sans-serif] font-[500] pointer-events-none ${copyStatus === "copied" ? "bg-[#191e25] text-white" : "bg-[#c7372f] text-white"}`}
                             >
                               {copyStatus === "copied"
                                 ? t("pages.contacto.offices.copied")
@@ -417,7 +417,7 @@ function OfficesSection() {
                     <div className="flex items-center gap-[8px]">
                       <a
                         href={`mailto:${office.email}`}
-                        className="contact-copyable font-['Manrope',sans-serif] text-[#583bff] text-[16px] leading-[1.5] hover:underline"
+                        className="contact-copyable font-['Manrope',sans-serif] font-[500] text-[#583bff] text-[16px] leading-[1.5] hover:underline"
                       >
                         {office.email}
                       </a>
@@ -437,7 +437,7 @@ function OfficesSection() {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: 4 }}
                               transition={{ duration: 0.2, ease: EASE_SMOOTH }}
-                              className={`absolute left-1/2 -translate-x-1/2 -top-[34px] whitespace-nowrap px-[8px] py-[4px] rounded-[6px] text-[12px] leading-[1.2] font-['Manrope',sans-serif] pointer-events-none ${copyStatus === "copied" ? "bg-[#191e25] text-white" : "bg-[#c7372f] text-white"}`}
+                              className={`absolute left-1/2 -translate-x-1/2 -top-[34px] whitespace-nowrap px-[8px] py-[4px] rounded-[6px] text-[12px] leading-[1.2] font-['Manrope',sans-serif] font-[500] pointer-events-none ${copyStatus === "copied" ? "bg-[#191e25] text-white" : "bg-[#c7372f] text-white"}`}
                             >
                               {copyStatus === "copied"
                                 ? t("pages.contacto.offices.copied")
@@ -481,7 +481,7 @@ export function ContactoPage() {
             <h1 className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[100px] tracking-[-3px] leading-[0.9] flex-1 whitespace-pre-line max-[1180px]:text-[84px] max-[1180px]:tracking-[-2.6px] max-lg:text-[72px] max-md:text-[48px] max-md:leading-[0.95]">
               {t("pages.contacto.title")}
             </h1>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[24px] tracking-[0.48px] leading-[1.35] w-[370px] shrink-0 max-[1180px]:w-full max-[1180px]:max-w-[480px] max-[1180px]:text-[20px] max-lg:w-full max-lg:max-w-[480px] max-md:text-[18px]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[24px] tracking-[0.48px] leading-[1.35] w-[370px] shrink-0 max-[1180px]:w-full max-[1180px]:max-w-[480px] max-[1180px]:text-[20px] max-lg:w-full max-lg:max-w-[480px] max-md:text-[18px]">
               {t("pages.contacto.subtitle")}
             </p>
           </div>

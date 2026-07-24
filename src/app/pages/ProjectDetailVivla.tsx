@@ -176,7 +176,7 @@ function IntroSection() {
             <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.vivla.introSubtitle")}
             </LangText>
-            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.vivla.introBody")}
             </LangText>
           </div>
@@ -438,7 +438,7 @@ function VisionSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.vivla.challengeTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.vivla.challengeBody")}
               </p>
             </div>
@@ -446,7 +446,7 @@ function VisionSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.vivla.workTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.vivla.workBody")}
               </p>
             </div>
@@ -485,7 +485,7 @@ function NpsPanelsSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.vivla.npsTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.vivla.npsBody")}
               </p>
             </div>
@@ -541,7 +541,7 @@ function DataSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.vivla.dataTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.vivla.dataBody")}
             </p>
           </div>
@@ -667,7 +667,7 @@ function HousesSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full max-md:text-[28px] max-md:leading-[36px] shrink-0">
               {t("pages.vivla.houseTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
               {t("pages.vivla.houseBody")}
             </p>
           </div>
@@ -704,7 +704,7 @@ function InnovationSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full max-md:text-[28px] max-md:leading-[36px] shrink-0">
               {t("pages.vivla.innovationTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
               {t("pages.vivla.innovationBody")}
             </p>
           </div>

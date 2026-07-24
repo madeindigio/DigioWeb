@@ -61,7 +61,7 @@ function IntroSection() {
             <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.ivoox.introSubtitle")}
             </LangText>
-            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.ivoox.introBody")}
             </LangText>
           </div>
@@ -184,7 +184,7 @@ function VisionSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.ivoox.challengeTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.ivoox.challengeBody")}
               </p>
             </div>
@@ -192,7 +192,7 @@ function VisionSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.ivoox.workTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.ivoox.workBody")}
               </p>
             </div>
@@ -355,7 +355,7 @@ function ValueSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.ivoox.valueTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.ivoox.valueBody")}
             </p>
           </div>
@@ -533,7 +533,7 @@ function UsabilitySection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.ivoox.usabilityTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.ivoox.usabilityBody")}
             </p>
           </div>
@@ -612,7 +612,7 @@ function DownloadsSection() {
           <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full max-md:text-[28px] max-md:leading-[36px] shrink-0 whitespace-pre-line">
             {t("pages.ivoox.downloadsTitle")}
           </p>
-          <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
+          <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
             {t("pages.ivoox.downloadsBody")}
           </p>
         </div>
@@ -652,7 +652,7 @@ function CarTextSection() {
           <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full max-md:text-[28px] max-md:leading-[36px] shrink-0 whitespace-pre-line">
             {t("pages.ivoox.carTitle")}
           </p>
-          <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
+          <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
             {t("pages.ivoox.carBody")}
           </p>
         </div>

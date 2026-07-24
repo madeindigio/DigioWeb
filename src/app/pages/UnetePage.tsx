@@ -87,7 +87,7 @@ function TalentSection() {
           <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-w-[680px] max-lg:text-[36px] max-md:text-[28px] whitespace-pre-line">
             {t("pages.unete.talentTitle")}
           </LangText>
-          <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] max-w-[264px] max-lg:max-w-full">
+          <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-w-[264px] max-lg:max-w-full">
             {t("pages.unete.talentBody")}
           </LangText>
         </div>
@@ -125,7 +125,7 @@ function BenefitCard({ title, desc }: { title: string; desc: string }) {
       <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-lg:text-[24px] max-lg:leading-[32px] max-md:text-[20px] max-md:leading-[28px]">
         {title}
       </p>
-      <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]">
+      <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]">
         {desc}
       </p>
     </div>
@@ -199,7 +199,7 @@ function JobDetails({ jobKey }: { jobKey: string }) {
         {/* Left: details */}
         <div className="flex flex-col gap-[16px] max-w-[680px] max-md:max-w-full">
           {hasIntro && (
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t(introKey)}
             </p>
           )}
@@ -209,7 +209,7 @@ function JobDetails({ jobKey }: { jobKey: string }) {
             </p>
           )}
           {hasRequirementsBody && (
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t(requirementsBodyKey)}
             </p>
           )}
@@ -218,7 +218,7 @@ function JobDetails({ jobKey }: { jobKey: string }) {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[20px] tracking-[-0.8px] leading-[27px]">
                 {t(s.titlePath)}
               </p>
-              <ul className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] list-disc ml-[24px]">
+              <ul className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] list-disc ml-[24px]">
                 {s.list.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -276,7 +276,7 @@ function JobOfferCard({
           <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] text-left flex-1 min-w-0 max-lg:text-[24px] max-lg:leading-[32px] max-md:text-[20px] max-md:leading-[28px]">
             {t(`pages.unete.jobs.${jobKey}.title`)}
           </p>
-          <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[180px] shrink-0 text-left max-md:hidden">
+          <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[180px] shrink-0 text-left max-md:hidden">
             {t(`pages.unete.jobs.${jobKey}.area`)}
           </p>
           <div className="shrink-0 flex items-center justify-center">
@@ -319,7 +319,7 @@ function OffersSection() {
           <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-w-[680px] max-lg:text-[36px] max-md:text-[28px]">
             {t("pages.unete.offersTitle")}
           </LangText>
-          <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] max-w-[368px] max-lg:max-w-full">
+          <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-w-[368px] max-lg:max-w-full">
             {t("pages.unete.offersBody")}
           </LangText>
         </div>

@@ -78,7 +78,7 @@ export function NotFoundPage() {
         <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#e5e1dc] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
           {t("pages.notFound.title")}
         </LangText>
-        <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#e5e1dc]/60 text-[18px] leading-[1.5]">
+        <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#e5e1dc]/60 text-[18px] leading-[1.5]">
           {t("pages.notFound.body")}
         </LangText>
         <Link

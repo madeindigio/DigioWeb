@@ -107,7 +107,7 @@ function IntroSection() {
             <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.navilens.introSubtitle")}
             </LangText>
-            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.navilens.introBody")}
             </LangText>
           </div>
@@ -188,7 +188,7 @@ function VisionSection() {
               <LangText as="p" stagger={1} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.navilens.challengeTitle")}
               </LangText>
-              <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.navilens.challengeBody")}
               </LangText>
             </div>
@@ -196,7 +196,7 @@ function VisionSection() {
               <LangText as="p" stagger={3} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.navilens.workTitle")}
               </LangText>
-              <LangText as="p" stagger={4} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <LangText as="p" stagger={4} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.navilens.workBody")}
               </LangText>
             </div>
@@ -358,7 +358,7 @@ function QrStreetPanels() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.navilens.inclusiveTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.navilens.inclusiveBody")}
               </p>
             </div>
@@ -392,7 +392,7 @@ function QrPlatformSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.navilens.functionTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.navilens.functionBody")}
             </p>
           </div>
@@ -609,7 +609,7 @@ function HandAppSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full max-md:text-[28px] max-md:leading-[36px] shrink-0">
               {t("pages.navilens.accessibilityTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
               {t("pages.navilens.accessibilityBody")}
             </p>
           </div>
@@ -641,7 +641,7 @@ function PersonScanningSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full max-md:text-[28px] max-md:leading-[36px] shrink-0">
               {t("pages.navilens.innovationTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
               {t("pages.navilens.innovationBody")}
             </p>
           </div>

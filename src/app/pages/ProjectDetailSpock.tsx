@@ -59,7 +59,7 @@ function IntroSection() {
             <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.spock.introSubtitle")}
             </LangText>
-            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.spock.introBody")}
             </LangText>
           </div>
@@ -137,7 +137,7 @@ function VisionSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.spock.challengeTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.spock.challengeBody")}
               </p>
             </div>
@@ -145,7 +145,7 @@ function VisionSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.spock.workTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.spock.workBody")}
               </p>
             </div>
@@ -192,7 +192,7 @@ function TransparencySection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.spock.transparencyTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.spock.transparencyBody")}
             </p>
           </div>
@@ -301,7 +301,7 @@ function PriceCirclesSection() {
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
                   {/* Label text — fades in after circle */}
                   <motion.p
-                    className="font-['Manrope',sans-serif] text-[21px] max-md:text-[14px] leading-[normal]"
+                    className="font-['Manrope',sans-serif] font-[500] text-[21px] max-md:text-[14px] leading-[normal]"
                     initial={{ opacity: 0, y: 8 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                     transition={{ duration: 0.5, ease: CIRCLE_EASE, delay: 0.5 }}
@@ -318,7 +318,7 @@ function PriceCirclesSection() {
                     <AnimatedPrice value="0,13" start={blueCounterStart} duration={0.8} />
                   </motion.p>
                   <motion.p
-                    className="font-['Manrope',sans-serif] text-[21px] max-md:text-[14px] leading-[normal]"
+                    className="font-['Manrope',sans-serif] font-[500] text-[21px] max-md:text-[14px] leading-[normal]"
                     initial={{ opacity: 0, y: 8 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                     transition={{ duration: 0.5, ease: CIRCLE_EASE, delay: 0.6 }}
@@ -341,7 +341,7 @@ function PriceCirclesSection() {
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
                   {/* Label text — fades in after red circle */}
                   <motion.p
-                    className="font-['Manrope',sans-serif] text-[18px] max-md:text-[12px] leading-[normal]"
+                    className="font-['Manrope',sans-serif] font-[500] text-[18px] max-md:text-[12px] leading-[normal]"
                     initial={{ opacity: 0, y: 8 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                     transition={{ duration: 0.45, ease: CIRCLE_EASE, delay: 1.6 }}
@@ -358,7 +358,7 @@ function PriceCirclesSection() {
                     <AnimatedPrice value="0,16" start={redCounterStart} duration={0.7} />
                   </motion.p>
                   <motion.p
-                    className="font-['Manrope',sans-serif] text-[18px] max-md:text-[12px] leading-[normal]"
+                    className="font-['Manrope',sans-serif] font-[500] text-[18px] max-md:text-[12px] leading-[normal]"
                     initial={{ opacity: 0, y: 8 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                     transition={{ duration: 0.45, ease: CIRCLE_EASE, delay: 1.7 }}
@@ -421,7 +421,7 @@ function ReductionSection() {
           <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full max-md:text-[28px] max-md:leading-[36px] shrink-0 whitespace-pre-line">
             {t("pages.spock.reductionTitle")}
           </p>
-          <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
+          <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
             {t("pages.spock.reductionBody")}
           </p>
         </div>
@@ -444,7 +444,7 @@ function GroupPowerSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] max-lg:text-[32px] max-lg:leading-[40px] max-md:text-[24px] max-md:leading-[32px] whitespace-pre-line">
               {t("pages.spock.groupTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full">
               {t("pages.spock.groupBody")}
             </p>
           </div>

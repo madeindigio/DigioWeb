@@ -210,7 +210,7 @@ function IntroSection() {
             <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-w-[472px] max-md:text-[24px] max-md:leading-[32px]">
               {t("pages.symposium.introSubtitle")}
             </LangText>
-            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+            <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
               {t("pages.symposium.introBody")}
             </LangText>
           </div>
@@ -266,7 +266,7 @@ function RevolutionSection() {
           <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-w-[700px] max-lg:text-[36px] max-md:text-[28px] whitespace-pre-line">
             {t("pages.symposium.revolutionTitle")}
           </p>
-          <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] max-w-[500px]">
+          <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-w-[500px]">
             {t("pages.symposium.revolutionBody")}
           </p>
         </div>
@@ -309,7 +309,7 @@ function VideoAndDsSection() {
               <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px] max-md:text-[24px] max-md:leading-[32px]">
                 {t("pages.symposium.valueTitle")}
               </p>
-              <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal]">
+              <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal]">
                 {t("pages.symposium.valueBody")}
               </p>
             </div>
@@ -350,7 +350,7 @@ function PlatformSection() {
           </div>
           {/* Text — right-aligned */}
           <div className="flex justify-end">
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full">
               {t("pages.symposium.platformBody")}
             </p>
           </div>
@@ -389,7 +389,7 @@ function UxSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[40px] tracking-[-1.6px] leading-[48px] w-[435px] max-lg:w-full max-lg:text-[32px] max-lg:leading-[40px] max-md:text-[24px] max-md:leading-[32px] shrink-0 whitespace-pre-line">
               {t("pages.symposium.uxTitle")}
             </p>
-            <p className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
+            <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full shrink-0 max-lg:shrink">
               {t("pages.symposium.uxBody")}
             </p>
           </div>
@@ -561,7 +561,7 @@ function StatCard({ value, label, showLogoHover = false }: { value: string; labe
       <p className="relative z-10 font-['GT_Ultra_Median',sans-serif] text-black text-[100px] tracking-[-3px] leading-[0.9] max-lg:text-[72px] max-md:text-[56px] transition-all duration-500 group-hover:[text-shadow:0_10px_26px_rgba(25,30,37,0.20)]">
         {displayValue}
       </p>
-      <p className="relative z-10 font-['Manrope',sans-serif] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px] transition-colors duration-500">
+      <p className="relative z-10 font-['Manrope',sans-serif] font-[500] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px] transition-colors duration-500">
         {label}
       </p>
     </motion.div>
@@ -670,7 +670,7 @@ function StatCardEvents({ value, label }: { value: string; label: string }) {
           return (
             <motion.span
               key={`far-${i}`}
-              className="absolute whitespace-nowrap rounded-full border border-black font-['Manrope',sans-serif] font-medium text-black select-none"
+              className="absolute whitespace-nowrap rounded-full border border-black font-['Manrope',sans-serif] font-[500] text-black select-none"
               style={{
                 top: pill.top, left: pill.left,
                 fontSize: ps.fontSize, opacity: ps.opacity,
@@ -703,7 +703,7 @@ function StatCardEvents({ value, label }: { value: string; label: string }) {
           return (
             <motion.span
               key={`mid-${i}`}
-              className="absolute whitespace-nowrap rounded-full border border-black font-['Manrope',sans-serif] font-medium text-black select-none"
+              className="absolute whitespace-nowrap rounded-full border border-black font-['Manrope',sans-serif] font-[500] text-black select-none"
               style={{
                 top: pill.top, left: pill.left,
                 fontSize: ps.fontSize, opacity: ps.opacity,
@@ -736,7 +736,7 @@ function StatCardEvents({ value, label }: { value: string; label: string }) {
           return (
             <motion.span
               key={`near-${i}`}
-              className="absolute whitespace-nowrap rounded-full border border-black font-['Manrope',sans-serif] font-semibold text-black select-none"
+              className="absolute whitespace-nowrap rounded-full border border-black font-['Manrope',sans-serif] font-[500] text-black select-none"
               style={{
                 top: pill.top, left: pill.left,
                 fontSize: ps.fontSize, opacity: ps.opacity,
@@ -773,7 +773,7 @@ function StatCardEvents({ value, label }: { value: string; label: string }) {
         {displayValue}
       </p>
       <p
-        className="relative font-['Manrope',sans-serif] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px] transition-all duration-500"
+        className="relative font-['Manrope',sans-serif] font-[500] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px] transition-all duration-500"
         style={{ zIndex: 10 }}
       >
         {label}
@@ -920,7 +920,7 @@ function StatCardBubbles({ value, label }: { value: string; label: string }) {
         {displayValue}
       </p>
       <p
-        className="relative font-['Manrope',sans-serif] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px]"
+        className="relative font-['Manrope',sans-serif] font-[500] text-black text-[16px] leading-[normal] text-center w-[250px] max-md:w-[200px] mt-[32px]"
         style={{ zIndex: 10 }}
       >
         {label}
@@ -1013,7 +1013,7 @@ function StatsSection() {
             <p className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px] whitespace-pre-line">
               {t("pages.symposium.statsTitle")}
             </p>
-            <div className="font-['Manrope',sans-serif] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full flex flex-col gap-[24px]">
+            <div className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] w-[368px] max-lg:w-full flex flex-col gap-[24px]">
               <p>{t("pages.symposium.statsBody1")}</p>
               <p>{t("pages.symposium.statsBody2")}</p>
             </div>

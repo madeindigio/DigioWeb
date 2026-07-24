@@ -16,7 +16,7 @@ export function AboutSection() {
           <LangText as="p" stagger={1} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px] max-md:tracking-[-1px]">
             {t("about.title")}
           </LangText>
-          <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]">
+          <LangText as="p" stagger={2} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]">
             {t("about.body")}
           </LangText>
           <Link to="/sobre-digio" className="relative inline-block px-[48px] py-[16px] border border-[#191e25] bg-transparent max-md:px-[32px] max-md:py-[12px] cursor-pointer hover:bg-[#191e25] hover:text-white transition-colors group no-underline">

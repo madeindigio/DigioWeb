@@ -135,7 +135,7 @@ export function AboutStats() {
                 <LangText as="p" stagger={1 + idx * 2} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[32px] tracking-[-1.28px] leading-[40px]">
                   {t(`pages.sobreDigio.stats.${key}.value`, key === "years" ? { years: new Date().getFullYear() - 2007 } : {})}
                 </LangText>
-                <LangText as="p" stagger={2 + idx * 2} className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]">
+                <LangText as="p" stagger={2 + idx * 2} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]">
                   {t(`pages.sobreDigio.stats.${key}.desc`)}
                 </LangText>
               </div>
