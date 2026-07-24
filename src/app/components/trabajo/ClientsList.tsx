@@ -72,7 +72,7 @@ function ClientCard({
           </div>
 
           {/* Description */}
-          <p className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[normal] w-[700px] shrink-0 max-[1280px]:w-full max-[1280px]:max-w-[700px] max-lg:w-full max-lg:max-w-[700px] max-md:text-[14px]">
+          <p className="font-['Manrope',sans-serif] font-[400] text-[#191e25] text-[16px] leading-[normal] w-[700px] shrink-0 max-[1280px]:w-full max-[1280px]:max-w-[700px] max-lg:w-full max-lg:max-w-[700px] max-md:text-[14px]">
             {desc}
           </p>
 
@@ -82,7 +82,7 @@ function ClientCard({
               services.map((service: string) => (
                 <p
                   key={service}
-                  className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]"
+                  className="font-['Manrope',sans-serif] font-[400] text-[#191e25] text-[16px] leading-[normal] max-md:text-[14px]"
                 >
                   {service}
                 </p>

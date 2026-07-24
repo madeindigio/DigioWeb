@@ -22,7 +22,7 @@ export function TrabajoHero() {
           <LangText
             as="p"
             stagger={2}
-            className="font-['Manrope',sans-serif] font-[600] text-[#191e25] text-[24px] tracking-[0.48px] leading-[1.35] w-[242px] shrink-0 max-[1180px]:w-full max-[1180px]:max-w-[400px] max-[1180px]:text-[20px] max-lg:w-full max-lg:max-w-[400px] max-md:text-[18px]"
+            className="font-['Manrope',sans-serif] font-[400] text-[#191e25] text-[24px] tracking-[0.48px] leading-[1.35] w-[242px] shrink-0 max-[1180px]:w-full max-[1180px]:max-w-[400px] max-[1180px]:text-[20px] max-lg:w-full max-lg:max-w-[400px] max-md:text-[18px]"
           >
             {t("pages.trabajo.heroSubtitle")}
           </LangText>
