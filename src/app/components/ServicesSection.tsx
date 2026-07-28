@@ -3,11 +3,11 @@ import { LangText } from "./LangText";
 
 const categoryKeys = ["design", "webMobile", "cloud", "qa", "delivery", "consulting"] as const;
 
-function ServiceCard({ categoryKey, staggerBase }: { categoryKey: string; staggerBase: number }) {
+function ServiceCard({ categoryKey, staggerBase, className }: { categoryKey: string; staggerBase: number; className?: string }) {
   const { t } = useTranslation();
   const items = t(`services.categories.${categoryKey}.items`, { returnObjects: true }) as string[];
   return (
-    <div className="flex flex-col gap-[16px] items-start w-full">
+    <div className={`flex flex-col gap-[16px] items-start w-full ${className ?? ""}`.trim()}>
       <div className="w-full h-[1px] bg-[rgba(255,255,255,0.24)]" />
       <div className="flex flex-col gap-[24px] text-[#e2dfda] w-full">
         <LangText as="p" stagger={staggerBase} className="font-['GT_Ultra_Median',sans-serif] font-[700] text-[20px] tracking-[-0.8px] leading-[normal] max-md:text-[16px]">
@@ -25,6 +25,18 @@ function ServiceCard({ categoryKey, staggerBase }: { categoryKey: string; stagge
   );
 }
 
+function ServicesSlider() {
+  return (
+    <div className="md:hidden -mx-[24px] overflow-x-auto px-[24px] pb-[8px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex w-max min-w-full gap-[16px] snap-x snap-mandatory">
+        {categoryKeys.map((key, i) => (
+          <ServiceCard key={key} categoryKey={key} staggerBase={1 + i * 7} className="w-[calc(100vw-88px)] min-w-[260px] max-w-[320px] shrink-0 snap-start" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function ServicesSection() {
   const { t } = useTranslation();
   return (
@@ -34,15 +46,17 @@ export function ServicesSection() {
           {t("services.title")}
         </LangText>
 
+        <ServicesSlider />
+
         {/* First row of 3 services */}
-        <div className="grid grid-cols-3 gap-[43px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-[32px]">
+        <div className="hidden md:grid grid-cols-3 gap-[43px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-[32px]">
           {categoryKeys.slice(0, 3).map((key, i) => (
             <ServiceCard key={key} categoryKey={key} staggerBase={1 + i * 7} />
           ))}
         </div>
 
         {/* Second row of 3 services */}
-        <div className="grid grid-cols-3 gap-[43px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-[32px]">
+        <div className="hidden md:grid grid-cols-3 gap-[43px] max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-[32px]">
           {categoryKeys.slice(3, 6).map((key, i) => (
             <ServiceCard key={key} categoryKey={key} staggerBase={22 + i * 7} />
           ))}

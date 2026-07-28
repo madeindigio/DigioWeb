@@ -6,6 +6,7 @@ import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
 import { SEOHead, breadcrumbJsonLd } from "../components/SEOHead";
 import { smoothScrollTo } from "../components/SmoothScrollProvider";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import {
   getPaginatedPosts,
   sortedBlogPosts,
@@ -78,7 +79,7 @@ function BlogPostCard({
             <meta itemProp="author" content={post.author} />
           </div>
           <div className="w-[200px] h-[206px] shrink-0 relative overflow-hidden max-md:w-[120px] max-md:h-[124px]">
-            <img
+            <ImageWithFallback
               alt={t(`blog.posts.${post.i18nKey}.title`)}
               src={post.image}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
