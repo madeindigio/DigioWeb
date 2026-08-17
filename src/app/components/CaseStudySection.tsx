@@ -1,21 +1,65 @@
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LangText } from "./LangText";
 import { Link } from "react-router";
 
 export function CaseStudySection() {
   const { t } = useTranslation();
+  const mediaWrapRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const mediaWrap = mediaWrapRef.current;
+    if (!mediaWrap) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(Boolean(entries[0]?.isIntersecting));
+      },
+      { root: null, rootMargin: "20% 0px 20% 0px", threshold: 0.01 },
+    );
+
+    observer.observe(mediaWrap);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const syncPlayback = () => {
+      if (isVisible && document.visibilityState === "visible") {
+        video.play().catch(() => undefined);
+        return;
+      }
+      video.pause();
+    };
+
+    const onVisibilityChange = () => {
+      syncPlayback();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    syncPlayback();
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [isVisible]);
+
   return (
     <section className="bg-[#e2dfda] w-full px-[56px] py-[80px] max-md:px-[24px] max-md:py-[48px]">
       <div className="flex items-center justify-between gap-[48px] max-w-[1400px] mx-auto max-lg:flex-col">
         {/* Image */}
-        <div className="w-[620px] h-[400px] shrink-0 relative max-lg:w-full max-lg:h-[300px] max-md:h-[240px]">
+        <div ref={mediaWrapRef} className="w-[620px] h-[400px] shrink-0 relative max-lg:w-full max-lg:h-[300px] max-md:h-[240px]">
           <div className="absolute inset-0 bg-[#d8d8d8]" />
           <video
-            autoPlay
+            ref={videoRef}
             loop
             muted
             playsInline
-            preload="none"
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
             src="https://digio.es/sites/default/files/2024-05/1.%20LOGOTIPO%20DIGIO.mp4"
           />

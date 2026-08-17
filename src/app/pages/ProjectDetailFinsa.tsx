@@ -18,6 +18,7 @@ const imgFinsaLeft = "/images/projects/finsa/Finsa%20Left.jpg";
 const img05MurosDatos = "/images/projects/finsa/Finsa%20Right.jpg";
 const imgBgReports = "/images/projects/finsa/Finsa%20informe.jpg";
 const imgProSection = "/images/projects/finsa/pro%20section.jpg";
+const VIDEO_FNSA_URL = "/images/projects/finsa/finsa-tech-video.mp4";
 const imgRelatedRoomonitor = "/images/projects/roomonitor/Roomheadersection.jpg";
 import { imgEkhilurPlaceholder } from "../components/projectData";
 
@@ -138,7 +139,7 @@ function VideoSection() {
             preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="https://digio.es/sites/default/files/2024-05/Finsa_tech_cabecera_web_compressed.mp4" />
+            <source src={VIDEO_FNSA_URL} />
           </video>
         </div>
       </div>

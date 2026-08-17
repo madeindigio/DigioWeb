@@ -9,7 +9,7 @@ const imgVivlaHeader = "/images/projects/vivla/vivla-hero-section.jpg";
 
 const imgSymposiumHeader = "/images/projects/symposium/Big SYM IMG section.jpg";
 const imgIdermappHeader = "/images/projects/idermapp/iDermApp hero section IMG.jpg";
-const symposiumHeroVideo = "https://digio.es/sites/default/files/2024-04/Symposium-header-2.mp4";
+const symposiumHeroVideo = "/images/projects/symposium/Symposium-header-2.mp4";
 
 export interface ProjectData {
   slug: string;

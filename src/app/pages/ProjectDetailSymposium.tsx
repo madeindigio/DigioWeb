@@ -112,7 +112,8 @@ const imgRelatedIdermapp2 = "/images/placeholder-gray.svg";
 const imgRelatedFinsa = "/images/projects/finsa/finsa-bg-hero.jpg";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const VIDEO_URL = "https://digio.es/sites/default/files/2024-04/Symposium-header-2.mp4";
+const VIDEO_URL = "/images/projects/symposium/Symposium-header-2.mp4";
+const VIDEO_SECTION_URL = "/images/projects/symposium/Symposium-video-sm.mp4";
 const BIG_SYM_IMAGE_URL = "/images/projects/symposium/Big%20SYM%20IMG%20section.jpg";
 const LEFT_SYM_IMAGE_URL = "/images/projects/symposium/Left%20Sym.jpg";
 const RIGHT_SYM_IMAGE_URL = "/images/projects/symposium/Right%20Sym.jpg";
@@ -289,7 +290,7 @@ function VideoAndDsSection() {
             {/* Video / screenshot section */}
             <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden">
               <VideoWithFallback
-                src="https://digio.es/sites/default/files/2024-06/SYM%20Caso%20Digio%20-%20Compressed.mp4"
+                src={VIDEO_SECTION_URL}
                 poster={BIG_SYM_IMAGE_URL}
                 alt="Symposium video"
               />

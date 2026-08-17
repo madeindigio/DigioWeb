@@ -449,7 +449,50 @@ function FullWidthCard({
   eager?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
   const handleClick = useProjectClick(slug, containerRef, image, tag, tagBg, videoSrc);
+
+  useEffect(() => {
+    if (!videoSrc) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVideoVisible(Boolean(entries[0]?.isIntersecting));
+      },
+      { root: null, rootMargin: "15% 0px 15% 0px", threshold: 0.01 },
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [videoSrc]);
+
+  useEffect(() => {
+    if (!videoSrc) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    const syncPlayback = () => {
+      if (isVideoVisible && document.visibilityState === "visible") {
+        video.play().catch(() => undefined);
+        return;
+      }
+      video.pause();
+    };
+
+    const onVisibilityChange = () => {
+      syncPlayback();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    syncPlayback();
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [isVideoVisible, videoSrc]);
 
   return (
     <div className="flex flex-col items-start w-full">
@@ -458,13 +501,13 @@ function FullWidthCard({
         {videoSrc ? (
           <>
             <video
-              autoPlay
+              ref={videoRef}
               muted
               loop
               playsInline
               className="absolute inset-0 w-full h-full object-cover"
               src={videoSrc}
-              preload="none"
+              preload="metadata"
             />
           </>
         ) : (
@@ -585,7 +628,7 @@ export function WorkSection() {
               projectName={t("work.projects.symposium.name")}
               description={t("work.projects.symposium.description")}
               tagBg="bg-[rgba(163,163,163,0.24)]"
-              videoSrc="https://digio.es/sites/default/files/2024-04/Symposium-header-2.mp4"
+              videoSrc="/images/projects/symposium/Symposium-header-2.mp4"
             />
           </ScrollReveal>
 

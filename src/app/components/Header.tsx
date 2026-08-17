@@ -271,10 +271,15 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
   const animRef = useRef<AnimationItem | null>(null);
   const targetFrameRef = useRef(0);
   const currentFrameRef = useRef(0);
+  const lastRenderedFrameRef = useRef(-1);
+  const lastTickTimeRef = useRef(0);
   const rafRef = useRef<number | null>(null);
   const measureRafRef = useRef<number | null>(null);
   const maxScrollableRef = useRef(1);
   const totalFrames = 200;
+  const FRAME_INTERVAL_MS = 1000 / 45;
+  const FRAME_EPSILON = 0.45;
+  const TARGET_EPSILON = 0.75;
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -295,6 +300,8 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
         animationData,
       });
       animRef.current = anim;
+      anim.goToAndStop(0, true);
+      lastRenderedFrameRef.current = 0;
     });
 
     return () => {
@@ -307,27 +314,52 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
 
   useEffect(() => {
     const lerp = 0.08;
-    const tick = () => {
+    const tick = (time: number) => {
       if (!animRef.current) { 
         rafRef.current = requestAnimationFrame(tick); 
         return; 
       }
+
+      if (document.visibilityState !== "visible") {
+        rafRef.current = null;
+        return;
+      }
+
+      if (time - lastTickTimeRef.current < FRAME_INTERVAL_MS) {
+        rafRef.current = requestAnimationFrame(tick);
+        return;
+      }
+      lastTickTimeRef.current = time;
+
       const diff = targetFrameRef.current - currentFrameRef.current;
-      if (Math.abs(diff) < 0.3) {
-        currentFrameRef.current = targetFrameRef.current;
-        animRef.current.goToAndStop(targetFrameRef.current, true);
+      if (Math.abs(diff) < FRAME_EPSILON) {
+        const finalFrame = Math.round(targetFrameRef.current);
+        currentFrameRef.current = finalFrame;
+        if (lastRenderedFrameRef.current !== finalFrame) {
+          animRef.current.goToAndStop(finalFrame, true);
+          lastRenderedFrameRef.current = finalFrame;
+        }
         rafRef.current = null; // pause loop
         return;
       }
       const next = currentFrameRef.current + diff * lerp;
       currentFrameRef.current = next;
-      animRef.current.goToAndStop(Math.round(next), true);
+      const frame = Math.round(next);
+      if (lastRenderedFrameRef.current !== frame) {
+        animRef.current.goToAndStop(frame, true);
+        lastRenderedFrameRef.current = frame;
+      }
       rafRef.current = requestAnimationFrame(tick);
     };
     tickRef.current = tick;
     rafRef.current = requestAnimationFrame(tick);
-    return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current); };
-  }, []);
+    return () => {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+  }, [FRAME_EPSILON, FRAME_INTERVAL_MS]);
 
   const updateMaxScrollable = useCallback(() => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -344,15 +376,37 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
 
   const updateTargetFrame = useCallback((scrollTop: number) => {
     const pct = Math.min(Math.max(scrollTop / (maxScrollableRef.current * 0.6), 0), 1);
-    const newTarget = pct * (totalFrames - 1);
+    const newTarget = Math.round(pct * (totalFrames - 1));
 
-    if (Math.abs(targetFrameRef.current - newTarget) > 0.1) {
+    if (Math.abs(targetFrameRef.current - newTarget) >= TARGET_EPSILON) {
       targetFrameRef.current = newTarget;
-      if (rafRef.current === null && tickRef.current) {
+      if (document.visibilityState === "visible" && rafRef.current === null && tickRef.current) {
         rafRef.current = requestAnimationFrame(tickRef.current);
       }
     }
-  }, [totalFrames]);
+  }, [TARGET_EPSILON, totalFrames]);
+
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      if (document.visibilityState !== "visible") {
+        if (rafRef.current !== null) {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = null;
+        }
+        return;
+      }
+
+      updateTargetFrame(window.scrollY || document.documentElement.scrollTop);
+      if (rafRef.current === null && tickRef.current) {
+        rafRef.current = requestAnimationFrame(tickRef.current);
+      }
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [updateTargetFrame]);
 
   useEffect(() => {
     scheduleMeasure();
@@ -776,12 +830,14 @@ export function Header() {
   const headerBg = getHeaderBg(location.pathname);
   const headerTextDark = isHeaderDark(location.pathname);
   const menuTheme = useMemo(() => createMenuTheme(headerBg, headerTextDark), [headerBg, headerTextDark]);
+  const isMenuForcingCompactHeader = isMobile && menuOpen;
+  const isHeaderCompact = scrolled || isMenuForcingCompactHeader;
   const compactHeaderHeight = isMobile ? 84 : 88;
   const expandedHeaderMinHeight = isMobile ? 120 : 136;
   const reservedHeaderHeight = Math.max(spacerHeight, expandedHeaderMinHeight, compactHeaderHeight);
-  const visibleHeaderHeight = scrolled ? compactHeaderHeight : reservedHeaderHeight;
+  const visibleHeaderHeight = isHeaderCompact ? compactHeaderHeight : reservedHeaderHeight;
   const headerClipInset = Math.max(reservedHeaderHeight - visibleHeaderHeight, 0);
-  const headerContentOffsetY = scrolled ? -(headerClipInset * 0.5) : 0;
+  const headerContentOffsetY = isHeaderCompact ? -(headerClipInset * 0.5) : 0;
   const horizontalPadding = isMobile ? 16 : 56;
 
   /* ── Animated menu navigation ──
@@ -896,7 +952,7 @@ export function Header() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: DUR_MICRO, ease: EASE_SMOOTH }}
               >
-                <DigiLottie compact={scrolled} dark={headerTextDark} />
+                <DigiLottie compact={isHeaderCompact} dark={headerTextDark} />
               </motion.div>
             </Link>
 
@@ -904,7 +960,7 @@ export function Header() {
             <motion.nav
               className="hidden md:flex items-start whitespace-nowrap relative min-w-[500px] max-lg:min-w-[380px]"
               initial={false}
-              animate={scrolled ? "folded" : "expanded"}
+              animate={isHeaderCompact ? "folded" : "expanded"}
               variants={{
                 folded: {
                   opacity: 0,
