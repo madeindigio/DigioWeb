@@ -19,7 +19,7 @@ import { useProjectTransition } from "./ProjectTransitionContext";
 const EASE_SMOOTH: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const PRE_TRANSITION_CLEANUP_MS = 110;
 const PRELOAD_IMAGE_MAX_WAIT_MS = 180;
-const PRELOAD_VIDEO_MAX_WAIT_MS = 220;
+const PRELOAD_VIDEO_MAX_WAIT_MS = 900;
 
 function wait(ms: number) {
   return new Promise<void>((resolve) => {

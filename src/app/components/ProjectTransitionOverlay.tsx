@@ -11,6 +11,7 @@ const EASE: [number, number, number, number] = [0.33, 1, 0.68, 1]; // swift ease
 const PREPARE_FADE_DURATION = 0.17;
 const CARD_DURATION = 0.55;       // swift, smooth expansion
 const HOLD_MS = 50;              
+const VIDEO_HOLD_MS = 420;
 const EXIT_DURATION = 0.35;       // fast fade-out
 
 /* Parallax: image starts zoomed-in + shifted up, settles during expansion */
@@ -60,8 +61,9 @@ export function ProjectTransitionOverlay() {
     if (phase !== "animating") return;
     if (hasLandedRef.current) return;
     hasLandedRef.current = true;
-    timerRef.current = setTimeout(() => finishTransition(), HOLD_MS);
-  }, [finishTransition, phase]);
+    const holdMs = snapshot?.videoSrc ? VIDEO_HOLD_MS : HOLD_MS;
+    timerRef.current = setTimeout(() => finishTransition(), holdMs);
+  }, [finishTransition, phase, snapshot?.videoSrc]);
 
   /* Cleanup timers */
   useEffect(() => {

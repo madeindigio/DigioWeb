@@ -47,8 +47,14 @@ function VideoWithFallback({
     const video = videoRef.current;
     if (!video) return;
 
-    const onCanPlay = () => setVideoReady(true);
+    const markVideoReady = () => {
+      setVideoReady(true);
+    };
     const onError = () => setVideoFailed(true);
+
+    if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      markVideoReady();
+    }
 
     const syncPlayback = () => {
       if (videoFailed) return;
@@ -63,13 +69,17 @@ function VideoWithFallback({
       syncPlayback();
     };
 
-    video.addEventListener("canplaythrough", onCanPlay);
+    video.addEventListener("loadeddata", markVideoReady);
+    video.addEventListener("canplay", markVideoReady);
+    video.addEventListener("playing", markVideoReady);
     video.addEventListener("error", onError);
     document.addEventListener("visibilitychange", onVisibilityChange);
     syncPlayback();
 
     return () => {
-      video.removeEventListener("canplaythrough", onCanPlay);
+      video.removeEventListener("loadeddata", markVideoReady);
+      video.removeEventListener("canplay", markVideoReady);
+      video.removeEventListener("playing", markVideoReady);
       video.removeEventListener("error", onError);
       document.removeEventListener("visibilitychange", onVisibilityChange);
     };
@@ -96,7 +106,7 @@ function VideoWithFallback({
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
         />
       )}
     </div>
@@ -288,7 +298,7 @@ function VideoAndDsSection() {
           {/* Two image columns */}
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
             {/* Video / screenshot section */}
-            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden">
+            <div className="flex-1 max-md:flex-none max-md:w-full h-[545px] max-lg:h-[400px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden">
               <VideoWithFallback
                 src={VIDEO_SECTION_URL}
                 poster={BIG_SYM_IMAGE_URL}
@@ -296,7 +306,7 @@ function VideoAndDsSection() {
               />
             </div>
             {/* Components / DS section */}
-            <div className="flex-1 h-[545px] max-lg:h-[400px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden">
+            <div className="flex-1 max-md:flex-none max-md:w-full h-[545px] max-lg:h-[400px] max-md:h-[300px] bg-[#f8f9fa] relative overflow-hidden">
               <img
                 alt="Symposium components"
                 className="absolute inset-0 w-full h-full object-cover object-center"
@@ -333,7 +343,7 @@ function PlatformSection() {
           {/* Two panels */}
           <div className="flex gap-[40px] h-[545px] max-lg:h-[400px] max-md:h-auto max-md:flex-col max-md:gap-[24px]">
             {/* Agenda UI mockup */}
-            <div className="flex-1 bg-[#f8f9fa] relative overflow-hidden max-md:h-[300px]">
+            <div className="flex-1 max-md:flex-none max-md:w-full bg-[#f8f9fa] relative overflow-hidden max-md:h-[300px]">
               <img
                 alt="Symposium programa agenda"
                 className="absolute inset-0 w-full h-full object-cover object-center"
@@ -341,7 +351,7 @@ function PlatformSection() {
               />
             </div>
             {/* Event creation / mobile section */}
-            <div className="flex-1 bg-[#f8f9fa] relative overflow-hidden max-md:h-[300px]">
+            <div className="flex-1 max-md:flex-none max-md:w-full bg-[#f8f9fa] relative overflow-hidden max-md:h-[300px]">
               <img
                 alt="Symposium event creation"
                 className="absolute inset-0 w-full h-full object-cover object-center"
@@ -397,7 +407,7 @@ function UxSection() {
           {/* Device mockups */}
           <div className="flex gap-[40px] max-md:flex-col max-md:gap-[24px]">
             {/* App icon mockup */}
-            <div className="flex-1 h-[600px] max-lg:h-[450px] max-md:h-[350px] bg-[#f8f9fa] relative overflow-hidden">
+            <div className="flex-1 max-md:flex-none max-md:w-full h-[600px] max-lg:h-[450px] max-md:h-[350px] bg-[#f8f9fa] relative overflow-hidden">
               <img
                 alt="Symposium app"
                 className="absolute inset-0 w-full h-full object-cover object-center"
@@ -405,7 +415,7 @@ function UxSection() {
               />
             </div>
             {/* iPhone mockup */}
-            <div className="flex-1 h-[600px] max-lg:h-[450px] max-md:h-[350px] bg-[#f8f9fa] relative overflow-hidden">
+            <div className="flex-1 max-md:flex-none max-md:w-full h-[600px] max-lg:h-[450px] max-md:h-[350px] bg-[#f8f9fa] relative overflow-hidden">
               <img
                 alt="Symposium mobile QR inscription"
                 className="absolute inset-0 w-full h-full object-cover object-center"
