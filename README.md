@@ -64,7 +64,7 @@ Pixel-perfect replica of the Digio corporate website, built from Figma designs a
 ├── src/
 │   ├── styles/
 │   │   ├── index.css          # Entry: imports fonts, tailwind, theme
-│   │   ├── fonts.css           # @font-face declarations (GT Ultra, Satoshi, Manrope, Gabarito)
+│   │   ├── fonts.css           # @font-face declarations (GT Ultra, Manrope) — Satoshi is loaded via non-blocking <link> tags in index.html
 │   │   ├── tailwind.css        # Tailwind v4 base import
 │   │   └── theme.css           # CSS custom properties, base typography, anti-selection
 │   ├── imports/                # Figma-exported assets: SVG paths, TSX components, images, Lottie JSON
@@ -242,11 +242,10 @@ A custom First-Last-Invert-Play animation system connects project cards in `Work
 | Font             | Source                        | Weights      | Usage                         |
 | ---------------- | ----------------------------- | ------------ | ----------------------------- |
 | GT Ultra Median  | Self-hosted (digio.es, WOFF2) | 400, 700     | Headings, display text        |
-| Satoshi          | Fontshare CDN                 | 300-900      | Base body font (`html`)       |
+| Satoshi          | Fontshare CDN                 | 400, 700     | Base body font (`html`)       |
 | Manrope          | Self-hosted (digio.es, TTF)   | 600, 700     | UI labels, secondary text     |
-| Gabarito         | Google Fonts CDN              | 400-700      | Accent/decorative             |
 
-Font declarations are in `/src/styles/fonts.css`.
+GT Ultra/Manrope `@font-face` declarations are in `/src/styles/fonts.css`. Satoshi is fetched via non-blocking `<link rel="stylesheet" media="print" onload="...">` tags in `index.html` so it never blocks CSS parsing. Gabarito was removed — it was only referenced by unused Figma-export files (`src/imports/Ui.tsx`, `src/imports/ProjectDetailNeom.tsx`).
 
 > **TODO:** Convert Manrope TTF files to WOFF2 for ~60-70% size reduction.
 

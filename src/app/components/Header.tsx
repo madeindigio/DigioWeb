@@ -6,6 +6,7 @@ import { Link, useNavigate, useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
 import { useProjectTransition } from "./ProjectTransitionContext";
 import { smoothScrollTo } from "./SmoothScrollProvider";
+import { ensureLanguageLoaded } from "../i18n/config";
 
 /* ─── Shared constants ─── */
 const EASE_SMOOTH: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -217,7 +218,11 @@ export function setPendingScrollId(id: string) {
 function LangSwitcher({ size = "desktop", dark = false }: { size?: "desktop" | "menu"; dark?: boolean }) {
   const { i18n } = useTranslation();
   const isEs = i18n.language === "es";
-  const toggle = (lang: "es" | "en") => { if (i18n.language !== lang) i18n.changeLanguage(lang); };
+  const toggle = (lang: "es" | "en") => {
+    if (i18n.language !== lang) {
+      ensureLanguageLoaded(lang).then(() => i18n.changeLanguage(lang));
+    }
+  };
 
   const textColor = dark ? "#191e25" : "#e5e1dc";
   const dimColor = dark ? "rgba(25,30,37,0.5)" : "rgba(229,225,220,0.68)";
@@ -284,28 +289,45 @@ function DigiLottie({ compact, dark = false }: { compact: boolean; dark?: boolea
   useEffect(() => {
     if (!containerRef.current) return;
     let cancelled = false;
+    let idleId: number | null = null;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-    Promise.all([
-      import("lottie-web"),
-      import("../../imports/digio_scroll_animation_white"),
-    ]).then(([lottieModule, animModule]) => {
-      if (cancelled || !containerRef.current) return;
-      const lottie = lottieModule.default;
-      const animationData = animModule.default;
-      const anim = lottie.loadAnimation({
-        container: containerRef.current!,
-        renderer: "svg",
-        loop: false,
-        autoplay: false,
-        animationData,
+    const loadLottie = () => {
+      if (cancelled) return;
+      Promise.all([
+        import("lottie-web"),
+        import("../../imports/digio_scroll_animation_white"),
+      ]).then(([lottieModule, animModule]) => {
+        if (cancelled || !containerRef.current) return;
+        const lottie = lottieModule.default;
+        const animationData = animModule.default;
+        const anim = lottie.loadAnimation({
+          container: containerRef.current!,
+          renderer: "svg",
+          loop: false,
+          autoplay: false,
+          animationData,
+        });
+        animRef.current = anim;
+        anim.goToAndStop(0, true);
+        lastRenderedFrameRef.current = 0;
       });
-      animRef.current = anim;
-      anim.goToAndStop(0, true);
-      lastRenderedFrameRef.current = 0;
-    });
+    };
+
+    // Defer fetching/parsing the (large) lottie-web chunk until the browser
+    // is idle so it never competes with critical initial-load resources.
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(loadLottie, { timeout: 2000 });
+    } else {
+      timeoutId = setTimeout(loadLottie, 300);
+    }
 
     return () => {
       cancelled = true;
+      if (idleId !== null && typeof window !== "undefined" && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId !== null) clearTimeout(timeoutId);
       if (animRef.current) { animRef.current.destroy(); animRef.current = null; }
     };
   }, []);

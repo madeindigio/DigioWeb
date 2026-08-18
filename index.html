@@ -8,8 +8,6 @@
 
       <!-- ─── Preconnects — reduce font latency ─── -->
       <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-      <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
       <!-- ─── Preload critical fonts ─── -->
       <link
@@ -21,6 +19,20 @@
       />
       <link rel="preload" href="/fonts/manrope-600.woff2" as="font" type="font/woff2" crossorigin />
       <link rel="preload" href="/fonts/manrope-700.woff2" as="font" type="font/woff2" crossorigin />
+
+      <!-- ─── Satoshi (body fallback font, weight 400 only — the only weight used) ───
+           Loaded as non-render-blocking CSS: fetched with low priority via the
+           media="print" trick, then swapped to "all" once loaded, so it never
+           delays first paint of the self-hosted critical fonts above. -->
+      <link
+        rel="stylesheet"
+        href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap"
+        media="print"
+        onload="this.media='all'"
+      />
+      <noscript>
+        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" />
+      </noscript>
 
       <!-- ─── Primary SEO ─── -->
       <title>Digio - Transformation is our code_</title>
