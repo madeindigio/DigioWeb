@@ -126,14 +126,14 @@ export function Footer() {
               <UeRed />
             </div>
             <div className="h-[56px] w-[58px] relative shrink-0">
-              <img alt="PYME Innovadora" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" src={imgPymeInnovadora} />
+              <img alt="PYME Innovadora" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" width={116} height={112} src={imgPymeInnovadora} />
             </div>
             <InfoLogo />
             <div className="h-[56px] w-[319px] relative shrink-0 max-md:w-[200px] max-md:h-[35px]">
-              <img alt="CDTI" className="absolute inset-0 w-full h-full object-contain object-left" loading="lazy" decoding="async" src={imgLogoCdti2023SoportesDigitalesNegativo011} />
+              <img alt="CDTI" className="absolute inset-0 w-full h-full object-contain object-left" loading="lazy" decoding="async" width={953} height={168} src={imgLogoCdti2023SoportesDigitalesNegativo011} />
             </div>
             <div className="h-[56px] w-[214px] relative shrink-0 max-md:w-[140px] max-md:h-[37px]">
-              <img alt="EU Funded" className="absolute inset-0 w-full h-full object-contain object-left" loading="lazy" decoding="async" src={imgEsFinanciadoPorLaUnionEuropeaRgbNeg01} />
+              <img alt="EU Funded" className="absolute inset-0 w-full h-full object-contain object-left" loading="lazy" decoding="async" width={611} height={154} src={imgEsFinanciadoPorLaUnionEuropeaRgbNeg01} />
             </div>
           </div>
         </div>

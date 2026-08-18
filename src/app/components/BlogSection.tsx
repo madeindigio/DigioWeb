@@ -50,6 +50,9 @@ export function BlogSection() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                   src={post.image}
                   loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={400}
                   itemProp="image"
                 />
               </Link>

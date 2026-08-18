@@ -5,8 +5,19 @@ const imgRectangle5 = "/images/projects/spock/spock-hero-img.jpg";
 const imgBgImg2 = "/images/projects/ivoox/ivoox-hero-section.jpg";
 const imgRectangle8 = "/images/projects/navilens/navilens-hero-section.jpg";
 const imgVivla = "/images/projects/vivla/vivla-hero-section.jpg";
-import imgRectangle7 from "/images/projects/idermapp/iDermApp hero section IMG.jpg";
+const imgRectangle7 = "/images/projects/idermapp/iDermApp hero section IMG.jpg";
 const imgEkhilurHeader = "/images/projects/ekhilur/ekhilur-hero-section.jpg";
+
+/* ─── Responsive WebP variants (640/960/1440w) generated alongside each
+   original JPEG — keeps the same base filename, so we can derive the
+   srcset purely from the JPEG path passed to each card. ─── */
+function buildWebpSrcSet(jpgPath: string): string {
+  const base = jpgPath.replace(/\.(jpe?g|png)$/i, "");
+  return [640, 960, 1440].map((w) => `${base}-${w}.webp ${w}w`).join(", ");
+}
+const CARD_IMAGE_SIZES = "(max-width: 768px) 100vw, 1400px";
+const CARD_IMAGE_WIDTH = 1440;
+const CARD_IMAGE_HEIGHT = 744;
 
 import type { ReactNode } from "react";
 import { useRef, useState, useCallback, useEffect } from "react";
@@ -511,13 +522,18 @@ function FullWidthCard({
             />
           </>
         ) : (
-          <img
-            alt={projectName}
-            className={`absolute inset-0 w-full h-full ${imgClassName}`}
-            src={image}
-            loading={eager ? "eager" : "lazy"}
-            decoding="async"
-          />
+          <picture className="absolute inset-0 block w-full h-full">
+            <source type="image/webp" srcSet={buildWebpSrcSet(image)} sizes={CARD_IMAGE_SIZES} />
+            <img
+              alt={projectName}
+              className={`w-full h-full ${imgClassName}`}
+              src={image}
+              loading={eager ? "eager" : "lazy"}
+              decoding="async"
+              width={CARD_IMAGE_WIDTH}
+              height={CARD_IMAGE_HEIGHT}
+            />
+          </picture>
         )}
         <Tag label={tag} bgClass={tagBg} />
         <CardHoverOverlay containerRef={containerRef} onClick={handleClick} />
@@ -558,7 +574,18 @@ function HalfCard({
     <div className="flex flex-col items-start flex-1 min-w-0">
       <div ref={containerRef} className="relative w-full h-[500px] max-lg:h-[350px] max-md:h-[250px] overflow-hidden cursor-pointer">
         <div className="absolute inset-0 bg-[#d8d8d8]" />
-        <img alt={projectName} className={`absolute inset-0 w-full h-full ${imgClassName}`} src={image} loading="lazy" decoding="async" />
+        <picture className="absolute inset-0 block w-full h-full">
+          <source type="image/webp" srcSet={buildWebpSrcSet(image)} sizes={CARD_IMAGE_SIZES} />
+          <img
+            alt={projectName}
+            className={`w-full h-full ${imgClassName}`}
+            src={image}
+            loading="lazy"
+            decoding="async"
+            width={CARD_IMAGE_WIDTH}
+            height={CARD_IMAGE_HEIGHT}
+          />
+        </picture>
         <Tag label={tag} bgClass={tagBg} />
         <CardHoverOverlay containerRef={containerRef} onClick={handleClick} />
       </div>
