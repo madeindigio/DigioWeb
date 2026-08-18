@@ -22,7 +22,7 @@ export function AboutHero() {
     <section className="bg-[#583bff] w-full px-[56px] max-md:px-[24px]">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-[48px] py-[120px] max-lg:py-[80px] max-md:py-[48px] max-lg:flex-col max-lg:items-start">
         <div className="flex flex-col gap-[32px] items-start max-w-[478px] max-lg:max-w-full text-[#e2dfda]">
-          <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
+          <LangText as="h1" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
             {t("pages.sobreDigio.hero.heading")}
           </LangText>
           <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[16px] leading-[normal] max-md:text-[14px]">

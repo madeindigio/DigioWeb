@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "motion/react";
-import { SEOHead, breadcrumbJsonLd } from "../components/SEOHead";
+import { SEOHead, breadcrumbJsonLd, contactPageJsonLd } from "../components/SEOHead";
 
 const EASE_SMOOTH = [0.22, 1, 0.36, 1] as const;
 
@@ -462,16 +462,41 @@ function OfficesSection() {
 export function ContactoPage() {
   const { t } = useTranslation();
 
+  const offices = [
+    {
+      name: t("pages.contacto.offices.murcia.name"),
+      address: t("pages.contacto.offices.murcia.address"),
+      phone: t("pages.contacto.offices.murcia.phone"),
+      email: t("pages.contacto.offices.murcia.email"),
+    },
+    {
+      name: t("pages.contacto.offices.madrid.name"),
+      address: t("pages.contacto.offices.madrid.address"),
+    },
+    {
+      name: t("pages.contacto.offices.barcelona.name"),
+      address: t("pages.contacto.offices.barcelona.address"),
+    },
+  ];
+
   return (
     <>
       <SEOHead
         titleKey="seo.contacto.title"
         descriptionKey="seo.contacto.description"
         canonicalPath="/contacto"
-        jsonLd={breadcrumbJsonLd([
-          { name: t("seo.home.title"), path: "/" },
-          { name: t("seo.contacto.title"), path: "/contacto" },
-        ])}
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: t("seo.home.title"), path: "/" },
+            { name: t("seo.contacto.title"), path: "/contacto" },
+          ]),
+          contactPageJsonLd({
+            name: t("seo.contacto.title"),
+            description: t("seo.contacto.description"),
+            url: "https://digio.es/contacto",
+            offices,
+          }),
+        ]}
       />
       {/* Hero + Form section */}
       <section className="bg-[#f6f5f3] w-full px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">

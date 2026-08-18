@@ -22,6 +22,7 @@ export function HomePage() {
         titleKey="seo.home.title"
         descriptionKey="seo.home.description"
         canonicalPath="/"
+        noSuffix
         jsonLd={[
           organizationJsonLd(),
           breadcrumbJsonLd([{ name: t("seo.home.title"), path: "/" }]),

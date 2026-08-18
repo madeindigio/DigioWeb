@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "motion/react";
 import { LangText } from "../components/LangText";
 import { ContactSection } from "../components/ContactSection";
-import { SEOHead, breadcrumbJsonLd } from "../components/SEOHead";
+import { SEOHead, breadcrumbJsonLd, jobPostingJsonLd } from "../components/SEOHead";
 
 import svgPaths from "../../imports/svg-ws9geozil5";
 import svgArrow from "../../imports/svg-0193fyzoz5";
@@ -66,7 +66,7 @@ function HeroSection() {
             <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#e2dfda] text-[20px] tracking-[-0.8px] whitespace-nowrap">
               {t("pages.unete.label")}
             </LangText>
-            <LangText as="p" stagger={1} className="font-['GT_Ultra_Median',sans-serif] text-[#e2dfda] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
+            <LangText as="h1" stagger={1} className="font-['GT_Ultra_Median',sans-serif] text-[#e2dfda] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
               {t("pages.unete.title")}
             </LangText>
           </div>
@@ -84,7 +84,7 @@ function TalentSection() {
     <section className="bg-white w-full px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-[120px] max-lg:gap-[80px] max-md:gap-[48px]">
         <div className="flex items-end justify-between gap-[48px] max-lg:flex-col max-lg:items-start max-lg:gap-[24px]">
-          <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-w-[680px] max-lg:text-[36px] max-md:text-[28px] whitespace-pre-line">
+          <LangText as="h2" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-w-[680px] max-lg:text-[36px] max-md:text-[28px] whitespace-pre-line">
             {t("pages.unete.talentTitle")}
           </LangText>
           <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-w-[264px] max-lg:max-w-full">
@@ -140,7 +140,7 @@ function BenefitsSection() {
   return (
     <section className="bg-[#bbffe8] w-full px-[56px] py-[100px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-[48px] max-md:gap-[32px]">
-        <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-w-[576px] max-lg:text-[36px] max-md:text-[28px] whitespace-pre-line">
+        <LangText as="h2" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-w-[576px] max-lg:text-[36px] max-md:text-[28px] whitespace-pre-line">
           {t("pages.unete.benefitsTitle")}
         </LangText>
 
@@ -316,7 +316,7 @@ function OffersSection() {
       {/* Title area */}
       <div className="px-[56px] pb-[56px] max-md:px-[24px] max-md:pb-[32px]">
         <div className="max-w-[1400px] mx-auto flex items-start justify-between gap-[48px] max-lg:flex-col max-lg:gap-[24px]">
-          <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-w-[680px] max-lg:text-[36px] max-md:text-[28px]">
+          <LangText as="h2" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] max-w-[680px] max-lg:text-[36px] max-md:text-[28px]">
             {t("pages.unete.offersTitle")}
           </LangText>
           <LangText as="p" stagger={1} className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] max-w-[368px] max-lg:max-w-full">
@@ -346,16 +346,29 @@ function OffersSection() {
 
 export function UnetePage() {
   const { t } = useTranslation();
+  const openJobKeys = ["devops", "mobile", "frontend", "node", "php"];
   return (
     <>
       <SEOHead
         titleKey="seo.unete.title"
         descriptionKey="seo.unete.description"
         canonicalPath="/unete"
-        jsonLd={breadcrumbJsonLd([
-          { name: t("seo.home.title"), path: "/" },
-          { name: t("seo.unete.title"), path: "/unete" },
-        ])}
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: t("seo.home.title"), path: "/" },
+            { name: t("seo.unete.title"), path: "/unete" },
+          ]),
+          /* Positions are kept open on a rolling basis; update datePosted/validThrough on republish. */
+          ...openJobKeys.map((jobKey) =>
+            jobPostingJsonLd({
+              title: t(`pages.unete.jobs.${jobKey}.title`),
+              description: t(`pages.unete.jobs.${jobKey}.intro`),
+              datePosted: "2025-01-01",
+              validThrough: "2026-12-31",
+              url: "https://digio.es/unete",
+            })
+          ),
+        ]}
       />
       <HeroSection />
       <TalentSection />

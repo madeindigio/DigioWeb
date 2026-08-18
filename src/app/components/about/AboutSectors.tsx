@@ -242,7 +242,7 @@ export function AboutSectors() {
                 }}
               >
                 <div className="flex flex-col gap-[18px]">
-                  <p
+                  <h3
                     className="font-['GT_Ultra_Median',sans-serif] text-white text-[30px] tracking-[-1px] leading-[1.02]"
                     style={{
                       opacity: isActive ? 1 : 0.56,
@@ -252,7 +252,7 @@ export function AboutSectors() {
                     }}
                   >
                     {sector.title}
-                  </p>
+                  </h3>
 
                   <div className="relative flex h-[180px] items-center justify-center overflow-hidden rounded-[22px]">
                     <img
@@ -290,6 +290,7 @@ export function AboutSectors() {
 
   return (
     <section ref={sectionRef} className="relative w-full bg-[#191e25] text-white pt-[9vh] pb-[9vh]">
+      <h2 className="sr-only">{t("pages.sobreDigio.sectors.heading")}</h2>
       <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
         <div className="sticky top-0 h-screen w-full flex items-center justify-center">
           <div className="relative w-[clamp(320px,32vw,500px)] aspect-square flex items-center justify-center">
@@ -333,7 +334,7 @@ export function AboutSectors() {
                 data-vertical={sector.key}
               >
                 <div className="w-[30%] pr-16 text-right">
-                  <p
+                  <h3
                     className="font-['GT_Ultra_Median',sans-serif] font-[400] text-[46px] leading-[1.08] tracking-[-1px] transition-all duration-700"
                     style={{
                       opacity: isActive ? 1 : 0.38,
@@ -342,7 +343,7 @@ export function AboutSectors() {
                     }}
                   >
                     {sector.title}
-                  </p>
+                  </h3>
                 </div>
 
                 <div className="w-[40%]" />

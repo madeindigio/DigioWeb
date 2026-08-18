@@ -122,7 +122,7 @@ export function AboutStats() {
   return (
     <section className="bg-[#efefef] w-full px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-[56px] items-center">
-        <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] text-center max-w-[900px] max-lg:text-[36px] max-md:text-[28px]">
+        <LangText as="h2" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[48px] tracking-[-1.92px] leading-[normal] text-center max-w-[900px] max-lg:text-[36px] max-md:text-[28px]">
           {t("pages.sobreDigio.stats.intro")}
         </LangText>
 

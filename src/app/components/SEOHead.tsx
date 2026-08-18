@@ -277,3 +277,113 @@ export function projectJsonLd(opts: {
     },
   };
 }
+
+/** AboutPage schema wrapping the Organization entity — helps AI/answer engines identify "who is Digio". */
+export function aboutPageJsonLd(opts: { name: string; description: string; url: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    mainEntity: organizationJsonLd(),
+  };
+}
+
+/** CollectionPage listing the client/project entities showcased on the "Nuestro trabajo" page. */
+export function collectionPageJsonLd(opts: {
+  name: string;
+  description: string;
+  url: string;
+  items: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    about: {
+      "@type": "Organization",
+      name: "Digio",
+      url: BASE_URL,
+    },
+    mentions: opts.items.map((name) => ({
+      "@type": "Organization",
+      name,
+    })),
+  };
+}
+
+/** ContactPage schema with the Digio offices as LocalBusiness-style locations. */
+export function contactPageJsonLd(opts: {
+  name: string;
+  description: string;
+  url: string;
+  offices: { name: string; address: string; phone?: string; email?: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    mainEntity: {
+      "@type": "Organization",
+      name: "Digio",
+      url: BASE_URL,
+      ...(opts.offices.some((o) => o.email) ? { email: opts.offices.find((o) => o.email)?.email } : {}),
+      ...(opts.offices.some((o) => o.phone) ? { telephone: opts.offices.find((o) => o.phone)?.phone } : {}),
+      location: opts.offices.map((office) => ({
+        "@type": "Place",
+        name: office.name,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: office.address,
+          addressCountry: "ES",
+        },
+      })),
+    },
+  };
+}
+
+/** JobPosting schema for the open roles listed on the "Únete" page — enables job rich results. */
+export function jobPostingJsonLd(opts: {
+  title: string;
+  description: string;
+  datePosted: string;
+  validThrough?: string;
+  url: string;
+  employmentType?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: opts.title,
+    description: opts.description,
+    datePosted: opts.datePosted,
+    validThrough: opts.validThrough,
+    employmentType: opts.employmentType ?? "FULL_TIME",
+    hiringOrganization: {
+      "@type": "Organization",
+      name: "Digio",
+      sameAs: BASE_URL,
+      logo: `${BASE_URL}/logo.png`,
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Murcia",
+        addressCountry: "ES",
+      },
+    },
+    jobLocationType: "TELECOMMUTE",
+    applicantLocationRequirements: {
+      "@type": "Country",
+      name: "ES",
+    },
+    directApply: true,
+    url: opts.url,
+  };
+}

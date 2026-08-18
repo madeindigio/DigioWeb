@@ -9,14 +9,14 @@ export function TrabajoHero() {
       <div className="w-full px-[56px] py-[120px] max-lg:py-[80px] max-md:px-[24px] max-md:py-[48px]">
         <div className="max-w-[1400px] mx-auto flex items-end justify-between gap-[40px] max-[1180px]:flex-col max-[1180px]:items-start max-[1180px]:gap-[32px] max-lg:flex-col max-lg:items-start max-lg:gap-[32px]">
           {/* Title */}
-          <div className="flex flex-col justify-center font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[100px] tracking-[-3px] leading-[0.9] max-w-[952px] max-[1180px]:text-[84px] max-[1180px]:tracking-[-2.6px] max-lg:text-[72px] max-md:text-[48px] max-md:tracking-[-1.92px]">
-            <LangText as="p" stagger={0} className="mb-0">
+          <h1 className="flex flex-col justify-center font-['GT_Ultra_Median',sans-serif] text-[#191e25] text-[100px] tracking-[-3px] leading-[0.9] max-w-[952px] max-[1180px]:text-[84px] max-[1180px]:tracking-[-2.6px] max-lg:text-[72px] max-md:text-[48px] max-md:tracking-[-1.92px]">
+            <LangText as="span" stagger={0} className="mb-0 block">
               {t("pages.trabajo.heroTitle1")}
             </LangText>
-            <LangText as="p" stagger={1}>
+            <LangText as="span" stagger={1} className="block">
               {t("pages.trabajo.heroTitle2")}
             </LangText>
-          </div>
+          </h1>
 
           {/* Subtitle */}
           <LangText

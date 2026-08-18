@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { type ReactNode } from "react";
 import {
   LogoMijngeldzaken,
@@ -99,8 +100,10 @@ function ClientCard({
 
 /* ─── Clients list section ─── */
 export function ClientsList() {
+  const { t } = useTranslation();
   return (
     <section className="bg-white w-full pb-[120px] max-md:pb-[64px]">
+      <h2 className="sr-only">{t("pages.trabajo.clientsHeading")}</h2>
       <div className="w-full flex flex-col">
         {CLIENT_KEYS.map((key, i) => (
           <ClientCard

@@ -1,28 +1,28 @@
 const en = {
   seo: {
     home: {
-      title: "Custom Digital Solutions",
-      description: "Digio designs and develops digital platforms, mobile apps and technology solutions for companies, startups and international organizations.",
+      title: "Digio - Transformation is our code_",
+      description: "We're a driving force behind the most solid digital solutions. Since 2007, we've built software and digital products for startups and companies of every size.",
     },
     trabajo: {
-      title: "Our Work",
-      description: "Explore Digio's digital projects: UX/UI design, web and mobile development, IoT and scalable platforms for leading companies.",
+      title: "Software Projects & Case Studies",
+      description: "Explore Digio's projects and case studies: software development, mobile apps, IoT and digital platforms built for startups and leading companies.",
     },
     sobreDigio: {
-      title: "About Digio",
-      description: "Meet Digio: over 17 years building solid digital solutions. Design, development, Cloud and technology consulting from Murcia, Spain.",
+      title: "About Digio: Software & Digital Products Since 2007",
+      description: "Digio is a software and digital product company active since 2007. Meet our team, technical capabilities and way of working.",
     },
     unete: {
-      title: "Join the Team",
-      description: "Work at Digio: we are looking for designers, developers and engineers passionate about technology and digital innovation.",
+      title: "Careers at Digio: Tech & Software Jobs",
+      description: "Work at Digio: open positions for designers, developers and software engineers. Discover our culture, benefits and team.",
     },
     blog: {
       title: "Blog",
       description: "Articles on web development, UX design, cloud computing, cybersecurity and digital technology trends by the Digio team.",
     },
     contacto: {
-      title: "Contact",
-      description: "Contact Digio to discuss your digital project. We help you design and develop the technology solution you need.",
+      title: "Contact Digio: Start Your Software Project",
+      description: "Contact Digio for your software, app or digital platform project. Offices, phone and contact form.",
     },
     ia: {
       title: "Artificial Intelligence",
@@ -661,6 +661,7 @@ const en = {
       heroTitle1: "A showcase",
       heroTitle2: "of our work",
       heroSubtitle: "A testament to our dedication and excellence across all verticals",
+      clientsHeading: "Digio clients and projects",
       clients: {
         mijngeldzaken: {
           desc: "MijnGeldzaken, the Dutch startup, acquired by Söderberg & Partners, a Swedish multinational insurance company. Digio developed a personal finance management (PFM) APP with connection to banking APIs, receipts and alerts.",
@@ -719,6 +720,7 @@ const en = {
         recurrence: { value: "70%+ Retention", desc: "of clients have been working with us for more than 3 years and plan to continue doing so." },
       },
       sectors: {
+        heading: "Industries we work with",
         fintech: { title: "FINTECH & INSURTECH", desc: "The financial sector trusts Digio to create and simplify user operations. Major institutions like Banco Santander and BMN have chosen us to develop their applications." },
         energy: { title: "ENERGY", desc: "In the energy sector, Digio applies its extensive knowledge developing portals, consumption detection tools and IoT technology to optimize operations and ensure the efficiency of large industries." },
         logistics: { title: "LOGISTICS & TRANSPORT", desc: "Smart cities are improving public transport and at Digio we are experts in creating route planning applications. Our apps inform citizens about the best route options." },

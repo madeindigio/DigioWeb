@@ -10,7 +10,7 @@ function ServiceBlock({ categoryKey, staggerBase, className }: { categoryKey: st
     <div className={`flex flex-col gap-[16px] items-start w-full ${className ?? ""}`.trim()}>
       <div className="w-full h-[1px] bg-white/[0.24]" />
       <div className="flex flex-col gap-[24px] text-[#e2dfda] w-full">
-        <LangText as="p" stagger={staggerBase} className="font-['GT_Ultra_Median',sans-serif] font-[700] text-[20px] tracking-[-0.8px] leading-[normal] max-md:text-[16px]">
+        <LangText as="h3" stagger={staggerBase} className="font-['GT_Ultra_Median',sans-serif] font-[700] text-[20px] tracking-[-0.8px] leading-[normal] max-md:text-[16px]">
           {t(`services.categories.${categoryKey}.title`)}
         </LangText>
         <div className="flex flex-col gap-[8px] font-['GT_Ultra_Median',sans-serif] text-[14px] leading-[20px] max-md:text-[13px]">
@@ -42,7 +42,7 @@ export function AboutServices() {
   return (
     <section className="bg-[#191e25] w-full px-[56px] py-[100px] max-lg:py-[64px] max-md:px-[24px] max-md:py-[40px]">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-[48px]">
-        <LangText as="p" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#e2dfda] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
+        <LangText as="h2" stagger={0} className="font-['GT_Ultra_Median',sans-serif] text-[#e2dfda] text-[48px] tracking-[-1.92px] leading-[normal] max-lg:text-[36px] max-md:text-[28px]">
           {t("services.title")}
         </LangText>
 

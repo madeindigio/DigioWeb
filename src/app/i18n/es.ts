@@ -1,28 +1,28 @@
 const es = {
   seo: {
     home: {
-      title: "Soluciones Digitales a Medida",
-      description: "Digio disena y desarrolla plataformas digitales, apps moviles y soluciones tecnologicas para empresas, startups y organizaciones internacionales.",
+      title: "Digio - Transformation is our code_",
+      description: "Somos un factor de cambio e impulso al servicio de las soluciones digitales mas solidas. Desde 2007 creamos software y productos digitales para startups y companias de todos los tamanos.",
     },
     trabajo: {
-      title: "Nuestro Trabajo",
-      description: "Descubre los proyectos digitales de Digio: diseno UX/UI, desarrollo web y movil, IoT y plataformas escalables para empresas lideres.",
+      title: "Proyectos y Casos de Exito en Software",
+      description: "Descubre los proyectos y casos de exito de Digio: desarrollo de software, apps moviles, IoT y plataformas digitales para startups y empresas lideres.",
     },
     sobreDigio: {
-      title: "Sobre Digio",
-      description: "Conoce a Digio: mas de 17 anos creando soluciones digitales solidas. Diseno, desarrollo, Cloud y consultoria tecnologica desde Murcia.",
+      title: "Sobre Digio: Software y Productos Digitales desde 2007",
+      description: "Digio es una empresa de software y productos digitales activa desde 2007. Conoce nuestro equipo, capacidades tecnicas y forma de trabajar.",
     },
     unete: {
-      title: "Unete al Equipo",
-      description: "Trabaja en Digio: buscamos disenadores, desarrolladores e ingenieros apasionados por la tecnologia y la innovacion digital.",
+      title: "Unete a Digio: Empleo en Tecnologia y Software",
+      description: "Trabaja en Digio: ofertas de empleo para disenadores, desarrolladores e ingenieros de software. Conoce nuestra cultura, beneficios y equipo.",
     },
     blog: {
       title: "Blog",
       description: "Articulos sobre desarrollo web, diseno UX, cloud computing, ciberseguridad y tendencias en tecnologia digital por el equipo de Digio.",
     },
     contacto: {
-      title: "Contacto",
-      description: "Contacta con Digio para hablar de tu proyecto digital. Te ayudamos a disenar y desarrollar la solucion tecnologica que necesitas.",
+      title: "Contacto: Habla con Digio sobre tu Proyecto",
+      description: "Contacta con Digio para tu proyecto de desarrollo de software, apps o plataformas digitales. Oficinas, telefono y formulario de contacto.",
     },
     ia: {
       title: "Inteligencia Artificial",
@@ -661,6 +661,7 @@ const es = {
       heroTitle1: "Una muestra",
       heroTitle2: "de nuestro trabajo",
       heroSubtitle: "Testimonio de nuestra dedicación y excelencia en todos los verticales",
+      clientsHeading: "Clientes y proyectos de Digio",
       clients: {
         mijngeldzaken: {
           desc: "MijnGeldzaken, la startup holandesa, adquirida por Söderberg & Partners, multinacional sueca de seguros. Digio ha desarrollado una APP de gestión de finanzas personales (PFM) con conexión a APIs bancarias, recibos y alertas.",
@@ -719,6 +720,7 @@ const es = {
         recurrence: { value: "+ 70% Recurrencia", desc: "en clientes que trabajan con nosotros desde hace más de 3 años y están seguros de que lo seguirán haciendo." },
       },
       sectors: {
+        heading: "Sectores en los que trabajamos",
         fintech: { title: "FINTECH & INSURTECH", desc: "El sector financiero confía en Digio para crear y simplificar las operaciones de los usuarios. Grandes instituciones como Banco Santander y BMN nos han elegido para desarrollar sus aplicaciones." },
         energy: { title: "ENERGÍA", desc: "En el sector de la energía, Digio aplica su amplio conocimiento desarrollando portales, herramientas de detección de consumos y tecnología IoT para optimizar operaciones y garantizar la eficacia de las grandes industrias." },
         logistics: { title: "LOGÍSTICA Y TRANSPORTE", desc: "Las smart cities están mejorando los transportes públicos y en Digio somos expertos en crear aplicaciones para planificar rutas. Nuestras apps informan a los ciudadanos sobre las mejores opciones de trayecto." },
