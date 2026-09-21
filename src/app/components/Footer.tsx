@@ -113,6 +113,7 @@ export function Footer() {
             <div className="flex gap-[24px] font-['Satoshi',sans-serif] text-[#bbffe8] text-[16px] tracking-[-0.16px] max-md:flex-col max-md:gap-[8px]">
               <Link to="/privacidad" className="hover:opacity-80 transition-opacity">{t("footer.privacy")}</Link>
               <Link to="/cookies" className="hover:opacity-80 transition-opacity">{t("footer.cookies")}</Link>
+              <Link to="/seguridad" className="hover:opacity-80 transition-opacity">{t("footer.security")}</Link>
               <Link to="/contacto" className="hover:opacity-80 transition-opacity">{t("footer.contact")}</Link>
             </div>
           </div>

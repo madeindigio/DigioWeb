@@ -13,6 +13,7 @@ const ContactoPage = lazy(() => import("./pages/ContactoPage").then((m) => ({ de
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((m) => ({ default: m.NotFoundPage })));
 const PrivacidadPage = lazy(() => import("./pages/PrivacidadPage").then((m) => ({ default: m.PrivacidadPage })));
 const CookiesPage = lazy(() => import("./pages/CookiesPage").then((m) => ({ default: m.CookiesPage })));
+const SeguridadPage = lazy(() => import("./pages/SeguridadPage").then((m) => ({ default: m.SeguridadPage })));
 const BlogPostDetailPage = lazy(() => import("./pages/BlogPostDetailPage").then((m) => ({ default: m.BlogPostDetailPage })));
 const BlogPostNuevaMarca = lazy(() => import("./pages/BlogPostNuevaMarca").then((m) => ({ default: m.BlogPostNuevaMarca })));
 const IALandingPage = lazy(() => import("./pages/IALandingPage").then((m) => ({ default: m.IALandingPage })));
@@ -41,6 +42,7 @@ export const router = createBrowserRouter([
       { path: "contacto", Component: ContactoPage },
       { path: "privacidad", Component: PrivacidadPage },
       { path: "cookies", Component: CookiesPage },
+      { path: "seguridad", Component: SeguridadPage },
       { path: "es", loader: () => redirect("/") },
       { path: "es/*", loader: ({ params }) => redirect(params["*"] ? `/${params["*"]}` : "/") },
       { path: "en", loader: () => redirect("/") },
