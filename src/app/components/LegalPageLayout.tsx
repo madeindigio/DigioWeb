@@ -89,7 +89,10 @@ export function LegalSection({
 
 export function LegalBody({ children }: { children: ReactNode }) {
   return (
-    <p className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] font-[500]">
+    <p
+      className="font-['Manrope',sans-serif] font-[500] text-[#191e25] text-[16px] leading-[normal] font-[500]"
+      style={{ whiteSpace: "pre-wrap" }}
+    >
       {children}
     </p>
   );
