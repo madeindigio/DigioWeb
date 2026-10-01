@@ -23,6 +23,7 @@ export function PrivacidadPage() {
       { id: "intro", label: t("pages.privacidad.introTitle") },
       { id: "datos", label: t("pages.privacidad.dataTitle") },
       { id: "uso", label: t("pages.privacidad.useTitle") },
+      { id: "conservacion", label: t("pages.privacidad.retentionTitle") },
       { id: "proteccion", label: t("pages.privacidad.protectionTitle") },
       { id: "terceros", label: t("pages.privacidad.sharingTitle") },
       { id: "derechos", label: t("pages.privacidad.rightsTitle") },
@@ -51,6 +52,10 @@ export function PrivacidadPage() {
       <LegalSection id="uso" title={t("pages.privacidad.useTitle")}>
         <LegalBody>{t("pages.privacidad.useBody2")}</LegalBody>
         <LegalBulletList items={useList} />
+      </LegalSection>
+
+      <LegalSection id="conservacion" title={t("pages.privacidad.retentionTitle")}>
+        <LegalBody>{t("pages.privacidad.retentionBody")}</LegalBody>
       </LegalSection>
 
       <LegalSection
