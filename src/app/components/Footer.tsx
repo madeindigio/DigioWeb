@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { LangText } from "./LangText";
 const imgLogoFderTransparente1 = "/images/footer/LOGO_FDER_transparente_1.png";
-const imgPymeInnovadora = "/images/footer/PYME Innovadora.png";
+const imgPymeInnovadora = "/images/footer/pyme_innovadora_meic_SP_print.svg";
 const imgLogoCdti2023SoportesDigitalesNegativo011 = "/images/footer/gob.png";
 const imgEsFinanciadoPorLaUnionEuropeaRgbNeg01 = "/images/footer/eu.png";
 import UeRed from "../../imports/UeRed-106-135";
@@ -126,8 +126,8 @@ export function Footer() {
             <div className="h-[56px] shrink-0">
               <UeRed />
             </div>
-            <div className="h-[56px] w-[58px] relative shrink-0">
-              <img alt="PYME Innovadora" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" width={116} height={112} src={imgPymeInnovadora} />
+            <div className="h-[132px] w-[88px] relative shrink-0">
+              <img alt="PYME Innovadora" className="absolute inset-0 w-full h-full object-contain grayscale invert" loading="lazy" decoding="async" width={88} height={132} src={imgPymeInnovadora} />
             </div>
             <InfoLogo />
             <div className="h-[56px] w-[319px] relative shrink-0 max-md:w-[200px] max-md:h-[35px]">
