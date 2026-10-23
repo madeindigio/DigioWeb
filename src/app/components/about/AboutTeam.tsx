@@ -21,12 +21,20 @@ function MemberCard({
 
       {/* Photo */}
       <div className="w-full aspect-[330/410] bg-[#e5e1dc]/10 overflow-hidden relative mb-[8px]">
-        <WebGLHoverImage
-          src={`/images/people/${memberKey}.jpeg`}
-          fallbackText={memberKey}
-          alt={t(`pages.sobreDigio.team.members.${memberKey}.name`)}
-          className="w-full h-full cursor-pointer"
-        />
+        {memberKey === "juan" ? (
+          <img
+            src="/images/people/juan.jpeg"
+            alt={t(`pages.sobreDigio.team.members.${memberKey}.name`)}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <WebGLHoverImage
+            src={`/images/people/${memberKey}.jpeg`}
+            fallbackText={memberKey}
+            alt={t(`pages.sobreDigio.team.members.${memberKey}.name`)}
+            className="w-full h-full cursor-pointer"
+          />
+        )}
       </div>
 
       {/* Name & Role */}
